@@ -33,3 +33,7 @@ LayaAir 3.4.1 基础第一人称移动场景。打开 `assets/Scene.ls` 并运�
 
 逻辑位于 `src/PlayerController.ts`，节点和物理组件保存在场景中。
 针对 IDE 3.4.1 的旧组件热重载报错，项目内的 `src/EditorHotReloadGuard.ts` 仅在场景编辑器中生效。
+
+## 开源许可
+
+本项目自有代码、场景和材质采用 [MIT License](LICENSE)。`engine/types/`、`assets/atlas/comp/` 和 `assets/resources/layaAir.png` 是 LayaAir 引擎或项目模板附带的文件，仍按原权利人的许可条款使用；根目录的 MIT 许可证不改变这些文件的授权。
