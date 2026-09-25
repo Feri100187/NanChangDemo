@@ -1,0 +1,11 @@
+{
+    "modules": {
+        "laya.ui": true,
+        "laya.d3": true,
+        "laya.physics3D": true,
+        "laya.bullet": true
+    },
+    "addons": {
+        "laya.ui": "ui2"
+    }
+}
