@@ -326,29 +326,45 @@ export class LevelController extends Laya.Script {
     private layoutResult(): void {
         const width = Laya.stage.width;
         const height = Laya.stage.height;
-        const textWidth = Math.max(240, Math.min(720, width - 48));
+        // 先按设计宽度排版，再统一缩放内容，避免窄窗口换行挤掉按钮。
+        const textWidth = 720;
         this.resultPanel.size(width, height);
         this.resultTitle.width = this.resultDetail.width = textWidth;
         const sessionMenu = this.state === "Ready" || this.state === "Paused" ||
             (this.state === "Restarting" && this.continueButton?.visible);
         if (sessionMenu && this.continueButton) {
-            this.resultTitle.pos((width - textWidth) / 2, height / 2 - 205);
+            this.resultTitle.pos(-textWidth / 2, -205);
             this.resultDetail.height = 210;
-            this.resultDetail.pos((width - textWidth) / 2, height / 2 - 125);
-            this.continueButton.pos((width - this.continueButton.width) / 2, height / 2 + 120);
-            this.restartButton.pos((width - this.restartButton.width) / 2, height / 2 + 194);
+            this.resultDetail.pos(-textWidth / 2, -125);
+            this.continueButton.pos(-this.continueButton.width / 2, 120);
+            this.restartButton.pos(-this.restartButton.width / 2, 194);
             if (this.settingsButton) {
                 const ready = this.state === "Ready";
-                this.settingsButton.pos(ready ? (width - this.settingsButton.width) / 2 : width / 2 + 8,
-                    height / 2 + 194);
-                if (!ready) this.restartButton.x = width / 2 - this.restartButton.width - 8;
+                this.settingsButton.pos(ready ? -this.settingsButton.width / 2 : 8, 194);
+                if (!ready) this.restartButton.x = -this.restartButton.width - 8;
             }
-            return;
+        } else {
+            this.resultDetail.height = 72;
+            this.resultTitle.pos(-textWidth / 2, -130);
+            this.resultDetail.pos(-textWidth / 2, -52);
+            this.restartButton.pos(-this.restartButton.width / 2, 38);
         }
-        this.resultDetail.height = 72;
-        this.resultTitle.pos((width - textWidth) / 2, height / 2 - 130);
-        this.resultDetail.pos((width - textWidth) / 2, height / 2 - 52);
-        this.restartButton.pos((width - this.restartButton.width) / 2, height / 2 + 38);
+
+        // 背景始终铺满舞台；标题、说明与所有可见按钮作为一个内容组适配。
+        const widgets = [this.resultTitle, this.resultDetail, this.continueButton,
+            this.restartButton, this.settingsButton].filter(widget => widget?.visible);
+        const left = Math.min(...widgets.map(widget => widget.x));
+        const top = Math.min(...widgets.map(widget => widget.y));
+        const contentWidth = Math.max(...widgets.map(widget => widget.x + widget.width)) - left;
+        const contentHeight = Math.max(...widgets.map(widget => widget.y + widget.height)) - top;
+        const scale = Math.min(1, Math.max(1, width - 32) / contentWidth,
+            Math.max(1, height - 32) / contentHeight);
+        const x = (width - contentWidth * scale) / 2;
+        const y = (height - contentHeight * scale) / 2;
+        for (const widget of widgets) {
+            widget.scale(scale, scale);
+            widget.pos(x + (widget.x - left) * scale, y + (widget.y - top) * scale);
+        }
     }
 
     onDisable(): void {

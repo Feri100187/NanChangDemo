@@ -31,7 +31,7 @@ export class SettingsController extends Laya.Script {
 
     onAwake(): void {
         this.playerControl = this.player.getComponent(PlayerController);
-        this.settingsPanel.visible = false;
+        this.close();
         this.volumeSlider.min = 0;
         this.volumeSlider.max = 100;
         this.volumeSlider.wholeNumbers = true;
@@ -56,10 +56,13 @@ export class SettingsController extends Laya.Script {
         if (!this.settingsButton.visible || !this.settingsButton.enabled || !this.playerControl.clock?.paused) return;
         this.refresh();
         this.settingsPanel.visible = true;
+        this.volumeSlider.canDrag = this.sensitivitySlider.canDrag = true;
         this.layout();
     }
 
     private close(): void {
+        // 隐藏父面板不会取消引擎已捕获的握把拖动。
+        this.volumeSlider.canDrag = this.sensitivitySlider.canDrag = false;
         this.settingsPanel.visible = false;
     }
 
@@ -68,11 +71,13 @@ export class SettingsController extends Laya.Script {
     };
 
     private changeVolume(): void {
+        if (!this.settingsPanel.visible) return;
         GameSettings.setVolume(this.volumeSlider.value / 100);
         this.updateLabels();
     }
 
     private changeSensitivity(): void {
+        if (!this.settingsPanel.visible) return;
         GameSettings.setSensitivity(this.sensitivitySlider.value / 100 * GameSettings.defaultSensitivity);
         this.playerControl.mouseSensitivity = GameSettings.sensitivity;
         this.updateLabels();
