@@ -88,6 +88,9 @@
       },
       "continueButton": {
         "_$ref": "sessionbtn"
+      },
+      "settingsButton": {
+        "_$ref": "settingsbtn"
       }
     },
     {
@@ -144,6 +147,40 @@
       "damageEdgeOpacity": 0.2,
       "damageSeconds": 0.35,
       "directionSeconds": 0.7
+    },
+    {
+      "_$type": "a836d26b-dc06-4b1c-babe-2e5d7ab93e46",
+      "scriptPath": "../src/SettingsController.ts",
+      "player": {
+        "_$ref": "player01"
+      },
+      "settingsButton": {
+        "_$ref": "settingsbtn"
+      },
+      "settingsPanel": {
+        "_$ref": "settingspanel"
+      },
+      "settingsCard": {
+        "_$ref": "settingscard"
+      },
+      "volumeSlider": {
+        "_$ref": "volumeslider"
+      },
+      "sensitivitySlider": {
+        "_$ref": "sensitivityslider"
+      },
+      "volumeText": {
+        "_$ref": "volumelabel"
+      },
+      "sensitivityText": {
+        "_$ref": "sensitivitylabel"
+      },
+      "backButton": {
+        "_$ref": "settingsback"
+      },
+      "resetButton": {
+        "_$ref": "settingsreset"
+      }
     }
   ],
   "_$child": [
@@ -17225,6 +17262,46 @@
               "strokeColor": "#20332c"
             }
           ]
+        },
+        {
+          "_$id": "settingsbtn",
+          "_$type": "GButton",
+          "name": "SettingsButton",
+          "x": 547,
+          "y": 569,
+          "width": 240,
+          "height": 56,
+          "_mouseState": 2,
+          "background": {
+            "_$type": "DrawRectCmd",
+            "fillColor": "#e7a742"
+          },
+          "title": "设置",
+          "titleColor": "#142132",
+          "titleFontSize": 22,
+          "titleWidget": {
+            "_$ref": "settingsbtnlabel"
+          },
+          "downEffect": 1,
+          "_$child": [
+            {
+              "_$id": "settingsbtnlabel",
+              "_$type": "GTextField",
+              "name": "SettingsButtonLabel",
+              "x": 0,
+              "y": 0,
+              "width": 240,
+              "height": 56,
+              "_mouseState": 1,
+              "text": "设置",
+              "font": "Microsoft YaHei",
+              "fontSize": 22,
+              "color": "#142132",
+              "valign": "middle",
+              "bold": true,
+              "align": "center"
+            }
+          ]
         }
       ]
     },
@@ -17290,6 +17367,303 @@
       "letterSpacing": 0,
       "stroke": 2,
       "strokeColor": "#3f1414"
+    },
+    {
+      "_$id": "settingspanel",
+      "_$type": "GBox",
+      "name": "SettingsPanel",
+      "width": 1334,
+      "height": 750,
+      "visible": false,
+      "_mouseState": 2,
+      "zIndex": 110,
+      "background": {
+        "_$type": "DrawRectCmd",
+        "fillColor": "#101925"
+      },
+      "_$child": [
+        {
+          "_$id": "settingscard",
+          "_$type": "GBox",
+          "name": "SettingsCard",
+          "width": 640,
+          "height": 420,
+          "_mouseState": 2,
+          "background": {
+            "_$type": "DrawRectCmd",
+            "fillColor": "#18283b"
+          },
+          "_$child": [
+            {
+              "_$id": "settingstitle",
+              "_$type": "GTextField",
+              "name": "SettingsTitle",
+              "x": 60,
+              "y": 24,
+              "width": 520,
+              "height": 56,
+              "_mouseState": 1,
+              "text": "设置",
+              "font": "Microsoft YaHei",
+              "fontSize": 36,
+              "color": "#ffcf80",
+              "valign": "middle",
+              "bold": true
+            },
+            {
+              "_$id": "volumelabel",
+              "_$type": "GTextField",
+              "name": "VolumeLabel",
+              "x": 60,
+              "y": 100,
+              "width": 520,
+              "height": 36,
+              "_mouseState": 1,
+              "text": "音量  100%",
+              "font": "Microsoft YaHei",
+              "fontSize": 22,
+              "color": "#ffffff",
+              "valign": "middle"
+            },
+            {
+              "_$id": "volumeslider",
+              "_$type": "GSlider",
+              "name": "VolumeSlider",
+              "x": 60,
+              "y": 144,
+              "width": 520,
+              "height": 42,
+              "_mouseState": 2,
+              "min": 0,
+              "max": 100,
+              "value": 100,
+              "wholeNumbers": true,
+              "changeOnClick": true,
+              "canDrag": true,
+              "hBar": {
+                "_$ref": "volumesliderbar"
+              },
+              "gripButton": {
+                "_$ref": "volumeslidergrip"
+              },
+              "_$child": [
+                {
+                  "_$id": "volumeslidertrack",
+                  "_$type": "GBox",
+                  "name": "Track",
+                  "y": 17,
+                  "width": 520,
+                  "height": 8,
+                  "_mouseState": 1,
+                  "background": {
+                    "_$type": "DrawRectCmd",
+                    "fillColor": "#34485d"
+                  }
+                },
+                {
+                  "_$id": "volumesliderbar",
+                  "_$type": "GBox",
+                  "name": "Fill",
+                  "y": 17,
+                  "width": 520,
+                  "height": 8,
+                  "_mouseState": 1,
+                  "background": {
+                    "_$type": "DrawRectCmd",
+                    "fillColor": "#e7a742"
+                  }
+                },
+                {
+                  "_$id": "volumeslidergrip",
+                  "_$type": "GBox",
+                  "name": "Grip",
+                  "x": 508,
+                  "width": 24,
+                  "height": 42,
+                  "_mouseState": 2,
+                  "background": {
+                    "_$type": "DrawRectCmd",
+                    "fillColor": "#ffcf80"
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "sensitivitylabel",
+              "_$type": "GTextField",
+              "name": "SensitivityLabel",
+              "x": 60,
+              "y": 208,
+              "width": 520,
+              "height": 36,
+              "_mouseState": 1,
+              "text": "鼠标灵敏度  1.00 倍",
+              "font": "Microsoft YaHei",
+              "fontSize": 22,
+              "color": "#ffffff",
+              "valign": "middle"
+            },
+            {
+              "_$id": "sensitivityslider",
+              "_$type": "GSlider",
+              "name": "SensitivitySlider",
+              "x": 60,
+              "y": 252,
+              "width": 520,
+              "height": 42,
+              "_mouseState": 2,
+              "min": 25,
+              "max": 300,
+              "value": 100,
+              "wholeNumbers": true,
+              "changeOnClick": true,
+              "canDrag": true,
+              "hBar": {
+                "_$ref": "sensitivitysliderbar"
+              },
+              "gripButton": {
+                "_$ref": "sensitivityslidergrip"
+              },
+              "_$child": [
+                {
+                  "_$id": "sensitivityslidertrack",
+                  "_$type": "GBox",
+                  "name": "Track",
+                  "y": 17,
+                  "width": 520,
+                  "height": 8,
+                  "_mouseState": 1,
+                  "background": {
+                    "_$type": "DrawRectCmd",
+                    "fillColor": "#34485d"
+                  }
+                },
+                {
+                  "_$id": "sensitivitysliderbar",
+                  "_$type": "GBox",
+                  "name": "Fill",
+                  "y": 17,
+                  "width": 520,
+                  "height": 8,
+                  "_mouseState": 1,
+                  "background": {
+                    "_$type": "DrawRectCmd",
+                    "fillColor": "#e7a742"
+                  }
+                },
+                {
+                  "_$id": "sensitivityslidergrip",
+                  "_$type": "GBox",
+                  "name": "Grip",
+                  "x": 508,
+                  "width": 24,
+                  "height": 42,
+                  "_mouseState": 2,
+                  "background": {
+                    "_$type": "DrawRectCmd",
+                    "fillColor": "#ffcf80"
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "settingshint",
+              "_$type": "GTextField",
+              "name": "SettingsHint",
+              "x": 60,
+              "y": 298,
+              "width": 520,
+              "height": 30,
+              "_mouseState": 1,
+              "text": "调整立即生效 · 自动保存 · Esc 返回",
+              "font": "Microsoft YaHei",
+              "fontSize": 16,
+              "color": "#b9c8d8",
+              "valign": "middle"
+            },
+            {
+              "_$id": "settingsreset",
+              "_$type": "GButton",
+              "name": "SettingsResetButton",
+              "x": 60,
+              "y": 346,
+              "width": 240,
+              "height": 56,
+              "_mouseState": 2,
+              "background": {
+                "_$type": "DrawRectCmd",
+                "fillColor": "#aab9c9"
+              },
+              "title": "恢复默认",
+              "titleColor": "#142132",
+              "titleFontSize": 22,
+              "titleWidget": {
+                "_$ref": "settingsresetlabel"
+              },
+              "downEffect": 1,
+              "_$child": [
+                {
+                  "_$id": "settingsresetlabel",
+                  "_$type": "GTextField",
+                  "name": "SettingsResetButtonLabel",
+                  "x": 0,
+                  "y": 0,
+                  "width": 240,
+                  "height": 56,
+                  "_mouseState": 1,
+                  "text": "恢复默认",
+                  "font": "Microsoft YaHei",
+                  "fontSize": 22,
+                  "color": "#142132",
+                  "valign": "middle",
+                  "bold": true,
+                  "align": "center"
+                }
+              ]
+            },
+            {
+              "_$id": "settingsback",
+              "_$type": "GButton",
+              "name": "SettingsBackButton",
+              "x": 340,
+              "y": 346,
+              "width": 240,
+              "height": 56,
+              "_mouseState": 2,
+              "background": {
+                "_$type": "DrawRectCmd",
+                "fillColor": "#e7a742"
+              },
+              "title": "返回",
+              "titleColor": "#142132",
+              "titleFontSize": 22,
+              "titleWidget": {
+                "_$ref": "settingsbacklabel"
+              },
+              "downEffect": 1,
+              "_$child": [
+                {
+                  "_$id": "settingsbacklabel",
+                  "_$type": "GTextField",
+                  "name": "SettingsBackButtonLabel",
+                  "x": 0,
+                  "y": 0,
+                  "width": 240,
+                  "height": 56,
+                  "_mouseState": 1,
+                  "text": "返回",
+                  "font": "Microsoft YaHei",
+                  "fontSize": 22,
+                  "color": "#142132",
+                  "valign": "middle",
+                  "bold": true,
+                  "align": "center"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

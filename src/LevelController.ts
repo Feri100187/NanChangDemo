@@ -45,6 +45,8 @@ export class LevelController extends Laya.Script {
     restartButton: Laya.GButton;
     @property({ type: Laya.GButton, caption: "开始/继续按钮（可选）" })
     continueButton: Laya.GButton;
+    @property({ type: Laya.GButton, caption: "设置按钮（可选）" })
+    settingsButton: Laya.GButton;
 
     private state: LevelState = "Playing";
     private readonly remaining = new Set<EnemyAI>();
@@ -156,6 +158,10 @@ export class LevelController extends Laya.Script {
         this.continueButton.title = ready ? "开始游戏" : "继续游戏";
         this.continueButton.enabled = true;
         this.continueButton.visible = true;
+        if (this.settingsButton) {
+            this.settingsButton.visible = true;
+            this.settingsButton.enabled = true;
+        }
         this.restartButton.visible = !ready;
         this.restartButton.enabled = true;
         this.restartButton.title = "重新开始";
@@ -167,6 +173,7 @@ export class LevelController extends Laya.Script {
         if (this.awaitingControls || (this.state !== "Ready" && this.state !== "Paused")
             || document.hidden || !document.hasFocus()) return;
         this.awaitingControls = true;
+        if (this.settingsButton) this.settingsButton.enabled = false;
         this.continueButton.enabled = false;
         this.continueButton.title = "正在取得鼠标控制…";
         this.owner.getComponent(CombatFeedback)?.requestAudioUnlock();
@@ -262,6 +269,7 @@ export class LevelController extends Laya.Script {
         this.awaitingControls = false;
         this.setGameplayPaused(true);
         if (this.continueButton) this.continueButton.visible = false;
+        if (this.settingsButton) this.settingsButton.visible = false;
         this.restartButton.visible = true;
         this.owner.getComponent(CombatFeedback)?.stop();
         // 同步关停：同一帧里其他敌人和残留射击都不能再造成伤害。
@@ -286,6 +294,7 @@ export class LevelController extends Laya.Script {
         this.state = "Restarting";
         this.awaitingControls = false;
         this.setGameplayPaused(true);
+        if (this.settingsButton) this.settingsButton.enabled = false;
         if (this.continueButton) this.continueButton.enabled = false;
         this.restartButton.enabled = false;
         this.restartButton.title = "正在重新开始…";
@@ -328,6 +337,12 @@ export class LevelController extends Laya.Script {
             this.resultDetail.pos((width - textWidth) / 2, height / 2 - 125);
             this.continueButton.pos((width - this.continueButton.width) / 2, height / 2 + 120);
             this.restartButton.pos((width - this.restartButton.width) / 2, height / 2 + 194);
+            if (this.settingsButton) {
+                const ready = this.state === "Ready";
+                this.settingsButton.pos(ready ? (width - this.settingsButton.width) / 2 : width / 2 + 8,
+                    height / 2 + 194);
+                if (!ready) this.restartButton.x = width / 2 - this.restartButton.width - 8;
+            }
             return;
         }
         this.resultDetail.height = 72;
