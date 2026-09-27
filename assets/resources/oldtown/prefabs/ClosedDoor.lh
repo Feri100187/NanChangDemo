@@ -1,0 +1,31 @@
+{
+  "_$ver": 1,
+  "_$id": "beymam00",
+  "_$type": "Sprite3D",
+  "name": "ClosedDoor",
+  "isStatic": true,
+  "_$comp": [
+    {
+      "_$type": "MeshFilter",
+      "sharedMesh": {
+        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm1",
+        "_$type": "Mesh"
+      }
+    },
+    {
+      "_$type": "MeshRenderer",
+      "receiveShadow": true,
+      "castShadow": true,
+      "sharedMaterials": [
+        {
+          "_$uuid": "4f9cf165-5fa2-4287-a91e-4a4402158031",
+          "_$type": "Material"
+        },
+        {
+          "_$uuid": "530cf2a9-b43c-4057-a660-5f6bbc679520",
+          "_$type": "Material"
+        }
+      ]
+    }
+  ]
+}

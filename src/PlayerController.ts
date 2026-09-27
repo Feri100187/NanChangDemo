@@ -5,6 +5,8 @@ const { regClass, property } = Laya;
 /** 胶囊体第一人称控制。点击画布锁定鼠标，Esc 释放。 */
 @regClass()
 export class PlayerController extends Laya.Script {
+    static readonly RESPAWNED = "player-respawned";
+
     @property({ type: Number, caption: "行走速度" })
     walkSpeed = 5;
     @property({ type: Number, caption: "疾跑速度" })
@@ -25,6 +27,8 @@ export class PlayerController extends Laya.Script {
     weaponPivot: Laya.Sprite3D;
     @property({ type: Laya.GTextField })
     statusText: Laya.GTextField;
+    @property({ type: Laya.Sprite3D, caption: "本关出生点（可选）" })
+    spawnPoint: Laya.Sprite3D;
 
     private readonly standingHeight = 2;
     private readonly crouchingHeight = 1.2;
@@ -41,6 +45,8 @@ export class PlayerController extends Laya.Script {
     private readonly headRay = new Laya.Ray(new Laya.Vector3(), new Laya.Vector3(0, 1, 0));
     private readonly headHit = new Laya.HitResult();
     private player: Laya.Sprite3D;
+    private spawnPosition: Laya.Vector3;
+    private spawnYaw = 0;
     private playerHealth: PlayerHealth;
     private controller: Laya.CharacterController;
     private meshFilter: Laya.MeshFilter;
@@ -60,12 +66,14 @@ export class PlayerController extends Laya.Script {
     private canvas: HTMLCanvasElement;
     private ignoreNextMouseMove = false;
     private mouseLockError = false;
+    private mouseFocusClickArmed = false;
 
     private readonly clearInput = () => {
         this.keys.clear();
         this.jumpRequested = false;
+        this.mouseFocusClickArmed = false;
         this.movement.setValue(0, 0, 0);
-        this.controller?.move(this.movement);
+        if (this.controller?.enabled) this.controller.move(this.movement);
     };
 
     private readonly visibilityChanged = () => {
@@ -73,6 +81,10 @@ export class PlayerController extends Laya.Script {
     };
 
     private readonly requestMouseFocus = () => {
+        // 新场景必须收到自己的一次按下，避免“重新开始”的尾随 click 直接锁鼠标。
+        if (!this.enabled || !this.mouseFocusClickArmed
+            || (this.playerHealth && !this.playerHealth.isAlive)) return;
+        this.mouseFocusClickArmed = false;
         if (document.pointerLockElement === this.canvas) return;
         this.mouseLockError = false;
         this.canvas.focus();
@@ -92,12 +104,13 @@ export class PlayerController extends Laya.Script {
     };
 
     private readonly pointerLockFailed = () => {
+        if (this.destroyed || !this.enabled || (this.playerHealth && !this.playerHealth.isAlive)) return;
         this.mouseLockError = true;
         this.showMousePrompt();
     };
 
     private readonly handleMouseMove = (event: MouseEvent) => {
-        if (!this.hasMouseFocus) return;
+        if (!this.isGameplayFocused()) return;
         if (document.pointerLockElement !== this.canvas && event.target !== this.canvas) return;
         if (this.ignoreNextMouseMove && document.pointerLockElement === this.canvas) {
             this.ignoreNextMouseMove = false;
@@ -115,6 +128,8 @@ export class PlayerController extends Laya.Script {
         // 独立的 mousedown/up 事件仍会交给引擎处理。
         if (document.pointerLockElement === this.canvas) {
             event.stopImmediatePropagation();
+        } else if (event.button === 0) {
+            this.mouseFocusClickArmed = true;
         }
     };
 
@@ -129,7 +144,16 @@ export class PlayerController extends Laya.Script {
 
     /** 供枪械判断是否能接收战斗输入。 */
     isGameplayFocused(): boolean {
-        return this.hasMouseFocus && (!this.playerHealth || this.playerHealth.isAlive);
+        return this.enabled && !document.hidden && this.hasMouseFocus
+            && (!this.playerHealth || this.playerHealth.isAlive);
+    }
+
+    /** 结算时停止控制与角色物理，onDisable 负责清输入、解绑并释放鼠标。 */
+    stopGameplay(): void {
+        this.currentSpeed = 0;
+        this.isAiming = false;
+        this.enabled = false;
+        this.controller.enabled = false;
     }
 
     /** 鼠标事件和物理帧之间也能从角色当前眼位正确发射射线。 */
@@ -158,6 +182,10 @@ export class PlayerController extends Laya.Script {
 
     onAwake(): void {
         this.player = this.owner as Laya.Sprite3D;
+        const spawn = this.spawnPoint || this.player;
+        this.spawnPosition = spawn.transform.position.clone();
+        this.spawnYaw = spawn.transform.rotationEuler.y;
+        this.yaw = this.spawnYaw;
         this.playerHealth = this.player.getComponent(PlayerHealth);
         this.controller = this.player.getComponent(Laya.CharacterController);
         this.meshFilter = this.body.getComponent(Laya.MeshFilter);
@@ -186,6 +214,10 @@ export class PlayerController extends Laya.Script {
     }
 
     onStart(): void {
+        if (this.spawnPoint) {
+            this.player.transform.position = this.spawnPosition;
+            this.controller.position = this.spawnPosition;
+        }
         this.updateCamera();
         this.updateCameraRotation();
         this.showMousePrompt();
@@ -310,10 +342,13 @@ export class PlayerController extends Laya.Script {
     private respawn(): void {
         this.clearInput();
         this.setCrouching(false);
-        const spawn = new Laya.Vector3(0, 1.1, 0);
-        this.player.transform.position = spawn;
-        this.controller.position = spawn;
+        this.player.transform.position = this.spawnPosition;
+        this.controller.position = this.spawnPosition;
+        this.yaw = this.spawnYaw;
+        this.pitch = this.recoilPitch = this.recoilYaw = 0;
+        this.updateCameraRotation();
         this.updateCamera();
+        this.player.event(PlayerController.RESPAWNED);
     }
 
     private updateCamera(): void {
@@ -352,6 +387,8 @@ export class PlayerController extends Laya.Script {
         this.canvas.removeEventListener("pointerdown", this.handleLockedPointerDown, true);
         this.canvas.removeEventListener("contextmenu", this.preventContextMenu);
         if (document.pointerLockElement === this.canvas) document.exitPointerLock();
+        this.mouseLockError = false;
+        this.canvas.blur();
     }
 
     onDestroy(): void {

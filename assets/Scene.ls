@@ -1726,11 +1726,8 @@
               "roundsPerMinute": 700,
               "reloadSeconds": 2.2,
               "baseDamage": 28,
-              "enemy": {
-                "_$ref": "target001"
-              },
-              "enemyText": {
-                "_$ref": "targethud"
+              "hitText": {
+                "_$ref": "hitinfo1"
               }
             },
             {
@@ -1784,7 +1781,7 @@
         {
           "_$id": "target001",
           "_$type": "Sprite3D",
-          "name": "EnemySoldier",
+          "name": "敌军01",
           "transform": {
             "localPosition": {
               "_$type": "Vector3",
@@ -3394,6 +3391,1150 @@
               ]
             }
           ]
+        },
+        {
+          "_$id": "enemy002",
+          "_$type": "Sprite3D",
+          "name": "敌军02",
+          "transform": {
+            "localPosition": {
+              "_$type": "Vector3",
+              "x": -4,
+              "y": 0,
+              "z": -13
+            }
+          },
+          "_$comp": [
+            {
+              "_$type": "84bdb250-9790-429d-9b97-68d328d7e6f6",
+              "scriptPath": "../src/EnemyAI.ts",
+              "player": {
+                "_$ref": "player01"
+              },
+              "maxHealth": 100,
+              "sightRange": 26,
+              "fieldOfView": 120,
+              "alertTime": 1.6,
+              "loseTargetTime": 2.2,
+              "attackInterval": 0.9,
+              "patrolSpeed": 0.75
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "e2part00",
+              "_$type": "Sprite3D",
+              "name": "Head",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0,
+                  "y": 2.3,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.55,
+                  "y": 0.5,
+                  "z": 0.45
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "a7732e8c-7c5c-4809-8405-fa82156b8a31",
+                      "_$type": "Material"
+                    }
+                  ]
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape",
+                    "size": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 1,
+                      "z": 1
+                    }
+                  },
+                  "collisionGroup": 64
+                }
+              ]
+            },
+            {
+              "_$id": "e2part01",
+              "_$type": "Sprite3D",
+              "name": "Torso",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0,
+                  "y": 1.5,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.95,
+                  "y": 1,
+                  "z": 0.4
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "d6184b08-3009-49f7-b6b0-646787a302fa",
+                      "_$type": "Material"
+                    }
+                  ]
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape",
+                    "size": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 1,
+                      "z": 1
+                    }
+                  },
+                  "collisionGroup": 64
+                }
+              ]
+            },
+            {
+              "_$id": "e2part02",
+              "_$type": "Sprite3D",
+              "name": "Legs",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0,
+                  "y": 0.5,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.7,
+                  "y": 1,
+                  "z": 0.36
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ]
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape",
+                    "size": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 1,
+                      "z": 1
+                    }
+                  },
+                  "collisionGroup": 64
+                }
+              ]
+            },
+            {
+              "_$id": "e2part03",
+              "_$type": "Sprite3D",
+              "name": "LeftArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.64,
+                  "y": 1.5,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.26,
+                  "y": 0.82,
+                  "z": 0.36
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ]
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "collisionGroup": 64,
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape",
+                    "size": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 1,
+                      "z": 1
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "e2part04",
+              "_$type": "Sprite3D",
+              "name": "RightArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.64,
+                  "y": 1.5,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.26,
+                  "y": 0.82,
+                  "z": 0.36
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ]
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "collisionGroup": 64,
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape",
+                    "size": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 1,
+                      "z": 1
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "e2part05",
+              "_$type": "Sprite3D",
+              "name": "EnemyRifle",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.23,
+                  "y": 1.34,
+                  "z": 0.55
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.14,
+                  "y": 0.14,
+                  "z": 0.82
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_$id": "enemy003",
+          "_$type": "Sprite3D",
+          "name": "敌军03",
+          "transform": {
+            "localPosition": {
+              "_$type": "Vector3",
+              "x": 4,
+              "y": 0,
+              "z": -19
+            }
+          },
+          "_$comp": [
+            {
+              "_$type": "84bdb250-9790-429d-9b97-68d328d7e6f6",
+              "scriptPath": "../src/EnemyAI.ts",
+              "player": {
+                "_$ref": "player01"
+              },
+              "maxHealth": 100,
+              "sightRange": 26,
+              "fieldOfView": 120,
+              "alertTime": 1.6,
+              "loseTargetTime": 2.2,
+              "attackInterval": 0.9,
+              "patrolSpeed": 0.75
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "e3part00",
+              "_$type": "Sprite3D",
+              "name": "Head",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0,
+                  "y": 2.3,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.55,
+                  "y": 0.5,
+                  "z": 0.45
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "a7732e8c-7c5c-4809-8405-fa82156b8a31",
+                      "_$type": "Material"
+                    }
+                  ]
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape",
+                    "size": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 1,
+                      "z": 1
+                    }
+                  },
+                  "collisionGroup": 64
+                }
+              ]
+            },
+            {
+              "_$id": "e3part01",
+              "_$type": "Sprite3D",
+              "name": "Torso",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0,
+                  "y": 1.5,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.95,
+                  "y": 1,
+                  "z": 0.4
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "d6184b08-3009-49f7-b6b0-646787a302fa",
+                      "_$type": "Material"
+                    }
+                  ]
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape",
+                    "size": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 1,
+                      "z": 1
+                    }
+                  },
+                  "collisionGroup": 64
+                }
+              ]
+            },
+            {
+              "_$id": "e3part02",
+              "_$type": "Sprite3D",
+              "name": "Legs",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0,
+                  "y": 0.5,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.7,
+                  "y": 1,
+                  "z": 0.36
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ]
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape",
+                    "size": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 1,
+                      "z": 1
+                    }
+                  },
+                  "collisionGroup": 64
+                }
+              ]
+            },
+            {
+              "_$id": "e3part03",
+              "_$type": "Sprite3D",
+              "name": "LeftArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.64,
+                  "y": 1.5,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.26,
+                  "y": 0.82,
+                  "z": 0.36
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ]
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "collisionGroup": 64,
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape",
+                    "size": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 1,
+                      "z": 1
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "e3part04",
+              "_$type": "Sprite3D",
+              "name": "RightArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.64,
+                  "y": 1.5,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.26,
+                  "y": 0.82,
+                  "z": 0.36
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ]
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "collisionGroup": 64,
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape",
+                    "size": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 1,
+                      "z": 1
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "e3part05",
+              "_$type": "Sprite3D",
+              "name": "EnemyRifle",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.23,
+                  "y": 1.34,
+                  "z": 0.55
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.14,
+                  "y": 0.14,
+                  "z": 0.82
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_$id": "enemy004",
+          "_$type": "Sprite3D",
+          "name": "敌军04",
+          "transform": {
+            "localPosition": {
+              "_$type": "Vector3",
+              "x": 0,
+              "y": 0,
+              "z": -25
+            }
+          },
+          "_$comp": [
+            {
+              "_$type": "84bdb250-9790-429d-9b97-68d328d7e6f6",
+              "scriptPath": "../src/EnemyAI.ts",
+              "player": {
+                "_$ref": "player01"
+              },
+              "maxHealth": 100,
+              "sightRange": 26,
+              "fieldOfView": 120,
+              "alertTime": 1.6,
+              "loseTargetTime": 2.2,
+              "attackInterval": 0.9,
+              "patrolSpeed": 0.75
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "e4part00",
+              "_$type": "Sprite3D",
+              "name": "Head",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0,
+                  "y": 2.3,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.55,
+                  "y": 0.5,
+                  "z": 0.45
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "a7732e8c-7c5c-4809-8405-fa82156b8a31",
+                      "_$type": "Material"
+                    }
+                  ]
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape",
+                    "size": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 1,
+                      "z": 1
+                    }
+                  },
+                  "collisionGroup": 64
+                }
+              ]
+            },
+            {
+              "_$id": "e4part01",
+              "_$type": "Sprite3D",
+              "name": "Torso",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0,
+                  "y": 1.5,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.95,
+                  "y": 1,
+                  "z": 0.4
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "d6184b08-3009-49f7-b6b0-646787a302fa",
+                      "_$type": "Material"
+                    }
+                  ]
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape",
+                    "size": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 1,
+                      "z": 1
+                    }
+                  },
+                  "collisionGroup": 64
+                }
+              ]
+            },
+            {
+              "_$id": "e4part02",
+              "_$type": "Sprite3D",
+              "name": "Legs",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0,
+                  "y": 0.5,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.7,
+                  "y": 1,
+                  "z": 0.36
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ]
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape",
+                    "size": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 1,
+                      "z": 1
+                    }
+                  },
+                  "collisionGroup": 64
+                }
+              ]
+            },
+            {
+              "_$id": "e4part03",
+              "_$type": "Sprite3D",
+              "name": "LeftArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.64,
+                  "y": 1.5,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.26,
+                  "y": 0.82,
+                  "z": 0.36
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ]
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "collisionGroup": 64,
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape",
+                    "size": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 1,
+                      "z": 1
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "e4part04",
+              "_$type": "Sprite3D",
+              "name": "RightArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.64,
+                  "y": 1.5,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.26,
+                  "y": 0.82,
+                  "z": 0.36
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ]
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "collisionGroup": 64,
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape",
+                    "size": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 1,
+                      "z": 1
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "e4part05",
+              "_$type": "Sprite3D",
+              "name": "EnemyRifle",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.23,
+                  "y": 1.34,
+                  "z": 0.55
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.14,
+                  "y": 0.14,
+                  "z": 0.82
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_$id": "exitzone1",
+          "_$type": "Sprite3D",
+          "name": "ExitZone",
+          "transform": {
+            "localPosition": {
+              "_$type": "Vector3",
+              "x": 0,
+              "y": 1,
+              "z": -31
+            }
+          },
+          "_$child": [
+            {
+              "_$id": "exitfloor",
+              "_$type": "Sprite3D",
+              "name": "ExitFloor",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0,
+                  "y": -0.97,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 5,
+                  "y": 0.05,
+                  "z": 5
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "exitpostl",
+              "_$type": "Sprite3D",
+              "name": "ExitPostLeft",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -2.4,
+                  "y": 0.75,
+                  "z": -2.25
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.2,
+                  "y": 3.5,
+                  "z": 0.2
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "exitpostr",
+              "_$type": "Sprite3D",
+              "name": "ExitPostRight",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 2.4,
+                  "y": 0.75,
+                  "z": -2.25
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.2,
+                  "y": 3.5,
+                  "z": 0.2
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "exitbeam",
+              "_$type": "Sprite3D",
+              "name": "ExitBeam",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0,
+                  "y": 2.6,
+                  "z": -2.25
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 5,
+                  "y": 0.2,
+                  "z": 0.2
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -3447,12 +4588,12 @@
     {
       "_$id": "targethud",
       "_$type": "GTextField",
-      "name": "EnemyStatus",
+      "name": "RemainingEnemies",
       "x": 24,
       "y": 169,
       "width": 630,
       "height": 36,
-      "text": "敌军  100 / 100 HP  ·  Idle",
+      "text": "剩余敌人  4 / 4",
       "font": "Microsoft YaHei",
       "fontSize": 18,
       "color": "#ffffff",
@@ -3489,6 +4630,196 @@
       "color": "#ffffff",
       "stroke": 2,
       "strokeColor": "#20332c"
+    },
+    {
+      "_$id": "objective1",
+      "_$type": "GTextField",
+      "name": "Objective",
+      "x": 24,
+      "y": 241,
+      "width": 1150,
+      "height": 36,
+      "text": "目标：清除全部敌人，再进入通道尽头的橙色终点区",
+      "font": "Microsoft YaHei",
+      "fontSize": 18,
+      "color": "#ffffff",
+      "stroke": 2,
+      "strokeColor": "#20332c",
+      "_mouseState": 1
+    },
+    {
+      "_$id": "hitinfo1",
+      "_$type": "GTextField",
+      "name": "HitFeedback",
+      "x": 24,
+      "y": 277,
+      "width": 1100,
+      "height": 36,
+      "text": "",
+      "font": "Microsoft YaHei",
+      "fontSize": 18,
+      "color": "#ffffff",
+      "stroke": 2,
+      "strokeColor": "#20332c",
+      "_mouseState": 1
+    },
+    {
+      "_$id": "resultpanel",
+      "_$type": "GBox",
+      "name": "ResultPanel",
+      "width": 1334,
+      "height": 750,
+      "visible": false,
+      "zIndex": 100,
+      "_mouseState": 2,
+      "mouseThrough": false,
+      "background": {
+        "_$type": "DrawRectCmd",
+        "x": 0,
+        "y": 0,
+        "width": 1,
+        "height": 1,
+        "percent": true,
+        "fillColor": "#101925"
+      },
+      "_$child": [
+        {
+          "_$id": "resulttitle",
+          "_$type": "GTextField",
+          "name": "ResultTitle",
+          "x": 307,
+          "y": 245,
+          "width": 720,
+          "height": 64,
+          "text": "任务完成",
+          "font": "Microsoft YaHei",
+          "fontSize": 44,
+          "color": "#ffffff",
+          "stroke": 0,
+          "strokeColor": "#20332c",
+          "_mouseState": 1,
+          "align": "center",
+          "valign": "middle",
+          "bold": true
+        },
+        {
+          "_$id": "resultdetail",
+          "_$type": "GTextField",
+          "name": "ResultDetail",
+          "x": 307,
+          "y": 323,
+          "width": 720,
+          "height": 72,
+          "text": "",
+          "font": "Microsoft YaHei",
+          "fontSize": 20,
+          "color": "#ffffff",
+          "stroke": 0,
+          "strokeColor": "#20332c",
+          "_mouseState": 1,
+          "align": "center",
+          "valign": "middle",
+          "wordWrap": true,
+          "leading": 10
+        },
+        {
+          "_$id": "restartbtn",
+          "_$type": "GButton",
+          "name": "RestartButton",
+          "x": 547,
+          "y": 413,
+          "width": 240,
+          "height": 60,
+          "_mouseState": 2,
+          "mouseThrough": false,
+          "downEffect": 1,
+          "title": "重新开始",
+          "titleWidget": {
+            "_$ref": "restartlabel"
+          },
+          "background": {
+            "_$type": "DrawRectCmd",
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1,
+            "percent": true,
+            "fillColor": "#e7a742"
+          },
+          "_$child": [
+            {
+              "_$id": "restartlabel",
+              "_$type": "GTextField",
+              "name": "RestartLabel",
+              "x": 0,
+              "y": 0,
+              "width": 240,
+              "height": 60,
+              "text": "重新开始",
+              "font": "Microsoft YaHei",
+              "fontSize": 22,
+              "color": "#142132",
+              "stroke": 0,
+              "strokeColor": "#20332c",
+              "_mouseState": 1,
+              "align": "center",
+              "valign": "middle",
+              "bold": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "autoDestroyAtClosed": true,
+  "_$comp": [
+    {
+      "_$type": "a65ae9e2-b5cb-4261-88c7-ff3b9ce65234",
+      "scriptPath": "../src/LevelController.ts",
+      "player": {
+        "_$ref": "player01"
+      },
+      "enemies": [
+        {
+          "_$ref": "target001"
+        },
+        {
+          "_$ref": "enemy002"
+        },
+        {
+          "_$ref": "enemy003"
+        },
+        {
+          "_$ref": "enemy004"
+        }
+      ],
+      "exitZone": {
+        "_$ref": "exitzone1"
+      },
+      "exitHalfSize": {
+        "_$type": "Vector3",
+        "x": 2.5,
+        "y": 2,
+        "z": 2.5
+      },
+      "remainingText": {
+        "_$ref": "targethud"
+      },
+      "objectiveText": {
+        "_$ref": "objective1"
+      },
+      "resultPanel": {
+        "_$ref": "resultpanel"
+      },
+      "resultTitle": {
+        "_$ref": "resulttitle"
+      },
+      "resultDetail": {
+        "_$ref": "resultdetail"
+      },
+      "restartButton": {
+        "_$ref": "restartbtn"
+      }
     }
   ]
 }

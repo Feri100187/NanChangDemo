@@ -1,6 +1,6 @@
 {
   "name": "NanChangDemo",
-  "startupScene": "res://e13ac28a-6bc3-4a66-b660-a19c07c4ef7e",
+  "startupScene": "res://7ddb8eec-dab2-4fa9-8b07-e8ff6c597680",
   "android": {
     "targetArchitectures": {
       "ARMv7": false,

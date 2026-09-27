@@ -6,18 +6,18 @@ const { regClass, property } = Laya;
 /** 第一人称射线步枪。弹药是弹匣内子弹数与独立备弹数。 */
 @regClass()
 export class RifleController extends Laya.Script {
+    static readonly FIRED = "rifle-fired";
+
     @property({ type: Laya.Camera })
     viewCamera: Laya.Camera;
     @property({ type: Laya.Sprite3D })
     rifleModel: Laya.Sprite3D;
-    @property({ type: Laya.Sprite3D })
-    enemy: Laya.Sprite3D;
     @property({ type: Laya.GTextField })
     ammoText: Laya.GTextField;
     @property({ type: Laya.GTextField })
     crosshairText: Laya.GTextField;
     @property({ type: Laya.GTextField })
-    enemyText: Laya.GTextField;
+    hitText: Laya.GTextField;
 
     @property({ type: Number, caption: "弹匣容量" })
     magazineSize = 40;
@@ -41,9 +41,9 @@ export class RifleController extends Laya.Script {
     private lastShotAt = 0;
     private hitMessage = "";
     private hitMessageEndAt = 0;
+    private hitWasKill = false;
     private canvas: HTMLCanvasElement;
     private playerControl: PlayerController;
-    private enemyAI: EnemyAI;
     private readonly ray = new Laya.Ray(new Laya.Vector3(), new Laya.Vector3(0, 0, -1));
     private readonly aimPoint = new Laya.Vector2();
     private readonly hit = new Laya.HitResult();
@@ -55,7 +55,6 @@ export class RifleController extends Laya.Script {
 
     onAwake(): void {
         this.playerControl = (this.owner as Laya.Sprite3D).getComponent(PlayerController);
-        this.enemyAI = this.enemy.getComponent(EnemyAI);
         this.canvas = Laya.Browser.mainCanvas.source;
         this.magazine = this.magazineSize;
         this.reserve = this.startingReserve;
@@ -69,6 +68,7 @@ export class RifleController extends Laya.Script {
         Laya.stage.on(Laya.Event.KEY_DOWN, this, this.handleKeyDown);
         document.addEventListener("pointerlockchange", this.handleFocusChange);
         window.addEventListener("blur", this.stopTrigger);
+        document.addEventListener("visibilitychange", this.handleFocusChange);
     }
 
     private readonly handleMouseDown = (event: MouseEvent) => {
@@ -131,7 +131,7 @@ export class RifleController extends Laya.Script {
     }
 
     private fireDueShots(now: number): void {
-        if (this.reloading) return;
+        if (!this.enabled || !this.playerControl.isGameplayFocused() || this.reloading) return;
         if (this.magazine === 0) {
             this.startReload(now);
             return;
@@ -153,6 +153,7 @@ export class RifleController extends Laya.Script {
         this.magazine--;
         this.shotCount++;
         this.lastShotAt = now;
+        this.owner.event(RifleController.FIRED);
         this.playerControl.syncCameraForShot();
         const p = this.viewCamera.transform.position;
         // 与画面上同一个准星坐标生成射线；开镜时准星坐标就是红点的中心。
@@ -165,14 +166,16 @@ export class RifleController extends Laya.Script {
             ~Laya.Physics3DUtils.COLLISIONFILTERGROUP_CHARACTERFILTER);
         if (hitSomething) {
             const hitNode = this.hit.collider.owner as Laya.Sprite3D;
-            if (hitNode && this.enemy.isAncestorOf(hitNode)) {
-                const result = this.enemyAI.applyHit(hitNode, this.baseDamage);
+            const enemyAI = this.findEnemy(hitNode);
+            if (enemyAI) {
+                const result = enemyAI.applyHit(hitNode, this.baseDamage);
                 if (result.damage > 0) {
                     const zone = hitNode.name === "Head" ? "头部" : hitNode.name === "Legs"
                         ? "腿部" : hitNode.name.endsWith("Arm") ? "手臂" : "躯干";
-                    this.hitMessage = result.killed ? `敌军击倒  +${result.damage.toFixed(0)}`
-                        : `${zone}命中  -${result.damage.toFixed(0)} HP`;
+                    this.hitMessage = `${enemyAI.owner.name} · ` + (result.killed ? "敌军击倒"
+                        : `${zone}命中  -${result.damage.toFixed(1)} HP · 剩余 ${result.remainingHealth.toFixed(1)} HP`);
                     this.hitMessageEndAt = now + 650;
+                    this.hitWasKill = result.killed;
                 }
             }
         }
@@ -181,6 +184,27 @@ export class RifleController extends Laya.Script {
         // 腰射时镜头和准星分担上抬；开镜时红点保持中心，由镜头承担全部上抬。
         this.playerControl.addRecoil(this.aimHeld ? 0.28 : 0.22, 0);
         this.kickBack = Math.min(0.12, this.kickBack + 0.065);
+    }
+
+    /** 部位碰撞体可以在任意层级；只结算射线实际命中的敌人。 */
+    private findEnemy(hitNode: Laya.Node): EnemyAI {
+        for (let node = hitNode; node; node = node.parent) {
+            const enemyAI = node.getComponent(EnemyAI);
+            if (enemyAI) return enemyAI;
+        }
+        return null;
+    }
+
+    stopCombat(): void {
+        this.stopTrigger();
+        this.reloading = false;
+        this.reloadEndAt = 0;
+        this.hitMessage = "";
+        this.hitMessageEndAt = 0;
+        this.hitWasKill = false;
+        if (this.crosshairText) this.crosshairText.visible = false;
+        if (this.hitText) this.hitText.text = "";
+        this.enabled = false;
     }
 
     private startReload(now: number): void {
@@ -225,17 +249,14 @@ export class RifleController extends Laya.Script {
             this.updateAimPoint();
             this.crosshairText.x = (Laya.stage.width - this.crosshairText.width) / 2;
             this.crosshairText.y = this.aimPoint.y - this.crosshairText.height / 2;
-            this.crosshairText.text = this.aimProgress > 0.995 ? ""
-                : now < this.hitMessageEndAt ? "×" : "+";
-            this.crosshairText.color = now < this.hitMessageEndAt ? "#ff6a4d" : "#ffffff";
+            const hitActive = now < this.hitMessageEndAt;
+            // 命中标记独立于普通准星的开镜隐藏；只复用真实伤害结果。
+            this.crosshairText.text = hitActive ? this.hitWasKill ? "✦" : "×"
+                : this.aimProgress > 0.995 ? "" : "+";
+            this.crosshairText.color = hitActive
+                ? this.hitWasKill ? "#ffd166" : "#ff6a4d" : "#ffffff";
         }
-        if (this.enemyText && this.enemyAI) {
-            const status = this.enemyAI.isAlive
-                ? `敌军  ${this.enemyAI.health.toFixed(0)} / ${this.enemyAI.maxHealth} HP  ·  ${this.enemyAI.state}`
-                : "敌军已死亡";
-            this.enemyText.text = now < this.hitMessageEndAt
-                ? `${status}   |   ${this.hitMessage}` : status;
-        }
+        if (this.hitText) this.hitText.text = now < this.hitMessageEndAt ? this.hitMessage : "";
     }
 
     onDisable(): void {
@@ -245,5 +266,6 @@ export class RifleController extends Laya.Script {
         Laya.stage.offAllCaller(this);
         document.removeEventListener("pointerlockchange", this.handleFocusChange);
         window.removeEventListener("blur", this.stopTrigger);
+        document.removeEventListener("visibilitychange", this.handleFocusChange);
     }
 }

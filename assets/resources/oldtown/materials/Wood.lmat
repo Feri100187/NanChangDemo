@@ -1,0 +1,75 @@
+{
+  "version": "LAYAMATERIAL:02",
+  "props": {
+    "type": "Laya.BlinnPhongMaterial",
+    "name": "Oldtown_Wood",
+    "renderStates": [
+      {
+        "cull": 2,
+        "blend": 0,
+        "srcBlend": 1,
+        "dstBlend": 0,
+        "depthWrite": true,
+        "depthTest": 515
+      }
+    ],
+    "alphaTest": false,
+    "alphaTestValue": 0.5,
+    "renderQueue": 2000,
+    "albedoIntensity": 1,
+    "enableLighting": true,
+    "shininess": 0.07,
+    "textures": [
+      {
+        "name": "albedoTexture",
+        "path": "res://71039af4-360a-4a73-9fd6-e6e9bef644b3",
+        "propertyParams": {
+          "filterMode": 2,
+          "wrapModeU": 0,
+          "wrapModeV": 0,
+          "anisoLevel": 4
+        }
+      },
+      {
+        "name": "normalTexture",
+        "path": "res://d8387670-a776-403d-8b67-ec1b52e4a579",
+        "propertyParams": {
+          "filterMode": 2,
+          "wrapModeU": 0,
+          "wrapModeV": 0,
+          "anisoLevel": 4
+        }
+      }
+    ],
+    "vectors": [
+      {
+        "name": "tilingOffset",
+        "value": [
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "specularColor",
+        "value": [
+          0.12,
+          0.1,
+          0.075,
+          1
+        ]
+      },
+      {
+        "name": "albedoColor",
+        "value": [
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "defines": []
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "_$ver": 1,
+  "_$id": "dy5yzpr7",
+  "_$type": "Sprite3D",
+  "name": "OpenPortal_240x280",
+  "isStatic": true,
+  "_$comp": [
+    {
+      "_$type": "MeshFilter",
+      "sharedMesh": {
+        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm0",
+        "_$type": "Mesh"
+      }
+    },
+    {
+      "_$type": "MeshRenderer",
+      "receiveShadow": true,
+      "castShadow": true,
+      "sharedMaterials": [
+        {
+          "_$uuid": "4f9cf165-5fa2-4287-a91e-4a4402158031",
+          "_$type": "Material"
+        },
+        {
+          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
+          "_$type": "Material"
+        },
+        {
+          "_$uuid": "530cf2a9-b43c-4057-a660-5f6bbc679520",
+          "_$type": "Material"
+        }
+      ]
+    }
+  ]
+}

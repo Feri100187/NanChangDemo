@@ -1,0 +1,75 @@
+{
+  "version": "LAYAMATERIAL:02",
+  "props": {
+    "type": "Laya.BlinnPhongMaterial",
+    "name": "Oldtown_Paving",
+    "renderStates": [
+      {
+        "cull": 2,
+        "blend": 0,
+        "srcBlend": 1,
+        "dstBlend": 0,
+        "depthWrite": true,
+        "depthTest": 515
+      }
+    ],
+    "alphaTest": false,
+    "alphaTestValue": 0.5,
+    "renderQueue": 2000,
+    "albedoIntensity": 1,
+    "enableLighting": true,
+    "shininess": 0.018,
+    "textures": [
+      {
+        "name": "albedoTexture",
+        "path": "res://f4b83f4b-37aa-46f7-9a29-91090325d423",
+        "propertyParams": {
+          "filterMode": 2,
+          "wrapModeU": 0,
+          "wrapModeV": 0,
+          "anisoLevel": 4
+        }
+      },
+      {
+        "name": "normalTexture",
+        "path": "res://41ef8d1d-1bd3-4fc6-be38-014c8e967e51",
+        "propertyParams": {
+          "filterMode": 2,
+          "wrapModeU": 0,
+          "wrapModeV": 0,
+          "anisoLevel": 4
+        }
+      }
+    ],
+    "vectors": [
+      {
+        "name": "tilingOffset",
+        "value": [
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "specularColor",
+        "value": [
+          0.035,
+          0.035,
+          0.035,
+          1
+        ]
+      },
+      {
+        "name": "albedoColor",
+        "value": [
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "defines": []
+  }
+}

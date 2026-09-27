@@ -13,6 +13,9 @@ export interface EnemyHitResult {
 /** 第一版敌军：站岗、巡逻、发现玩家、射线射击及永久死亡。 */
 @regClass()
 export class EnemyAI extends Laya.Script {
+    static readonly DIED = "enemy-died";
+    static readonly FIRED = "enemy-fired";
+
     @property({ type: Laya.Sprite3D, caption: "玩家" })
     player: Laya.Sprite3D;
 
@@ -100,7 +103,7 @@ export class EnemyAI extends Laya.Script {
 
     /** 从枪械射线命中的 Head / Torso / Legs 节点结算部位伤害。 */
     applyHit(hitNode: Laya.Sprite3D, baseDamage: number): EnemyHitResult {
-        if (!this.isAlive || !hitNode || !Number.isFinite(baseDamage) || baseDamage <= 0 ||
+        if (!this.enabled || !this.isAlive || !hitNode || !Number.isFinite(baseDamage) || baseDamage <= 0 ||
             (hitNode !== this.owner && !this.owner.isAncestorOf(hitNode))) {
             return { damage: 0, remainingHealth: this._health, killed: false };
         }
@@ -111,6 +114,8 @@ export class EnemyAI extends Laya.Script {
             this._health = 0;
             this._state = "Dead";
             this.hideBodyAndColliders(this.owner);
+            // 先置为 Dead，再通知关卡；后续命中不会再次发出死亡事件。
+            this.owner.event(EnemyAI.DIED, this);
         } else if (this.playerHealth?.isAlive) {
             // 中弹即可发现威胁，避免玩家在背后持续射击而敌人仍站岗。
             this.suspicion = Math.max(this.suspicion, 0.25);
@@ -188,6 +193,9 @@ export class EnemyAI extends Laya.Script {
     }
 
     private fireAtPlayer(): void {
+        if (!this.enabled || !this.isAlive || this._state !== "Combat" || !this.playerHealth?.isAlive) return;
+        // 一次实际射击对应一次反馈，射线落空或被墙挡住也仍是一次开火。
+        this.owner.event(EnemyAI.FIRED, this);
         this.setRayTowardPlayer(this.shotRay, 1.5, 0.65);
         const scene = this.enemy.scene as Laya.Scene3D;
         if (!scene.physicsSimulation.rayCast(this.shotRay, this.shotHit,
@@ -195,7 +203,7 @@ export class EnemyAI extends Laya.Script {
             ~Laya.Physics3DUtils.COLLISIONFILTERGROUP_CUSTOMFILTER1)) return;
         const hitNode = this.shotHit.collider?.owner as Laya.Sprite3D;
         if (hitNode && (hitNode === this.player || this.player.isAncestorOf(hitNode))) {
-            this.playerHealth.applyDamage(8);
+            this.playerHealth.applyDamage(8, this.enemy.transform.position);
         }
     }
 
