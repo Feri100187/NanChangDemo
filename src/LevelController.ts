@@ -3,13 +3,18 @@ import { PlayerController } from "./PlayerController";
 import { PlayerHealth } from "./PlayerHealth";
 import { RifleController } from "./RifleController";
 import { CombatFeedback } from "./CombatFeedback";
+import { GameClock } from "./GameClock";
 
 const { regClass, property } = Laya;
-type LevelState = "Playing" | "Won" | "Lost" | "Restarting";
+type LevelState = "Ready" | "Playing" | "Paused" | "Won" | "Lost" | "Restarting";
 
 /** 单关卡：指定敌人清零后进入终点，结算后重载完整场景。 */
 @regClass()
 export class LevelController extends Laya.Script {
+    // 3.4.1 的公开物理更新开关为全局属性。重载期间可能同时存在两个场景，
+    // 只有最后一个暂停持有者释放时才恢复它，旧场景销毁不会解冻新开始界面。
+    private static readonly physicsHolders = new Set<LevelController>();
+    private static savedPhysicsUpdate = true;
     @property({ type: Laya.Sprite3D })
     player: Laya.Sprite3D;
     @property({ type: [Laya.Sprite3D], caption: "本关指定敌人" })
@@ -38,6 +43,8 @@ export class LevelController extends Laya.Script {
     resultDetail: Laya.GTextField;
     @property({ type: Laya.GButton })
     restartButton: Laya.GButton;
+    @property({ type: Laya.GButton, caption: "开始/继续按钮（可选）" })
+    continueButton: Laya.GButton;
 
     private state: LevelState = "Playing";
     private readonly remaining = new Set<EnemyAI>();
@@ -47,24 +54,49 @@ export class LevelController extends Laya.Script {
     private rifle: RifleController;
     private wasInsideExit = false;
     private routeIndex = 0;
+    private clock: GameClock;
+    private world: Laya.Scene3D;
+    private previousTimer: Laya.Timer;
+    private awaitingControls = false;
 
     onAwake(): void {
         this.health = this.player.getComponent(PlayerHealth);
         this.playerControl = this.player.getComponent(PlayerController);
         this.rifle = this.player.getComponent(RifleController);
+        this.clock = new GameClock();
+        this.world = this.player.scene as Laya.Scene3D;
+        this.previousTimer = this.world.timer;
+        this.world.timer = this.clock.timer;
+        this.targets = Array.from(new Set(this.enemies.map(node => node.getComponent(EnemyAI))));
+        this.playerControl.clock = this.rifle.clock = this.health.clock = this.clock;
+        for (const enemy of this.targets) if (enemy) enemy.clock = this.clock;
         (this.owner as Laya.Scene).autoDestroyAtClosed = true;
         this.resultPanel.visible = false;
+        if (this.continueButton) {
+            this.playerControl.useMenuFocus();
+            this.state = "Ready";
+            this.setGameplayPaused(true);
+            this.showSessionMenu();
+        }
     }
 
     onEnable(): void {
         this.restartButton.on(Laya.Event.CLICK, this, this.restart);
+        if (this.continueButton) {
+            this.continueButton.on(Laya.Event.CLICK, this, this.beginContinue);
+            this.player.on(PlayerController.CONTROL_ACQUIRED, this, this.onControlsAcquired);
+            this.player.on(PlayerController.CONTROL_LOST, this, this.onControlsLost);
+            window.addEventListener("blur", this.onControlsLost);
+            document.addEventListener("visibilitychange", this.onVisibilityChanged);
+            window.addEventListener("keydown", this.onEscape, true);
+            Laya.Browser.mainCanvas.source.addEventListener("blur", this.onControlsLost);
+        }
         Laya.stage.on(Laya.Event.RESIZE, this, this.layoutResult);
         this.layoutResult();
     }
 
     onStart(): void {
         // 显式场景引用定义任务目标；Set 同时防止重复配置和重复死亡通知。
-        this.targets = Array.from(new Set(this.enemies.map(node => node.getComponent(EnemyAI))));
         if (!this.targets.length || this.targets.some(enemy => !enemy)) {
             throw new Error("LevelController 的指定敌人必须挂有 EnemyAI，且不能留空。");
         }
@@ -95,6 +127,77 @@ export class LevelController extends Laya.Script {
         this.updateObjective();
         this.updateRouteHint();
     }
+
+    private setGameplayPaused(paused: boolean): void {
+        this.clock.setPaused(paused);
+        const holders = LevelController.physicsHolders;
+        if (paused && !holders.has(this)) {
+            if (holders.size === 0) LevelController.savedPhysicsUpdate = Laya.Stat.enablePhysicsUpdate;
+            holders.add(this);
+            Laya.Stat.enablePhysicsUpdate = false;
+        } else if (!paused && holders.delete(this) && holders.size === 0) {
+            Laya.Stat.enablePhysicsUpdate = LevelController.savedPhysicsUpdate;
+        }
+        this.owner.getComponent(CombatFeedback)?.setPaused(paused);
+        if (paused) {
+            this.rifle.clearGameplayInput();
+            this.playerControl.releaseGameplayFocus();
+        }
+    }
+
+    private showSessionMenu(): void {
+        if (!this.continueButton) return;
+        const ready = this.state === "Ready";
+        this.resultTitle.text = ready ? "旧城街巷 · DEMO 01" : "游戏已暂停";
+        this.resultTitle.color = "#ffcf80";
+        this.resultDetail.text = ready
+            ? "虚构布局的玩法原型，不复原真实历史地点。\n清除 4 名敌人，穿过目标建筑，抵达橙色终点。\n\nWASD 移动 · 鼠标转向 · 左键射击 · 右键开镜\nR 换弹 · Space 跳跃 · Shift 疾跑 · C 下蹲\nEsc 暂停 · 离开窗口也会暂停"
+            : "战斗与换弹已冻结。\n点击继续，取得鼠标控制后恢复游戏。\n\n鼠标锁定受限时，仍可在画面内移动鼠标转向。";
+        this.continueButton.title = ready ? "开始游戏" : "继续游戏";
+        this.continueButton.enabled = true;
+        this.continueButton.visible = true;
+        this.restartButton.visible = !ready;
+        this.restartButton.enabled = true;
+        this.restartButton.title = "重新开始";
+        this.resultPanel.visible = true;
+        this.layoutResult();
+    }
+
+    private beginContinue(): void {
+        if (this.awaitingControls || (this.state !== "Ready" && this.state !== "Paused")
+            || document.hidden || !document.hasFocus()) return;
+        this.awaitingControls = true;
+        this.continueButton.enabled = false;
+        this.continueButton.title = "正在取得鼠标控制…";
+        this.owner.getComponent(CombatFeedback)?.requestAudioUnlock();
+        this.playerControl.requestGameplayFocus();
+    }
+
+    private onControlsAcquired(): void {
+        if (!this.awaitingControls || (this.state !== "Ready" && this.state !== "Paused")) return;
+        this.awaitingControls = false;
+        this.state = "Playing";
+        this.setGameplayPaused(false);
+        this.resultPanel.visible = false;
+    }
+
+    private readonly onControlsLost = () => {
+        if (this.state === "Playing") {
+            this.state = "Paused"; // 先转状态，再释放鼠标，避免失焦回调重入。
+            this.awaitingControls = false;
+            this.setGameplayPaused(true);
+            this.showSessionMenu();
+        } else if (this.awaitingControls && (this.state === "Ready" || this.state === "Paused")) {
+            this.awaitingControls = false;
+            this.setGameplayPaused(true);
+            this.showSessionMenu();
+        }
+    };
+
+    private readonly onVisibilityChanged = () => { if (document.hidden) this.onControlsLost(); };
+    private readonly onEscape = (event: KeyboardEvent) => {
+        if (event.key === "Escape") this.onControlsLost();
+    };
 
     private onEnemyDied(enemy: EnemyAI): void {
         if (this.state !== "Playing" || enemy.isAlive || !this.remaining.delete(enemy)) return;
@@ -156,6 +259,10 @@ export class LevelController extends Laya.Script {
     private finish(won: boolean): void {
         if (this.state !== "Playing") return;
         this.state = won ? "Won" : "Lost";
+        this.awaitingControls = false;
+        this.setGameplayPaused(true);
+        if (this.continueButton) this.continueButton.visible = false;
+        this.restartButton.visible = true;
         this.owner.getComponent(CombatFeedback)?.stop();
         // 同步关停：同一帧里其他敌人和残留射击都不能再造成伤害。
         this.health.enabled = false;
@@ -167,16 +274,19 @@ export class LevelController extends Laya.Script {
         this.resultDetail.text = (won
             ? `已清除全部 ${this.targets.length} 名敌人，并抵达终点。`
             : `玩家已阵亡，本关还剩 ${this.remaining.size} 名敌人。`)
-            + "\n重新开始后，点击画面取得鼠标控制。";
+            + (this.continueButton ? "\n重新开始后返回开始界面。" : "\n重新开始后，点击画面取得鼠标控制。");
         this.restartButton.title = "重新开始";
         this.resultPanel.visible = true;
         this.layoutResult();
     }
 
     private async restart(): Promise<void> {
-        if (this.state !== "Won" && this.state !== "Lost") return;
+        if (this.state !== "Won" && this.state !== "Lost" && this.state !== "Paused") return;
         const endedState = this.state;
         this.state = "Restarting";
+        this.awaitingControls = false;
+        this.setGameplayPaused(true);
+        if (this.continueButton) this.continueButton.enabled = false;
         this.restartButton.enabled = false;
         this.restartButton.title = "正在重新开始…";
         const currentScene = this.owner as Laya.Scene;
@@ -197,6 +307,7 @@ export class LevelController extends Laya.Script {
             console.error("重新加载关卡失败", error);
             if (this.destroyed || currentScene.destroyed) return;
             this.state = endedState;
+            if (endedState === "Paused") this.showSessionMenu();
             this.restartButton.enabled = true;
             this.restartButton.title = "重试重新开始";
             this.resultDetail.text = "关卡加载失败，请点击按钮重试。";
@@ -209,12 +320,31 @@ export class LevelController extends Laya.Script {
         const textWidth = Math.max(240, Math.min(720, width - 48));
         this.resultPanel.size(width, height);
         this.resultTitle.width = this.resultDetail.width = textWidth;
+        const sessionMenu = this.state === "Ready" || this.state === "Paused" ||
+            (this.state === "Restarting" && this.continueButton?.visible);
+        if (sessionMenu && this.continueButton) {
+            this.resultTitle.pos((width - textWidth) / 2, height / 2 - 205);
+            this.resultDetail.height = 210;
+            this.resultDetail.pos((width - textWidth) / 2, height / 2 - 125);
+            this.continueButton.pos((width - this.continueButton.width) / 2, height / 2 + 120);
+            this.restartButton.pos((width - this.restartButton.width) / 2, height / 2 + 194);
+            return;
+        }
+        this.resultDetail.height = 72;
         this.resultTitle.pos((width - textWidth) / 2, height / 2 - 130);
         this.resultDetail.pos((width - textWidth) / 2, height / 2 - 52);
         this.restartButton.pos((width - this.restartButton.width) / 2, height / 2 + 38);
     }
 
     onDisable(): void {
+        this.awaitingControls = false;
+        this.player.off(PlayerController.CONTROL_ACQUIRED, this, this.onControlsAcquired);
+        this.player.off(PlayerController.CONTROL_LOST, this, this.onControlsLost);
+        window.removeEventListener("blur", this.onControlsLost);
+        document.removeEventListener("visibilitychange", this.onVisibilityChanged);
+        window.removeEventListener("keydown", this.onEscape, true);
+        Laya.Browser.mainCanvas.source.removeEventListener("blur", this.onControlsLost);
+        this.continueButton?.offAllCaller(this);
         this.player.off(PlayerHealth.DIED, this, this.onPlayerDied);
         this.player.off(PlayerController.RESPAWNED, this, this.onPlayerRespawned);
         for (const enemy of this.targets) {
@@ -222,5 +352,9 @@ export class LevelController extends Laya.Script {
         }
         this.restartButton.offAllCaller(this);
         Laya.stage.offAllCaller(this);
+        if (LevelController.physicsHolders.delete(this) && LevelController.physicsHolders.size === 0)
+            Laya.Stat.enablePhysicsUpdate = LevelController.savedPhysicsUpdate;
+        if (this.world && !this.world.destroyed) this.world.timer = this.previousTimer;
+        this.clock?.destroy();
     }
 }

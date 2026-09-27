@@ -1,4 +1,5 @@
 import { PlayerHealth } from "./PlayerHealth";
+import { GameClock } from "./GameClock";
 
 const { regClass, property } = Laya;
 
@@ -15,6 +16,7 @@ export interface EnemyHitResult {
 export class EnemyAI extends Laya.Script {
     static readonly DIED = "enemy-died";
     static readonly FIRED = "enemy-fired";
+    clock: GameClock;
 
     @property({ type: Laya.Sprite3D, caption: "玩家" })
     player: Laya.Sprite3D;
@@ -64,8 +66,8 @@ export class EnemyAI extends Laya.Script {
     }
 
     onUpdate(): void {
-        if (!this.isAlive) return;
-        const dt = Math.min(Math.max(Laya.timer.delta / 1000, 0), 0.05);
+        if (this.clock?.paused || !this.isAlive) return;
+        const dt = Math.min(Math.max((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0), 0.05);
         if (!this.player || !this.playerHealth?.isAlive) {
             this.suspicion = 0;
             if (this._state !== "Idle") this._state = "Patrol";
@@ -78,7 +80,7 @@ export class EnemyAI extends Laya.Script {
             (visible ? dt / Math.max(0.1, this.alertTime) : -dt / Math.max(0.1, this.loseTargetTime))));
 
         if (visible && this.suspicion >= 1) {
-            if (this._state !== "Combat") this.nextAttackAt = performance.now() + 200;
+            if (this._state !== "Combat") this.nextAttackAt = (this.clock?.now() ?? performance.now()) + 200;
             this._state = "Combat";
         } else if (this.suspicion > 0.12) {
             // 失去视线后仍保持短暂警戒，数值降到阈值以下才放弃目标。
@@ -94,16 +96,16 @@ export class EnemyAI extends Laya.Script {
             this.updatePatrol(dt);
         } else {
             this.facePlayer();
-            if (this._state === "Combat" && visible && performance.now() >= this.nextAttackAt) {
+            if (this._state === "Combat" && visible && (this.clock?.now() ?? performance.now()) >= this.nextAttackAt) {
                 this.fireAtPlayer();
-                this.nextAttackAt = performance.now() + Math.max(0.1, this.attackInterval) * 1000;
+                this.nextAttackAt = (this.clock?.now() ?? performance.now()) + Math.max(0.1, this.attackInterval) * 1000;
             }
         }
     }
 
     /** 从枪械射线命中的 Head / Torso / Legs 节点结算部位伤害。 */
     applyHit(hitNode: Laya.Sprite3D, baseDamage: number): EnemyHitResult {
-        if (!this.enabled || !this.isAlive || !hitNode || !Number.isFinite(baseDamage) || baseDamage <= 0 ||
+        if (this.clock?.paused || !this.enabled || !this.isAlive || !hitNode || !Number.isFinite(baseDamage) || baseDamage <= 0 ||
             (hitNode !== this.owner && !this.owner.isAncestorOf(hitNode))) {
             return { damage: 0, remainingHealth: this._health, killed: false };
         }
@@ -193,7 +195,7 @@ export class EnemyAI extends Laya.Script {
     }
 
     private fireAtPlayer(): void {
-        if (!this.enabled || !this.isAlive || this._state !== "Combat" || !this.playerHealth?.isAlive) return;
+        if (this.clock?.paused || !this.enabled || !this.isAlive || this._state !== "Combat" || !this.playerHealth?.isAlive) return;
         // 一次实际射击对应一次反馈，射线落空或被墙挡住也仍是一次开火。
         this.owner.event(EnemyAI.FIRED, this);
         this.setRayTowardPlayer(this.shotRay, 1.5, 0.65);

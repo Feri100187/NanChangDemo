@@ -1,5 +1,6 @@
 import { PlayerController } from "./PlayerController";
 import { EnemyAI } from "./EnemyAI";
+import { GameClock } from "./GameClock";
 
 const { regClass, property } = Laya;
 
@@ -7,6 +8,7 @@ const { regClass, property } = Laya;
 @regClass()
 export class RifleController extends Laya.Script {
     static readonly FIRED = "rifle-fired";
+    clock: GameClock;
 
     @property({ type: Laya.Camera })
     viewCamera: Laya.Camera;
@@ -59,7 +61,7 @@ export class RifleController extends Laya.Script {
         this.magazine = this.magazineSize;
         this.reserve = this.startingReserve;
         this.viewCamera.fieldOfView = 60;
-        this.updateHud(performance.now());
+        this.updateHud((this.clock?.now() ?? performance.now()));
     }
 
     onEnable(): void {
@@ -76,7 +78,7 @@ export class RifleController extends Laya.Script {
         if (!this.playerControl.isGameplayFocused()) return;
         if (event.button === 0) {
             this.triggerHeld = true;
-            const now = performance.now();
+            const now = (this.clock?.now() ?? performance.now());
             const interval = 60000 / this.roundsPerMinute;
             if (this.nextShotAt < now - interval) this.nextShotAt = now;
             this.fireDueShots(now);
@@ -110,15 +112,24 @@ export class RifleController extends Laya.Script {
         if (!this.playerControl.isGameplayFocused()) this.stopTrigger();
     };
 
+    /** 暂停只清输入和短暂命中提示，保留弹药、换弹期限与后坐力。 */
+    clearGameplayInput(): void {
+        this.stopTrigger();
+        this.hitMessage = "";
+        this.hitMessageEndAt = 0;
+        if (this.hitText) this.hitText.text = "";
+    }
+
     private handleKeyDown(event: Laya.Event): void {
         if (event.keyCode !== 82 || !this.playerControl.isGameplayFocused()) return;
         event.nativeEvent?.preventDefault();
-        this.startReload(performance.now());
+        this.startReload((this.clock?.now() ?? performance.now()));
     }
 
     onUpdate(): void {
-        const now = performance.now();
-        const dt = Math.min(Laya.timer.delta / 1000, 0.05);
+        if (this.clock?.paused) return;
+        const now = this.clock?.now() ?? performance.now();
+        const dt = Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05);
         if (!this.playerControl.isGameplayFocused()) this.stopTrigger();
         if (this.reloading && now >= this.reloadEndAt) this.finishReload(now);
         if (this.triggerHeld) this.fireDueShots(now);
@@ -137,7 +148,7 @@ export class RifleController extends Laya.Script {
             return;
         }
 
-        // 以真实时间计算射速，避免 60 FPS 的帧取整把 700 RPM 降为 600 RPM。
+        // 以可暂停的毫秒时间计算射速，避免 60 FPS 的帧取整把 700 RPM 降为 600 RPM。
         const interval = 60000 / this.roundsPerMinute;
         let shots = 0;
         while (this.triggerHeld && !this.reloading && this.magazine > 0

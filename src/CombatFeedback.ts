@@ -39,6 +39,7 @@ export class CombatFeedback extends Laya.Script {
     directionSeconds = 0.7;
 
     private running = false;
+    private paused = false;
     private generation = 0;
     private audioReady = false;
     private audioGesture = 0;
@@ -113,7 +114,7 @@ export class CombatFeedback extends Laya.Script {
 
     private playShot(source: string, volume: number): void {
         const url = this.soundUrls.get(source);
-        if (!this.running || !this.audioReady || document.hidden || !url || volume <= 0) return;
+        if (this.paused || !this.running || !this.audioReady || document.hidden || !url || volume <= 0) return;
         let channel: Laya.SoundChannel;
         try {
             channel = Laya.SoundManager.playSound(url, 1, () => this.channels.delete(channel));
@@ -133,7 +134,7 @@ export class CombatFeedback extends Laya.Script {
     }
 
     private flash(node: Laya.Sprite3D): void {
-        if (!this.running || !node || node.destroyed || document.hidden || this.flashSeconds <= 0) return;
+        if (this.paused || !this.running || !node || node.destroyed || document.hidden || this.flashSeconds <= 0) return;
         node.active = true;
         this.flashes.set(node, performance.now() + Math.max(0.01, this.flashSeconds) * 1000);
     }
@@ -157,7 +158,7 @@ export class CombatFeedback extends Laya.Script {
     }
 
     private onPlayerDamaged(hit: PlayerDamage): void {
-        if (!this.running || document.hidden || !(hit.damage > 0)) return;
+        if (this.paused || !this.running || document.hidden || !(hit.damage > 0)) return;
         const now = performance.now();
         this.damageUntil = now + Math.max(0, this.damageSeconds) * 1000;
         this.directionUntil = 0;
@@ -222,7 +223,7 @@ export class CombatFeedback extends Laya.Script {
     }
 
     onUpdate(): void {
-        if (!this.running) return;
+        if (this.paused || !this.running) return;
         const now = performance.now();
         for (const [node, until] of this.flashes) {
             if (now >= until || node.destroyed) {
@@ -250,6 +251,14 @@ export class CombatFeedback extends Laya.Script {
 
     private readonly suspend = () => { this.clearTransient(); };
     private readonly onVisibilityChange = () => { if (document.hidden) this.suspend(); };
+
+    /** 暂停不解绑订阅或取消资源预热；加载完成始终只登记，不补播。 */
+    setPaused(value: boolean): void {
+        this.paused = value;
+        if (value) this.clearTransient();
+    }
+
+    requestAudioUnlock(): void { this.unlockAudio(); }
 
     stop(): void {
         this.enabled = false;

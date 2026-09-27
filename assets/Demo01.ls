@@ -85,6 +85,9 @@
       },
       "restartButton": {
         "_$ref": "restartbtn"
+      },
+      "continueButton": {
+        "_$ref": "sessionbtn"
       }
     },
     {
@@ -17172,6 +17175,46 @@
               "height": 60,
               "_mouseState": 1,
               "text": "重新开始",
+              "font": "Microsoft YaHei",
+              "fontSize": 22,
+              "color": "#142132",
+              "bold": true,
+              "align": "center",
+              "valign": "middle",
+              "letterSpacing": 0,
+              "strokeColor": "#20332c"
+            }
+          ]
+        },
+        {
+          "_$id": "sessionbtn",
+          "_$type": "GButton",
+          "name": "StartContinueButton",
+          "x": 547,
+          "y": 445,
+          "width": 240,
+          "height": 60,
+          "_mouseState": 2,
+          "background": {
+            "_$type": "DrawRectCmd",
+            "fillColor": "#e7a742"
+          },
+          "title": "开始游戏",
+          "titleColor": "#142132",
+          "titleFontSize": 22,
+          "titleWidget": {
+            "_$ref": "sessionlabel"
+          },
+          "downEffect": 1,
+          "_$child": [
+            {
+              "_$id": "sessionlabel",
+              "_$type": "GTextField",
+              "name": "StartContinueLabel",
+              "width": 240,
+              "height": 60,
+              "_mouseState": 1,
+              "text": "开始游戏",
               "font": "Microsoft YaHei",
               "fontSize": 22,
               "color": "#142132",

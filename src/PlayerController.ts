@@ -1,4 +1,5 @@
 import { PlayerHealth } from "./PlayerHealth";
+import { GameClock } from "./GameClock";
 
 const { regClass, property } = Laya;
 
@@ -6,6 +7,9 @@ const { regClass, property } = Laya;
 @regClass()
 export class PlayerController extends Laya.Script {
     static readonly RESPAWNED = "player-respawned";
+    static readonly CONTROL_ACQUIRED = "player-control-acquired";
+    static readonly CONTROL_LOST = "player-control-lost";
+    clock: GameClock;
 
     @property({ type: Number, caption: "行走速度" })
     walkSpeed = 5;
@@ -67,6 +71,9 @@ export class PlayerController extends Laya.Script {
     private ignoreNextMouseMove = false;
     private mouseLockError = false;
     private mouseFocusClickArmed = false;
+    private menuFocus = false;
+    private acquiringFocus = false;
+    private focusRequest = 0;
 
     private readonly clearInput = () => {
         this.keys.clear();
@@ -82,30 +89,75 @@ export class PlayerController extends Laya.Script {
 
     private readonly requestMouseFocus = () => {
         // 新场景必须收到自己的一次按下，避免“重新开始”的尾随 click 直接锁鼠标。
-        if (!this.enabled || !this.mouseFocusClickArmed
+        if (this.menuFocus || !this.enabled || !this.mouseFocusClickArmed
             || (this.playerHealth && !this.playerHealth.isAlive)) return;
         this.mouseFocusClickArmed = false;
-        if (document.pointerLockElement === this.canvas) return;
+        this.requestGameplayFocus();
+    };
+
+    /** 菜单在真实点击回调中调用；成功取得原生锁定或 IDE 窗口内控制才通知关卡。 */
+    requestGameplayFocus(): void {
+        if (!this.enabled || this.destroyed || document.hidden || !document.hasFocus()) return;
+        const requestId = ++this.focusRequest;
+        this.acquiringFocus = true;
         this.mouseLockError = false;
         this.canvas.focus();
+        if (document.pointerLockElement === this.canvas) {
+            this.acceptMouseFocus();
+            return;
+        }
         // Pointer Lock 要在真实点击事件里请求，浏览器才会允许持续接收相对鼠标位移。
         try {
             const request = this.canvas.requestPointerLock();
-            if (request && typeof request.catch === "function") request.catch(this.pointerLockFailed);
+            if (request && typeof request.catch === "function") request.catch(() => {
+                if (requestId === this.focusRequest) this.pointerLockFailed();
+            });
         } catch (_) {
             this.pointerLockFailed();
         }
-    };
+    }
+
+    useMenuFocus(): void { this.menuFocus = true; }
+
+    releaseGameplayFocus(): void {
+        ++this.focusRequest;
+        this.acquiringFocus = false;
+        this.mouseLockError = false;
+        this.clearInput();
+        this.currentSpeed = 0;
+        if (document.pointerLockElement === this.canvas) document.exitPointerLock();
+        // Scene2D 的关卡 onAwake 早于 3D 玩家 onAwake，初次等待开始时画布尚未绑定。
+        this.canvas?.blur();
+    }
+
+    private acceptMouseFocus(): void {
+        if (!this.acquiringFocus || document.hidden || !document.hasFocus() || !this.hasMouseFocus) return;
+        this.acquiringFocus = false;
+        this.ignoreNextMouseMove = true;
+        this.owner.event(PlayerController.CONTROL_ACQUIRED);
+        this.showMousePrompt();
+    }
 
     private readonly pointerLockChanged = () => {
-        if (this.hasMouseFocus) this.ignoreNextMouseMove = true;
-        else this.clearInput();
+        if (document.pointerLockElement === this.canvas) {
+            if (this.menuFocus && !this.acquiringFocus && this.clock?.paused) {
+                document.exitPointerLock(); // 已取消的异步锁定不能穿过暂停或结算菜单。
+                return;
+            }
+            this.acceptMouseFocus();
+            this.ignoreNextMouseMove = true;
+        } else {
+            this.clearInput();
+            if (!this.acquiringFocus) this.owner.event(PlayerController.CONTROL_LOST);
+        }
         this.showMousePrompt();
     };
 
     private readonly pointerLockFailed = () => {
-        if (this.destroyed || !this.enabled || (this.playerHealth && !this.playerHealth.isAlive)) return;
+        if (this.destroyed || !this.enabled || !this.acquiringFocus
+            || document.hidden || !document.hasFocus() || (this.playerHealth && !this.playerHealth.isAlive)) return;
         this.mouseLockError = true;
+        this.acceptMouseFocus();
         this.showMousePrompt();
     };
 
@@ -128,7 +180,7 @@ export class PlayerController extends Laya.Script {
         // 独立的 mousedown/up 事件仍会交给引擎处理。
         if (document.pointerLockElement === this.canvas) {
             event.stopImmediatePropagation();
-        } else if (event.button === 0) {
+        } else if (!this.menuFocus && event.button === 0) {
             this.mouseFocusClickArmed = true;
         }
     };
@@ -144,7 +196,7 @@ export class PlayerController extends Laya.Script {
 
     /** 供枪械判断是否能接收战斗输入。 */
     isGameplayFocused(): boolean {
-        return this.enabled && !document.hidden && this.hasMouseFocus
+        return this.enabled && !this.clock?.paused && !document.hidden && document.hasFocus() && this.hasMouseFocus
             && (!this.playerHealth || this.playerHealth.isAlive);
     }
 
@@ -176,7 +228,7 @@ export class PlayerController extends Laya.Script {
     addRecoil(pitch: number, yaw: number): void {
         this.recoilPitch = Math.min(10, this.recoilPitch + pitch);
         this.recoilYaw = Math.max(-3, Math.min(3, this.recoilYaw + yaw));
-        this.lastRecoilAt = performance.now();
+        this.lastRecoilAt = this.clock?.now() ?? performance.now();
         this.updateCameraRotation();
     }
 
@@ -229,7 +281,7 @@ export class PlayerController extends Laya.Script {
     };
 
     private handleKeyDown(event: Laya.Event): void {
-        if (event.keyCode === 27 && this.hasMouseFocus) {
+        if (event.keyCode === 27 && !this.menuFocus && this.hasMouseFocus) {
             if (document.pointerLockElement === this.canvas) document.exitPointerLock();
             else this.canvas.blur();
             this.clearInput();
@@ -247,7 +299,8 @@ export class PlayerController extends Laya.Script {
     }
 
     onUpdate(): void {
-        const dt = Math.min(Laya.timer.delta / 1000, 0.05);
+        if (this.clock?.paused) return;
+        const dt = Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05);
         const alive = !this.playerHealth || this.playerHealth.isAlive;
         const grounded = this.controller.isOnGround();
         // 在落地时切换姿态，避免重建 Bullet 胶囊形状清掉空中垂直速度。
@@ -297,11 +350,12 @@ export class PlayerController extends Laya.Script {
     }
 
     onLateUpdate(): void {
+        if (this.clock?.paused) return;
         this.updateCamera();
         // 连射间隔约 86 ms：这段时间不回正，让视角随每发持续上抬。
-        if (performance.now() - this.lastRecoilAt > 120
+        if ((this.clock?.now() ?? performance.now()) - this.lastRecoilAt > 120
             && (this.recoilPitch !== 0 || this.recoilYaw !== 0)) {
-            const dt = Math.min(Laya.timer.delta / 1000, 0.05);
+            const dt = Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05);
             this.recoilPitch = Math.max(0, this.recoilPitch - 2.6 * dt);
             this.recoilYaw *= Math.max(0, 1 - 5 * dt);
             if (Math.abs(this.recoilYaw) < 0.001) this.recoilYaw = 0;
@@ -376,7 +430,7 @@ export class PlayerController extends Laya.Script {
     }
 
     onDisable(): void {
-        this.clearInput();
+        this.releaseGameplayFocus();
         Laya.stage.offAllCaller(this);
         window.removeEventListener("blur", this.clearInput);
         document.removeEventListener("visibilitychange", this.visibilityChanged);
@@ -386,9 +440,6 @@ export class PlayerController extends Laya.Script {
         document.removeEventListener("mousemove", this.handleMouseMove);
         this.canvas.removeEventListener("pointerdown", this.handleLockedPointerDown, true);
         this.canvas.removeEventListener("contextmenu", this.preventContextMenu);
-        if (document.pointerLockElement === this.canvas) document.exitPointerLock();
-        this.mouseLockError = false;
-        this.canvas.blur();
     }
 
     onDestroy(): void {
