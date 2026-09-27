@@ -1,6 +1,7 @@
 import { EnemyAI } from "./EnemyAI";
 import { PlayerDamage, PlayerHealth } from "./PlayerHealth";
 import { RifleController } from "./RifleController";
+import { GameSettings } from "./GameSettings";
 
 const { regClass, property } = Laya;
 
@@ -113,6 +114,8 @@ export class CombatFeedback extends Laya.Script {
     };
 
     private playShot(source: string, volume: number): void {
+        // 设置音量作为倍率，保留玩家与敌人各自配置的相对音量。
+        volume *= GameSettings.volume;
         const url = this.soundUrls.get(source);
         if (this.paused || !this.running || !this.audioReady || document.hidden || !url || volume <= 0) return;
         let channel: Laya.SoundChannel;
