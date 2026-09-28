@@ -32,7 +32,9 @@ export class EnemyAI extends Laya.Script {
     @property({ type: Number, caption: "丢失目标时间（秒）" })
     loseTargetTime = 2.2;
     @property({ type: Number, caption: "射击间隔（秒）" })
-    attackInterval = 0.9;
+    attackInterval = 1.8;
+    @property({ type: Number, caption: "步枪单发伤害" })
+    shotDamage = 18;
     @property({ type: Number, caption: "巡逻速度" })
     patrolSpeed = 0.75;
 
@@ -205,7 +207,7 @@ export class EnemyAI extends Laya.Script {
             ~Laya.Physics3DUtils.COLLISIONFILTERGROUP_CUSTOMFILTER1)) return;
         const hitNode = this.shotHit.collider?.owner as Laya.Sprite3D;
         if (hitNode && (hitNode === this.player || this.player.isAncestorOf(hitNode))) {
-            this.playerHealth.applyDamage(8, this.enemy.transform.position);
+            this.playerHealth.applyDamage(this.shotDamage, this.enemy.transform.position);
         }
     }
 

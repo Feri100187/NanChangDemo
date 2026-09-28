@@ -153,7 +153,7 @@ export class LevelController extends Laya.Script {
         this.resultTitle.text = ready ? "旧城街巷 · DEMO 01" : "游戏已暂停";
         this.resultTitle.color = "#ffcf80";
         this.resultDetail.text = ready
-            ? "虚构布局的玩法原型，不复原真实历史地点。\n清除 4 名敌人，穿过目标建筑，抵达橙色终点。\n\nWASD 移动 · 鼠标转向 · 左键射击 · 右键开镜\nR 换弹 · Space 跳跃 · Shift 疾跑 · C 下蹲\nEsc 暂停 · 离开窗口也会暂停"
+            ? "虚构布局的玩法原型，不复原真实历史地点。\n清除 4 名敌人，穿过目标建筑，抵达橙色终点。\n\nWASD 移动 · 鼠标转向 · 左键单发 · 右键开镜\nR 装填 · Space 跳跃 · Shift 疾跑 · C 下蹲\nEsc 暂停 · 离开窗口也会暂停"
             : "战斗与换弹已冻结。\n点击继续，取得鼠标控制后恢复游戏。\n\n鼠标锁定受限时，仍可在画面内移动鼠标转向。";
         this.continueButton.title = ready ? "开始游戏" : "继续游戏";
         this.continueButton.enabled = true;

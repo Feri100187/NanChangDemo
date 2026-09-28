@@ -352,7 +352,7 @@ export class PlayerController extends Laya.Script {
     onLateUpdate(): void {
         if (this.clock?.paused) return;
         this.updateCamera();
-        // 连射间隔约 86 ms：这段时间不回正，让视角随每发持续上抬。
+        // 开火后短暂停顿再回正，保留每次射击的上抬冲击。
         if ((this.clock?.now() ?? performance.now()) - this.lastRecoilAt > 120
             && (this.recoilPitch !== 0 || this.recoilYaw !== 0)) {
             const dt = Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05);

@@ -3038,11 +3038,17 @@
               "hitText": {
                 "_$ref": "hitinfo1"
               },
-              "magazineSize": 40,
-              "startingReserve": 99999,
-              "roundsPerMinute": 700,
-              "reloadSeconds": 2.2,
-              "baseDamage": 28
+              "magazineSize": 5,
+              "startingReserve": 45,
+              "roundsPerMinute": 45,
+              "reloadSeconds": 3.3,
+              "baseDamage": 70,
+              "hipRecoil": 1.35,
+              "aimRecoil": 1.8,
+              "hipCrosshairRecoil": 0.45,
+              "horizontalRecoil": 0.12,
+              "recoilDistance": 0.1,
+              "recoilReturnSpeed": 0.32
             },
             {
               "_$type": "a0710ceb-501a-4b74-8689-684364cac0e4",
@@ -3115,7 +3121,8 @@
               "fieldOfView": 120,
               "alertTime": 1.6,
               "loseTargetTime": 2.2,
-              "attackInterval": 0.9,
+              "attackInterval": 1.8,
+              "shotDamage": 18,
               "patrolSpeed": 0.75
             }
           ],
@@ -3388,6 +3395,7 @@
                 },
                 {
                   "_$type": "MeshRenderer",
+                  "enabled": false,
                   "castShadow": true,
                   "lightmapScaleOffset": {
                     "_$type": "Vector4"
@@ -3408,8 +3416,9 @@
                   "active": false,
                   "transform": {
                     "localPosition": {
-                      "_$type": "Vector3",
-                      "z": 0.64
+                      "x": 0,
+                      "y": 1,
+                      "z": 0.6585365853658537
                     }
                   },
                   "_$child": [
@@ -3516,6 +3525,28 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "_$id": "gunvisual0",
+                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
+                  "name": "EnemyProvidedRifle",
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "localRotationEuler": {
+                      "x": 0,
+                      "y": 180,
+                      "z": 0
+                    },
+                    "localScale": {
+                      "x": 7.142857142857142,
+                      "y": 7.142857142857142,
+                      "z": 1.2195121951219512
+                    }
+                  }
                 }
               ]
             }
@@ -3562,6 +3593,7 @@
                 },
                 {
                   "_$type": "MeshRenderer",
+                  "enabled": false,
                   "receiveShadow": true,
                   "lightmapScaleOffset": {
                     "_$type": "Vector4"
@@ -3602,6 +3634,7 @@
                     },
                     {
                       "_$type": "MeshRenderer",
+                      "enabled": false,
                       "lightmapScaleOffset": {
                         "_$type": "Vector4"
                       },
@@ -3641,6 +3674,7 @@
                     },
                     {
                       "_$type": "MeshRenderer",
+                      "enabled": false,
                       "lightmapScaleOffset": {
                         "_$type": "Vector4"
                       },
@@ -3681,6 +3715,7 @@
                     },
                     {
                       "_$type": "MeshRenderer",
+                      "enabled": false,
                       "lightmapScaleOffset": {
                         "_$type": "Vector4"
                       },
@@ -3721,6 +3756,7 @@
                     },
                     {
                       "_$type": "MeshRenderer",
+                      "enabled": false,
                       "lightmapScaleOffset": {
                         "_$type": "Vector4"
                       },
@@ -3739,15 +3775,14 @@
                   "name": "RedDot",
                   "transform": {
                     "localPosition": {
-                      "_$type": "Vector3",
+                      "x": 0,
                       "y": 1,
-                      "z": 0.3
+                      "z": 0.15238095238095237
                     },
                     "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.075,
-                      "y": 0.067,
-                      "z": 0.014
+                      "x": 0.025,
+                      "y": 0.022222222222222223,
+                      "z": 0.0038095238095238095
                     }
                   },
                   "_$comp": [
@@ -3779,8 +3814,9 @@
                   "active": false,
                   "transform": {
                     "localPosition": {
-                      "_$type": "Vector3",
-                      "z": -0.61
+                      "x": 0,
+                      "y": 0.7777777777777779,
+                      "z": -0.5142857142857143
                     }
                   },
                   "_$child": [
@@ -3887,6 +3923,28 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "_$id": "gunvisual1",
+                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
+                  "name": "PlayerProvidedRifle",
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "localRotationEuler": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "localScale": {
+                      "x": 6.25,
+                      "y": 5.555555555555555,
+                      "z": 0.9523809523809523
+                    }
+                  }
                 }
               ]
             }
@@ -6076,7 +6134,8 @@
               "fieldOfView": 120,
               "alertTime": 1.6,
               "loseTargetTime": 2.2,
-              "attackInterval": 0.9,
+              "attackInterval": 1.8,
+              "shotDamage": 18,
               "patrolSpeed": 0.75
             }
           ],
@@ -6349,6 +6408,7 @@
                 },
                 {
                   "_$type": "MeshRenderer",
+                  "enabled": false,
                   "castShadow": true,
                   "lightmapScaleOffset": {
                     "_$type": "Vector4"
@@ -6369,8 +6429,9 @@
                   "active": false,
                   "transform": {
                     "localPosition": {
-                      "_$type": "Vector3",
-                      "z": 0.64
+                      "x": 0,
+                      "y": 1,
+                      "z": 0.6585365853658537
                     }
                   },
                   "_$child": [
@@ -6477,6 +6538,28 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "_$id": "gunvisual2",
+                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
+                  "name": "EnemyProvidedRifle",
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "localRotationEuler": {
+                      "x": 0,
+                      "y": 180,
+                      "z": 0
+                    },
+                    "localScale": {
+                      "x": 7.142857142857142,
+                      "y": 7.142857142857142,
+                      "z": 1.2195121951219512
+                    }
+                  }
                 }
               ]
             }
@@ -6505,7 +6588,8 @@
               "fieldOfView": 120,
               "alertTime": 1.6,
               "loseTargetTime": 2.2,
-              "attackInterval": 0.9,
+              "attackInterval": 1.8,
+              "shotDamage": 18,
               "patrolSpeed": 0.75
             }
           ],
@@ -6778,6 +6862,7 @@
                 },
                 {
                   "_$type": "MeshRenderer",
+                  "enabled": false,
                   "castShadow": true,
                   "lightmapScaleOffset": {
                     "_$type": "Vector4"
@@ -6798,8 +6883,9 @@
                   "active": false,
                   "transform": {
                     "localPosition": {
-                      "_$type": "Vector3",
-                      "z": 0.64
+                      "x": 0,
+                      "y": 1,
+                      "z": 0.6585365853658537
                     }
                   },
                   "_$child": [
@@ -6906,6 +6992,28 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "_$id": "gunvisual3",
+                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
+                  "name": "EnemyProvidedRifle",
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "localRotationEuler": {
+                      "x": 0,
+                      "y": 180,
+                      "z": 0
+                    },
+                    "localScale": {
+                      "x": 7.142857142857142,
+                      "y": 7.142857142857142,
+                      "z": 1.2195121951219512
+                    }
+                  }
                 }
               ]
             }
@@ -6934,7 +7042,8 @@
               "fieldOfView": 120,
               "alertTime": 1.6,
               "loseTargetTime": 2.2,
-              "attackInterval": 0.9,
+              "attackInterval": 1.8,
+              "shotDamage": 18,
               "patrolSpeed": 0.75
             }
           ],
@@ -7207,6 +7316,7 @@
                 },
                 {
                   "_$type": "MeshRenderer",
+                  "enabled": false,
                   "castShadow": true,
                   "lightmapScaleOffset": {
                     "_$type": "Vector4"
@@ -7227,8 +7337,9 @@
                   "active": false,
                   "transform": {
                     "localPosition": {
-                      "_$type": "Vector3",
-                      "z": 0.64
+                      "x": 0,
+                      "y": 1,
+                      "z": 0.6585365853658537
                     }
                   },
                   "_$child": [
@@ -7335,6 +7446,28 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "_$id": "gunvisual4",
+                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
+                  "name": "EnemyProvidedRifle",
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "localRotationEuler": {
+                      "x": 0,
+                      "y": 180,
+                      "z": 0
+                    },
+                    "localScale": {
+                      "x": 7.142857142857142,
+                      "y": 7.142857142857142,
+                      "z": 1.2195121951219512
+                    }
+                  }
                 }
               ]
             }
@@ -17007,7 +17140,7 @@
       "y": 22,
       "width": 1250,
       "height": 80,
-      "text": "WASD 移动 · 鼠标转向 · 左键射击 · 右键开镜 · R 换弹 · Space 跳跃 · Shift 疾跑 · C 下蹲 · Esc 释放",
+      "text": "WASD 移动 · 鼠标转向 · 左键单发 · 右键开镜 · R 装填 · Space 跳跃 · Shift 疾跑 · C 下蹲 · Esc 释放",
       "font": "Microsoft YaHei",
       "fontSize": 18,
       "color": "#ffffff",
@@ -17039,7 +17172,7 @@
       "y": 135,
       "width": 500,
       "height": 36,
-      "text": "步枪  40 / 99999   ·   R 换弹",
+      "text": "汉阳造  5 / 45   ·   单发 · R 装填",
       "font": "Microsoft YaHei",
       "fontSize": 19,
       "color": "#ffffff",
@@ -17288,8 +17421,6 @@
               "_$id": "settingsbtnlabel",
               "_$type": "GTextField",
               "name": "SettingsButtonLabel",
-              "x": 0,
-              "y": 0,
               "width": 240,
               "height": 56,
               "_mouseState": 1,
@@ -17297,9 +17428,11 @@
               "font": "Microsoft YaHei",
               "fontSize": 22,
               "color": "#142132",
-              "valign": "middle",
               "bold": true,
-              "align": "center"
+              "align": "center",
+              "valign": "middle",
+              "x": 0,
+              "y": 0
             }
           ]
         }
@@ -17407,8 +17540,8 @@
               "font": "Microsoft YaHei",
               "fontSize": 36,
               "color": "#ffcf80",
-              "valign": "middle",
-              "bold": true
+              "bold": true,
+              "valign": "middle"
             },
             {
               "_$id": "volumelabel",
@@ -17434,16 +17567,12 @@
               "width": 520,
               "height": 42,
               "_mouseState": 2,
-              "min": 0,
-              "max": 100,
               "value": 100,
               "wholeNumbers": true,
-              "changeOnClick": true,
-              "canDrag": true,
-              "hBar": {
+              "_hBar": {
                 "_$ref": "volumesliderbar"
               },
-              "gripButton": {
+              "_gripButton": {
                 "_$ref": "volumeslidergrip"
               },
               "_$child": [
@@ -17486,7 +17615,10 @@
                     "fillColor": "#ffcf80"
                   }
                 }
-              ]
+              ],
+              "min": 0,
+              "max": 100,
+              "changeOnClick": true
             },
             {
               "_$id": "sensitivitylabel",
@@ -17512,16 +17644,14 @@
               "width": 520,
               "height": 42,
               "_mouseState": 2,
+              "value": 100,
               "min": 25,
               "max": 300,
-              "value": 100,
               "wholeNumbers": true,
-              "changeOnClick": true,
-              "canDrag": true,
-              "hBar": {
+              "_hBar": {
                 "_$ref": "sensitivitysliderbar"
               },
-              "gripButton": {
+              "_gripButton": {
                 "_$ref": "sensitivityslidergrip"
               },
               "_$child": [
@@ -17564,7 +17694,8 @@
                     "fillColor": "#ffcf80"
                   }
                 }
-              ]
+              ],
+              "changeOnClick": true
             },
             {
               "_$id": "settingshint",
@@ -17606,8 +17737,6 @@
                   "_$id": "settingsresetlabel",
                   "_$type": "GTextField",
                   "name": "SettingsResetButtonLabel",
-                  "x": 0,
-                  "y": 0,
                   "width": 240,
                   "height": 56,
                   "_mouseState": 1,
@@ -17615,9 +17744,11 @@
                   "font": "Microsoft YaHei",
                   "fontSize": 22,
                   "color": "#142132",
-                  "valign": "middle",
                   "bold": true,
-                  "align": "center"
+                  "align": "center",
+                  "valign": "middle",
+                  "x": 0,
+                  "y": 0
                 }
               ]
             },
@@ -17646,8 +17777,6 @@
                   "_$id": "settingsbacklabel",
                   "_$type": "GTextField",
                   "name": "SettingsBackButtonLabel",
-                  "x": 0,
-                  "y": 0,
                   "width": 240,
                   "height": 56,
                   "_mouseState": 1,
@@ -17655,9 +17784,11 @@
                   "font": "Microsoft YaHei",
                   "fontSize": 22,
                   "color": "#142132",
-                  "valign": "middle",
                   "bold": true,
-                  "align": "center"
+                  "align": "center",
+                  "valign": "middle",
+                  "x": 0,
+                  "y": 0
                 }
               ]
             }

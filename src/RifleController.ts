@@ -4,7 +4,7 @@ import { GameClock } from "./GameClock";
 
 const { regClass, property } = Laya;
 
-/** 第一人称射线步枪。弹药是弹匣内子弹数与独立备弹数。 */
+/** 汉阳造外观的游戏化栓动步枪：单次点击单发，弹仓与备弹独立计数。 */
 @regClass()
 export class RifleController extends Laya.Script {
     static readonly FIRED = "rifle-fired";
@@ -21,19 +21,31 @@ export class RifleController extends Laya.Script {
     @property({ type: Laya.GTextField })
     hitText: Laya.GTextField;
 
-    @property({ type: Number, caption: "弹匣容量" })
-    magazineSize = 40;
+    @property({ type: Number, caption: "弹仓容量" })
+    magazineSize = 5;
     @property({ type: Number, caption: "初始备弹" })
-    startingReserve = 99999;
+    startingReserve = 45;
     @property({ type: Number, caption: "射速（发/分钟）" })
-    roundsPerMinute = 700;
+    roundsPerMinute = 45;
     @property({ type: Number, caption: "换弹时间（秒）" })
-    reloadSeconds = 2.2;
+    reloadSeconds = 3.3;
     @property({ type: Number, caption: "基础伤害" })
-    baseDamage = 28;
+    baseDamage = 70;
+    @property({ type: Number, caption: "腰射镜头上抬（度）" })
+    hipRecoil = 1.35;
+    @property({ type: Number, caption: "开镜镜头上抬（度）" })
+    aimRecoil = 1.8;
+    @property({ type: Number, caption: "腰射准星上抬（度）" })
+    hipCrosshairRecoil = 0.45;
+    @property({ type: Number, caption: "水平后坐（度）" })
+    horizontalRecoil = 0.12;
+    @property({ type: Number, caption: "枪身后移（米）" })
+    recoilDistance = 0.10;
+    @property({ type: Number, caption: "枪身回位速度（米/秒）" })
+    recoilReturnSpeed = 0.32;
 
-    private magazine = 40;
-    private reserve = 99999;
+    private magazine = 5;
+    private reserve = 45;
     private triggerHeld = false;
     private aimHeld = false;
     private reloading = false;
@@ -77,11 +89,10 @@ export class RifleController extends Laya.Script {
         // 首次点击仅用于锁定鼠标；锁定完成后下一次按下才开火。
         if (!this.playerControl.isGameplayFocused()) return;
         if (event.button === 0) {
+            if (this.triggerHeld) return;
             this.triggerHeld = true;
-            const now = (this.clock?.now() ?? performance.now());
-            const interval = 60000 / this.roundsPerMinute;
-            if (this.nextShotAt < now - interval) this.nextShotAt = now;
-            this.fireDueShots(now);
+            // 栓动节奏只接受本次按下沿；拉栓/装填期间点击不排队，长按不连发。
+            this.tryFire(this.clock?.now() ?? performance.now());
         } else if (event.button === 2) {
             // 从腰射切入机械瞄具时，把准星偏移转为镜头上抬，
             // 避免红点到达屏幕中心后射线仍从红点上方穿过。
@@ -132,31 +143,23 @@ export class RifleController extends Laya.Script {
         const dt = Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05);
         if (!this.playerControl.isGameplayFocused()) this.stopTrigger();
         if (this.reloading && now >= this.reloadEndAt) this.finishReload(now);
-        if (this.triggerHeld) this.fireDueShots(now);
-        // 连射时弹道持续爬升；松手或换弹时逐渐恢复。
-        if ((!this.triggerHeld || this.reloading) && now - this.lastShotAt > 120) {
+        // 单发后回正不依赖松开左键，按住也不会把准星一直卡在上抬位置。
+        if (now - this.lastShotAt > 120) {
             this.ballisticRise = Math.max(0, this.ballisticRise - dt * 2.6);
         }
         this.updateViewModel(dt);
         this.updateHud(now);
     }
 
-    private fireDueShots(now: number): void {
-        if (!this.enabled || !this.playerControl.isGameplayFocused() || this.reloading) return;
+    private tryFire(now: number): void {
+        if (!this.enabled || !this.playerControl.isGameplayFocused() || this.reloading || now < this.nextShotAt) return;
         if (this.magazine === 0) {
             this.startReload(now);
             return;
         }
 
-        // 以可暂停的毫秒时间计算射速，避免 60 FPS 的帧取整把 700 RPM 降为 600 RPM。
-        const interval = 60000 / this.roundsPerMinute;
-        let shots = 0;
-        while (this.triggerHeld && !this.reloading && this.magazine > 0
-            && now >= this.nextShotAt && shots < 4) {
-            this.fireOneShot(now);
-            this.nextShotAt += interval;
-            shots++;
-        }
+        this.fireOneShot(now);
+        this.nextShotAt = now + 60000 / Math.max(1, this.roundsPerMinute);
         if (this.magazine === 0) this.startReload(now);
     }
 
@@ -191,10 +194,11 @@ export class RifleController extends Laya.Script {
             }
         }
 
-        if (!this.aimHeld) this.ballisticRise = Math.min(2.5, this.ballisticRise + 0.18);
+        if (!this.aimHeld) this.ballisticRise = Math.min(2.5, this.ballisticRise + this.hipCrosshairRecoil);
         // 腰射时镜头和准星分担上抬；开镜时红点保持中心，由镜头承担全部上抬。
-        this.playerControl.addRecoil(this.aimHeld ? 0.28 : 0.22, 0);
-        this.kickBack = Math.min(0.12, this.kickBack + 0.065);
+        this.playerControl.addRecoil(this.aimHeld ? this.aimRecoil : this.hipRecoil,
+            (this.shotCount % 2 ? 1 : -1) * this.horizontalRecoil);
+        this.kickBack = Math.min(this.recoilDistance * 1.4, this.kickBack + this.recoilDistance);
     }
 
     /** 部位碰撞体可以在任意层级；只结算射线实际命中的敌人。 */
@@ -237,7 +241,7 @@ export class RifleController extends Laya.Script {
         const blend = 1 - Math.exp(-15 * dt);
         this.aimProgress += (Number(aiming) - this.aimProgress) * blend;
         this.playerControl.setAimProgress(this.aimProgress);
-        this.kickBack = Math.max(0, this.kickBack - dt * 0.48);
+        this.kickBack = Math.max(0, this.kickBack - dt * this.recoilReturnSpeed);
         this.modelTarget.setValue(0.34, -0.32, -0.72 + this.kickBack);
         Laya.Vector3.lerp(this.rifleModel.transform.localPosition, this.modelTarget, blend, this.modelPosition);
         this.rifleModel.transform.localPosition = this.modelPosition;
@@ -252,9 +256,10 @@ export class RifleController extends Laya.Script {
 
     private updateHud(now: number): void {
         if (this.ammoText) {
-            const action = this.reloading ? `换弹中 ${Math.max(0, (this.reloadEndAt - now) / 1000).toFixed(1)}s`
-                : "R 换弹";
-            this.ammoText.text = `步枪  ${this.magazine} / ${this.reserve}   ·   ${action}`;
+            const action = this.reloading ? `装填中 ${Math.max(0, (this.reloadEndAt - now) / 1000).toFixed(1)}s`
+                : now < this.nextShotAt ? `拉栓中 ${((this.nextShotAt - now) / 1000).toFixed(1)}s`
+                : this.magazine === 0 && this.reserve === 0 ? "弹药耗尽" : "单发 · R 装填";
+            this.ammoText.text = `汉阳造  ${this.magazine} / ${this.reserve}   ·   ${action}`;
         }
         if (this.crosshairText) {
             this.updateAimPoint();
