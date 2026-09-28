@@ -74,7 +74,7 @@ Demo01 的 `CombatFeedback` 组件提供基础战斗反馈：玩家与敌人每�
 | 开镜 | 按住鼠标右键 |
 | 主动换弹 | R，弹仓未满且有备弹时 |
 
-系统测试场 `Scene.ls` 包含 100×100 米平地、网格参照、胶囊体玩家、第一人称相机和操作提示。胶囊网格在运行时隐藏，物理碰撞保留。
+系统测试场 `Scene.ls` 包含 100×100 米平地、网格参照、使用胶囊碰撞体的玩家、第一人称相机和操作提示。玩家已换为提供的人物模型，低头可见身体与腿部，头颈在第一人称运行时隐藏。
 两侧有盒体拼接的简易房屋，中央通道旁有两段错开的掩体墙。门洞可以进入，实体墙与屋顶带静态碰撞，会挡住玩家、敌军视线和双方的射线射击；窗板是封闭墙面上的外观装饰。
 普通移动 / 疾跑 / 蹲行速度为 5 / 9 / 2 米每秒；玩家站立高 2 米，下蹲高 1.2 米。
 开镜移动速度为 1.5 米每秒，按住右键时 Shift 不会触发疾跑；松开右键后恢复原有移动速度。
@@ -111,6 +111,16 @@ Demo01 和 Scene.ls 各有 1 把玩家枪、4 把敌人枪，共 10 处实例，
 
 如需从源文件重建运行模型，可用 Blender 5.2 在独立后台进程运行 `blender --background --factory-startup --python tools/prepare-provided-rifle.py`。脚本不修改源 FBX/贴图，将枪口朝向统一为本地 -Z，并对齐既有瞄准线；敌人实例旋转 180° 朝向本地 +Z。导出后由 IDE 重新导入，保留现有 `.meta` 的 UUID。
 
+## 角色模型资源
+
+玩家和敌人分别使用用户提供的 `player`、`enemy` 模型，原始 FBX 与 8192×8192 贴图完整保存在 `source-assets/characters/`，不直接作为发布资源。两份源模型各有 41 根骨骼，没有动画片段。`tools/prepare-provided-characters.py` 在独立 Blender 后台进程中用原骨骼摆出敌人持枪、玩家站立和下蹲姿态，再烘焙为运行网格；原始骨骼和权重仍保留在源文件中，后续可用于制作动画。当前没有新增行走、拉栓或换弹动画。
+
+运行资源位于 `assets/resources/characters/Enemy/` 和 `Player/`，使用 2048×2048 颜色贴图。每个目录中的 GLB、公共 `.lh` 预制体、IDE 提取的 `textures/` 和全部 `.meta` 须一起保留。Demo01 与 Scene.ls 各使用一份玩家预制体和四份敌人预制体。敌人模型高 2.55 米，沿用原目标的整体高度；原有 Head、Torso、Legs、LeftArm、RightArm 节点保留为隐藏的受击区域，按新模型对齐位置与尺寸，伤害倍率、阵营碰撞过滤、AI 状态和击倒计数保持原逻辑。汉阳造模型仍共用原枪械预制体，敌人枪的位置调整到新持枪姿态。
+
+玩家模型高 1.8 米，`ProvidedPlayer.lh` 内的 `Standing`、`Crouching` 各包含 `Body`、`Head`。PlayerController 切换姿态组，只隐藏 Head，身体跟随水平朝向，不跟随镜头俯仰和枪械后坐力。落地时用脚下射线将外观贴合地面，空中随碰撞体升降；预制体中的 0.04 米高度补偿对应当前 Bullet 胶囊的变换偏移。站立/下蹲碰撞高度仍为 2/1.2 米，镜头眼位、移动速度、起跳和开镜行为保持不变。
+
+重建运行网格：`blender --background --factory-startup --python tools/prepare-provided-characters.py`。脚本保留源文件，在缺少运行颜色贴图时生成 2048 JPEG，并将各姿态脚底归零、正面统一为本地 +Z；导入后应保留现有 `.meta` 的 UUID。玩家场景实例旋转 180°，与第一人称相机的本地 -Z 朝向一致。
+
 ## 开源许可
 
-本项目自有代码、场景和材质采用 [MIT License](LICENSE)。`engine/types/`、`assets/atlas/comp/` 和 `assets/resources/layaAir.png` 是 LayaAir 引擎或项目模板附带的文件，仍按原权利人的许可条款使用。`assets/resources/weapons/ProvidedGun/` 中用户提供的模型、贴图及其转换版本保留原资源权利，不重新声明为本项目原创；根目录的 MIT 许可证不改变这些外部资源的授权。
+本项目自有代码、场景和材质采用 [MIT License](LICENSE)。`engine/types/`、`assets/atlas/comp/` 和 `assets/resources/layaAir.png` 是 LayaAir 引擎或项目模板附带的文件，仍按原权利人的许可条款使用。`assets/resources/weapons/ProvidedGun/`、`assets/resources/characters/` 和 `source-assets/characters/` 中用户提供的模型、贴图及其转换版本保留原资源权利，不重新声明为本项目原创；根目录的 MIT 许可证不改变这些外部资源的授权。

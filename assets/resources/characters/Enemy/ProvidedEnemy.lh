@@ -1,0 +1,26 @@
+{
+  "_$ver": 1,
+  "_$id": "ql4qugkq",
+  "_$type": "Sprite3D",
+  "name": "ProvidedEnemy",
+  "_$comp": [
+    {
+      "_$type": "MeshFilter",
+      "sharedMesh": {
+        "_$uuid": "f92a7ee0-7942-4a39-89eb-3224533475b1@lm0",
+        "_$type": "Mesh"
+      }
+    },
+    {
+      "_$type": "MeshRenderer",
+      "receiveShadow": true,
+      "castShadow": true,
+      "sharedMaterials": [
+        {
+          "_$uuid": "f92a7ee0-7942-4a39-89eb-3224533475b1@lmat0",
+          "_$type": "Material"
+        }
+      ]
+    }
+  ]
+}

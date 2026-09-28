@@ -3,7 +3,7 @@ import { GameClock } from "./GameClock";
 
 const { regClass, property } = Laya;
 
-/** 胶囊体第一人称控制。点击画布锁定鼠标，Esc 释放。 */
+/** 胶囊碰撞体与可见身体分离的第一人称控制。 */
 @regClass()
 export class PlayerController extends Laya.Script {
     static readonly RESPAWNED = "player-respawned";
@@ -53,9 +53,12 @@ export class PlayerController extends Laya.Script {
     private spawnYaw = 0;
     private playerHealth: PlayerHealth;
     private controller: Laya.CharacterController;
-    private meshFilter: Laya.MeshFilter;
-    private standingMesh: Laya.Mesh;
-    private crouchingMesh: Laya.Mesh;
+    private standingVisual: Laya.Sprite3D;
+    private crouchingVisual: Laya.Sprite3D;
+    private readonly bodyPosition = new Laya.Vector3();
+    private readonly bodyRotation = new Laya.Vector3();
+    private readonly bodyGroundRay = new Laya.Ray(new Laya.Vector3(), new Laya.Vector3(0, -1, 0));
+    private readonly bodyGroundHit = new Laya.HitResult();
     private crouching = false;
     private jumpRequested = false;
     private currentSpeed = 0;
@@ -240,15 +243,21 @@ export class PlayerController extends Laya.Script {
         this.yaw = this.spawnYaw;
         this.playerHealth = this.player.getComponent(PlayerHealth);
         this.controller = this.player.getComponent(Laya.CharacterController);
-        this.meshFilter = this.body.getComponent(Laya.MeshFilter);
         this.canvas = Laya.Browser.mainCanvas.source;
         this.canvas.tabIndex = 0;
-        this.standingMesh = Laya.PrimitiveMesh.createCapsule(this.radius, this.standingHeight);
-        this.crouchingMesh = Laya.PrimitiveMesh.createCapsule(this.radius, this.crouchingHeight);
-        this.meshFilter.sharedMesh = this.standingMesh;
-        this.body.transform.localScale = new Laya.Vector3(1, 1, 1);
-        // 相机在胶囊内部；只隐藏网格，保留完整的角色碰撞体。
-        this.body.getComponent(Laya.MeshRenderer).enabled = false;
+        this.standingVisual = this.body.getChildByName("Standing") as Laya.Sprite3D;
+        this.crouchingVisual = this.body.getChildByName("Crouching") as Laya.Sprite3D;
+        if (this.standingVisual && this.crouchingVisual) {
+            // 只隐藏头颈，保留低头时的身体和腿部；编辑器中仍显示完整人物。
+            for (const visual of [this.standingVisual, this.crouchingVisual]) {
+                const head = visual.getChildByName("Head");
+                if (head) head.active = false;
+            }
+            this.updateBodyVisual();
+        } else {
+            // 兼容仍引用旧胶囊占位体的外部测试场景。
+            this.body.active = false;
+        }
     }
 
     onEnable(): void {
@@ -351,6 +360,7 @@ export class PlayerController extends Laya.Script {
 
     onLateUpdate(): void {
         if (this.clock?.paused) return;
+        this.updateBodyVisual();
         this.updateCamera();
         // 开火后短暂停顿再回正，保留每次射击的上抬冲击。
         if ((this.clock?.now() ?? performance.now()) - this.lastRecoilAt > 120
@@ -375,7 +385,7 @@ export class PlayerController extends Laya.Script {
         this.controller.enabled = true;
         this.controller.position = p;
         this.crouching = value;
-        this.meshFilter.sharedMesh = value ? this.crouchingMesh : this.standingMesh;
+        this.updateBodyVisual();
     }
 
     private canStand(): boolean {
@@ -427,6 +437,34 @@ export class PlayerController extends Laya.Script {
             this.yaw + this.recoilYaw, 0);
         this.followCamera.transform.rotationEuler = this.cameraRotation;
         this.weaponPivot.transform.rotationEuler = this.cameraRotation;
+        this.updateBodyVisual();
+    }
+
+    private updateBodyVisual(): void {
+        if (!this.standingVisual || !this.crouchingVisual) return;
+        this.standingVisual.active = !this.crouching;
+        this.crouchingVisual.active = this.crouching;
+        // 模型以脚底为原点，碰撞体以中心为原点；下蹲时脚底保持贴地。
+        // 身体跟随水平朝向，不跟随俯仰、开镜位移和枪械后坐力。
+        const angle = this.yaw * Math.PI / 180;
+        const behindEyes = 0.28;
+        let feetOffset = -this.controller.height / 2;
+        const physics = (this.player.scene as Laya.Scene3D)?.physicsSimulation;
+        if (physics && this.controller.isOnGround()) {
+            // 出生和台阶处的胶囊中心可能尚在收敛；只校正外观，不移动碰撞体。
+            this.bodyGroundRay.origin = this.player.transform.position;
+            if (physics.rayCast(this.bodyGroundRay, this.bodyGroundHit, this.controller.height / 2 + 0.25,
+                -1, ~Laya.Physics3DUtils.COLLISIONFILTERGROUP_CHARACTERFILTER)) {
+                const pose = this.crouching ? this.crouchingVisual : this.standingVisual;
+                feetOffset = this.bodyGroundHit.point.y - this.player.transform.position.y
+                    - pose.transform.localPosition.y;
+            }
+        }
+        this.bodyPosition.setValue(Math.sin(angle) * behindEyes, feetOffset,
+            Math.cos(angle) * behindEyes);
+        this.body.transform.localPosition = this.bodyPosition;
+        this.bodyRotation.setValue(0, this.yaw + 180, 0);
+        this.body.transform.localRotationEuler = this.bodyRotation;
     }
 
     onDisable(): void {
@@ -440,10 +478,5 @@ export class PlayerController extends Laya.Script {
         document.removeEventListener("mousemove", this.handleMouseMove);
         this.canvas.removeEventListener("pointerdown", this.handleLockedPointerDown, true);
         this.canvas.removeEventListener("contextmenu", this.preventContextMenu);
-    }
-
-    onDestroy(): void {
-        this.standingMesh?.destroy();
-        this.crouchingMesh?.destroy();
     }
 }

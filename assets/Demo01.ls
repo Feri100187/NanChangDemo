@@ -3062,39 +3062,21 @@
           "_$child": [
             {
               "_$id": "body0001",
-              "_$type": "Sprite3D",
-              "name": "CapsuleBody",
+              "_$prefab": "f6f03925-bff1-4d9f-80e3-fec7071c2e49",
+              "name": "PlayerVisual",
               "transform": {
-                "localScale": {
+                "localPosition": {
                   "_$type": "Vector3",
-                  "x": 0.9,
-                  "y": 1,
-                  "z": 0.9
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "81a027ba-bf6c-4112-8e81-2a9b06c53290",
-                    "_$type": "Mesh"
-                  }
+                  "x": 0,
+                  "y": -1,
+                  "z": 0.28
                 },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "castShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
+                "localRotation": {
+                  "_$type": "Quaternion",
+                  "y": 1,
+                  "w": 0
                 }
-              ]
+              }
             }
           ]
         },
@@ -3134,13 +3116,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "y": 2.3
+                  "x": 0.0012460872530937195,
+                  "y": 2.295872211456299,
+                  "z": -0.00436006486415863
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.55,
-                  "y": 0.5,
-                  "z": 0.45
+                  "x": 0.3651001453399658,
+                  "y": 0.5382564067840576,
+                  "z": 0.4485637843608856
                 }
               },
               "_$comp": [
@@ -3163,7 +3147,8 @@
                       "_$uuid": "a7732e8c-7c5c-4809-8405-fa82156b8a31",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -3182,13 +3167,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "y": 1.5
+                  "x": 0.008097410202026367,
+                  "y": 1.661618709564209,
+                  "z": 2.9802322387695312e-8
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 1,
-                  "z": 0.4
+                  "x": 0.5905764102935791,
+                  "y": 0.6980665922164917,
+                  "z": 0.5021299719810486
                 }
               },
               "_$comp": [
@@ -3211,7 +3198,8 @@
                       "_$uuid": "d6184b08-3009-49f7-b6b0-646787a302fa",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -3230,13 +3218,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "y": 0.5
+                  "x": 0.031143292784690857,
+                  "y": 0.656292736530304,
+                  "z": 0.008097238838672638
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.7,
-                  "y": 1,
-                  "z": 0.36
+                  "x": 0.7886468172073364,
+                  "y": 1.312585473060608,
+                  "z": 0.48344409465789795
                 }
               },
               "_$comp": [
@@ -3259,7 +3249,8 @@
                       "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -3278,14 +3269,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "x": -0.64,
-                  "y": 1.5
+                  "x": 0.1789216697216034,
+                  "y": 1.9041393995285034,
+                  "z": 0.16167497634887695
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.26,
-                  "y": 0.82,
-                  "z": 0.36
+                  "x": 0.4582168459892273,
+                  "y": 0.5020344257354736,
+                  "z": 0.753227710723877
                 }
               },
               "_$comp": [
@@ -3307,7 +3299,8 @@
                       "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -3326,14 +3319,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "x": 0.64,
-                  "y": 1.5
+                  "x": -0.12187999486923218,
+                  "y": 1.8488967418670654,
+                  "z": 0.019862256944179535
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.26,
-                  "y": 0.82,
-                  "z": 0.36
+                  "x": 0.46084141731262207,
+                  "y": 0.6116403341293335,
+                  "z": 0.48704248666763306
                 }
               },
               "_$comp": [
@@ -3355,7 +3349,8 @@
                       "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -3374,9 +3369,9 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "x": 0.23,
-                  "y": 1.34,
-                  "z": 0.55
+                  "x": 0.1,
+                  "y": 1.7,
+                  "z": 0.26
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -3549,6 +3544,11 @@
                   }
                 }
               ]
+            },
+            {
+              "_$id": "charvisual1",
+              "_$prefab": "df374c28-d931-4eb6-9b13-638709b65707",
+              "name": "EnemyVisual"
             }
           ]
         },
@@ -6147,13 +6147,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "y": 2.3
+                  "x": 0.0012460872530937195,
+                  "y": 2.295872211456299,
+                  "z": -0.00436006486415863
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.55,
-                  "y": 0.5,
-                  "z": 0.45
+                  "x": 0.3651001453399658,
+                  "y": 0.5382564067840576,
+                  "z": 0.4485637843608856
                 }
               },
               "_$comp": [
@@ -6176,7 +6178,8 @@
                       "_$uuid": "a7732e8c-7c5c-4809-8405-fa82156b8a31",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -6195,13 +6198,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "y": 1.5
+                  "x": 0.008097410202026367,
+                  "y": 1.661618709564209,
+                  "z": 2.9802322387695312e-8
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 1,
-                  "z": 0.4
+                  "x": 0.5905764102935791,
+                  "y": 0.6980665922164917,
+                  "z": 0.5021299719810486
                 }
               },
               "_$comp": [
@@ -6224,7 +6229,8 @@
                       "_$uuid": "d6184b08-3009-49f7-b6b0-646787a302fa",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -6243,13 +6249,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "y": 0.5
+                  "x": 0.031143292784690857,
+                  "y": 0.656292736530304,
+                  "z": 0.008097238838672638
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.7,
-                  "y": 1,
-                  "z": 0.36
+                  "x": 0.7886468172073364,
+                  "y": 1.312585473060608,
+                  "z": 0.48344409465789795
                 }
               },
               "_$comp": [
@@ -6272,7 +6280,8 @@
                       "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -6291,14 +6300,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "x": -0.64,
-                  "y": 1.5
+                  "x": 0.1789216697216034,
+                  "y": 1.9041393995285034,
+                  "z": 0.16167497634887695
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.26,
-                  "y": 0.82,
-                  "z": 0.36
+                  "x": 0.4582168459892273,
+                  "y": 0.5020344257354736,
+                  "z": 0.753227710723877
                 }
               },
               "_$comp": [
@@ -6320,7 +6330,8 @@
                       "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -6339,14 +6350,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "x": 0.64,
-                  "y": 1.5
+                  "x": -0.12187999486923218,
+                  "y": 1.8488967418670654,
+                  "z": 0.019862256944179535
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.26,
-                  "y": 0.82,
-                  "z": 0.36
+                  "x": 0.46084141731262207,
+                  "y": 0.6116403341293335,
+                  "z": 0.48704248666763306
                 }
               },
               "_$comp": [
@@ -6368,7 +6380,8 @@
                       "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -6387,9 +6400,9 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "x": 0.23,
-                  "y": 1.34,
-                  "z": 0.55
+                  "x": 0.1,
+                  "y": 1.7,
+                  "z": 0.26
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -6562,6 +6575,11 @@
                   }
                 }
               ]
+            },
+            {
+              "_$id": "charvisual2",
+              "_$prefab": "df374c28-d931-4eb6-9b13-638709b65707",
+              "name": "EnemyVisual"
             }
           ]
         },
@@ -6601,13 +6619,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "y": 2.3
+                  "x": 0.0012460872530937195,
+                  "y": 2.295872211456299,
+                  "z": -0.00436006486415863
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.55,
-                  "y": 0.5,
-                  "z": 0.45
+                  "x": 0.3651001453399658,
+                  "y": 0.5382564067840576,
+                  "z": 0.4485637843608856
                 }
               },
               "_$comp": [
@@ -6630,7 +6650,8 @@
                       "_$uuid": "a7732e8c-7c5c-4809-8405-fa82156b8a31",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -6649,13 +6670,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "y": 1.5
+                  "x": 0.008097410202026367,
+                  "y": 1.661618709564209,
+                  "z": 2.9802322387695312e-8
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 1,
-                  "z": 0.4
+                  "x": 0.5905764102935791,
+                  "y": 0.6980665922164917,
+                  "z": 0.5021299719810486
                 }
               },
               "_$comp": [
@@ -6678,7 +6701,8 @@
                       "_$uuid": "d6184b08-3009-49f7-b6b0-646787a302fa",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -6697,13 +6721,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "y": 0.5
+                  "x": 0.031143292784690857,
+                  "y": 0.656292736530304,
+                  "z": 0.008097238838672638
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.7,
-                  "y": 1,
-                  "z": 0.36
+                  "x": 0.7886468172073364,
+                  "y": 1.312585473060608,
+                  "z": 0.48344409465789795
                 }
               },
               "_$comp": [
@@ -6726,7 +6752,8 @@
                       "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -6745,14 +6772,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "x": -0.64,
-                  "y": 1.5
+                  "x": 0.1789216697216034,
+                  "y": 1.9041393995285034,
+                  "z": 0.16167497634887695
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.26,
-                  "y": 0.82,
-                  "z": 0.36
+                  "x": 0.4582168459892273,
+                  "y": 0.5020344257354736,
+                  "z": 0.753227710723877
                 }
               },
               "_$comp": [
@@ -6774,7 +6802,8 @@
                       "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -6793,14 +6822,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "x": 0.64,
-                  "y": 1.5
+                  "x": -0.12187999486923218,
+                  "y": 1.8488967418670654,
+                  "z": 0.019862256944179535
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.26,
-                  "y": 0.82,
-                  "z": 0.36
+                  "x": 0.46084141731262207,
+                  "y": 0.6116403341293335,
+                  "z": 0.48704248666763306
                 }
               },
               "_$comp": [
@@ -6822,7 +6852,8 @@
                       "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -6841,9 +6872,9 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "x": 0.23,
-                  "y": 1.34,
-                  "z": 0.55
+                  "x": 0.1,
+                  "y": 1.7,
+                  "z": 0.26
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -7016,6 +7047,11 @@
                   }
                 }
               ]
+            },
+            {
+              "_$id": "charvisual3",
+              "_$prefab": "df374c28-d931-4eb6-9b13-638709b65707",
+              "name": "EnemyVisual"
             }
           ]
         },
@@ -7055,13 +7091,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "y": 2.3
+                  "x": 0.0012460872530937195,
+                  "y": 2.295872211456299,
+                  "z": -0.00436006486415863
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.55,
-                  "y": 0.5,
-                  "z": 0.45
+                  "x": 0.3651001453399658,
+                  "y": 0.5382564067840576,
+                  "z": 0.4485637843608856
                 }
               },
               "_$comp": [
@@ -7084,7 +7122,8 @@
                       "_$uuid": "a7732e8c-7c5c-4809-8405-fa82156b8a31",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -7103,13 +7142,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "y": 1.5
+                  "x": 0.008097410202026367,
+                  "y": 1.661618709564209,
+                  "z": 2.9802322387695312e-8
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 1,
-                  "z": 0.4
+                  "x": 0.5905764102935791,
+                  "y": 0.6980665922164917,
+                  "z": 0.5021299719810486
                 }
               },
               "_$comp": [
@@ -7132,7 +7173,8 @@
                       "_$uuid": "d6184b08-3009-49f7-b6b0-646787a302fa",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -7151,13 +7193,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "y": 0.5
+                  "x": 0.031143292784690857,
+                  "y": 0.656292736530304,
+                  "z": 0.008097238838672638
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.7,
-                  "y": 1,
-                  "z": 0.36
+                  "x": 0.7886468172073364,
+                  "y": 1.312585473060608,
+                  "z": 0.48344409465789795
                 }
               },
               "_$comp": [
@@ -7180,7 +7224,8 @@
                       "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -7199,14 +7244,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "x": -0.64,
-                  "y": 1.5
+                  "x": 0.1789216697216034,
+                  "y": 1.9041393995285034,
+                  "z": 0.16167497634887695
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.26,
-                  "y": 0.82,
-                  "z": 0.36
+                  "x": 0.4582168459892273,
+                  "y": 0.5020344257354736,
+                  "z": 0.753227710723877
                 }
               },
               "_$comp": [
@@ -7228,7 +7274,8 @@
                       "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -7247,14 +7294,15 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "x": 0.64,
-                  "y": 1.5
+                  "x": -0.12187999486923218,
+                  "y": 1.8488967418670654,
+                  "z": 0.019862256944179535
                 },
                 "localScale": {
                   "_$type": "Vector3",
-                  "x": 0.26,
-                  "y": 0.82,
-                  "z": 0.36
+                  "x": 0.46084141731262207,
+                  "y": 0.6116403341293335,
+                  "z": 0.48704248666763306
                 }
               },
               "_$comp": [
@@ -7276,7 +7324,8 @@
                       "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
                       "_$type": "Material"
                     }
-                  ]
+                  ],
+                  "enabled": false
                 },
                 {
                   "_$type": "PhysicsCollider",
@@ -7295,9 +7344,9 @@
               "transform": {
                 "localPosition": {
                   "_$type": "Vector3",
-                  "x": 0.23,
-                  "y": 1.34,
-                  "z": 0.55
+                  "x": 0.1,
+                  "y": 1.7,
+                  "z": 0.26
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -7470,6 +7519,11 @@
                   }
                 }
               ]
+            },
+            {
+              "_$id": "charvisual4",
+              "_$prefab": "df374c28-d931-4eb6-9b13-638709b65707",
+              "name": "EnemyVisual"
             }
           ]
         },
