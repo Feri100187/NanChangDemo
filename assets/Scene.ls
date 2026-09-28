@@ -58,6 +58,35 @@
       "restartButton": {
         "_$ref": "restartbtn"
       }
+    },
+    {
+      "_$type": "6e483e4c-9eef-46bf-b163-00576b2619bd",
+      "scriptPath": "../src/CombatFeedback.ts",
+      "player": {
+        "_$ref": "player01"
+      },
+      "viewCamera": {
+        "_$ref": "6jx8h8bvc6"
+      },
+      "enemies": [
+        {
+          "_$ref": "target001"
+        },
+        {
+          "_$ref": "enemy002"
+        },
+        {
+          "_$ref": "enemy003"
+        },
+        {
+          "_$ref": "enemy004"
+        }
+      ],
+      "playerShotSound": "res://1fdcce3c-8fd4-4804-a490-220ff795e9d5",
+      "enemyShotSound": "res://cb88da38-7519-4806-b36c-afb1fc55a89c",
+      "reloadSound": "res://f2c87ba9-8fee-4b2b-b1f2-b1674713e6c0",
+      "meleeSound": "res://49b90a3d-fd64-4af9-96aa-6e6413cb9e25",
+      "heavyMeleeSound": "res://d8fd63f2-3d98-49d3-9700-a104169a0b5f"
     }
   ],
   "_$child": [
@@ -1772,20 +1801,14 @@
               "crosshairText": {
                 "_$ref": "cross001"
               },
-              "magazineSize": 5,
-              "startingReserve": 45,
-              "roundsPerMinute": 45,
-              "reloadSeconds": 3.3,
-              "baseDamage": 70,
+              "magazineSize": 40,
+              "startingReserve": 99999,
+              "roundsPerMinute": 700,
+              "reloadSeconds": 2.2,
+              "baseDamage": 28,
               "hitText": {
                 "_$ref": "hitinfo1"
-              },
-              "hipRecoil": 1.35,
-              "aimRecoil": 1.8,
-              "hipCrosshairRecoil": 0.45,
-              "horizontalRecoil": 0.12,
-              "recoilDistance": 0.1,
-              "recoilReturnSpeed": 0.32
+              }
             },
             {
               "_$type": "a0710ceb-501a-4b74-8689-684364cac0e4",
@@ -1859,8 +1882,7 @@
               "fieldOfView": 120,
               "alertTime": 1.6,
               "loseTargetTime": 2.2,
-              "attackInterval": 1.8,
-              "shotDamage": 18,
+              "attackInterval": 0.9,
               "patrolSpeed": 0.75
             }
           ],
@@ -2157,32 +2179,7 @@
                       "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
                       "_$type": "Material"
                     }
-                  ],
-                  "enabled": false
-                }
-              ],
-              "_$child": [
-                {
-                  "_$id": "gunvisual0",
-                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
-                  "name": "EnemyProvidedRifle",
-                  "transform": {
-                    "localPosition": {
-                      "x": 0,
-                      "y": 0,
-                      "z": 0
-                    },
-                    "localRotationEuler": {
-                      "x": 0,
-                      "y": 180,
-                      "z": 0
-                    },
-                    "localScale": {
-                      "x": 7.142857142857142,
-                      "y": 7.142857142857142,
-                      "z": 1.2195121951219512
-                    }
-                  }
+                  ]
                 }
               ]
             }
@@ -2236,8 +2233,7 @@
                       "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
                       "_$type": "Material"
                     }
-                  ],
-                  "enabled": false
+                  ]
                 }
               ],
               "_$child": [
@@ -2275,8 +2271,7 @@
                           "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
                           "_$type": "Material"
                         }
-                      ],
-                      "enabled": false
+                      ]
                     }
                   ]
                 },
@@ -2314,8 +2309,7 @@
                           "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
                           "_$type": "Material"
                         }
-                      ],
-                      "enabled": false
+                      ]
                     }
                   ]
                 },
@@ -2353,8 +2347,7 @@
                           "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
                           "_$type": "Material"
                         }
-                      ],
-                      "enabled": false
+                      ]
                     }
                   ]
                 },
@@ -2392,8 +2385,7 @@
                           "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
                           "_$type": "Material"
                         }
-                      ],
-                      "enabled": false
+                      ]
                     }
                   ]
                 },
@@ -2403,14 +2395,16 @@
                   "name": "RedDot",
                   "transform": {
                     "localPosition": {
+                      "_$type": "Vector3",
                       "x": 0,
                       "y": 1,
-                      "z": 0.15238095238095237
+                      "z": 0.3
                     },
                     "localScale": {
-                      "x": 0.025,
-                      "y": 0.022222222222222223,
-                      "z": 0.0038095238095238095
+                      "_$type": "Vector3",
+                      "x": 0.075,
+                      "y": 0.067,
+                      "z": 0.014
                     }
                   },
                   "_$comp": [
@@ -2432,28 +2426,6 @@
                       ]
                     }
                   ]
-                },
-                {
-                  "_$id": "gunvisual1",
-                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
-                  "name": "PlayerProvidedRifle",
-                  "transform": {
-                    "localPosition": {
-                      "x": 0,
-                      "y": 0,
-                      "z": 0
-                    },
-                    "localRotationEuler": {
-                      "x": 0,
-                      "y": 0,
-                      "z": 0
-                    },
-                    "localScale": {
-                      "x": 6.25,
-                      "y": 5.555555555555555,
-                      "z": 0.9523809523809523
-                    }
-                  }
                 }
               ]
             }
@@ -3524,8 +3496,7 @@
               "fieldOfView": 120,
               "alertTime": 1.6,
               "loseTargetTime": 2.2,
-              "attackInterval": 1.8,
-              "shotDamage": 18,
+              "attackInterval": 0.9,
               "patrolSpeed": 0.75
             }
           ],
@@ -3822,32 +3793,7 @@
                       "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
                       "_$type": "Material"
                     }
-                  ],
-                  "enabled": false
-                }
-              ],
-              "_$child": [
-                {
-                  "_$id": "gunvisual2",
-                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
-                  "name": "EnemyProvidedRifle",
-                  "transform": {
-                    "localPosition": {
-                      "x": 0,
-                      "y": 0,
-                      "z": 0
-                    },
-                    "localRotationEuler": {
-                      "x": 0,
-                      "y": 180,
-                      "z": 0
-                    },
-                    "localScale": {
-                      "x": 7.142857142857142,
-                      "y": 7.142857142857142,
-                      "z": 1.2195121951219512
-                    }
-                  }
+                  ]
                 }
               ]
             }
@@ -3877,8 +3823,7 @@
               "fieldOfView": 120,
               "alertTime": 1.6,
               "loseTargetTime": 2.2,
-              "attackInterval": 1.8,
-              "shotDamage": 18,
+              "attackInterval": 0.9,
               "patrolSpeed": 0.75
             }
           ],
@@ -4175,32 +4120,7 @@
                       "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
                       "_$type": "Material"
                     }
-                  ],
-                  "enabled": false
-                }
-              ],
-              "_$child": [
-                {
-                  "_$id": "gunvisual3",
-                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
-                  "name": "EnemyProvidedRifle",
-                  "transform": {
-                    "localPosition": {
-                      "x": 0,
-                      "y": 0,
-                      "z": 0
-                    },
-                    "localRotationEuler": {
-                      "x": 0,
-                      "y": 180,
-                      "z": 0
-                    },
-                    "localScale": {
-                      "x": 7.142857142857142,
-                      "y": 7.142857142857142,
-                      "z": 1.2195121951219512
-                    }
-                  }
+                  ]
                 }
               ]
             }
@@ -4230,8 +4150,7 @@
               "fieldOfView": 120,
               "alertTime": 1.6,
               "loseTargetTime": 2.2,
-              "attackInterval": 1.8,
-              "shotDamage": 18,
+              "attackInterval": 0.9,
               "patrolSpeed": 0.75
             }
           ],
@@ -4528,32 +4447,7 @@
                       "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
                       "_$type": "Material"
                     }
-                  ],
-                  "enabled": false
-                }
-              ],
-              "_$child": [
-                {
-                  "_$id": "gunvisual4",
-                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
-                  "name": "EnemyProvidedRifle",
-                  "transform": {
-                    "localPosition": {
-                      "x": 0,
-                      "y": 0,
-                      "z": 0
-                    },
-                    "localRotationEuler": {
-                      "x": 0,
-                      "y": 180,
-                      "z": 0
-                    },
-                    "localScale": {
-                      "x": 7.142857142857142,
-                      "y": 7.142857142857142,
-                      "z": 1.2195121951219512
-                    }
-                  }
+                  ]
                 }
               ]
             }
@@ -4732,9 +4626,9 @@
       "y": 22,
       "width": 1250,
       "height": 80,
-      "text": "WASD 移动 · 鼠标转向 · 左键单发 · 右键开镜 · R 装填 · Space 跳跃 · Shift 疾跑 · C 下蹲 · Esc 释放",
+      "text": "WASD 移动 · 鼠标转向 · 1 枪/3 刀 · 左键射击/轻击 · 右键开镜/重击 · R 换弹 · Space 跳跃 · Shift 疾跑 · C 下蹲 · Esc 释放",
       "font": "Microsoft YaHei",
-      "fontSize": 18,
+      "fontSize": 17,
       "color": "#ffffff",
       "letterSpacing": 0,
       "stroke": 2,
@@ -4764,7 +4658,7 @@
       "y": 135,
       "width": 500,
       "height": 36,
-      "text": "汉阳造  5 / 45   ·   单发 · R 装填",
+      "text": "步枪  40 / 99999   ·   R 换弹",
       "font": "Microsoft YaHei",
       "fontSize": 19,
       "color": "#ffffff",
