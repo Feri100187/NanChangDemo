@@ -5,7 +5,7 @@ import { GameSettings } from "./GameSettings";
 
 const { regClass, property } = Laya;
 
-/** 可选的关卡反馈；声音和闪光只订阅实际开火，受击只订阅实际扣血。 */
+/** 可选的关卡反馈；枪声与闪光订阅开火，装填与轻重挥刀订阅对应动作。 */
 @regClass()
 export class CombatFeedback extends Laya.Script {
     @property({ type: Laya.Sprite3D })
@@ -22,10 +22,20 @@ export class CombatFeedback extends Laya.Script {
     playerShotSound = "";
     @property({ type: String, isAsset: true, assetTypeFilter: "Audio" })
     enemyShotSound = "";
+    @property({ type: String, isAsset: true, assetTypeFilter: "Audio" })
+    reloadSound = "";
+    @property({ type: String, isAsset: true, assetTypeFilter: "Audio" })
+    meleeSound = "";
+    @property({ type: String, isAsset: true, assetTypeFilter: "Audio" })
+    heavyMeleeSound = "";
     @property({ type: Number, caption: "玩家枪声音量（0～1）" })
     playerVolume = 0.3;
     @property({ type: Number, caption: "敌人枪声音量（0～1）" })
     enemyVolume = 0.22;
+    @property({ type: Number, caption: "装填音基础音量（0～1）" })
+    reloadVolume = 0.42;
+    @property({ type: Number, caption: "挥刀音基础音量（0～1）" })
+    meleeVolume = 0.45;
     @property({ type: Number, caption: "枪口闪光时长（秒）" })
     flashSeconds = 0.045;
     @property({ type: Laya.GBox })
@@ -47,6 +57,7 @@ export class CombatFeedback extends Laya.Script {
     private canvas: HTMLCanvasElement;
     private readonly soundUrls = new Map<string, string>();
     private readonly channels = new Map<Laya.SoundChannel, number>();
+    private reloadChannel: Laya.SoundChannel;
     private readonly flashes = new Map<Laya.Sprite3D, number>();
     private readonly forward = new Laya.Vector3();
     private damageUntil = 0;
@@ -63,6 +74,10 @@ export class CombatFeedback extends Laya.Script {
         this.running = true;
         const generation = ++this.generation;
         this.player?.on(RifleController.FIRED, this, this.onPlayerShot);
+        this.player?.on(RifleController.RELOAD_STARTED, this, this.onReload);
+        this.player?.on(RifleController.RELOAD_ENDED, this, this.onReloadEnded);
+        this.player?.on(RifleController.MELEE_SWUNG, this, this.onMelee);
+        this.player?.on(RifleController.MELEE_HEAVY_SWUNG, this, this.onHeavyMelee);
         this.player?.on(PlayerHealth.DAMAGED, this, this.onPlayerDamaged);
         for (const enemy of new Set(this.enemies)) {
             enemy?.on(EnemyAI.FIRED, this, this.onEnemyShot);
@@ -74,6 +89,9 @@ export class CombatFeedback extends Laya.Script {
         document.addEventListener("visibilitychange", this.onVisibilityChange);
         void this.prepareSound(this.playerShotSound, generation);
         void this.prepareSound(this.enemyShotSound, generation);
+        void this.prepareSound(this.reloadSound, generation);
+        void this.prepareSound(this.meleeSound, generation);
+        void this.prepareSound(this.heavyMeleeSound, generation);
     }
 
     private isCurrent(generation: number): boolean {
@@ -92,7 +110,7 @@ export class CombatFeedback extends Laya.Script {
                 Laya.PAL.media.audioDataCache.add(url, buffer, buffer.length * buffer.numberOfChannels * 4);
             }
             if (this.isCurrent(generation)) this.soundUrls.set(source, url);
-            // 加载完成仅登记资源，绝不补播加载期间的枪声。
+            // 加载完成仅登记资源，绝不补播加载期间的音效。
         } catch (_) {
             // 声音缺失或解码失败不能影响射击、伤害与关卡流程。
         }
@@ -113,7 +131,7 @@ export class CombatFeedback extends Laya.Script {
         }
     };
 
-    private playShot(source: string, volume: number): void {
+    private playShot(source: string, volume: number, duration = 250): Laya.SoundChannel {
         // 设置音量作为倍率，保留玩家与敌人各自配置的相对音量。
         volume *= GameSettings.volume;
         const url = this.soundUrls.get(source);
@@ -123,7 +141,8 @@ export class CombatFeedback extends Laya.Script {
             channel = Laya.SoundManager.playSound(url, 1, () => this.channels.delete(channel));
             if (!channel || channel.isStopped) return;
             channel.volume = Math.max(0, Math.min(1, volume));
-            this.channels.set(channel, performance.now() + 250);
+            this.channels.set(channel, performance.now() + duration);
+            return channel;
         } catch (_) {
             if (channel) this.stopChannel(channel);
         }
@@ -131,6 +150,7 @@ export class CombatFeedback extends Laya.Script {
 
     private stopChannel(channel: Laya.SoundChannel): void {
         this.channels.delete(channel);
+        if (this.reloadChannel === channel) this.reloadChannel = null;
         channel.completeHandler = null;
         // stop 同步撤销 3.4.1 声道的 started 状态，晚到的加载/恢复回调不能再播放。
         try { channel.stop(); } catch (_) {}
@@ -145,6 +165,23 @@ export class CombatFeedback extends Laya.Script {
     private onPlayerShot(): void {
         this.flash(this.playerFlash);
         this.playShot(this.playerShotSound, this.playerVolume);
+    }
+
+    private onReload(): void {
+        this.onReloadEnded();
+        this.reloadChannel = this.playShot(this.reloadSound, this.reloadVolume * GameSettings.reloadVolume, 3400);
+    }
+
+    private onReloadEnded(): void {
+        if (this.reloadChannel) this.stopChannel(this.reloadChannel);
+    }
+
+    private onMelee(): void {
+        this.playShot(this.meleeSound, this.meleeVolume * GameSettings.meleeVolume, 550);
+    }
+
+    private onHeavyMelee(): void {
+        this.playShot(this.heavyMeleeSound, this.meleeVolume * GameSettings.meleeVolume, 800);
     }
 
     private onEnemyShot(enemy: EnemyAI): void {

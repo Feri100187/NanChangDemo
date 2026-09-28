@@ -146,7 +146,10 @@
       },
       "damageEdgeOpacity": 0.2,
       "damageSeconds": 0.35,
-      "directionSeconds": 0.7
+      "directionSeconds": 0.7,
+      "reloadSound": "res://f2c87ba9-8fee-4b2b-b1f2-b1674713e6c0",
+      "meleeSound": "res://49b90a3d-fd64-4af9-96aa-6e6413cb9e25",
+      "heavyMeleeSound": "res://d8fd63f2-3d98-49d3-9700-a104169a0b5f"
     },
     {
       "_$type": "a836d26b-dc06-4b1c-babe-2e5d7ab93e46",
@@ -180,6 +183,18 @@
       },
       "resetButton": {
         "_$ref": "settingsreset"
+      },
+      "reloadVolumeSlider": {
+        "_$ref": "reloadvolumeslider"
+      },
+      "meleeVolumeSlider": {
+        "_$ref": "meleevolumeslider"
+      },
+      "reloadVolumeText": {
+        "_$ref": "reloadvolumelabel"
+      },
+      "meleeVolumeText": {
+        "_$ref": "meleevolumelabel"
       }
     }
   ],
@@ -17194,7 +17209,7 @@
       "y": 22,
       "width": 1250,
       "height": 80,
-      "text": "WASD 移动 · 鼠标转向 · 左键单发 · 右键开镜 · R 装填 · Space 跳跃 · Shift 疾跑 · C 下蹲 · Esc 释放",
+      "text": "WASD 移动 · 鼠标转向 · 1 汉阳造 / 3 短刀 · 左键单发 / 轻击 · 右键开镜 / 重击 · R 装填 · Space 跳跃 · Shift 疾跑 · C 下蹲 · Esc 释放",
       "font": "Microsoft YaHei",
       "fontSize": 18,
       "color": "#ffffff",
@@ -17574,7 +17589,7 @@
           "_$type": "GBox",
           "name": "SettingsCard",
           "width": 640,
-          "height": 420,
+          "height": 620,
           "_mouseState": 2,
           "background": {
             "_$type": "DrawRectCmd",
@@ -17675,11 +17690,165 @@
               "changeOnClick": true
             },
             {
+              "_$id": "reloadvolumelabel",
+              "_$type": "GTextField",
+              "name": "ReloadVolumeLabel",
+              "x": 60,
+              "y": 196,
+              "width": 520,
+              "height": 36,
+              "_mouseState": 1,
+              "text": "装填音量  100%",
+              "font": "Microsoft YaHei",
+              "fontSize": 22,
+              "color": "#ffffff",
+              "valign": "middle"
+            },
+            {
+              "_$id": "reloadvolumeslider",
+              "_$type": "GSlider",
+              "name": "ReloadVolumeSlider",
+              "x": 60,
+              "y": 240,
+              "width": 520,
+              "height": 42,
+              "_mouseState": 2,
+              "value": 100,
+              "wholeNumbers": true,
+              "_hBar": {
+                "_$ref": "reloadvolumesliderbar"
+              },
+              "_gripButton": {
+                "_$ref": "reloadvolumeslidergrip"
+              },
+              "_$child": [
+                {
+                  "_$id": "reloadvolumeslidertrack",
+                  "_$type": "GBox",
+                  "name": "Track",
+                  "y": 17,
+                  "width": 520,
+                  "height": 8,
+                  "_mouseState": 1,
+                  "background": {
+                    "_$type": "DrawRectCmd",
+                    "fillColor": "#34485d"
+                  }
+                },
+                {
+                  "_$id": "reloadvolumesliderbar",
+                  "_$type": "GBox",
+                  "name": "Fill",
+                  "y": 17,
+                  "width": 520,
+                  "height": 8,
+                  "_mouseState": 1,
+                  "background": {
+                    "_$type": "DrawRectCmd",
+                    "fillColor": "#e7a742"
+                  }
+                },
+                {
+                  "_$id": "reloadvolumeslidergrip",
+                  "_$type": "GBox",
+                  "name": "Grip",
+                  "x": 508,
+                  "width": 24,
+                  "height": 42,
+                  "_mouseState": 2,
+                  "background": {
+                    "_$type": "DrawRectCmd",
+                    "fillColor": "#ffcf80"
+                  }
+                }
+              ],
+              "min": 0,
+              "max": 100,
+              "changeOnClick": true
+            },
+            {
+              "_$id": "meleevolumelabel",
+              "_$type": "GTextField",
+              "name": "MeleeVolumeLabel",
+              "x": 60,
+              "y": 292,
+              "width": 520,
+              "height": 36,
+              "_mouseState": 1,
+              "text": "挥刀音量  100%",
+              "font": "Microsoft YaHei",
+              "fontSize": 22,
+              "color": "#ffffff",
+              "valign": "middle"
+            },
+            {
+              "_$id": "meleevolumeslider",
+              "_$type": "GSlider",
+              "name": "MeleeVolumeSlider",
+              "x": 60,
+              "y": 336,
+              "width": 520,
+              "height": 42,
+              "_mouseState": 2,
+              "value": 100,
+              "wholeNumbers": true,
+              "_hBar": {
+                "_$ref": "meleevolumesliderbar"
+              },
+              "_gripButton": {
+                "_$ref": "meleevolumeslidergrip"
+              },
+              "_$child": [
+                {
+                  "_$id": "meleevolumeslidertrack",
+                  "_$type": "GBox",
+                  "name": "Track",
+                  "y": 17,
+                  "width": 520,
+                  "height": 8,
+                  "_mouseState": 1,
+                  "background": {
+                    "_$type": "DrawRectCmd",
+                    "fillColor": "#34485d"
+                  }
+                },
+                {
+                  "_$id": "meleevolumesliderbar",
+                  "_$type": "GBox",
+                  "name": "Fill",
+                  "y": 17,
+                  "width": 520,
+                  "height": 8,
+                  "_mouseState": 1,
+                  "background": {
+                    "_$type": "DrawRectCmd",
+                    "fillColor": "#e7a742"
+                  }
+                },
+                {
+                  "_$id": "meleevolumeslidergrip",
+                  "_$type": "GBox",
+                  "name": "Grip",
+                  "x": 508,
+                  "width": 24,
+                  "height": 42,
+                  "_mouseState": 2,
+                  "background": {
+                    "_$type": "DrawRectCmd",
+                    "fillColor": "#ffcf80"
+                  }
+                }
+              ],
+              "min": 0,
+              "max": 100,
+              "changeOnClick": true
+            },
+            {
               "_$id": "sensitivitylabel",
               "_$type": "GTextField",
               "name": "SensitivityLabel",
               "x": 60,
-              "y": 208,
+              "y": 388,
               "width": 520,
               "height": 36,
               "_mouseState": 1,
@@ -17694,7 +17863,7 @@
               "_$type": "GSlider",
               "name": "SensitivitySlider",
               "x": 60,
-              "y": 252,
+              "y": 432,
               "width": 520,
               "height": 42,
               "_mouseState": 2,
@@ -17756,7 +17925,7 @@
               "_$type": "GTextField",
               "name": "SettingsHint",
               "x": 60,
-              "y": 298,
+              "y": 486,
               "width": 520,
               "height": 30,
               "_mouseState": 1,
@@ -17771,7 +17940,7 @@
               "_$type": "GButton",
               "name": "SettingsResetButton",
               "x": 60,
-              "y": 346,
+              "y": 536,
               "width": 240,
               "height": 56,
               "_mouseState": 2,
@@ -17811,7 +17980,7 @@
               "_$type": "GButton",
               "name": "SettingsBackButton",
               "x": 340,
-              "y": 346,
+              "y": 536,
               "width": 240,
               "height": 56,
               "_mouseState": 2,

@@ -18,10 +18,18 @@ export class SettingsController extends Laya.Script {
     volumeSlider: Laya.GSlider;
     @property({ type: Laya.GSlider })
     sensitivitySlider: Laya.GSlider;
+    @property({ type: Laya.GSlider })
+    reloadVolumeSlider: Laya.GSlider;
+    @property({ type: Laya.GSlider })
+    meleeVolumeSlider: Laya.GSlider;
     @property({ type: Laya.GTextField })
     volumeText: Laya.GTextField;
     @property({ type: Laya.GTextField })
     sensitivityText: Laya.GTextField;
+    @property({ type: Laya.GTextField })
+    reloadVolumeText: Laya.GTextField;
+    @property({ type: Laya.GTextField })
+    meleeVolumeText: Laya.GTextField;
     @property({ type: Laya.GButton })
     backButton: Laya.GButton;
     @property({ type: Laya.GButton })
@@ -35,6 +43,11 @@ export class SettingsController extends Laya.Script {
         this.volumeSlider.min = 0;
         this.volumeSlider.max = 100;
         this.volumeSlider.wholeNumbers = true;
+        for (const slider of [this.reloadVolumeSlider, this.meleeVolumeSlider]) {
+            slider.min = 0;
+            slider.max = 100;
+            slider.wholeNumbers = true;
+        }
         this.sensitivitySlider.min = 25;
         this.sensitivitySlider.max = 300;
         this.sensitivitySlider.wholeNumbers = true;
@@ -46,6 +59,8 @@ export class SettingsController extends Laya.Script {
         this.backButton.on(Laya.Event.CLICK, this, this.close);
         this.resetButton.on(Laya.Event.CLICK, this, this.reset);
         this.volumeSlider.on(Laya.Event.CHANGED, this, this.changeVolume);
+        this.reloadVolumeSlider.on(Laya.Event.CHANGED, this, this.changeReloadVolume);
+        this.meleeVolumeSlider.on(Laya.Event.CHANGED, this, this.changeMeleeVolume);
         this.sensitivitySlider.on(Laya.Event.CHANGED, this, this.changeSensitivity);
         Laya.stage.on(Laya.Event.RESIZE, this, this.layout);
         window.addEventListener("keydown", this.onEscape);
@@ -56,13 +71,15 @@ export class SettingsController extends Laya.Script {
         if (!this.settingsButton.visible || !this.settingsButton.enabled || !this.playerControl.clock?.paused) return;
         this.refresh();
         this.settingsPanel.visible = true;
-        this.volumeSlider.canDrag = this.sensitivitySlider.canDrag = true;
+        for (const slider of [this.volumeSlider, this.reloadVolumeSlider,
+            this.meleeVolumeSlider, this.sensitivitySlider]) slider.canDrag = true;
         this.layout();
     }
 
     private close(): void {
         // 隐藏父面板不会取消引擎已捕获的握把拖动。
-        this.volumeSlider.canDrag = this.sensitivitySlider.canDrag = false;
+        for (const slider of [this.volumeSlider, this.reloadVolumeSlider,
+            this.meleeVolumeSlider, this.sensitivitySlider]) slider.canDrag = false;
         this.settingsPanel.visible = false;
     }
 
@@ -83,6 +100,18 @@ export class SettingsController extends Laya.Script {
         this.updateLabels();
     }
 
+    private changeReloadVolume(): void {
+        if (!this.settingsPanel.visible) return;
+        GameSettings.setReloadVolume(this.reloadVolumeSlider.value / 100);
+        this.updateLabels();
+    }
+
+    private changeMeleeVolume(): void {
+        if (!this.settingsPanel.visible) return;
+        GameSettings.setMeleeVolume(this.meleeVolumeSlider.value / 100);
+        this.updateLabels();
+    }
+
     private reset(): void {
         GameSettings.reset();
         this.refresh();
@@ -90,6 +119,8 @@ export class SettingsController extends Laya.Script {
 
     private refresh(): void {
         this.volumeSlider.value = Math.round(GameSettings.volume * 100);
+        this.reloadVolumeSlider.value = Math.round(GameSettings.reloadVolume * 100);
+        this.meleeVolumeSlider.value = Math.round(GameSettings.meleeVolume * 100);
         this.sensitivitySlider.value = Math.round(GameSettings.sensitivity / GameSettings.defaultSensitivity * 100);
         this.playerControl.mouseSensitivity = GameSettings.sensitivity;
         this.updateLabels();
@@ -97,9 +128,12 @@ export class SettingsController extends Laya.Script {
 
     private updateLabels(): void {
         this.volumeText.text = `音量  ${Math.round(GameSettings.volume * 100)}%`;
+        this.reloadVolumeText.text = `装填音量  ${Math.round(GameSettings.reloadVolume * 100)}%`;
+        this.meleeVolumeText.text = `挥刀音量  ${Math.round(GameSettings.meleeVolume * 100)}%`;
         this.sensitivityText.text = `鼠标灵敏度  ${(GameSettings.sensitivity / GameSettings.defaultSensitivity).toFixed(2)} 倍`;
         // GSlider 更新填充条；本页的握把位置按同一数值同步，不依赖额外资源。
-        for (const slider of [this.volumeSlider, this.sensitivitySlider]) {
+        for (const slider of [this.volumeSlider, this.reloadVolumeSlider,
+            this.meleeVolumeSlider, this.sensitivitySlider]) {
             slider.gripButton.x = (slider.value - slider.min) / (slider.max - slider.min)
                 * slider.width - slider.gripButton.width / 2;
         }
@@ -108,15 +142,16 @@ export class SettingsController extends Laya.Script {
     private layout(): void {
         const width = Laya.stage.width, height = Laya.stage.height;
         this.settingsPanel.size(width, height);
-        const scale = Math.max(0.1, Math.min(1, (width - 32) / 640, (height - 32) / 420));
+        const scale = Math.max(0.1, Math.min(1, (width - 32) / 640, (height - 32) / 620));
         this.settingsCard.scale(scale, scale);
-        this.settingsCard.pos((width - 640 * scale) / 2, (height - 420 * scale) / 2);
+        this.settingsCard.pos((width - 640 * scale) / 2, (height - 620 * scale) / 2);
     }
 
     onDisable(): void {
         this.close();
         for (const widget of [this.settingsButton, this.backButton, this.resetButton,
-            this.volumeSlider, this.sensitivitySlider]) widget.offAllCaller(this);
+            this.volumeSlider, this.reloadVolumeSlider, this.meleeVolumeSlider,
+            this.sensitivitySlider]) widget.offAllCaller(this);
         Laya.stage.offAllCaller(this);
         window.removeEventListener("keydown", this.onEscape);
     }

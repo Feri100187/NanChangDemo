@@ -58,6 +58,35 @@
       "restartButton": {
         "_$ref": "restartbtn"
       }
+    },
+    {
+      "_$type": "6e483e4c-9eef-46bf-b163-00576b2619bd",
+      "scriptPath": "../src/CombatFeedback.ts",
+      "player": {
+        "_$ref": "player01"
+      },
+      "viewCamera": {
+        "_$ref": "6jx8h8bvc6"
+      },
+      "enemies": [
+        {
+          "_$ref": "target001"
+        },
+        {
+          "_$ref": "enemy002"
+        },
+        {
+          "_$ref": "enemy003"
+        },
+        {
+          "_$ref": "enemy004"
+        }
+      ],
+      "playerShotSound": "res://1fdcce3c-8fd4-4804-a490-220ff795e9d5",
+      "enemyShotSound": "res://cb88da38-7519-4806-b36c-afb1fc55a89c",
+      "reloadSound": "res://f2c87ba9-8fee-4b2b-b1f2-b1674713e6c0",
+      "meleeSound": "res://49b90a3d-fd64-4af9-96aa-6e6413cb9e25",
+      "heavyMeleeSound": "res://d8fd63f2-3d98-49d3-9700-a104169a0b5f"
     }
   ],
   "_$child": [
@@ -4754,7 +4783,7 @@
       "y": 22,
       "width": 1250,
       "height": 80,
-      "text": "WASD 移动 · 鼠标转向 · 左键单发 · 右键开镜 · R 装填 · Space 跳跃 · Shift 疾跑 · C 下蹲 · Esc 释放",
+      "text": "WASD 移动 · 鼠标转向 · 1 汉阳造 / 3 短刀 · 左键单发 / 轻击 · 右键开镜 / 重击 · R 装填 · Space 跳跃 · Shift 疾跑 · C 下蹲 · Esc 释放",
       "font": "Microsoft YaHei",
       "fontSize": 18,
       "color": "#ffffff",
