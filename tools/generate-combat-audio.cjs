@@ -1,8 +1,9 @@
 // 原创合成占位音；MIT。无需采样素材或音频库，输出 22.05 kHz / 16-bit / 单声道 WAV。
+// 历史占位音，仅输出 .tmp/legacy-audio；当前游戏音效由 prepare-hanyang-audio.py 重建。
 // 在工程根目录运行：node tools/generate-combat-audio.cjs
 const fs = require('fs');
 const path = require('path');
-const out = path.join(__dirname, '../assets/resources/combat-feedback');
+const out = path.join(__dirname, '../.tmp/legacy-audio');
 fs.mkdirSync(out, {recursive:true});
 const sampleRate = 22050;
 function synth(name, seconds, seed, pitch) {
@@ -27,4 +28,4 @@ function synth(name, seconds, seed, pitch) {
 }
 synth('player-shot.wav',0.095,73481,190);
 synth('enemy-shot.wav',0.115,21947,145);
-console.log('Generated two original synthetic placeholder shots.');
+console.log('Generated two legacy placeholder shots in .tmp/legacy-audio.');

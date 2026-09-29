@@ -59,9 +59,11 @@ Demo01 的 `CombatFeedback` 组件提供基础战斗反馈：玩家与敌人每�
 
 根节点 `CombatFeedback` 可调整双方音量、闪光时长、受击边缘强度和提示时长；各枪械模型下的 `PlayerMuzzleFlash` / `EnemyMuzzleFlash` 节点可调整视觉尺寸。UI 使用现有新版 UI，不拦截鼠标。Scene.ls 不需配置这些新增引用，仍可运行。
 
-枪声文件位于 `assets/resources/combat-feedback/`，是 `tools/generate-combat-audio.cjs` 生成的原创合成占位音，沿用工程 MIT 许可，没有第三方录音素材。两段 WAV 为 22.05 kHz、16 位、单声道，长度分别为 95 / 115 毫秒，用于验证开火时机和音量，后续可替换为正式音效。运行 `node tools/generate-combat-audio.cjs` 可确定性重建。
+枪声与装填声位于 `assets/resources/combat-feedback/`，现使用网上下载的授权素材制作同类栓动步枪拟声，不标称汉阳造或 M1888 实枪原声。玩家／敌人枪声均为 1.15 秒，装填声为 3.2 秒，格式为 44.1 kHz、16 位、单声道 WAV。作者、原始下载地址、许可、SHA-256 和具体剪辑处理见 [音效来源与许可](docs/audio-credits.md)；原始下载文件保存在 `audio-sources/hanyang/`。
 
-装填、轻击、重击音效由 `tools/generate-weapon-audio.cjs` 生成，长度分别约 3.2、0.42、0.67 秒。装填声按开栓、装填、闭锁的顺序合成，配合现有 3.3 秒装填流程；挥刀声使用扫频气流噪声。取消或完成装填会停止对应声道。暂停会停止当前短音效，继续时不从头补播；下一次有效动作仍可正常播放。
+运行 `blender --background --factory-startup --python tools/prepare-hanyang-audio.py` 可从保留的源素材重建三个运行 WAV，无需联网或新增游戏音频库。装填声用枪栓和装填金属片段编排，配合现有 3.3 秒流程；取消、切刀、暂停或结算立即停止对应声道，继续时不从头补播。枪声按实际解码长度自然结束，不再被旧占位音的 250 毫秒上限截断。
+
+轻／重挥刀音仍是 `tools/generate-weapon-audio.cjs` 生成的原创合成音，长度约 0.42／0.67 秒。旧合成枪声及装填声生成器仅把历史占位版本输出到 `.tmp/legacy-audio/`，不会覆盖当前下载素材音效。
 
 播放使用本地 3.4.1 声明中的 SoundManager / SoundChannel，首次点击通过引擎已有 AudioContext 启用音频。音效先准备再播放，未就绪或失败时跳过声音，不积压补播。结算、场景停用和销毁会停止本关声道、清除闪光与提示、解绑事件，并使未完成的加载和解锁回调失效；声道本身也会被同步停止，避免旧声音在加载完成后继续播放。
 
@@ -134,4 +136,4 @@ Demo01 和 Scene.ls 各有 1 把玩家枪、4 把敌人枪，共 10 处实例，
 
 ## 开源许可
 
-本项目自有代码、场景和材质采用 [MIT License](LICENSE)。`engine/types/`、`assets/atlas/comp/` 和 `assets/resources/layaAir.png` 是 LayaAir 引擎或项目模板附带的文件，仍按原权利人的许可条款使用。`assets/resources/weapons/ProvidedGun/`、`assets/resources/characters/` 和 `source-assets/characters/` 中用户提供的模型、贴图及其转换版本保留原资源权利，不重新声明为本项目原创；根目录的 MIT 许可证不改变这些外部资源的授权。
+本项目自有代码、场景和材质采用 [MIT License](LICENSE)。`engine/types/`、`assets/atlas/comp/` 和 `assets/resources/layaAir.png` 是 LayaAir 引擎或项目模板附带的文件，仍按原权利人的许可条款使用。`assets/resources/weapons/ProvidedGun/`、`assets/resources/characters/` 和 `source-assets/characters/` 中用户提供的模型、贴图及其转换版本保留原资源权利，不重新声明为本项目原创；下载音效原件及派生文件另按 [音效来源与许可](docs/audio-credits.md) 中的 CC BY 3.0／CC0 使用；根目录的 MIT 许可证不改变这些外部资源的授权。

@@ -56,6 +56,7 @@ export class CombatFeedback extends Laya.Script {
     private audioGesture = 0;
     private canvas: HTMLCanvasElement;
     private readonly soundUrls = new Map<string, string>();
+    private readonly soundDurationsMs = new Map<string, number>();
     private readonly channels = new Map<Laya.SoundChannel, number>();
     private reloadChannel: Laya.SoundChannel;
     private readonly flashes = new Map<Laya.Sprite3D, number>();
@@ -106,6 +107,8 @@ export class CombatFeedback extends Laya.Script {
             if (Laya.PAL.media.audioCtx) {
                 const buffer = await Laya.loader.load(url, Laya.Loader.SOUND) as AudioBuffer;
                 if (!buffer || !this.isCurrent(generation)) return;
+                if (Number.isFinite(buffer.duration) && buffer.duration > 0)
+                    this.soundDurationsMs.set(source, buffer.duration * 1000);
                 // 3.4.1 SoundManager 使用同一个引擎音频缓存，预热后开火无需等待解码。
                 Laya.PAL.media.audioDataCache.add(url, buffer, buffer.length * buffer.numberOfChannels * 4);
             }
@@ -131,17 +134,23 @@ export class CombatFeedback extends Laya.Script {
         }
     };
 
-    private playShot(source: string, volume: number, duration = 250): Laya.SoundChannel {
+    private playShot(source: string, volume: number, fallbackDurationMs = 1800): Laya.SoundChannel {
         // 设置音量作为倍率，保留玩家与敌人各自配置的相对音量。
         volume *= GameSettings.volume;
         const url = this.soundUrls.get(source);
         if (this.paused || !this.running || !this.audioReady || document.hidden || !url || volume <= 0) return;
         let channel: Laya.SoundChannel;
         try {
-            channel = Laya.SoundManager.playSound(url, 1, () => this.channels.delete(channel));
+            channel = Laya.SoundManager.playSound(url, 1, () => {
+                this.channels.delete(channel);
+                if (this.reloadChannel === channel) this.reloadChannel = null;
+            });
             if (!channel || channel.isStopped) return;
             channel.volume = Math.max(0, Math.min(1, volume));
-            this.channels.set(channel, performance.now() + duration);
+            // 实录枪声有完整尾音，不能再按旧占位音的 250ms 截断。
+            // 解码长度用于兜底清理；正常结束由引擎回调处理，暂停/取消仍立即停止。
+            const duration = this.soundDurationsMs.get(source) ?? fallbackDurationMs;
+            this.channels.set(channel, performance.now() + duration + 150);
             return channel;
         } catch (_) {
             if (channel) this.stopChannel(channel);
@@ -315,5 +324,6 @@ export class CombatFeedback extends Laya.Script {
         document.removeEventListener("visibilitychange", this.onVisibilityChange);
         this.clearTransient();
         this.soundUrls.clear();
+        this.soundDurationsMs.clear();
     }
 }
