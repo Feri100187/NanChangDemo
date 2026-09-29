@@ -1,0 +1,31 @@
+NanChangDemo rifle audio attribution
+
+player-shot.wav and enemy-shot.wav are edited excerpts of "Gunshot Sounds"
+(sounds/mosin.wav), uploaded by Tabasco to OpenGameArt.
+Copyright (c) 2009 Vincent Sevedge.
+Source: https://opengameart.org/content/gunshot-sounds
+License used: Creative Commons Attribution 3.0 Unported (CC BY 3.0)
+https://creativecommons.org/licenses/by/3.0/
+Changes: excerpt selection, mono conversion, resampling, spectral noise
+reduction, filtering, fades, and gain adjustment. The webpage now shows CC0;
+we retain and follow the CC BY 3.0 notice included in the downloaded archive.
+
+rifle-reload.wav combines:
+1. "gun bolt.wav" by fennelliott (public HQ MP3 preview).
+   https://freesound.org/people/fennelliott/sounds/347360/
+   CC0 1.0 Universal: https://creativecommons.org/publicdomain/zero/1.0/
+2. "Gun Reload Sound Effects", clipload1.wav and clipload2.wav,
+   by BMacZero / Brian MacIntosh.
+   https://opengameart.org/content/gun-reload-sound-effects
+   CC0 1.0 Universal: https://creativecommons.org/publicdomain/zero/1.0/
+Changes: selected action fragments, mono conversion, filtering, fades,
+gain adjustment, and sequencing into a 3.2-second game reload sound.
+
+These are game Foley effects using related bolt-action rifle recordings,
+not recordings of an actual Hanyang rifle or Gewehr 1888. No endorsement
+by the original creators is implied. The project's MIT license does not
+replace the licenses of these audio recordings. Keep this notice when
+redistributing the rifle audio. Full provenance: docs/audio-credits.md
+
+The knife-swing.wav and knife-heavy-swing.wav files are project-original
+synthetic effects under the project's MIT license; they are unchanged here.

@@ -1,0 +1,49 @@
+{
+  "retrieved": "2026-09-29",
+  "archiveSHA256": "5b3960083a94e18ee47bc84376615a476debc884b18f25b93ea4b6ab3f278e4f",
+  "sources": [
+    {
+      "file": "tabasco-mosin.wav",
+      "title": "Gunshot Sounds / sounds/mosin.wav",
+      "uploader": "Tabasco",
+      "copyright": "Copyright (c) 2009 Vincent Sevedge",
+      "page": "https://opengameart.org/content/gunshot-sounds",
+      "download": "https://opengameart.org/sites/default/files/sounds.zip",
+      "license": "CC-BY-3.0",
+      "licenseURL": "https://creativecommons.org/licenses/by/3.0/",
+      "note": "Use the archive attribution notice. The current landing page displays CC0.",
+      "sha256": "ece6fff8f3b21aa8bc41943c0293d3fab6a553db33dd2427a388838324a39719"
+    },
+    {
+      "file": "fennelliott-gun-bolt.mp3",
+      "title": "gun bolt.wav",
+      "author": "fennelliott",
+      "page": "https://freesound.org/people/fennelliott/sounds/347360/",
+      "download": "https://cdn.freesound.org/previews/347/347360_6207707-hq.mp3",
+      "license": "CC0-1.0",
+      "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "note": "Public HQ MP3 preview, not the login-only original WAV.",
+      "sha256": "81bc0fef59acf7a8bcf513e173d54930848fdce803df4f37fcc5a9ab33b0458b"
+    },
+    {
+      "file": "bmaczero-clipload1.wav",
+      "title": "Gun Reload Sound Effects / clipload1.wav",
+      "author": "BMacZero / Brian MacIntosh",
+      "page": "https://opengameart.org/content/gun-reload-sound-effects",
+      "download": "https://opengameart.org/sites/default/files/clipload1.wav",
+      "license": "CC0-1.0",
+      "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "1cdc10c50a26834ce7562a5f2925b9aa1118e3bb58a86fea80f34558bf2c5101"
+    },
+    {
+      "file": "bmaczero-clipload2.wav",
+      "title": "Gun Reload Sound Effects / clipload2.wav",
+      "author": "BMacZero / Brian MacIntosh",
+      "page": "https://opengameart.org/content/gun-reload-sound-effects",
+      "download": "https://opengameart.org/sites/default/files/clipload2.wav",
+      "license": "CC0-1.0",
+      "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "a5441641e7e9ede24f3ac311642e06265c6f480e3b1ba4b92c19c81c3a5e4d86"
+    }
+  ]
+}

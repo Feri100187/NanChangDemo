@@ -1,11 +1,12 @@
-// 原创合成占位音；只生成新增装填和挥刀音，不覆盖现有枪声。
+// 原创挥刀音；历史合成装填音输出 .tmp/legacy-audio，不覆盖当前下载素材音效。
 // 在工程根目录运行：node tools/generate-weapon-audio.cjs
 const fs = require('fs');
 const path = require('path');
 const out = path.join(__dirname, '../assets/resources/combat-feedback');
+const legacyOut = path.join(__dirname, '../.tmp/legacy-audio');
 const sampleRate = 22050;
 
-function writeWav(name, seconds, sample) {
+function writeWav(name, seconds, sample, outputDir = out) {
     const count = Math.floor(sampleRate * seconds);
     const data = Buffer.alloc(44 + count * 2);
     data.write('RIFF', 0); data.writeUInt32LE(data.length - 8, 4);
@@ -18,7 +19,8 @@ function writeWav(name, seconds, sample) {
         const value = Math.max(-0.85, Math.min(0.85, sample(i / sampleRate)));
         data.writeInt16LE(Math.round(value * 32767), 44 + i * 2);
     }
-    fs.writeFileSync(path.join(out, name), data);
+    fs.mkdirSync(outputDir, {recursive:true});
+    fs.writeFileSync(path.join(outputDir, name), data);
 }
 
 let seed = 80629;
@@ -66,7 +68,7 @@ writeWav('rifle-reload.wav', 3.2, t => {
         sound += gain * impact * (grit * 0.75 + ring + thud * 0.42);
     }
     return sound;
-});
+}, legacyOut);
 
 // 扫频带通噪声模拟刀刃掠过空气；掠过镜头时气流增强，音高随远离而下降。
 function writeWhoosh(name, duration, heavy) {
