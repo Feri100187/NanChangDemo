@@ -124,6 +124,8 @@ Demo01 和 Scene.ls 各有 1 把玩家枪、4 把敌人枪，共 10 处实例，
 
 `ProvidedRifle.lh` 现在引用 `RifleMechanism.glb`：由 `tools/prepare-rifle-mechanism.py` 从原网格分出 Static 与 Bolt，闭锁状态保留原有全部 10324 个三角面，不叠加假枪栓。玩家每次真实射击后执行约 1.05 秒的抬柄、后拉、前推和压柄；装填时保持开栓，再闭锁并回正枪身。原射速、装填耗时与伤害不变。Bolt 节点的原点是旋转轴，名称用于控制器查找；旧外部场景没有此节点时安全跳过。暂停冻结动作，装填取消后复位；在已开栓时开始装填不会先跳回闭锁位置。重建顺序为原枪 GLB → `blender --background --factory-startup --python tools/prepare-rifle-mechanism.py` → 等待 IDE 导入，并保留新 GLB 及提取贴图的 `.meta`。
 
+拉栓与装填的右手先松开手指，向外上方离开握把，再从机匣上方接近枪栓；手掌转向与手指弯曲跟随操作，收手沿上方退回后恢复握枪。检查可运行 `blender --background --factory-startup --python tools/check-bolt-clearance.py`：重新导入已导出的 GLB，在两段动作的 4%～96% 各采样 93 次，检查右手及前臂与静态枪身的三角面相交。正常握持接触和主动抓握的可动枪栓不作为这项检查的碰撞目标；仍需结合实际播放检查外观。
+
 ## 角色模型资源
 
 玩家和敌人现在使用用户桌面“模型”目录中 `player_LayaAir/Player.glb`、`enemy_LayaAir/Enemy.glb` 的新版角色，均有 71 根骨骼、手指蒙皮和 2048×2048 贴图，玩家包含修复后的手部贴图。源文件原样保存在 `source-assets/characters/rigged/`，不改动桌面文件。源模型为 T 姿态、没有动画；本工程为它们新增了轻量的原地骨骼动画，属于玩法原型动作，不是动作捕捉或精修成品。早期 FBX、静态姿态资源与旧转换脚本仍保留，但公共预制体已不再引用旧静态模型。

@@ -212,6 +212,9 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
             view = name.startswith('View')
             knife = 'Knife' in name
             hand_forward = hand_palm = None
+            operating = 0
+            loading = 0
+            release = 0
             if view:
                 # Coordinates below are metres relative to the unscaled rifle mesh.
                 # Put the sleeve cut behind/below the view; keep both grip points fixed
@@ -244,12 +247,31 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                     angle=math.radians(-60*lift)
                     knob=pos(-.042*math.cos(angle)+.01*math.sin(angle),
                         .14-.042*math.sin(angle)-.01*math.cos(angle),.14+.10*pull)
-                    reach=motion_value([[0,0],[.12,1],[.92,1],[1,0]],phase,1)
-                    target=target.lerp(knob+pos(.025,.02,.065),reach)
+                    grip=target.copy()
+                    operate=knob+pos(.08,.064+.046*(1-lift),.012)
+                    outside=pos(.13,.32,.30)
+                    # Clear the receiver before crossing over to the handle; use the
+                    # same raised route on return instead of cutting through the stock.
+                    if phase<.055:
+                        target=grip.lerp(outside,motion_value([[0,0],[.055,1]],phase,1))
+                    elif phase<.12:
+                        target=outside.lerp(operate,motion_value([[.055,0],[.12,1]],phase,1))
+                    elif phase<.90:
+                        target=operate
+                    elif phase<.96:
+                        target=operate.lerp(outside,motion_value([[.90,0],[.96,1]],phase,1))
+                    else:
+                        target=outside.lerp(grip,motion_value([[.96,0],[1,1]],phase,1))
+                    operating=motion_value([[0,0],[.055,0],[.12,1],[.90,1],[.96,0],[1,0]],phase,1)
+                    release=motion_value([[0,0],[.015,1],[.065,1],[.12,0],[.90,0],[.96,1],[.985,1],[1,0]],phase,1)
+                    hand_forward=hand_forward.lerp(pos(-1,-.15,0),operating)
+                    hand_palm=hand_palm.lerp(pos(0,-1,0),operating)
                     if name=='ViewReload':
                         loading=motion_value([[0,0],[.24,0],[.31,1],[.65,1],[.74,0],[1,0]],phase,1)
                         press=motion_value([[0,0],[.34,0],[.42,1],[.48,0],[.59,1],[.65,0],[1,0]],phase,1)
-                        target=target.lerp(pos(.025,.235-.065*press,.13),loading)
+                        target=target.lerp(pos(.04,.345-.025*press,.13),loading)
+                        hand_forward=hand_forward.lerp(pos(0,-1,0),loading)
+                        hand_palm=hand_palm.lerp(pos(-1,0,0),loading)
                 # FPS projection requires longer sleeves than the full-body rig. Stretch
                 # only this baked view pose; original mesh and body poses stay unchanged.
                 reach=(target-upper.head).length
@@ -278,8 +300,10 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                         if finger=='Thumb': angles=[25,35,25]
                         if side=='R' and finger=='Index' and not knife: angles=[8,32,25]
                         if side=='R' and name in ['ViewBolt','ViewReload']:
-                            angles=[42,58,38] if finger!='Thumb' else [30,40,30]
-                            if name=='ViewReload' and .3<phase<.68: angles=[15,25,15]
+                            action_angles=[45,65,45] if finger!='Thumb' else [30,40,30]
+                            action_angles=[a*(1-loading)+b*loading for a,b in zip(action_angles,[15,25,15])]
+                            angles=[a*(1-operating)+b*operating for a,b in zip(angles,action_angles)]
+                            angles=[a*(1-release)+b*release for a,b in zip(angles,[5,10,5])]
                         if side=='L' and knife: angles=[25,35,25]
                         angle=angles[int(segment)-1]
                     if bone: bone.rotation_quaternion=Quaternion((1,0,0),math.radians(angle))
