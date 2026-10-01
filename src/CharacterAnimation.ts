@@ -19,6 +19,11 @@ export class CharacterAnimation extends Laya.Script {
     private viewState = "";
     private viewWeapon = "";
     private viewRightHand: Laya.Sprite3D;
+    private reloadCartridge: Laya.Sprite3D;
+    private readonly cartridgeLocal = new Laya.Vector3();
+    private readonly cartridgeWorld = new Laya.Vector3();
+    private readonly cartridgeRotation = new Laya.Quaternion();
+    private readonly cartridgeWorldRotation = new Laya.Quaternion();
     // Weapon-local wrist frame baked by prepare-rigged-characters.py. The hand
     // stays attached even when Animator and weapon updates land on different frames.
     private readonly knifeGrip = new Laya.Vector3(0.035, 0.050, 0.23);
@@ -63,6 +68,7 @@ export class CharacterAnimation extends Laya.Script {
             if (this.player && node.name === "Arms") this.bodyArms = node;
         });
         this.viewArms = this.owner.getChildByName("FirstPersonArms") as Laya.Sprite3D;
+        this.reloadCartridge = this.owner.getChildByName("ReloadCartridge") as Laya.Sprite3D;
         if (this.player && this.viewArms) {
             this.viewAnimator = this.viewArms.getComponent(Laya.Animator);
             this.visit(this.viewArms, node => {
@@ -203,6 +209,33 @@ export class CharacterAnimation extends Laya.Script {
         // LayaAir 3.4.1 evaluates Animator AFTER onLateUpdate. Apply the grip
         // constraint to the final bone pose, before skinned rendering is prepared.
         if (this.viewArms?.active && this.rifle?.currentWeapon === "knife") this.alignKnifeGrip();
+        this.updateReloadCartridge();
+    }
+
+    private updateReloadCartridge(): void {
+        if (!this.reloadCartridge) return;
+        const r = this.rifle;
+        const phase = r?.reloadProgress ?? 0;
+        const count = r?.reloadRoundCount ?? 0;
+        const active = r?.enabled && r.currentWeapon === "rifle" && count > 0
+            && phase >= 0.29 && phase < 0.70;
+        if (!active) { this.reloadCartridge.active = false; return; }
+        // Reuse one prop for each actually missing round; no spawned objects or timers.
+        const cycle = (phase - 0.29) / 0.41 * count;
+        const progress = cycle - Math.floor(cycle);
+        this.reloadCartridge.active = progress < 0.90;
+        let t = Math.min(1, progress / 0.78);
+        t = t * t * (3 - 2 * t);
+        this.cartridgeLocal.setValue(0.045 * (1 - t), 0.275 - 0.12 * t, 0.13);
+        const gun = r.rifleModel.transform;
+        // RifleBox carries a legacy nonuniform scale; use only its world rotation/position.
+        Laya.Vector3.transformQuat(this.cartridgeLocal, gun.rotation, this.cartridgeWorld);
+        Laya.Vector3.add(this.cartridgeWorld, gun.position, this.cartridgeWorld);
+        this.reloadCartridge.transform.position = this.cartridgeWorld;
+        Laya.Quaternion.createFromYawPitchRoll((1 - t) * Math.PI / 3, 0,
+            (1 - t) * 0.12, this.cartridgeRotation);
+        Laya.Quaternion.multiply(gun.rotation, this.cartridgeRotation, this.cartridgeWorldRotation);
+        this.reloadCartridge.transform.rotation = this.cartridgeWorldRotation;
     }
 
     private alignKnifeGrip(): void {
@@ -234,6 +267,7 @@ export class CharacterAnimation extends Laya.Script {
     }
 
     onDisable(): void {
+        if (this.reloadCartridge) this.reloadCartridge.active = false;
         this.actor?.offAllCaller(this);
         if (this.animator) this.animator.speed = 0;
         if (this.viewAnimator) this.viewAnimator.speed = 0;

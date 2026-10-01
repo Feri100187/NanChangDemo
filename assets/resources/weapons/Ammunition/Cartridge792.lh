@@ -1,0 +1,23 @@
+{
+  "_$ver": 1,
+  "_$id": "brxtr3mv",
+  "_$type": "Sprite3D",
+  "name": "Cartridge792",
+  "_$child": [
+    {
+      "_$id": "cartridgemodel",
+      "_$prefab": "b878db24-b076-4cdb-8fc0-f7204fab1bdf",
+      "name": "CartridgeModel",
+      "active": true,
+      "layer": 0,
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3"
+        },
+        "localRotation": {
+          "_$type": "Quaternion"
+        }
+      }
+    }
+  ]
+}

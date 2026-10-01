@@ -97,6 +97,9 @@ export class RifleController extends Laya.Script {
 
     get currentWeapon(): "rifle" | "knife" { return this.weaponMode; }
     get isReloading(): boolean { return this.reloading; }
+    get reloadRoundCount(): number {
+        return this.reloading ? Math.max(0, Math.min(this.magazineSize - this.magazine, this.reserve)) : 0;
+    }
     get aimBlend(): number { return this.aimProgress; }
     get boltCycleProgress(): number {
         if (!this.shotCount || this.reloading || this.weaponMode !== "rifle") return -1;

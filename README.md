@@ -126,6 +126,12 @@ Demo01 和 Scene.ls 各有 1 把玩家枪、4 把敌人枪，共 10 处实例，
 
 拉栓与装填的右手先松开手指，向外上方离开握把，再从机匣上方接近枪栓；手掌转向与手指弯曲跟随操作，收手沿上方退回后恢复握枪。检查可运行 `blender --background --factory-startup --python tools/check-bolt-clearance.py`：重新导入已导出的 GLB，在两段动作的 4%～96% 各采样 93 次，检查右手及前臂与静态枪身的三角面相交。正常握持接触和主动抓握的可动枪栓不作为这项检查的碰撞目标；仍需结合实际播放检查外观。
 
+## 弹药模型
+
+`assets/resources/weapons/Ammunition/Cartridge792.lh` 是可在 IDE 中编辑和复用的完整步枪弹预制体，引用同目录 `Cartridge792.glb`。它是为本原型原创制作的轻量外观模型：黄铜瓶颈弹壳、铜色弹头、底火共 3 个网格和 3 个材质，900 个三角面，不依赖贴图。外观参考 7.92 毫米步枪弹，尺寸为游戏显示比例，不是历史测绘或工程图；弹头朝本地 -Z。
+
+可编辑 Blender 文件在 `source-assets/ammunition/Cartridge792.blend`；运行 `blender --background --factory-startup --python tools/create-cartridge-model.py` 可重建源模型和 GLB。保留 GLB、预制体的 `.meta` 以维持引用。`ProvidedPlayer.lh/ReloadCartridge` 在装填中段显示弹药送入枪膛，按本次缺弹与备弹数循环显示，同一个节点重复使用，不逐发创建对象。暂停冻结位置；取消、结束装填、结算及场景销毁会隐藏或释放它。该模型只提供装填视觉反馈，命中继续沿用原射线系统，弹量结算、伤害和射速不变。Demo01 和 Scene.ls 共用此玩家预制体。
+
 ## 角色模型资源
 
 玩家和敌人现在使用用户桌面“模型”目录中 `player_LayaAir/Player.glb`、`enemy_LayaAir/Enemy.glb` 的新版角色，均有 71 根骨骼、手指蒙皮和 2048×2048 贴图，玩家包含修复后的手部贴图。源文件原样保存在 `source-assets/characters/rigged/`，不改动桌面文件。源模型为 T 姿态、没有动画；本工程为它们新增了轻量的原地骨骼动画，属于玩法原型动作，不是动作捕捉或精修成品。早期 FBX、静态姿态资源与旧转换脚本仍保留，但公共预制体已不再引用旧静态模型。

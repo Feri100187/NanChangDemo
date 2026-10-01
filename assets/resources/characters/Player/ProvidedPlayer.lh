@@ -67,6 +67,21 @@
           "cullingMode": 0
         }
       ]
+    },
+    {
+      "_$id": "reloadcartridge",
+      "_$prefab": "91f89a91-15f6-4332-a84f-17148ca0c86a",
+      "name": "ReloadCartridge",
+      "active": false,
+      "layer": 0,
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3"
+        },
+        "localRotation": {
+          "_$type": "Quaternion"
+        }
+      }
     }
   ]
 }
