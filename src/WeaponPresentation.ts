@@ -1,7 +1,8 @@
 /** Fits weapons and hand targets into the free space around the camera.
  * Visible arms are anchored separately; world depth and lighting remain enabled. */
 export class WeaponPresentation {
-    scale = 0.55;
+    scale = 0.90;
+    private maximumScale = 0.90;
     private obstruction = 0;
     private readonly probe = new Laya.SphereColliderShape(0.045);
     private readonly hit = new Laya.HitResult();
@@ -12,6 +13,11 @@ export class WeaponPresentation {
     private readonly size = new Laya.Vector3(1, 1, 1);
 
     constructor(private readonly pivot: Laya.Sprite3D, private readonly scene: Laya.Scene3D) {}
+
+    setMaximumScale(value: number): void {
+        this.maximumScale = value;
+        this.scale = Math.min(this.scale, value);
+    }
 
     apply(eye: Laya.Vector3, camera: Laya.Camera, angles: Laya.Vector3, aim: number): void {
         // When looking at the feet, the eyes turn farther down than the held rifle.
@@ -29,7 +35,7 @@ export class WeaponPresentation {
 
     update(eye: Laya.Vector3, camera: Laya.Camera, angles: Laya.Vector3, aim: number, dt: number): void {
         this.apply(eye, camera, angles, aim);
-        let safeScale = 0.55;
+        let safeScale = this.maximumScale;
         const start = camera.transform.position;
         // A padded envelope covers the muzzle, sleeves, reload hand and knife swing.
         // Sweeps have volume, including at door edges and oblique wall approaches.
@@ -47,7 +53,7 @@ export class WeaponPresentation {
         // Move inward immediately for safety; ease out to avoid a pop on leaving a wall.
         this.scale = safeScale < this.scale ? safeScale
             : this.scale + (safeScale - this.scale) * (1 - Math.exp(-12 * dt));
-        this.obstruction += ((1 - safeScale / 0.55) - this.obstruction) * (1 - Math.exp(-12 * dt));
+        this.obstruction += ((1 - safeScale / this.maximumScale) - this.obstruction) * (1 - Math.exp(-12 * dt));
         this.apply(eye, camera, angles, aim);
     }
 

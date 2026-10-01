@@ -311,7 +311,11 @@ export class CharacterAnimation extends Laya.Script {
 
     private setState(name: string, progress = 0, immediate = false, force = false): void {
         if ((!force && this.current === name) || !this.animator.getControllerLayer(0)?.getAnimatorState(name)) return;
-        if (immediate || !this.current) this.animator.play(name, 0, Math.max(0, Math.min(1, progress)));
+        // The capsule and eye height change together in one frame. Blending a
+        // standing torso against crouched hand targets briefly stretched the arms
+        // by >20 cm; match that posture change while retaining normal state blends.
+        const postureChanged = !!this.player && name.startsWith("Crouch") !== this.current.startsWith("Crouch");
+        if (immediate || !this.current || postureChanged) this.animator.play(name, 0, Math.max(0, Math.min(1, progress)));
         else this.animator.crossFade(name, this.blend, 0, 0);
         this.current = name;
     }

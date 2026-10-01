@@ -25,7 +25,7 @@ function environment(saved) {
     const events = new Events(), canvas = new Events(), store = new Map();
     if(saved !== undefined)store.set('NanChangDemo.settings.v1', saved);
     const control = {focused:true,clock:{paused:false},isGameplayFocused(){return this.focused && !this.clock.paused;},
-        setAiming(){},setAimProgress(){},syncCameraForShot(){},addRecoil(){}};
+        setAiming(){},setAimProgress(){},setWeaponPresentationScale(){},syncCameraForShot(){},addRecoil(){}};
     class PlayerController {}
     class EnemyAI {}
     const enemy = {hits:[],owner:{name:'Target'},applyHit(node,damage){this.hits.push(damage);return {damage,remainingHealth:100-damage,killed:false};}};
@@ -50,7 +50,7 @@ function environment(saved) {
     }
     const {RifleController}=load('RifleController');
     const rifle=new RifleController();
-    Object.assign(rifle,{owner,viewCamera:{fieldOfView:60,transform:{position:new V3()},viewportPointToRay(){}},
+    Object.assign(rifle,{owner,viewCamera:{fieldOfView:60,transform:{position:new V3(),rotationEuler:new V3()},viewportPointToRay(){}},
         rifleModel:{active:true,parent:{},transform:{localPosition:new V3()}},clock:{paused:false,now:()=>now,timer:{delta:16}}});
     control.clock=rifle.clock;rifle.onAwake();
     return {rifle,events,control,enemy,physics,store,Laya,load,at(value){now=value;},tick(value){now=value;rifle.onUpdate();}};

@@ -43,7 +43,7 @@ export class PlayerController extends Laya.Script {
     private readonly cameraPosition = new Laya.Vector3();
     private readonly viewPosition = new Laya.Vector3();
     // 瞄具红点相对角色眼位的水平/垂直偏移，开镜时将相机移到此处。
-    private readonly sightOffset = new Laya.Vector3(0.34, -0.14, 0);
+    private readonly sightOffset = new Laya.Vector3(0.18, 0, 0);
     private readonly sightOffsetWorld = new Laya.Vector3();
     private readonly cameraRotation = new Laya.Vector3();
     private readonly jumpVelocity = new Laya.Vector3();
@@ -228,6 +228,11 @@ export class PlayerController extends Laya.Script {
     /** 0 为腰射视点，1 为与枪上红点共线的开镜视点。 */
     setAimProgress(value: number): void {
         this.aimProgress = Math.max(0, Math.min(1, value));
+        this.updateCamera();
+    }
+
+    setWeaponPresentationScale(value: number): void {
+        this.weaponPresentation?.setMaximumScale(value);
         this.updateCamera();
     }
 
@@ -439,7 +444,13 @@ export class PlayerController extends Laya.Script {
         const p = this.player.transform.position;
         const feetY = p.y - this.controller.height / 2;
         const eyeHeight = this.crouching ? 1.0 : 1.65;
-        this.cameraPosition.setValue(p.x, feetY + eyeHeight, p.z);
+        // A small forward head lean at steep downward angles keeps the stock
+        // and wrists in front of the chest. Move camera and weapon together so
+        // ADS remains collinear; the capsule, feet and movement never move.
+        const lean = 0.20 * Math.min(1, Math.max(0, (-this.cameraRotation.x - 35) / 50)) ** 2;
+        const yaw = this.yaw * Math.PI / 180;
+        this.cameraPosition.setValue(p.x - Math.sin(yaw) * lean, feetY + eyeHeight,
+            p.z - Math.cos(yaw) * lean);
         this.weaponPivot.transform.position = this.cameraPosition;
         Laya.Vector3.transformQuat(this.sightOffset, this.followCamera.transform.rotation,
             this.sightOffsetWorld);
@@ -470,7 +481,7 @@ export class PlayerController extends Laya.Script {
         // 模型以脚底为原点，碰撞体以中心为原点；下蹲时脚底保持贴地。
         // 身体跟随水平朝向，不跟随俯仰、开镜位移和枪械后坐力。
         const angle = this.yaw * Math.PI / 180;
-        const behindEyes = 0.28;
+        const behindEyes = 0.04;
         let feetOffset = -this.controller.height / 2;
         const physics = (this.player.scene as Laya.Scene3D)?.physicsSimulation;
         if (physics && this.controller.isOnGround()) {

@@ -87,6 +87,7 @@ export class RifleController extends Laya.Script {
     private readonly hit = new Laya.HitResult();
     private readonly modelTarget = new Laya.Vector3();
     private readonly modelPosition = new Laya.Vector3();
+    private readonly rifleHome = new Laya.Vector3(0.20, -0.32, -0.50);
     private kickBack = 0;
     private aimProgress = 0;
     private ballisticRise = 0;
@@ -155,6 +156,9 @@ export class RifleController extends Laya.Script {
         this.magazine = this.magazineSize;
         this.reserve = this.startingReserve;
         this.viewCamera.fieldOfView = 60;
+        // Start in the same reachable pose used by the update loop. Do not blend
+        // from the old scene-authored camera offset on the first gameplay frames.
+        this.rifleModel.transform.localPosition = this.rifleHome;
         this.knife = new KnifeView(this.rifleModel.parent as Laya.Sprite3D);
         this.knife.setPose(0);
         this.bolt = this.findVisual(this.rifleModel, "Bolt");
@@ -271,6 +275,7 @@ export class RifleController extends Laya.Script {
         this.weaponMode = mode;
         this.rifleModel.active = mode === "rifle";
         this.knife.root.active = mode === "knife";
+        this.playerControl.setWeaponPresentationScale(mode === "rifle" ? 0.90 : 0.55);
         this.aimProgress = 0;
         this.playerControl.setAimProgress(0);
         this.ballisticRise = 0;
@@ -490,8 +495,13 @@ export class RifleController extends Laya.Script {
             * (1 - this.aimProgress) ** 2 * (phase < 0 ? 1 : 0);
         const bobX = Math.sin(now * 10) * 0.004 * moving;
         const bobY = Math.cos(now * 20) * 0.006 * moving;
-        this.modelTarget.setValue(0.34 - tilt * 0.035 + bobX, -0.32 - tilt * 0.025 + bobY,
-            -0.72 + this.kickBack + tilt * 0.045);
+        const raiseTuck = Math.max(0, this.viewCamera.transform.rotationEuler.x - 35) * 0.002;
+        // Bring the stock into the shoulder rather than stretching the character
+        // to an arm's-length camera prop. At ADS, the red dot's +0.18 Y offset
+        // cancels this -0.18 Y and X matches PlayerController's sight offset.
+        this.modelTarget.setValue(this.rifleHome.x - 0.02 * this.aimProgress - tilt * 0.035 + bobX,
+            this.rifleHome.y + 0.14 * this.aimProgress - tilt * 0.025 + bobY,
+            this.rifleHome.z + raiseTuck + this.kickBack + tilt * 0.045);
         Laya.Vector3.lerp(this.rifleModel.transform.localPosition, this.modelTarget, blend, this.modelPosition);
         this.rifleModel.transform.localPosition = this.modelPosition;
         this.weaponRotation.setValue(-7 * tilt, 8 * tilt, -18 * tilt);

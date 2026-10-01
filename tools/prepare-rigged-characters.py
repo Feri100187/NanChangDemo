@@ -185,8 +185,11 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
         cycle = phase*math.tau
         hip = rig.pose.bones['Hip']
         mat = hip.matrix.copy()
+        # Player eyes drop 0.65 m on crouch. The old 0.43 m visual drop left
+        # the shoulders at camera height and put the camera inside the chest.
+        crouch_drop = .65 if role=='Player' else .43
         mat.translation += pos(.016*math.sin(cycle) if walking else 0,
-            (-.43 if crouch else 0)+(-.035+.013*math.cos(cycle*2) if walking else .004*math.sin(cycle)),0)
+            (-crouch_drop if crouch else 0)+(-.035+.013*math.cos(cycle*2) if walking else .004*math.sin(cycle)),0)
         hip.matrix = mat
         bpy.context.view_layer.update()
         if walking:
@@ -257,7 +260,9 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                 matrix.translation = shoulder
                 upper.matrix = matrix
                 bpy.context.view_layer.update()
-                target = pos(-.062,.089,-.17) if side=='L' else pos(.034,.068,.325)
+                # Support the rear of the fore-end, within the body's fixed arm
+                # reach, rather than pulling the left elbow straight across ADS.
+                target = pos(-.062,.089,.04) if side=='L' else pos(.034,.035,.28)
                 hand_forward = pos(.97,.10,-.20) if side=='L' else pos(0,.30,-.954)
                 hand_palm = pos(0,1,0) if side=='L' else pos(-1,0,0)
                 if knife:
@@ -341,7 +346,9 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                     if bone: bone.rotation_quaternion=Quaternion((1,0,0),math.radians(angle))
             if view and side=='L' and not knife:
                 bpy.context.view_layer.update()
-                limb(rig,'L_Thumb_01','L_Thumb_02','L_Thumb_03',pos(0,.14,-.18),pos(-.04,.155,-.16))
+                # The thumb follows the same fore-end grip as the palm. Its old
+                # fixed -0.18 Z target was left behind when the wrist moved back.
+                limb(rig,'L_Thumb_01','L_Thumb_02','L_Thumb_03',pos(0,.14,.03),pos(-.04,.155,.05))
                 thumb=rig.pose.bones['L_Thumb_03']
                 aim(rig,thumb.name,None,thumb.head+pos(.02,0,0))
         bpy.context.view_layer.update()
