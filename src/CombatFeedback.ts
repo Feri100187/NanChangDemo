@@ -77,6 +77,7 @@ export class CombatFeedback extends Laya.Script {
         this.player?.on(RifleController.FIRED, this, this.onPlayerShot);
         this.player?.on(RifleController.RELOAD_STARTED, this, this.onReload);
         this.player?.on(RifleController.RELOAD_ENDED, this, this.onReloadEnded);
+        this.player?.on(RifleController.RELOAD_STAGE_CHANGED, this, this.onReloadStage);
         this.player?.on(RifleController.MELEE_SWUNG, this, this.onMelee);
         this.player?.on(RifleController.MELEE_HEAVY_SWUNG, this, this.onHeavyMelee);
         this.player?.on(PlayerHealth.DAMAGED, this, this.onPlayerDamaged);
@@ -134,7 +135,8 @@ export class CombatFeedback extends Laya.Script {
         }
     };
 
-    private playShot(source: string, volume: number, fallbackDurationMs = 1800): Laya.SoundChannel {
+    private playShot(source: string, volume: number, fallbackDurationMs = 1800,
+        segment?: { start: number; duration: number }): Laya.SoundChannel {
         // 设置音量作为倍率，保留玩家与敌人各自配置的相对音量。
         volume *= GameSettings.volume;
         const url = this.soundUrls.get(source);
@@ -144,13 +146,13 @@ export class CombatFeedback extends Laya.Script {
             channel = Laya.SoundManager.playSound(url, 1, () => {
                 this.channels.delete(channel);
                 if (this.reloadChannel === channel) this.reloadChannel = null;
-            });
+            }, segment?.start ?? 0);
             if (!channel || channel.isStopped) return;
             channel.volume = Math.max(0, Math.min(1, volume));
             // 实录枪声有完整尾音，不能再按旧占位音的 250ms 截断。
             // 解码长度用于兜底清理；正常结束由引擎回调处理，暂停/取消仍立即停止。
-            const duration = this.soundDurationsMs.get(source) ?? fallbackDurationMs;
-            this.channels.set(channel, performance.now() + duration + 150);
+            const duration = segment?.duration ?? this.soundDurationsMs.get(source) ?? fallbackDurationMs;
+            this.channels.set(channel, performance.now() + duration + (segment ? 0 : 150));
             return channel;
         } catch (_) {
             if (channel) this.stopChannel(channel);
@@ -178,7 +180,15 @@ export class CombatFeedback extends Laya.Script {
 
     private onReload(): void {
         this.onReloadEnded();
-        this.reloadChannel = this.playShot(this.reloadSound, this.reloadVolume * GameSettings.reloadVolume, 3400);
+    }
+
+    private onReloadStage(event: { stage: string; durationMs: number }): void {
+        this.onReloadEnded();
+        // Reuse the licensed Foley's opening, one-round insertion and closing regions.
+        const start = event.stage === "prepare" ? 0.04 : event.stage === "insert" ? 1.05 : 2.54;
+        const duration = Math.min(event.durationMs, event.stage === "insert" ? 430 : 610);
+        this.reloadChannel = this.playShot(this.reloadSound, this.reloadVolume * GameSettings.reloadVolume,
+            duration, { start, duration });
     }
 
     private onReloadEnded(): void {

@@ -1804,7 +1804,6 @@
               "magazineSize": 5,
               "startingReserve": 45,
               "roundsPerMinute": 45,
-              "reloadSeconds": 3.3,
               "baseDamage": 70,
               "hitText": {
                 "_$ref": "hitinfo1"
@@ -1814,7 +1813,10 @@
               "hipCrosshairRecoil": 0.45,
               "horizontalRecoil": 0.12,
               "recoilDistance": 0.1,
-              "recoilReturnSpeed": 0.32
+              "recoilReturnSpeed": 0.32,
+              "reloadPrepareSeconds": 0.7,
+              "reloadRoundSeconds": 0.65,
+              "reloadFinishSeconds": 0.45
             },
             {
               "_$type": "a0710ceb-501a-4b74-8689-684364cac0e4",

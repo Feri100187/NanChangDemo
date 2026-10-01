@@ -534,6 +534,132 @@
           "x": 280,
           "y": 1070,
           "soloTransitions": []
+        },
+        {
+          "id": "37",
+          "name": "ViewReloadPrepare",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani35"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 0.34,
+          "x": 500,
+          "y": 1070,
+          "soloTransitions": []
+        },
+        {
+          "id": "38",
+          "name": "ViewReloadInsert",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani35"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0.34,
+          "clipEnd": 0.48,
+          "x": 720,
+          "y": 1070,
+          "soloTransitions": []
+        },
+        {
+          "id": "39",
+          "name": "ViewReloadFinish",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani35"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0.65,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 1070,
+          "soloTransitions": []
+        },
+        {
+          "id": "40",
+          "name": "ReloadPrepare",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani25"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 0.34,
+          "x": 280,
+          "y": 1180,
+          "soloTransitions": []
+        },
+        {
+          "id": "41",
+          "name": "ReloadInsert",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani25"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0.34,
+          "clipEnd": 0.48,
+          "x": 500,
+          "y": 1180,
+          "soloTransitions": []
+        },
+        {
+          "id": "42",
+          "name": "ReloadFinish",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani25"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0.65,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 1180,
+          "soloTransitions": []
+        },
+        {
+          "id": "43",
+          "name": "CrouchReloadPrepare",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani12"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 0.34,
+          "x": 940,
+          "y": 1180,
+          "soloTransitions": []
+        },
+        {
+          "id": "44",
+          "name": "CrouchReloadInsert",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani12"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0.34,
+          "clipEnd": 0.48,
+          "x": 280,
+          "y": 1290,
+          "soloTransitions": []
+        },
+        {
+          "id": "45",
+          "name": "CrouchReloadFinish",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani12"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0.65,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 1290,
+          "soloTransitions": []
         }
       ]
     }

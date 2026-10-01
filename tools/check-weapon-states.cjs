@@ -58,7 +58,8 @@ function environment(saved) {
 let passed=0;
 function check(name,fn){fn();passed++;console.log('PASS',name);}
 check('preserve Hanyang defaults and configurable recoil',()=>{
-    const {rifle:r}=environment();assert.deepEqual([r.magazineSize,r.startingReserve,r.roundsPerMinute,r.reloadSeconds,r.baseDamage],[5,45,45,3.3,70]);
+    const {rifle:r}=environment();assert.deepEqual([r.magazineSize,r.startingReserve,r.roundsPerMinute,r.baseDamage],[5,45,45,70]);
+    assert.deepEqual([r.reloadPrepareSeconds,r.reloadRoundSeconds,r.reloadFinishSeconds],[.7,.65,.45]);
     assert.deepEqual([r.hipRecoil,r.aimRecoil,r.horizontalRecoil,r.recoilDistance],[1.35,1.8,.12,.1]);
 });
 check('held mouse and a one-second stall never produce catch-up shots',()=>{
@@ -74,11 +75,12 @@ check('click during bolt cooldown is discarded, not queued',()=>{
 });
 check('switching cancels reload without changing ammo or reserve',()=>{
     const e=environment(),r=e.rifle;r.magazine=3;r.startReload(0);e.at(100);r.selectWeapon('knife');
-    e.tick(5000);r.finishReload(5000);assert.equal(r.currentWeapon,'knife');assert.equal(r.reloading,false);
+    e.tick(5000);assert.equal(r.currentWeapon,'knife');assert.equal(r.reloading,false);
     assert.deepEqual([r.magazine,r.reserve],[3,45]);assert.ok(e.events.events.includes('rifle-reload-ended'));
 });
 check('reload completion conserves ammo and does not fire a held trigger',()=>{
-    const e=environment(),r=e.rifle;r.magazine=3;r.startReload(0);r.handleMouseDown({button:0});e.tick(3300);e.tick(9000);
+    const e=environment(),r=e.rifle;r.magazine=3;r.startReload(0);r.handleMouseDown({button:0});
+    for(const t of [700,1350,2000,2450,9000])e.tick(t);
     assert.deepEqual([r.magazine,r.reserve],[5,43]);assert.equal(e.events.events.filter(x=>x==='rifle-fired').length,0);
 });
 check('rifle cooldown also prevents switching to bypass attack recovery',()=>{
@@ -122,6 +124,7 @@ check('reload channel stops on switch, pause, and controller disposal',()=>{
         const e=environment(),r=e.rifle;const {CombatFeedback}=e.load('CombatFeedback');const f=new CombatFeedback();
         f.running=true;f.audioReady=true;f.reloadSound='reload';f.soundUrls.set('reload','reload.wav');
         e.events.on('rifle-reload-started',f,f.onReload);e.events.on('rifle-reload-ended',f,f.onReloadEnded);
+        e.events.on('rifle-reload-stage',f,f.onReloadStage);
         r.magazine=3;r.startReload(0);const channel=e.Laya.SoundManager.played[0];assert.ok(channel&&!channel.isStopped);
         if(stop==='switch')r.selectWeapon('knife');else if(stop==='pause')f.setPaused(true);else r.onDisable();
         assert.equal(channel.isStopped,true);assert.equal(f.channels.size,0);
@@ -146,5 +149,67 @@ check('bolt only cycles after firing, pauses, carries into reload, and closes on
     e.tick(2000);assert.ok(r.bolt.transform.localPosition.z>.249);
     r.selectWeapon('knife');e.tick(2001);
     assert.equal(r.reloading,false);assert.equal(r.bolt.transform.localPosition.z,.15);
+});
+check('equal per-round intervals update magazine and reserve one round at a time',()=>{
+    const e=environment(),r=e.rifle;r.magazine=0;r.startReload(0);
+    e.tick(699);assert.equal(r.magazine,0);e.tick(700);assert.equal(r.reloadPhase,'insert');
+    for(let i=1;i<=5;i++){
+        e.tick(700+650*i-1);assert.equal(r.magazine,i-1);
+        e.tick(700+650*i);assert.deepEqual([r.magazine,r.reserve],[i,45-i]);
+    }
+    assert.equal(r.reloadPhase,'finish');e.tick(4399);assert.equal(r.isReloading,true);
+    e.tick(4400);assert.equal(r.isReloading,false);
+});
+check('partial reload finishes sooner, limited reserve is conserved',()=>{
+    const e=environment(),r=e.rifle;r.magazine=4;r.startReload(0);
+    for(const t of [700,1350,1800])e.tick(t);
+    assert.deepEqual([r.magazine,r.reserve,r.isReloading],[5,44,false]);
+    r.magazine=0;r.reserve=2;r.startReload(2000);
+    for(const t of [2700,3350,4000,4450])e.tick(t);
+    assert.deepEqual([r.magazine,r.reserve,r.isReloading],[2,0,false]);
+});
+check('second R finishes the active round then closes, repeats do not request a stop',()=>{
+    const e=environment(),r=e.rifle;r.magazine=0;
+    const key={keyCode:82,nativeEvent:{repeat:false,preventDefault(){}}};
+    r.handleKeyDown(key);r.handleKeyDown({...key,nativeEvent:{repeat:true,preventDefault(){}}});
+    assert.equal(r.reloadStopRequested,false);r.handleKeyUp(key);e.tick(700);e.at(1000);r.handleKeyDown(key);
+    assert.equal(r.magazine,0);e.tick(1349);assert.equal(r.magazine,0);
+    e.tick(1350);assert.deepEqual([r.magazine,r.reloadPhase],[1,'finish']);
+    r.handleKeyUp(key);r.handleKeyDown(key);e.tick(1800);
+    assert.deepEqual([r.magazine,r.reserve,r.isReloading],[1,44,false]);
+});
+check('R during preparation stops after first round; switching preserves committed rounds',()=>{
+    const e=environment(),r=e.rifle;r.magazine=0;r.startReload(0);
+    e.at(100);r.handleKeyDown({keyCode:82});e.tick(700);e.tick(1350);
+    assert.equal(r.reloadPhase,'finish');e.tick(1800);assert.equal(r.magazine,1);
+    r.startReload(2000);for(const t of [2700,3350])e.tick(t);
+    assert.equal(r.magazine,2);e.at(3500);r.selectWeapon('knife');e.tick(9999);
+    assert.deepEqual([r.magazine,r.reserve,r.isReloading],[2,43,false]);
+});
+check('R on the insertion deadline closes after that round, without starting another',()=>{
+    const e=environment(),r=e.rifle;r.magazine=0;r.startReload(0);e.tick(700);e.at(1350);
+    r.handleKeyDown({keyCode:82});
+    assert.deepEqual([r.magazine,r.reloadPhase],[1,'finish']);
+    e.tick(1800);assert.equal(r.magazine,1);assert.equal(r.isReloading,false);
+});
+check('stalls do not batch-fill the magazine, paused or disabled reload cannot insert',()=>{
+    const e=environment(),r=e.rifle;r.magazine=0;r.startReload(0);
+    e.tick(10000);assert.equal(r.magazine,0);assert.equal(r.reloadPhase,'insert');
+    e.tick(20000);assert.equal(r.magazine,1);e.tick(20001);assert.equal(r.magazine,1);
+    r.clock.paused=true;e.tick(30000);assert.equal(r.magazine,1);
+    r.clock.paused=false;r.onDisable();e.tick(40000);assert.equal(r.magazine,1);
+});
+check('chambering reflects the remaining rounds and never invents a last-shot round',()=>{
+    const e=environment(),r=e.rifle;r.magazine=2;r.tryFire(0);
+    assert.equal(r.hasRoundToChamber,true);
+    e.at(1340);r.tryFire(1340);assert.equal(r.hasRoundToChamber,false);assert.equal(r.reloadPhase,'prepare');
+    e.tick(2040);e.tick(2690);assert.equal(r.hasRoundToChamber,true);assert.equal(r.magazine,1);
+});
+check('configured timings are fixed for all rounds of an active reload',()=>{
+    const e=environment(),r=e.rifle;r.magazine=0;r.reloadPrepareSeconds=.2;r.reloadRoundSeconds=.3;r.reloadFinishSeconds=.1;
+    r.startReload(0);r.reloadRoundSeconds=9;e.tick(200);e.tick(500);e.tick(800);
+    assert.equal(r.magazine,2);assert.equal(r.reloadStageEnd,1100);
+    r.handleKeyDown({keyCode:82});e.tick(1100);e.tick(1200);
+    assert.deepEqual([r.magazine,r.isReloading],[3,false]);
 });
 console.log(`PASS ${passed} weapon/state/audio/settings regression groups`);

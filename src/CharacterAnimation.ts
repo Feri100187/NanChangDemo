@@ -17,6 +17,8 @@ export class CharacterAnimation extends Laya.Script {
     private viewArms: Laya.Sprite3D;
     private bodyArms: Laya.Node;
     private viewState = "";
+    private viewReloadStep = -1;
+    private bodyReloadStep = -1;
     private viewWeapon = "";
     private viewRightHand: Laya.Sprite3D;
     private reloadCartridge: Laya.Sprite3D;
@@ -128,7 +130,9 @@ export class CharacterAnimation extends Laya.Script {
         this.updateArmsVisibility();
         if (stopped) return;
         this.updateViewState();
-        if (this.viewAnimator && this.rifle?.meleeViewState) {
+        if (this.viewAnimator && this.rifle?.isReloading) {
+            this.viewAnimator.speed = this.reloadSpeed(this.viewAnimator, this.viewState);
+        } else if (this.viewAnimator && this.rifle?.meleeViewState) {
             const clip = this.viewAnimator.getControllerLayer(0).getAnimatorState(this.viewState)?.clip;
             // Baked clips are frame-quantized; match the weapon's exact 320/620 ms
             // motion instead of letting that rounding separate the hand and blade.
@@ -139,7 +143,10 @@ export class CharacterAnimation extends Laya.Script {
         }
         const crouch = this.player?.isCrouching ?? false;
         if (this.rifle?.isReloading) {
-            this.setState(crouch ? "CrouchReload" : "Reload", this.rifle.reloadProgress, true);
+            const state = (crouch ? "CrouchReload" : "Reload") + this.reloadSuffix();
+            this.setState(state, this.rifle.reloadStageProgress, true, this.bodyReloadStep !== this.rifle.reloadStep);
+            this.bodyReloadStep = this.rifle.reloadStep;
+            this.animator.speed = this.reloadSpeed(this.animator, state);
             return;
         }
         const actionProgress = (this.now() - this.actionAt) / this.actionDuration;
@@ -185,14 +192,24 @@ export class CharacterAnimation extends Laya.Script {
         if (!this.viewAnimator || !this.rifle || !this.viewArms.active) return;
         const knifeAction = this.rifle.meleeViewState;
         const state = this.rifle.currentWeapon === "knife" ? knifeAction || "ViewKnifeHold"
-            : this.rifle.isReloading ? "ViewReload" : this.rifle.boltCycleProgress >= 0 ? "ViewBolt"
+            : this.rifle.isReloading ? "ViewReload" + this.reloadSuffix() : this.rifle.boltCycleProgress >= 0 ? "ViewBolt"
             : this.rifle.aimBlend > 0.5 ? "ViewAim" : "ViewHold";
-        if (state === this.viewState) return;
-        if (state === "ViewReload" || state === "ViewBolt" || knifeAction || !this.viewState) this.viewAnimator.play(state, 0,
-            knifeAction ? this.rifle.meleeProgress : this.rifle.isReloading ? this.rifle.reloadProgress
+        if (state === this.viewState && (!this.rifle.isReloading || this.viewReloadStep === this.rifle.reloadStep)) return;
+        if (this.rifle.isReloading || state === "ViewBolt" || knifeAction || !this.viewState) this.viewAnimator.play(state, 0,
+            knifeAction ? this.rifle.meleeProgress : this.rifle.isReloading ? this.rifle.reloadStageProgress
                 : state === "ViewBolt" ? this.rifle.boltCycleProgress : 0);
         else this.viewAnimator.crossFade(state, this.blend, 0, 0);
         this.viewState = state;
+        this.viewReloadStep = this.rifle.reloadStep;
+    }
+
+    private reloadSuffix(): string {
+        return this.rifle.reloadPhase === "prepare" ? "Prepare" : this.rifle.reloadPhase === "insert" ? "Insert" : "Finish";
+    }
+
+    private reloadSpeed(animator: Laya.Animator, name: string): number {
+        const state = animator.getControllerLayer(0)?.getAnimatorState(name);
+        return state?.clip ? state.clip.duration() * (state.clipEnd - state.clipStart) / this.rifle.reloadStageSeconds : 1;
     }
 
     onLateUpdate(): void {
@@ -215,25 +232,34 @@ export class CharacterAnimation extends Laya.Script {
     private updateReloadCartridge(): void {
         if (!this.reloadCartridge) return;
         const r = this.rifle;
-        const phase = r?.reloadProgress ?? 0;
-        const count = r?.reloadRoundCount ?? 0;
-        const active = r?.enabled && r.currentWeapon === "rifle" && count > 0
-            && phase >= 0.29 && phase < 0.70;
-        if (!active) { this.reloadCartridge.active = false; return; }
-        // Reuse one prop for each actually missing round; no spawned objects or timers.
-        const cycle = (phase - 0.29) / 0.41 * count;
-        const progress = cycle - Math.floor(cycle);
-        this.reloadCartridge.active = progress < 0.90;
-        let t = Math.min(1, progress / 0.78);
-        t = t * t * (3 - 2 * t);
-        this.cartridgeLocal.setValue(0.045 * (1 - t), 0.275 - 0.12 * t, 0.13);
+        this.reloadCartridge.active = false;
+        if (!r?.enabled || r.currentWeapon !== "rifle") return;
+        let angle = 0;
+        if (r.reloadPhase === "insert") {
+            const p = r.reloadStageProgress;
+            if (p < 0.05 || p >= 0.99) return;
+            const t = p * p * (3 - 2 * p);
+            this.cartridgeLocal.setValue(0.045 * (1 - t), 0.275 - 0.12 * t, 0.13);
+            angle = 1 - t;
+        } else if (r.hasRoundToChamber) {
+            const phase = r.reloadPhase === "finish" ? r.reloadProgress : r.boltCycleProgress;
+            const start = r.reloadPhase === "finish" ? 0.65 : 0.30;
+            const push = r.reloadPhase === "finish" ? 0.72 : 0.60;
+            const end = r.reloadPhase === "finish" ? 0.92 : 0.86;
+            if (phase < start || phase >= end) return;
+            const rise = Math.max(0, Math.min(1, (phase - start) / 0.12));
+            let t = Math.max(0, Math.min(1, (phase - push) / (end - push)));
+            t = t * t * (3 - 2 * t);
+            this.cartridgeLocal.setValue(0, 0.16 + 0.02 * rise - 0.027 * t, 0.18 - 0.15 * t);
+        } else return;
+        this.reloadCartridge.active = true;
         const gun = r.rifleModel.transform;
         // RifleBox carries a legacy nonuniform scale; use only its world rotation/position.
         Laya.Vector3.transformQuat(this.cartridgeLocal, gun.rotation, this.cartridgeWorld);
         Laya.Vector3.add(this.cartridgeWorld, gun.position, this.cartridgeWorld);
         this.reloadCartridge.transform.position = this.cartridgeWorld;
-        Laya.Quaternion.createFromYawPitchRoll((1 - t) * Math.PI / 3, 0,
-            (1 - t) * 0.12, this.cartridgeRotation);
+        Laya.Quaternion.createFromYawPitchRoll(angle * Math.PI / 3, 0,
+            angle * 0.12, this.cartridgeRotation);
         Laya.Quaternion.multiply(gun.rotation, this.cartridgeRotation, this.cartridgeWorldRotation);
         this.reloadCartridge.transform.rotation = this.cartridgeWorldRotation;
     }
@@ -254,8 +280,8 @@ export class CharacterAnimation extends Laya.Script {
         this.viewArms.transform.position = this.correctedPosition;
     }
 
-    private setState(name: string, progress = 0, immediate = false): void {
-        if (this.current === name || !this.animator.getControllerLayer(0)?.getAnimatorState(name)) return;
+    private setState(name: string, progress = 0, immediate = false, force = false): void {
+        if ((!force && this.current === name) || !this.animator.getControllerLayer(0)?.getAnimatorState(name)) return;
         if (immediate || !this.current) this.animator.play(name, 0, Math.max(0, Math.min(1, progress)));
         else this.animator.crossFade(name, this.blend, 0, 0);
         this.current = name;

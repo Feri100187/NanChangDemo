@@ -20,6 +20,17 @@ for (const role of (process.argv[2] ? [process.argv[2]] : ['Player', 'Enemy'])) 
     }));
     const idle = states.find(s => s.name === 'Idle');
     if (!idle || states.length < 11) throw new Error('Missing exported animations');
+    if (role === 'Player') {
+        for (const prefix of ['View', '', 'Crouch']) {
+            const original = states.find(s => s.name === `${prefix}Reload`);
+            for (const [phase, start, end] of [['Prepare',0,.34],['Insert',.34,.48],['Finish',.65,1]]) {
+                const i = states.length;
+                states.push({...original, id:String(i), name:`${prefix}Reload${phase}`,
+                    clipStart:start, clipEnd:end, _isLooping:2,
+                    x:280+(i%4)*220, y:80+Math.floor(i/4)*110, soloTransitions:[]});
+            }
+        }
+    }
     states.unshift({ id: '-1', name: 'Entry', x: 30, y: 80, soloTransitions: [{ id: idle.id }] });
     const controller = { controllerLayers: [{ name: 'Character', defaultWeight: 1,
         blendingMode: 0, playOnWake: true, states }], animatorParams: [] };
