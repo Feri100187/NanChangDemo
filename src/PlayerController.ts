@@ -55,6 +55,11 @@ export class PlayerController extends Laya.Script {
     private controller: Laya.CharacterController;
     private standingVisual: Laya.Sprite3D;
     private crouchingVisual: Laya.Sprite3D;
+    private animatedVisual: Laya.Sprite3D;
+    get isCrouching(): boolean { return this.crouching; }
+    get isGrounded(): boolean { return this.controller?.isOnGround() ?? false; }
+    get isAimActive(): boolean { return this.isAiming; }
+    get movementSpeed(): number { return this.currentSpeed; }
     private readonly bodyPosition = new Laya.Vector3();
     private readonly bodyRotation = new Laya.Vector3();
     private readonly bodyGroundRay = new Laya.Ray(new Laya.Vector3(), new Laya.Vector3(0, -1, 0));
@@ -247,7 +252,10 @@ export class PlayerController extends Laya.Script {
         this.canvas.tabIndex = 0;
         this.standingVisual = this.body.getChildByName("Standing") as Laya.Sprite3D;
         this.crouchingVisual = this.body.getChildByName("Crouching") as Laya.Sprite3D;
-        if (this.standingVisual && this.crouchingVisual) {
+        this.animatedVisual = this.body.getChildByName("AnimatedModel") as Laya.Sprite3D;
+        if (this.animatedVisual) {
+            this.updateBodyVisual();
+        } else if (this.standingVisual && this.crouchingVisual) {
             // 只隐藏头颈，保留低头时的身体和腿部；编辑器中仍显示完整人物。
             for (const visual of [this.standingVisual, this.crouchingVisual]) {
                 const head = visual.getChildByName("Head");
@@ -441,9 +449,11 @@ export class PlayerController extends Laya.Script {
     }
 
     private updateBodyVisual(): void {
-        if (!this.standingVisual || !this.crouchingVisual) return;
-        this.standingVisual.active = !this.crouching;
-        this.crouchingVisual.active = this.crouching;
+        if (!this.animatedVisual && (!this.standingVisual || !this.crouchingVisual)) return;
+        if (!this.animatedVisual) {
+            this.standingVisual.active = !this.crouching;
+            this.crouchingVisual.active = this.crouching;
+        }
         // 模型以脚底为原点，碰撞体以中心为原点；下蹲时脚底保持贴地。
         // 身体跟随水平朝向，不跟随俯仰、开镜位移和枪械后坐力。
         const angle = this.yaw * Math.PI / 180;
@@ -455,7 +465,7 @@ export class PlayerController extends Laya.Script {
             this.bodyGroundRay.origin = this.player.transform.position;
             if (physics.rayCast(this.bodyGroundRay, this.bodyGroundHit, this.controller.height / 2 + 0.25,
                 -1, ~Laya.Physics3DUtils.COLLISIONFILTERGROUP_CHARACTERFILTER)) {
-                const pose = this.crouching ? this.crouchingVisual : this.standingVisual;
+                const pose = this.animatedVisual || (this.crouching ? this.crouchingVisual : this.standingVisual);
                 feetOffset = this.bodyGroundHit.point.y - this.player.transform.position.y
                     - pose.transform.localPosition.y;
             }

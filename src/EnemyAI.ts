@@ -140,7 +140,8 @@ export class EnemyAI extends Laya.Script {
 
     private hideBodyAndColliders(node: Laya.Node): void {
         for (const component of node.components) {
-            if (component instanceof Laya.MeshRenderer || component instanceof Laya.PhysicsCollider)
+            if (component instanceof Laya.MeshRenderer || component instanceof Laya.SkinnedMeshRenderer
+                || component instanceof Laya.PhysicsCollider)
                 component.enabled = false;
         }
         for (let i = 0; i < node.numChildren; i++) this.hideBodyAndColliders(node.getChildAt(i));

@@ -1,0 +1,16 @@
+[
+  {
+    "role": "Player",
+    "source": "Desktop/模型/player_LayaAir/Player.glb",
+    "sha256": "a7a4fdcc0e3d6c2054a19556c92d898e127c4225854e70302149cceb89119ef7",
+    "bones": 71,
+    "sourceAnimations": 0
+  },
+  {
+    "role": "Enemy",
+    "source": "Desktop/模型/enemy_LayaAir/Enemy.glb",
+    "sha256": "4d2c27d3cabf24058a36f325d7e808240e7057097e8d8fe5c1272310568cb227",
+    "bones": 71,
+    "sourceAnimations": 0
+  }
+]

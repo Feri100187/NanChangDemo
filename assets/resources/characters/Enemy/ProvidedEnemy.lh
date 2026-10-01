@@ -5,20 +5,34 @@
   "name": "ProvidedEnemy",
   "_$comp": [
     {
-      "_$type": "MeshFilter",
-      "sharedMesh": {
-        "_$uuid": "f92a7ee0-7942-4a39-89eb-3224533475b1@lm0",
-        "_$type": "Mesh"
-      }
-    },
+      "_$type": "50eb7f2b-3dec-457d-8c04-4757703be35d",
+      "scriptPath": "../src/CharacterAnimation.ts",
+      "blend": 0.1
+    }
+  ],
+  "_$child": [
     {
-      "_$type": "MeshRenderer",
-      "receiveShadow": true,
-      "castShadow": true,
-      "sharedMaterials": [
+      "_$id": "animatedmodel",
+      "_$prefab": "e81a0fa5-37eb-4993-bc2f-9593d7b122fc",
+      "name": "AnimatedModel",
+      "active": true,
+      "layer": 0,
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3"
+        },
+        "localRotation": {
+          "_$type": "Quaternion"
+        }
+      },
+      "_$comp": [
         {
-          "_$uuid": "f92a7ee0-7942-4a39-89eb-3224533475b1@lmat0",
-          "_$type": "Material"
+          "_$override": "Animator",
+          "controller": {
+            "_$uuid": "4b7babdd-c9c3-412e-b3a2-0868c77f89a3",
+            "_$type": "AnimationController"
+          },
+          "cullingMode": 0
         }
       ]
     }

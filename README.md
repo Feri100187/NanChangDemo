@@ -124,11 +124,15 @@ Demo01 和 Scene.ls 各有 1 把玩家枪、4 把敌人枪，共 10 处实例，
 
 ## 角色模型资源
 
-玩家和敌人分别使用用户提供的 `player`、`enemy` 模型，原始 FBX 与 8192×8192 贴图完整保存在 `source-assets/characters/`，不直接作为发布资源。两份源模型各有 41 根骨骼，没有动画片段。`tools/prepare-provided-characters.py` 在独立 Blender 后台进程中用原骨骼摆出敌人持枪、玩家站立和下蹲姿态，再烘焙为运行网格；原始骨骼和权重仍保留在源文件中，后续可用于制作动画。当前没有新增行走、拉栓或换弹动画。
+玩家和敌人现在使用用户桌面“模型”目录中 `player_LayaAir/Player.glb`、`enemy_LayaAir/Enemy.glb` 的新版角色，均有 71 根骨骼、手指蒙皮和 2048×2048 贴图，玩家包含修复后的手部贴图。源文件原样保存在 `source-assets/characters/rigged/`，不改动桌面文件。源模型为 T 姿态、没有动画；本工程为它们新增了轻量的原地骨骼动画，属于玩法原型动作，不是动作捕捉或精修成品。早期 FBX、静态姿态资源与旧转换脚本仍保留，但公共预制体已不再引用旧静态模型。
 
-运行资源位于 `assets/resources/characters/Enemy/` 和 `Player/`，使用 2048×2048 颜色贴图。每个目录中的 GLB、公共 `.lh` 预制体、IDE 提取的 `textures/` 和全部 `.meta` 须一起保留。Demo01 与 Scene.ls 各使用一份玩家预制体和四份敌人预制体。敌人模型高 2.55 米，沿用原目标的整体高度；原有 Head、Torso、Legs、LeftArm、RightArm 节点保留为隐藏的受击区域，按新模型对齐位置与尺寸，伤害倍率、阵营碰撞过滤、AI 状态和击倒计数保持原逻辑。汉阳造模型仍共用原枪械预制体，敌人枪的位置调整到新持枪姿态。
+运行资源位于 `assets/resources/characters/Enemy/` 和 `Player/`：`AnimatedEnemy.glb` / `AnimatedPlayer.glb` 包含蒙皮与动画，`EnemyAnimation.controller` / `PlayerAnimation.controller` 是可在 IDE 打开的状态机，原公共 `ProvidedEnemy.lh` / `ProvidedPlayer.lh` 内的 `AnimatedModel` 绑定相应状态机。Demo01 与 Scene.ls 自动复用这两个公共预制体，两份场景文件未改。模型、状态机、IDE 提取的 `textures/` 与全部 `.meta` 应一起保留。敌人仍高 2.55 米；原 Head、Torso、Legs、LeftArm、RightArm 受击区域、汉阳造挂点、伤害、视野、巡逻和击倒计数保持不变。死亡时沿用原来的即时隐藏行为，同时正确关闭蒙皮渲染器。
 
-玩家模型高 1.8 米，`ProvidedPlayer.lh` 内的 `Standing`、`Crouching` 各包含 `Body`、`Head`。PlayerController 切换姿态组，只隐藏 Head，身体跟随水平朝向，不跟随镜头俯仰和枪械后坐力。落地时用脚下射线将外观贴合地面，空中随碰撞体升降；预制体中的 0.04 米高度补偿对应当前 Bullet 胶囊的变换偏移。站立/下蹲碰撞高度仍为 2/1.2 米，镜头眼位、移动速度、起跳和开镜行为保持不变。
+玩家仍高 1.8 米，现在由同一蒙皮在站立与下蹲动作间过渡，运行时仅隐藏 `FirstPersonHiddenHead`；IDE 中可查看完整人物。身体仍只跟随水平朝向，脚底射线与 0.04 米补偿保持原样，站立/下蹲碰撞高度仍为 2/1.2 米。现有第一人称枪械、镜头、后坐力和短刀外观继续由原控制器负责。
+
+`src/CharacterAnimation.ts` 只读取现有游戏状态与实际开火/挥刀事件，通过 Animator 播放、融合已绑定状态，不移动角色、不修改伤害或装填完成时间。玩家使用 Idle、Walk、Run、CrouchIdle、CrouchWalk、Aim、Jump、Fire、Reload、Melee、HeavyMelee 及蹲姿动作；敌人使用 Idle、左右横移、Aim、Fire，横移匹配已有巡逻方式。暂停和结算冻结动画，继续保留进度；取消装填返回当前移动状态，重开销毁旧实例与监听。控制器 Entry 指向 Idle，状态切换由这一个表现脚本驱动，避免与游戏状态竞争。
+
+重建步骤：运行 `blender --background --factory-startup --python tools/prepare-rigged-characters.py`，等待 IDE 导入完成，再运行 `node tools/configure-character-animations.cjs`。后一个命令会重建两份 `.controller` 的状态列表，若已在 IDE 手调状态机，应先保存改动再决定是否覆盖；它不修改场景或公共预制体。Blender 中可编辑生成于 `.tmp/AnimatedPlayer.blend` / `.tmp/AnimatedEnemy.blend` 的动作，正式导出仍须保留现有 GLB `.meta` 以稳定引用。源模型与贴图权利仍归原提供方，本轮没有下载新人物素材。
 
 重建运行网格：`blender --background --factory-startup --python tools/prepare-provided-characters.py`。脚本保留源文件，在缺少运行颜色贴图时生成 2048 JPEG，并将各姿态脚底归零、正面统一为本地 +Z；导入后应保留现有 `.meta` 的 UUID。玩家场景实例旋转 180°，与第一人称相机的本地 -Z 朝向一致。
 

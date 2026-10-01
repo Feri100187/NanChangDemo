@@ -85,6 +85,11 @@ export class RifleController extends Laya.Script {
     private heavySwing = false;
 
     get currentWeapon(): "rifle" | "knife" { return this.weaponMode; }
+    get isReloading(): boolean { return this.reloading; }
+    get reloadProgress(): number {
+        return this.reloading ? 1 - (this.reloadEndAt - (this.clock?.now() ?? performance.now()))
+            / (this.reloadSeconds * 1000) : 0;
+    }
 
     private get swingDuration(): number { return this.heavySwing ? 620 : 320; }
 
