@@ -2,6 +2,7 @@ import { PlayerController } from "./PlayerController";
 import { EnemyAI } from "./EnemyAI";
 import { GameClock } from "./GameClock";
 import { KnifeView } from "./KnifeView";
+import { BOLT_CYCLE_MS, BOLT_MOTION, motionValue } from "./WeaponMotion";
 
 const { regClass, property } = Laya;
 
@@ -83,10 +84,25 @@ export class RifleController extends Laya.Script {
     private swingHitAt = 0;
     private pendingMeleeHit = false;
     private heavySwing = false;
+    private bolt: Laya.Sprite3D;
+    private boltHome: Laya.Vector3;
+    private boltHomeRotation: Laya.Vector3;
+    private readonly boltPosition = new Laya.Vector3();
+    private readonly boltRotation = new Laya.Vector3();
+    private readonly weaponRotation = new Laya.Vector3();
+    private boltLift = 0;
+    private boltPull = 0;
+    private reloadInitialLift = 0;
+    private reloadInitialPull = 0;
 
     get currentWeapon(): "rifle" | "knife" { return this.weaponMode; }
     get isReloading(): boolean { return this.reloading; }
     get aimBlend(): number { return this.aimProgress; }
+    get boltCycleProgress(): number {
+        if (!this.shotCount || this.reloading || this.weaponMode !== "rifle") return -1;
+        const progress = ((this.clock?.now() ?? performance.now()) - this.lastShotAt) / BOLT_CYCLE_MS;
+        return progress >= 0 && progress < 1 ? progress : -1;
+    }
     get knifeModel(): Laya.Sprite3D { return this.knife?.root; }
     /** Read-only animation timing; damage and cooldowns remain owned by this controller. */
     get meleeProgress(): number { return ((this.clock?.now() ?? performance.now()) - this.swingStartAt) / this.swingDuration; }
@@ -110,7 +126,21 @@ export class RifleController extends Laya.Script {
         this.viewCamera.fieldOfView = 60;
         this.knife = new KnifeView(this.rifleModel.parent as Laya.Sprite3D);
         this.knife.setPose(0);
+        this.bolt = this.findVisual(this.rifleModel, "Bolt");
+        if (this.bolt) {
+            this.boltHome = this.bolt.transform.localPosition.clone();
+            this.boltHomeRotation = this.bolt.transform.localRotationEuler.clone();
+        }
         this.updateHud((this.clock?.now() ?? performance.now()));
+    }
+
+    private findVisual(node: Laya.Sprite3D, name: string): Laya.Sprite3D {
+        if (node.name === name) return node;
+        for (let i = 0; i < (node.numChildren || 0); i++) {
+            const found = this.findVisual(node.getChildAt(i) as Laya.Sprite3D, name);
+            if (found) return found;
+        }
+        return null;
     }
 
     onEnable(): void {
@@ -333,6 +363,8 @@ export class RifleController extends Laya.Script {
     private startReload(now: number): void {
         if (!this.enabled || this.clock?.paused || this.weaponMode !== "rifle"
             || this.reloading || this.magazine >= this.magazineSize || this.reserve <= 0) return;
+        this.reloadInitialLift = this.boltLift;
+        this.reloadInitialPull = this.boltPull;
         this.reloading = true;
         this.reloadEndAt = now + this.reloadSeconds * 1000;
         this.owner.event(RifleController.RELOAD_STARTED);
@@ -361,9 +393,35 @@ export class RifleController extends Laya.Script {
         this.aimProgress += (Number(aiming) - this.aimProgress) * blend;
         this.playerControl.setAimProgress(this.aimProgress);
         this.kickBack = Math.max(0, this.kickBack - dt * this.recoilReturnSpeed);
-        this.modelTarget.setValue(0.34, -0.32, -0.72 + this.kickBack);
+        const phase = this.reloading ? this.reloadProgress : this.boltCycleProgress;
+        const keys = this.reloading ? BOLT_MOTION.reload : BOLT_MOTION.shot;
+        let lift = phase >= 0 ? motionValue(keys, phase, 1) : 0;
+        let pull = phase >= 0 ? motionValue(keys, phase, 2) : 0;
+        if (this.reloading && phase < 0.22) {
+            lift = this.reloadInitialLift + (1 - this.reloadInitialLift) * lift;
+            pull = this.reloadInitialPull + (1 - this.reloadInitialPull) * pull;
+        }
+        this.boltLift = lift;
+        this.boltPull = pull;
+        const tilt = (phase >= 0 ? motionValue(keys, phase, 3) : 0)
+            * (this.reloading ? 1 : 0.65 * (1 - this.aimProgress));
+        if (this.bolt) {
+            this.boltPosition.setValue(this.boltHome.x, this.boltHome.y, this.boltHome.z + pull * 0.10);
+            this.boltRotation.setValue(this.boltHomeRotation.x, this.boltHomeRotation.y, this.boltHomeRotation.z - lift * 60);
+            this.bolt.transform.localPosition = this.boltPosition;
+            this.bolt.transform.localRotationEuler = this.boltRotation;
+        }
+        const now = (this.clock?.now() ?? performance.now()) / 1000;
+        const moving = Math.min(1, (this.playerControl.movementSpeed || 0) / 5)
+            * (1 - this.aimProgress) ** 2 * (phase < 0 ? 1 : 0);
+        const bobX = Math.sin(now * 10) * 0.004 * moving;
+        const bobY = Math.cos(now * 20) * 0.006 * moving;
+        this.modelTarget.setValue(0.34 - tilt * 0.035 + bobX, -0.32 - tilt * 0.025 + bobY,
+            -0.72 + this.kickBack + tilt * 0.045);
         Laya.Vector3.lerp(this.rifleModel.transform.localPosition, this.modelTarget, blend, this.modelPosition);
         this.rifleModel.transform.localPosition = this.modelPosition;
+        this.weaponRotation.setValue(-7 * tilt, 8 * tilt, -18 * tilt);
+        this.rifleModel.transform.localRotationEuler = this.weaponRotation;
     }
 
     private updateAimPoint(): void {

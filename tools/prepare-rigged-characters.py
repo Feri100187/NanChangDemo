@@ -7,10 +7,15 @@ import bpy
 import bmesh
 import math
 import sys
+import json
+import re
 from pathlib import Path
 from mathutils import Matrix, Vector, Quaternion
 
 ROOT = Path(__file__).resolve().parents[1]
+motion_source = (ROOT/'src/WeaponMotion.ts').read_text(encoding='utf8')
+KNIFE_MOTION = json.loads(re.search(r'export const KNIFE_MOTION = (\{.*?\n\});',motion_source,re.S).group(1))
+BOLT_MOTION = json.loads(re.search(r'export const BOLT_MOTION = (\{.*?\n\});',motion_source,re.S).group(1))
 if not bpy.app.background or bpy.data.filepath:
     raise RuntimeError('Use a separate background factory-startup Blender process.')
 
@@ -55,11 +60,20 @@ def hand_frame(rig, rest, side, wrist, forward, palm):
     bpy.context.view_layer.update()
 
 
+def motion_value(keys, phase, column):
+    t=max(0,min(1,phase))
+    for a,b in zip(keys,keys[1:]):
+        if t<=b[0]:
+            u=(t-a[0])/(b[0]-a[0]);u=u*u*(3-2*u)
+            return a[column]+(b[column]-a[column])*u
+    return keys[-1][column]
+
+
 def knife_pose(phase, heavy=False):
     """Same visual motion as KnifeView.setPose; all values are camera-local metres/degrees."""
-    swing=math.sin(max(0,min(1,phase))*math.pi)
-    p=Vector((.25-swing*(.36 if heavy else .22),-.08+swing*(.18 if heavy else .08),-.90-swing*(.34 if heavy else .24)))
-    x,y,z=[math.radians(v) for v in (35-swing*(80 if heavy else 45),-18+swing*(35 if heavy else 65),-28+swing*(-105 if heavy else 75))]
+    keys=KNIFE_MOTION['heavy' if heavy else 'light']
+    p=Vector(tuple(motion_value(keys,phase,c) for c in [1,2,3]))
+    x,y,z=[math.radians(motion_value(keys,phase,c)) for c in [4,5,6]]
     rotation=Matrix.Rotation(y,3,'Y') @ Matrix.Rotation(x,3,'X') @ Matrix.Rotation(z,3,'Z')
     return p,rotation
 
@@ -72,7 +86,7 @@ CLIPS = {'Idle':2.0, 'Walk':1.0, 'Run':.64, 'CrouchIdle':2.0,
 PLAYER_CLIPS = {'Hold':2.0, 'HoldWalk':1.0, 'HoldRun':.64, 'CrouchHold':2.0,
                 'CrouchHoldWalk':1.2, 'AimWalk':1.0, 'CrouchAim':2.0,
                 'CrouchAimWalk':1.2, 'ViewHold':2.0, 'ViewAim':2.0, 'ViewReload':3.3,
-                'KnifeHold':2.0, 'KnifeWalk':1.0, 'KnifeRun':.64, 'CrouchKnifeHold':2.0,
+                'ViewBolt':1.05, 'KnifeHold':2.0, 'KnifeWalk':1.0, 'KnifeRun':.64, 'CrouchKnifeHold':2.0,
                 'CrouchKnifeWalk':1.2, 'ViewKnifeHold':2.0, 'ViewKnifeLight':.32, 'ViewKnifeHeavy':.62}
 
 for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
@@ -142,9 +156,15 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
         cycle = phase*math.tau
         hip = rig.pose.bones['Hip']
         mat = hip.matrix.copy()
-        mat.translation += pos(0,(-.43 if crouch else 0)+(.008*math.sin(cycle*2) if walking else .003*math.sin(cycle)),0)
+        mat.translation += pos(.016*math.sin(cycle) if walking else 0,
+            (-.43 if crouch else 0)+(-.035+.013*math.cos(cycle*2) if walking else .004*math.sin(cycle)),0)
         hip.matrix = mat
         bpy.context.view_layer.update()
+        if walking:
+            spine=rig.pose.bones['Spine01'];pivot=spine.head.copy()
+            twist=Matrix.Rotation(math.radians(2.5)*math.sin(cycle),4,'Z')
+            spine.matrix=Matrix.Translation(pivot)@twist@Matrix.Translation(-pivot)@spine.matrix
+            bpy.context.view_layer.update()
         if crouch:
             spine = rig.pose.bones['Spine01']
             p = spine.head.copy()
@@ -152,8 +172,15 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
             bpy.context.view_layer.update()
         for side, sign in [('L',1),('R',-1)]:
             foot = feet[side].copy()
-            stride = math.sin(cycle+(0 if side=='L' else math.pi)) if walking else 0
-            foot += pos(0,max(0,stride)*(.10 if name.endswith('Run') else .055),stride*(.16 if name.endswith('Run') else .10))
+            u=(phase+(0 if side=='L' else .5))%1
+            if u<.6:
+                stride=1-2*u/.6;lift=0
+            else:
+                swing=(u-.6)/.4;smooth=swing*swing*(3-2*swing)
+                stride=-1+2*smooth;lift=math.sin(math.pi*swing)
+            if not walking:stride=lift=0
+            amplitude=.159 if role=='Enemy' else .25 if name.endswith('Run') else .18
+            foot += pos(0,lift*(.12 if name.endswith('Run') else .07),stride*amplitude)
             if name.startswith('Strafe'):
                 foot = feet[side] + pos(stride*.09*(1 if name=='StrafeLeft' else -1),max(0,stride)*.045,0)
             if name=='Jump':
@@ -191,7 +218,8 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                 # while tucking the elbows for ADS. The gun/camera still own ADS motion.
                 ads = name=='ViewAim'
                 shoulder = pos(-.33 if side=='L' else .25, -.52 if ads else -.47, .24 if side=='L' else .63)
-                if knife: shoulder=pos(-.32 if side=='L' else .34,-.73,.04)
+                if knife: shoulder=pos(-.25 if side=='L' else .26,-.56,.04)
+                shoulder += pos(.002*math.sin(cycle),.003*math.sin(cycle),0)
                 upper = rig.pose.bones[f'{side}_Upperarm']
                 matrix = upper.matrix.copy()
                 matrix.translation = shoulder
@@ -207,11 +235,21 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                         hand_forward=pos(*(rotation@Vector((0,-.80,-.60))))
                         hand_palm=pos(*(rotation@Vector((-1,0,0))))
                     else:
-                        target=pos(-.25,-.19,-.56-.025*math.sin(phase*math.pi) if name!='ViewKnifeHold' else -.56)
+                        target=pos(-.19,-.20,-.38-.018*math.sin(phase*math.pi) if name!='ViewKnifeHold' else -.38)
                         hand_forward=pos(.15,.1,-.98)
                         hand_palm=pos(0,-1,0)
-                if name=='ViewReload' and side=='R':
-                    target += pos(-.05*math.sin(math.pi*phase), .12*math.sin(math.pi*phase), -.17*math.sin(math.pi*phase))
+                if name in ['ViewReload','ViewBolt'] and side=='R':
+                    keys=BOLT_MOTION['reload' if name=='ViewReload' else 'shot']
+                    lift=motion_value(keys,phase,1);pull=motion_value(keys,phase,2)
+                    angle=math.radians(-60*lift)
+                    knob=pos(-.042*math.cos(angle)+.01*math.sin(angle),
+                        .14-.042*math.sin(angle)-.01*math.cos(angle),.14+.10*pull)
+                    reach=motion_value([[0,0],[.12,1],[.92,1],[1,0]],phase,1)
+                    target=target.lerp(knob+pos(.025,.02,.065),reach)
+                    if name=='ViewReload':
+                        loading=motion_value([[0,0],[.24,0],[.31,1],[.65,1],[.74,0],[1,0]],phase,1)
+                        press=motion_value([[0,0],[.34,0],[.42,1],[.48,0],[.59,1],[.65,0],[1,0]],phase,1)
+                        target=target.lerp(pos(.025,.235-.065*press,.13),loading)
                 # FPS projection requires longer sleeves than the full-body rig. Stretch
                 # only this baked view pose; original mesh and body poses stay unchanged.
                 reach=(target-upper.head).length
@@ -239,6 +277,9 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                         angles= [50,60,45] if side=='R' else [45,55,40]
                         if finger=='Thumb': angles=[25,35,25]
                         if side=='R' and finger=='Index' and not knife: angles=[8,32,25]
+                        if side=='R' and name in ['ViewBolt','ViewReload']:
+                            angles=[42,58,38] if finger!='Thumb' else [30,40,30]
+                            if name=='ViewReload' and .3<phase<.68: angles=[15,25,15]
                         if side=='L' and knife: angles=[25,35,25]
                         angle=angles[int(segment)-1]
                     if bone: bone.rotation_quaternion=Quaternion((1,0,0),math.radians(angle))

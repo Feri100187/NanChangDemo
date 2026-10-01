@@ -2,6 +2,7 @@ import { EnemyAI } from "./EnemyAI";
 import { PlayerController } from "./PlayerController";
 import { PlayerHealth } from "./PlayerHealth";
 import { RifleController } from "./RifleController";
+import { BOLT_CYCLE_MS } from "./WeaponMotion";
 
 const { regClass, property } = Laya;
 
@@ -9,7 +10,7 @@ const { regClass, property } = Laya;
 @regClass()
 export class CharacterAnimation extends Laya.Script {
     @property({ type: Number, caption: "动画融合比例" })
-    blend = 0.10;
+    blend = 0.06;
 
     private animator: Laya.Animator;
     private viewAnimator: Laya.Animator;
@@ -126,6 +127,9 @@ export class CharacterAnimation extends Laya.Script {
             // Baked clips are frame-quantized; match the weapon's exact 320/620 ms
             // motion instead of letting that rounding separate the hand and blade.
             this.viewAnimator.speed = clip ? clip.duration() / this.rifle.meleeDurationSeconds : 1;
+        } else if (this.viewAnimator && this.viewState === "ViewBolt") {
+            const clip = this.viewAnimator.getControllerLayer(0).getAnimatorState("ViewBolt")?.clip;
+            this.viewAnimator.speed = clip ? clip.duration() / (BOLT_CYCLE_MS / 1000) : 1;
         }
         const crouch = this.player?.isCrouching ?? false;
         if (this.rifle?.isReloading) {
@@ -175,10 +179,12 @@ export class CharacterAnimation extends Laya.Script {
         if (!this.viewAnimator || !this.rifle || !this.viewArms.active) return;
         const knifeAction = this.rifle.meleeViewState;
         const state = this.rifle.currentWeapon === "knife" ? knifeAction || "ViewKnifeHold"
-            : this.rifle.isReloading ? "ViewReload" : this.rifle.aimBlend > 0.5 ? "ViewAim" : "ViewHold";
+            : this.rifle.isReloading ? "ViewReload" : this.rifle.boltCycleProgress >= 0 ? "ViewBolt"
+            : this.rifle.aimBlend > 0.5 ? "ViewAim" : "ViewHold";
         if (state === this.viewState) return;
-        if (state === "ViewReload" || knifeAction || !this.viewState) this.viewAnimator.play(state, 0,
-            knifeAction ? this.rifle.meleeProgress : this.rifle.isReloading ? this.rifle.reloadProgress : 0);
+        if (state === "ViewReload" || state === "ViewBolt" || knifeAction || !this.viewState) this.viewAnimator.play(state, 0,
+            knifeAction ? this.rifle.meleeProgress : this.rifle.isReloading ? this.rifle.reloadProgress
+                : state === "ViewBolt" ? this.rifle.boltCycleProgress : 0);
         else this.viewAnimator.crossFade(state, this.blend, 0, 0);
         this.viewState = state;
     }

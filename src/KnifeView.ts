@@ -1,3 +1,5 @@
+import { KNIFE_MOTION, motionValue } from "./WeaponMotion";
+
 /** 第一人称短刀外观：深木握柄、深色护手和亮钢刀身，不依赖外部模型资源。 */
 export class KnifeView {
     readonly root = new Laya.Sprite3D("FieldKnife");
@@ -32,12 +34,11 @@ export class KnifeView {
     }
 
     setPose(progress: number, heavy = false): void {
-        const swing = Math.sin(Math.max(0, Math.min(1, progress)) * Math.PI);
-        // Keep the grip inside the view so the new hand is visible around it.
-        this.root.transform.localPosition = new Laya.Vector3(0.25 - swing * (heavy ? 0.36 : 0.22),
-            -0.08 + swing * (heavy ? 0.18 : 0.08), -0.90 - swing * (heavy ? 0.34 : 0.24));
-        this.root.transform.localRotationEuler = new Laya.Vector3(35 - swing * (heavy ? 80 : 45),
-            -18 + swing * (heavy ? 35 : 65), -28 + swing * (heavy ? -105 : 75));
+        const keys = heavy ? KNIFE_MOTION.heavy : KNIFE_MOTION.light;
+        this.root.transform.localPosition = new Laya.Vector3(motionValue(keys, progress, 1),
+            motionValue(keys, progress, 2), motionValue(keys, progress, 3));
+        this.root.transform.localRotationEuler = new Laya.Vector3(motionValue(keys, progress, 4),
+            motionValue(keys, progress, 5), motionValue(keys, progress, 6));
     }
 
     destroy(): void {

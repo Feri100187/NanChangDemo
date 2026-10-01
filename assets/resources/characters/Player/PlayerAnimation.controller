@@ -439,11 +439,11 @@
         },
         {
           "id": "30",
-          "name": "ViewHold",
+          "name": "ViewBolt",
           "clip": {
             "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani30"
           },
-          "_isLooping": 1,
+          "_isLooping": 2,
           "speed": 1,
           "clipStart": 0,
           "clipEnd": 1,
@@ -453,11 +453,11 @@
         },
         {
           "id": "31",
-          "name": "ViewKnifeHeavy",
+          "name": "ViewHold",
           "clip": {
             "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani31"
           },
-          "_isLooping": 2,
+          "_isLooping": 1,
           "speed": 1,
           "clipStart": 0,
           "clipEnd": 1,
@@ -467,11 +467,11 @@
         },
         {
           "id": "32",
-          "name": "ViewKnifeHold",
+          "name": "ViewKnifeHeavy",
           "clip": {
             "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani32"
           },
-          "_isLooping": 1,
+          "_isLooping": 2,
           "speed": 1,
           "clipStart": 0,
           "clipEnd": 1,
@@ -481,11 +481,11 @@
         },
         {
           "id": "33",
-          "name": "ViewKnifeLight",
+          "name": "ViewKnifeHold",
           "clip": {
             "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani33"
           },
-          "_isLooping": 2,
+          "_isLooping": 1,
           "speed": 1,
           "clipStart": 0,
           "clipEnd": 1,
@@ -495,7 +495,7 @@
         },
         {
           "id": "34",
-          "name": "ViewReload",
+          "name": "ViewKnifeLight",
           "clip": {
             "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani34"
           },
@@ -509,16 +509,30 @@
         },
         {
           "id": "35",
-          "name": "Walk",
+          "name": "ViewReload",
           "clip": {
             "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani35"
           },
-          "_isLooping": 1,
+          "_isLooping": 2,
           "speed": 1,
           "clipStart": 0,
           "clipEnd": 1,
           "x": 940,
           "y": 960,
+          "soloTransitions": []
+        },
+        {
+          "id": "36",
+          "name": "Walk",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani36"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 1070,
           "soloTransitions": []
         }
       ]

@@ -7,7 +7,7 @@
     {
       "_$type": "50eb7f2b-3dec-457d-8c04-4757703be35d",
       "scriptPath": "../src/CharacterAnimation.ts",
-      "blend": 0.1
+      "blend": 0.06
     }
   ],
   "_$child": [
