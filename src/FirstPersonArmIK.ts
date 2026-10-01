@@ -11,7 +11,8 @@ type Arm = {
     lowerLength: number;
     previousElbow: Laya.Vector3;
     hasPrevious: boolean;
-    roll: number;
+    bindNormal: Laya.Vector3;
+    twistRadians: number;
 };
 
 /** Drives the original body's arms from its clavicles to the animated grip targets.
@@ -22,6 +23,12 @@ export class FirstPersonArmIK {
     private readonly hit = new Laya.HitResult();
     private readonly matrix = new Laya.Matrix4x4();
     private readonly inverseBody = new Laya.Matrix4x4();
+    private readonly inverseGun = new Laya.Matrix4x4();
+    private readonly gunFrom = new Laya.Vector3();
+    private readonly gunTo = new Laya.Vector3();
+    private checkStock = false;
+    private eye: Laya.Vector3;
+    private eyeRadius = 0.16;
     private readonly shoulder = new Laya.Vector3();
     private readonly wrist = new Laya.Vector3();
     private readonly elbow = new Laya.Vector3();
@@ -33,6 +40,7 @@ export class FirstPersonArmIK {
     private readonly local = new Laya.Vector3();
     private readonly temp = new Laya.Vector3();
     private readonly lowerAxis = new Laya.Vector3();
+    private readonly upperAxis = new Laya.Vector3();
     private readonly handForward = new Laya.Vector3();
     private readonly scale = new Laya.Vector3();
     private readonly handRotation = new Laya.Quaternion();
@@ -66,16 +74,31 @@ export class FirstPersonArmIK {
                 if (name.startsWith(side + "_") && /_(Thumb|Index|Middle|Ring|Little)_/.test(name)
                     && targetNodes.has(name)) fingers.push([node, targetNodes.get(name)]);
             }
-            this.arms.push({ side, joints, target: targetNodes.get(`${side}_Hand`), fingers,
+            const bindNormal = new Laya.Vector3();
+            Laya.Vector3.subtract(joints.Forearm.p, joints.Upperarm.p, this.local);
+            Laya.Vector3.subtract(joints.Hand.p, joints.Forearm.p, this.temp);
+            Laya.Vector3.cross(this.local, this.temp, bindNormal);
+            if (bindNormal.lengthSquared() < 0.00000001) bindNormal.setValue(0, 0, side === "L" ? 1 : -1);
+            Laya.Vector3.normalize(bindNormal, bindNormal);
+            this.arms.push({ side, joints, target: targetNodes.get(`${side}_Hand`), fingers, bindNormal,
                 anchor: joints.Upperarm.node.transform.localPosition.clone(),
                 upperLength: Laya.Vector3.distance(joints.Upperarm.p, joints.Forearm.p),
                 lowerLength: Laya.Vector3.distance(joints.Forearm.p, joints.Hand.p),
-                previousElbow: new Laya.Vector3(), hasPrevious: false, roll: 0 });
+                previousElbow: new Laya.Vector3(), hasPrevious: false, twistRadians: 0 });
         }
     }
 
-    update(handScale: number, dt: number): void {
+    update(handScale: number, dt: number, gun?: Laya.Transform3D, camera?: Laya.Camera): void {
         this.body.transform.worldMatrix.invert(this.inverseBody);
+        this.eye = camera?.transform.position;
+        this.eyeRadius = Math.max(0.08, Math.min(0.16, handScale * 0.30));
+        this.checkStock = !!gun;
+        if (gun) {
+            // RifleBox has legacy nonuniform scale; the visible rifle cancels it.
+            this.scale.setValue(handScale, handScale, handScale);
+            Laya.Matrix4x4.createAffineTransformation(gun.position, gun.rotation, this.scale, this.matrix);
+            this.matrix.invert(this.inverseGun);
+        }
         for (const arm of this.arms) {
             const j = arm.joints;
             // The shoulder is evaluated from the body's animated clavicle, not a
@@ -106,7 +129,8 @@ export class FirstPersonArmIK {
             Laya.Vector3.transformCoordinate(this.shoulder, this.inverseBody, this.local);
             const shoulderY = this.local.y;
             let best = Infinity;
-            for (const reach of [0.96, 0.82, 0.70]) {
+            const reaches = arm.side === "R" ? [0.96, 0.82, 0.70, 0.60, 0.55, 0.50, 0.45] : [0.96, 0.82, 0.70];
+            for (const reach of reaches) {
                 const length = Math.max(arm.upperLength + arm.lowerLength, distance / reach);
                 const a = length * 0.52, b = length * 0.48;
                 const along = (a * a - b * b + distance * distance) / (2 * distance);
@@ -114,7 +138,9 @@ export class FirstPersonArmIK {
                 this.center.setValue(this.shoulder.x + this.direction.x * along,
                     this.shoulder.y + this.direction.y * along, this.shoulder.z + this.direction.z * along);
                 let clear = false;
-                for (const degrees of [0, -30, 30, -60, 60, -90, 90, -120, 120, -150, 150, 180]) {
+                const count = arm.side === "R" ? 72 : 12;
+                for (let step = 0; step < count; step++) {
+                    const degrees = Math.ceil(step / 2) * (arm.side === "R" ? 5 : 30) * (step % 2 ? -1 : 1);
                     const angle = degrees * Math.PI / 180;
                     const c = Math.cos(angle) * radius, s = Math.sin(angle) * radius;
                     this.candidate.setValue(this.center.x + this.pole.x * c + this.normal.x * s,
@@ -127,9 +153,14 @@ export class FirstPersonArmIK {
                     Laya.Vector3.transformCoordinate(this.candidate, this.inverseBody, this.local);
                     penalty += Math.max(0, 0.02 - (arm.side === "L" ? this.local.x : -this.local.x)) * 1000;
                     penalty += this.torsoCost(this.candidate, shoulderY);
+                    penalty += this.stockCost(this.candidate, this.wrist, arm.side);
+                    penalty += this.eyeCost(this.candidate);
                     for (const t of [0.2, 0.4, 0.6, 0.8]) {
                         Laya.Vector3.lerp(this.candidate, this.wrist, t, this.temp);
                         penalty += this.torsoCost(this.temp, shoulderY);
+                        penalty += this.eyeCost(this.temp);
+                        Laya.Vector3.lerp(this.shoulder, this.candidate, t, this.temp);
+                        penalty += this.eyeCost(this.temp);
                     }
                     if (this.scene.physicsSimulation.shapeCast(this.probe.shape, this.shoulder, this.candidate,
                         this.hit, null, null, -1, 1)) penalty += 100;
@@ -147,10 +178,13 @@ export class FirstPersonArmIK {
                 Laya.Vector3.transformCoordinate(this.candidate, this.inverseBody, this.local);
                 let clear = (arm.side === "L" ? this.local.x : -this.local.x) >= 0.02
                     && this.candidate.y <= Math.max(this.shoulder.y, this.wrist.y - 0.06) + 0.005
-                    && this.torsoCost(this.candidate, shoulderY) === 0;
+                    && this.torsoCost(this.candidate, shoulderY) === 0 && this.stockCost(this.candidate, this.wrist, arm.side) === 0
+                    && this.eyeCost(this.candidate) === 0;
                 for (const t of [0.2, 0.4, 0.6, 0.8]) {
                     Laya.Vector3.lerp(this.candidate, this.wrist, t, this.temp);
-                    if (this.torsoCost(this.temp, shoulderY)) clear = false;
+                    if (this.torsoCost(this.temp, shoulderY) || this.eyeCost(this.temp)) clear = false;
+                    Laya.Vector3.lerp(this.shoulder, this.candidate, t, this.temp);
+                    if (this.eyeCost(this.temp)) clear = false;
                 }
                 if (clear && !this.scene.physicsSimulation.shapeCast(this.probe.shape, this.shoulder,
                     this.candidate, this.hit, null, null, -1, 1)
@@ -163,22 +197,36 @@ export class FirstPersonArmIK {
             lower = Laya.Vector3.distance(this.elbow, this.wrist);
             this.aimBind(j.Upperarm, j.Forearm.p, this.shoulder, this.elbow, this.upperRotation);
             this.aimBind(j.Forearm, j.Hand.p, this.elbow, this.wrist, this.lowerRotation);
+            Laya.Vector3.subtract(this.elbow, this.shoulder, this.upperAxis);
+            Laya.Vector3.normalize(this.upperAxis, this.upperAxis);
             Laya.Vector3.subtract(this.wrist, this.elbow, this.lowerAxis);
             Laya.Vector3.normalize(this.lowerAxis, this.lowerAxis);
-            // Extract pronation around the forearm, then distribute it over the
-            // existing twist joints. The wrist no longer absorbs the whole roll.
+            // Resolve the limb frame from its bend plane. A shortest arc from the
+            // T-pose alone is ambiguous when an arm folds back across its rest axis.
+            Laya.Vector3.cross(this.upperAxis, this.lowerAxis, this.normal);
+            if (this.normal.lengthSquared() < 0.000001) {
+                Laya.Vector3.cross(this.direction, this.pole, this.normal);
+                Laya.Vector3.scale(this.normal, -1, this.normal);
+            }
+            Laya.Vector3.normalize(this.normal, this.normal);
+            this.alignBendPlane(j.Upperarm, arm.bindNormal, this.upperAxis, this.upperRotation);
+            this.alignBendPlane(j.Forearm, arm.bindNormal, this.lowerAxis, this.lowerRotation);
             Laya.Quaternion.invert(j.Hand.q, this.q0);
             Laya.Quaternion.multiply(this.handRotation, this.q0, this.q1);
             Laya.Quaternion.multiply(this.q1, j.Forearm.q, this.q0);
             Laya.Quaternion.invert(this.lowerRotation, this.q1);
             Laya.Quaternion.multiply(this.q0, this.q1, this.q2);
-            const roll = this.q2.x * this.lowerAxis.x + this.q2.y * this.lowerAxis.y + this.q2.z * this.lowerAxis.z;
-            let angle = 2 * Math.atan2(roll, this.q2.w);
-            angle += Math.round((arm.roll - angle) / (Math.PI * 2)) * Math.PI * 2;
-            arm.roll = angle; // Keep the twist continuous when crossing +/-180 degrees.
+            const axial = this.q2.x * this.lowerAxis.x + this.q2.y * this.lowerAxis.y + this.q2.z * this.lowerAxis.z;
+            const angle = 2 * Math.atan2(axial, this.q2.w);
+            // A fixed branch for this rig, not a previous-frame angle. The right
+            // grip straddles +/-180 degrees during crouching; centering its branch
+            // at 90 keeps that ordinary motion continuous without accumulating turns.
+            const center = arm.side === "R" ? Math.PI / 2 : 0;
+            arm.twistRadians = center + Math.atan2(Math.sin(angle - center), Math.cos(angle - center));
             this.pose(j.Upperarm.node, this.shoulder, this.upperRotation, 1, upper / arm.upperLength);
-            this.pose(j.Forearm.node, this.elbow, this.lowerRotation, handScale, lower / arm.lowerLength);
-            for (const [part, t, rollPart] of [["UpperarmTwist01", 0, 0], ["UpperarmTwist02", 0.5, 0],
+            // Forearm girth belongs to the character, not the camera-space gun.
+            this.pose(j.Forearm.node, this.elbow, this.lowerRotation, 1, lower / arm.lowerLength);
+            for (const [part, t, fraction] of [["UpperarmTwist01", 0, 0], ["UpperarmTwist02", 0.5, 0],
                 ["ForearmTwist01", 0, 1 / 3], ["ForearmTwist02", 0.5, 2 / 3]] as const) {
                 const isUpper = part.startsWith("Upper");
                 const base = isUpper ? j.Upperarm : j.Forearm;
@@ -186,10 +234,10 @@ export class FirstPersonArmIK {
                 Laya.Quaternion.invert(base.q, this.q0);
                 Laya.Quaternion.multiply(rotation, this.q0, this.q1);
                 Laya.Quaternion.multiply(this.q1, j[part].q, this.q0);
-                Laya.Quaternion.createFromAxisAngle(this.lowerAxis, arm.roll * rollPart, this.partialTwist);
+                Laya.Quaternion.createFromAxisAngle(this.lowerAxis, arm.twistRadians * fraction, this.partialTwist);
                 Laya.Quaternion.multiply(this.partialTwist, this.q0, this.q1);
                 Laya.Vector3.lerp(isUpper ? this.shoulder : this.elbow, isUpper ? this.elbow : this.wrist, t, this.temp);
-                this.pose(j[part].node, this.temp, this.q1, isUpper && t === 0 ? 1 : handScale,
+                this.pose(j[part].node, this.temp, this.q1, !isUpper && t > 0 ? 0.85 : 1,
                     isUpper ? upper / arm.upperLength : lower / arm.lowerLength);
             }
             this.pose(j.Hand.node, this.wrist, this.handRotation, handScale, handScale);
@@ -205,6 +253,46 @@ export class FirstPersonArmIK {
         Laya.Vector3.transformCoordinate(point, this.inverseBody, this.local);
         return Math.abs(this.local.x) < 0.255 && this.local.z > -0.18 && this.local.z < 0.24
             && this.local.y > shoulderY - 0.52 && this.local.y < shoulderY + 0.03 ? 10 : 0;
+    }
+
+    private stockCost(from: Laya.Vector3, to: Laya.Vector3, side: "L" | "R"): number {
+        if (!this.checkStock || side !== "R") return 0;
+        Laya.Vector3.transformCoordinate(from, this.inverseGun, this.gunFrom);
+        Laya.Vector3.transformCoordinate(to, this.inverseGun, this.gunTo);
+        // Padded buttstock volume, behind the grip. The hand itself is allowed to
+        // hold the stock. Test the complete segment; spaced samples missed corners.
+        let enter = 0, leave = 1;
+        for (let axis = 0; axis < 3; axis++) {
+            const start = axis === 0 ? this.gunFrom.x : axis === 1 ? this.gunFrom.y : this.gunFrom.z;
+            const end = axis === 0 ? this.gunTo.x : axis === 1 ? this.gunTo.y : this.gunTo.z;
+            const min = axis === 0 ? -0.09 : axis === 1 ? -0.18 : 0.39;
+            const max = axis === 0 ? 0.09 : axis === 1 ? 0.16 : 0.75;
+            const delta = end - start;
+            if (Math.abs(delta) < 0.000001) {
+                if (start < min || start > max) return 0;
+            } else {
+                const a = (min - start) / delta, b = (max - start) / delta;
+                enter = Math.max(enter, Math.min(a, b));
+                leave = Math.min(leave, Math.max(a, b));
+                if (enter > leave) return 0;
+            }
+        }
+        return 10;
+    }
+
+    private eyeCost(point: Laya.Vector3): number {
+        return this.eye && Laya.Vector3.distanceSquared(point, this.eye) < this.eyeRadius * this.eyeRadius ? 10 : 0;
+    }
+
+    private alignBendPlane(joint: Joint, bindNormal: Laya.Vector3, axis: Laya.Vector3, rotation: Laya.Quaternion): void {
+        Laya.Quaternion.invert(joint.q, this.q0);
+        Laya.Vector3.transformQuat(bindNormal, this.q0, this.temp);
+        Laya.Vector3.transformQuat(this.temp, rotation, this.temp);
+        Laya.Vector3.cross(this.temp, this.normal, this.local);
+        const angle = Math.atan2(Laya.Vector3.dot(axis, this.local), Laya.Vector3.dot(this.temp, this.normal));
+        Laya.Quaternion.createFromAxisAngle(axis, angle, this.q0);
+        Laya.Quaternion.multiply(this.q0, rotation, this.q1);
+        this.q1.cloneTo(rotation);
     }
 
     private aimBind(joint: Joint, end: Laya.Vector3, from: Laya.Vector3, to: Laya.Vector3, out: Laya.Quaternion): void {

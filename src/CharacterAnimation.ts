@@ -251,7 +251,8 @@ export class CharacterAnimation extends Laya.Script {
         this.onLateUpdate();
         if (this.viewArms?.active && this.rifle?.currentWeapon === "knife") this.alignKnifeGrip();
         if (!this.clock?.paused && this.player?.enabled) this.armIK?.update(this.player.viewModelScale,
-            Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05));
+            Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05),
+            this.rifle.currentWeapon === "rifle" ? this.rifle.rifleModel.transform : undefined, this.rifle.viewCamera);
         this.updateReloadCartridge();
     }
 

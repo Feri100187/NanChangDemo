@@ -298,9 +298,12 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                     if name=='ViewReload':
                         loading=motion_value([[0,0],[.24,0],[.31,1],[.65,1],[.74,0],[1,0]],phase,1)
                         press=motion_value([[0,0],[.34,0],[.42,1],[.48,0],[.59,1],[.65,0],[1,0]],phase,1)
-                        target=target.lerp(pos(.04,.345-.025*press,.13),loading)
-                        hand_forward=hand_forward.lerp(pos(0,-1,0),loading)
-                        hand_palm=hand_palm.lerp(pos(-1,0,0),loading)
+                        # Approach from the side with the palm down. Pointing the
+                        # metacarpals straight down folded the wrist before the
+                        # fingers even curled around the cartridge.
+                        target=target.lerp(pos(.09,.285-.025*press,.22),loading)
+                        hand_forward=hand_forward.lerp(pos(-.55,-.10,-.83),loading)
+                        hand_palm=hand_palm.lerp(pos(0,-1,0),loading)
                 # Keep anatomical length/thickness. Bring the sleeve origin closer
                 # when necessary instead of inflating the whole arm to reach the grip.
                 reach=(target-upper.head).length
