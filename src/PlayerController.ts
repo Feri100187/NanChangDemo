@@ -1,5 +1,6 @@
 import { PlayerHealth } from "./PlayerHealth";
 import { GameClock } from "./GameClock";
+import { WeaponPresentation } from "./WeaponPresentation";
 
 const { regClass, property } = Laya;
 
@@ -53,6 +54,9 @@ export class PlayerController extends Laya.Script {
     private spawnYaw = 0;
     private playerHealth: PlayerHealth;
     private controller: Laya.CharacterController;
+    private weaponPresentation: WeaponPresentation;
+    private originalNearPlane = 0.1;
+    get viewModelScale(): number { return this.weaponPresentation?.scale ?? 1; }
     private standingVisual: Laya.Sprite3D;
     private crouchingVisual: Laya.Sprite3D;
     private animatedVisual: Laya.Sprite3D;
@@ -248,6 +252,11 @@ export class PlayerController extends Laya.Script {
         this.yaw = this.spawnYaw;
         this.playerHealth = this.player.getComponent(PlayerHealth);
         this.controller = this.player.getComponent(Laya.CharacterController);
+        if (this.weaponPivot && this.followCamera) {
+            this.weaponPresentation = new WeaponPresentation(this.weaponPivot, this.player.scene as Laya.Scene3D);
+            this.originalNearPlane = this.followCamera.nearPlane;
+            this.followCamera.nearPlane = Math.min(this.originalNearPlane, 0.01);
+        }
         this.canvas = Laya.Browser.mainCanvas.source;
         this.canvas.tabIndex = 0;
         this.standingVisual = this.body.getChildByName("Standing") as Laya.Sprite3D;
@@ -379,6 +388,8 @@ export class PlayerController extends Laya.Script {
             if (Math.abs(this.recoilYaw) < 0.001) this.recoilYaw = 0;
             this.updateCameraRotation();
         }
+        this.weaponPresentation?.update(this.cameraPosition, this.followCamera, this.cameraRotation,
+            this.aimProgress, Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05));
     }
 
     private setCrouching(value: boolean): void {
@@ -430,13 +441,14 @@ export class PlayerController extends Laya.Script {
         const eyeHeight = this.crouching ? 1.0 : 1.65;
         this.cameraPosition.setValue(p.x, feetY + eyeHeight, p.z);
         this.weaponPivot.transform.position = this.cameraPosition;
-        Laya.Vector3.transformQuat(this.sightOffset, this.weaponPivot.transform.rotation,
+        Laya.Vector3.transformQuat(this.sightOffset, this.followCamera.transform.rotation,
             this.sightOffsetWorld);
         this.viewPosition.setValue(
             this.cameraPosition.x + this.sightOffsetWorld.x * this.aimProgress,
             this.cameraPosition.y + this.sightOffsetWorld.y * this.aimProgress,
             this.cameraPosition.z + this.sightOffsetWorld.z * this.aimProgress);
         this.followCamera.transform.position = this.viewPosition;
+        this.weaponPresentation?.apply(this.cameraPosition, this.followCamera, this.cameraRotation, this.aimProgress);
     }
 
     private updateCameraRotation(): void {
@@ -446,6 +458,7 @@ export class PlayerController extends Laya.Script {
         this.followCamera.transform.rotationEuler = this.cameraRotation;
         this.weaponPivot.transform.rotationEuler = this.cameraRotation;
         this.updateBodyVisual();
+        this.weaponPresentation?.apply(this.cameraPosition, this.followCamera, this.cameraRotation, this.aimProgress);
     }
 
     private updateBodyVisual(): void {
@@ -488,5 +501,10 @@ export class PlayerController extends Laya.Script {
         document.removeEventListener("mousemove", this.handleMouseMove);
         this.canvas.removeEventListener("pointerdown", this.handleLockedPointerDown, true);
         this.canvas.removeEventListener("contextmenu", this.preventContextMenu);
+    }
+
+    onDestroy(): void {
+        this.weaponPresentation?.destroy();
+        if (this.followCamera && !this.followCamera.destroyed) this.followCamera.nearPlane = this.originalNearPlane;
     }
 }

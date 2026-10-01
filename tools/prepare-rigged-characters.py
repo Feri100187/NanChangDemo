@@ -140,6 +140,21 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
             total = sum(w for _,w in weights)
             for index in [g.group for g in vertex.groups]: view_mesh.vertex_groups[index].remove([vertex.index])
             for index,weight in weights: view_mesh.vertex_groups[index].add([vertex.index],weight/total,'REPLACE')
+        # The body/arm split leaves an open shoulder edge. Extend only the FPS
+        # sleeve back past the view boundary; don't expose a jagged floating cut
+        # when the camera slides sideways into ADS. Hands/forearms stay unchanged.
+        to_rig = rig.matrix_world.inverted() @ view_mesh.matrix_world
+        from_rig = to_rig.inverted()
+        for side in ['L','R']:
+            head = rig.data.bones[f'{side}_Upperarm'].head_local
+            axis = (rig.data.bones[f'{side}_Forearm'].head_local-head).normalized()
+            sleeve_groups = {g.index for g in view_mesh.vertex_groups if g.name.startswith(f'{side}_Upperarm')}
+            for vertex in view_mesh.data.vertices:
+                weight = sum(g.weight for g in vertex.groups if g.group in sleeve_groups)
+                if weight <= 0: continue
+                p = to_rig @ vertex.co
+                taper = max(0,min(1,1-(p-head).dot(axis)/.18))
+                vertex.co = from_rig @ (p-axis*(.24*taper*weight))
     scale = 1 if role == 'Player' else 2.55/1.8
     def pos(x,y,z):
         return Vector((x*scale,-z*scale,y*scale))
@@ -272,13 +287,13 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                         target=target.lerp(pos(.04,.345-.025*press,.13),loading)
                         hand_forward=hand_forward.lerp(pos(0,-1,0),loading)
                         hand_palm=hand_palm.lerp(pos(-1,0,0),loading)
-                # FPS projection requires longer sleeves than the full-body rig. Stretch
-                # only this baked view pose; original mesh and body poses stay unchanged.
+                # Keep anatomical length/thickness. Bring the sleeve origin closer
+                # when necessary instead of inflating the whole arm to reach the grip.
                 reach=(target-upper.head).length
                 chain=(rig.pose.bones[f'{side}_Forearm'].head-upper.head).length + (rig.pose.bones[f'{side}_Hand'].head-rig.pose.bones[f'{side}_Forearm'].head).length
                 matrix=upper.matrix.copy()
-                factor=max(1,reach/(chain*.92))
-                for column in range(3): matrix.col[column].xyz *= factor
+                if reach>chain*.92:
+                    matrix.translation += (target-upper.head).normalized()*(reach-chain*.92)
                 upper.matrix=matrix
                 bpy.context.view_layer.update()
                 pole=pos(-.42 if side=='L' else .36,-.32 if ads else -.28,.36 if side=='L' else .48)

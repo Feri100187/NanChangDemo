@@ -156,6 +156,10 @@ Demo01 和 Scene.ls 各有 1 把玩家枪、4 把敌人枪，共 10 处实例，
 
 ViewArms 的肩部权重仅用于第一人称袖口，避免拉扯到胸部；其渲染裁剪范围覆盖视图姿态，不增加碰撞体。暂停和结算冻结手部、刀身与动画进度，继续保留原动作；取消装填和切换武器会选择正确握持状态，重开销毁旧实例与监听。修改刀柄握点或挥动轨迹时，应同步 `KnifeView.setPose`、生成脚本的 `knife_pose` / 手掌姿态，以及 CharacterAnimation 的握点约束；握点旋转包含 glTF 导入的关节局部 X 轴 -90° 修正。
 
+第一人称手臂保持原模型的肢体长度和粗细，由肩肘位置适应握点，不再为够到武器而把整段手臂等比放大。仅第一人称副本的肩部袖口向画面外延伸，避免开镜时露出分离网格的锯齿断面；身体、敌人、手掌握点和原动作时长不变。大幅低头时，腰射持械姿态少俯转一些，让手臂与身体有相对运动；开镜仍严格跟随视线。
+
+`src/WeaponPresentation.ts` 由 PlayerController 持有，使用 LayaAir 3.4.1 的球形扫掠查询现有墙、掩体和地面，在镜头附近为整套持械外观保留空间。遇障碍时，枪、刀、双臂和装填弹一起向相机收近并同步缩放；退开时平滑恢复，普通场景深度检测和照明继续生效，不使用覆盖在墙前的专用相机或材质。相机近裁面为 0.01 米，以免收近后被近裁面切断。纯外观调整不移动角色碰撞体、不修改射线原点或伤害，原开镜瞄点、射速和后坐参数保留。暂停冻结姿态，重开销毁扫掠形状；新脚本的 `.meta` 与重建的玩家 GLB 须一起保留。Demo01 与 Scene.ls 共用此实现。
+
 重建步骤：运行 `blender --background --factory-startup --python tools/prepare-rigged-characters.py`，等待 IDE 导入完成，再运行 `node tools/configure-character-animations.cjs`。后一个命令会重建两份 `.controller` 的状态列表，若已在 IDE 手调状态机，应先保存改动再决定是否覆盖；它不修改场景或公共预制体。Blender 中可编辑生成于 `.tmp/AnimatedPlayer.blend` / `.tmp/AnimatedEnemy.blend` 的动作，正式导出仍须保留现有 GLB `.meta` 以稳定引用。源模型与贴图权利仍归原提供方，本轮没有下载新人物素材。
 
 只调整玩家动作时，使用 `blender --background --factory-startup --python tools/prepare-rigged-characters.py -- --player-only`，导入完成后运行 `node tools/configure-character-animations.cjs Player`，以免重写敌人资源。第一人称握持位置在生成脚本的 `View` 姿态分支中调整。

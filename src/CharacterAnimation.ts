@@ -32,6 +32,7 @@ export class CharacterAnimation extends Laya.Script {
     private readonly cartridgeWorld = new Laya.Vector3();
     private readonly cartridgeRotation = new Laya.Quaternion();
     private readonly cartridgeWorldRotation = new Laya.Quaternion();
+    private readonly viewScale = new Laya.Vector3(1, 1, 1);
     // Weapon-local wrist frame baked by prepare-rigged-characters.py. The hand
     // stays attached even when Animator and weapon updates land on different frames.
     private readonly knifeGrip = new Laya.Vector3(0.035, 0.050, 0.23);
@@ -122,7 +123,8 @@ export class CharacterAnimation extends Laya.Script {
     private fire(): void { this.startAction("Fire", 400); }
     private ejectCase(): void {
         if (this.clock?.paused || !this.rifle?.enabled) return;
-        this.casings?.eject(this.rifle.rifleModel.transform, this.now(), this.casingLifetime, this.casingSpeed);
+        this.casings?.eject(this.rifle.rifleModel.transform, this.now(), this.casingLifetime,
+            this.casingSpeed, this.player?.viewModelScale ?? 1);
     }
     private melee(): void { this.startAction("Melee", 320); }
     private heavyMelee(): void { this.startAction("HeavyMelee", 620); }
@@ -239,11 +241,16 @@ export class CharacterAnimation extends Laya.Script {
             ? this.rifle.rifleModel.parent as Laya.Sprite3D : this.rifle.rifleModel;
         this.viewArms.transform.position = reference.transform.position;
         this.viewArms.transform.rotation = reference.transform.rotation;
+        const scale = this.player?.viewModelScale ?? 1;
+        this.viewScale.setValue(scale, scale, scale);
+        this.viewArms.transform.setWorldLossyScale(this.viewScale);
     }
 
     onAfterSceneUpdate(): void {
         // LayaAir 3.4.1 evaluates Animator AFTER onLateUpdate. Apply the grip
         // constraint to the final bone pose, before skinned rendering is prepared.
+        // Re-read the final camera/clearance pose after all LateUpdate callbacks.
+        this.onLateUpdate();
         if (this.viewArms?.active && this.rifle?.currentWeapon === "knife") this.alignKnifeGrip();
         this.updateReloadCartridge();
     }
@@ -273,6 +280,7 @@ export class CharacterAnimation extends Laya.Script {
         } else return;
         this.reloadCartridge.active = true;
         const gun = r.rifleModel.transform;
+        Laya.Vector3.scale(this.cartridgeLocal, this.player?.viewModelScale ?? 1, this.cartridgeLocal);
         // RifleBox carries a legacy nonuniform scale; use only its world rotation/position.
         Laya.Vector3.transformQuat(this.cartridgeLocal, gun.rotation, this.cartridgeWorld);
         Laya.Vector3.add(this.cartridgeWorld, gun.position, this.cartridgeWorld);
@@ -281,6 +289,7 @@ export class CharacterAnimation extends Laya.Script {
             angle * 0.12, this.cartridgeRotation);
         Laya.Quaternion.multiply(gun.rotation, this.cartridgeRotation, this.cartridgeWorldRotation);
         this.reloadCartridge.transform.rotation = this.cartridgeWorldRotation;
+        this.reloadCartridge.transform.setWorldLossyScale(this.viewScale);
     }
 
     private alignKnifeGrip(): void {

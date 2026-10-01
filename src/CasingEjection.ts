@@ -17,15 +17,17 @@ export class CasingEjection {
 
     constructor(private readonly template: Laya.Sprite3D, private readonly scene: Laya.Scene3D) {}
 
-    eject(gun: Laya.Transform3D, now: number, lifetime: number, speed: number): void {
+    eject(gun: Laya.Transform3D, now: number, lifetime: number, speed: number, viewScale = 1): void {
         if (this.template.destroyed || this.scene.destroyed) return;
         while (this.active.length >= 8) this.active.shift().node.destroy(true);
         // Ignore RifleBox's legacy nonuniform scale; offsets/velocities are meters.
         this.position.setValue(-0.012, 0.18, 0.21);
+        Laya.Vector3.scale(this.position, viewScale, this.position);
         Laya.Vector3.transformQuat(this.position, gun.rotation, this.position);
         Laya.Vector3.add(this.position, gun.position, this.position);
         const node = Laya.Sprite3D.instantiate(this.template, this.scene, false, this.position, gun.rotation);
         node.name = "EjectedCase";
+        node.transform.localScale = new Laya.Vector3(viewScale, viewScale, viewScale);
         node.active = true;
         const multiplier = Number.isFinite(speed) ? Math.max(0.1, Math.min(3, speed)) : 1;
         const velocity = new Laya.Vector3((-0.85 - Math.random() * 0.25) * multiplier,
