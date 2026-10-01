@@ -20,10 +20,19 @@ export const KNIFE_MOTION = {
     ]
 };
 
+// Gun-local metres, +X is the shooter's right and +Z is rearward.
+// Read by the Blender model/animation tools as well as the runtime controller.
+export const BOLT_MECHANISM = {
+    "liftDegrees": 90,
+    "travel": 0.10,
+    "pivot": [0, 0.14, 0.15],
+    "knob": [0.042, -0.010, -0.010]
+};
+
 // Each row: phase, handle lift, rearward bolt travel, weapon tilt.
 export const BOLT_MOTION = {
-    "shot": [[0,0,0,0],[0.12,0,0,0],[0.25,1,0,0.55],[0.48,1,1,1],[0.60,1,1,1],[0.82,1,0,0.6],[0.95,0,0,0],[1,0,0,0]],
-    "reload": [[0,0,0,0],[0.10,1,0,0.8],[0.22,1,1,1],[0.72,1,1,1],[0.87,1,0,0.8],[0.96,0,0,0],[1,0,0,0]]
+    "shot": [[0,0,0,0],[0.06,0,0,0.65],[0.12,0,0,1],[0.25,1,0,1],[0.48,1,1,1],[0.60,1,1,1],[0.78,1,0,0.5],[0.88,0,0,0.3],[1,0,0,0]],
+    "reload": [[0,0,0,0],[0.10,1,0,0.8],[0.22,1,1,1],[0.75,1,1,1],[0.84,1,0,0.3],[0.90,0,0,0],[1,0,0,0]]
 };
 
 export const BOLT_CYCLE_MS = 1050;

@@ -142,6 +142,7 @@ check('bolt only cycles after firing, pauses, carries into reload, and closes on
     r.bolt={transform:{}};r.boltHome=new V3(0,.14,.15);r.boltHomeRotation=new V3();
     e.tick(100);assert.equal(r.boltCycleProgress,-1);assert.equal(r.bolt.transform.localPosition.z,.15);
     r.tryFire(100);e.tick(625);assert.ok(r.bolt.transform.localPosition.z>.249);
+    assert.equal(r.bolt.transform.localRotationEuler.z,90,'right-side handle must lift upward');
     const open=r.bolt.transform.localPosition.z;
     r.clock.paused=true;e.tick(700);assert.equal(r.bolt.transform.localPosition.z,open);
     r.clock.paused=false;r.startReload(700);e.tick(700);
@@ -149,6 +150,7 @@ check('bolt only cycles after firing, pauses, carries into reload, and closes on
     e.tick(2000);assert.ok(r.bolt.transform.localPosition.z>.249);
     r.selectWeapon('knife');e.tick(2001);
     assert.equal(r.reloading,false);assert.equal(r.bolt.transform.localPosition.z,.15);
+    assert.equal(r.bolt.transform.localRotationEuler.z,0,'closed bolt must return to its lock angle');
 });
 check('equal per-round intervals update magazine and reserve one round at a time',()=>{
     const e=environment(),r=e.rifle;r.magazine=0;r.startReload(0);

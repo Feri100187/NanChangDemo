@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 motion_source = (ROOT/'src/WeaponMotion.ts').read_text(encoding='utf8')
 KNIFE_MOTION = json.loads(re.search(r'export const KNIFE_MOTION = (\{.*?\n\});',motion_source,re.S).group(1))
 BOLT_MOTION = json.loads(re.search(r'export const BOLT_MOTION = (\{.*?\n\});',motion_source,re.S).group(1))
+BOLT_MECHANISM = json.loads(re.search(r'export const BOLT_MECHANISM = (\{.*?\n\});',motion_source,re.S).group(1))
 if not bpy.app.background or bpy.data.filepath:
     raise RuntimeError('Use a separate background factory-startup Blender process.')
 
@@ -278,28 +279,34 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                 if name in ['ViewReload','ViewBolt'] and side=='R':
                     keys=BOLT_MOTION['reload' if name=='ViewReload' else 'shot']
                     lift=motion_value(keys,phase,1);pull=motion_value(keys,phase,2)
-                    angle=math.radians(-60*lift)
-                    knob=pos(-.042*math.cos(angle)+.01*math.sin(angle),
-                        .14-.042*math.sin(angle)-.01*math.cos(angle),.14+.10*pull)
+                    angle=math.radians(BOLT_MECHANISM['liftDegrees']*lift)
+                    x,y,z=BOLT_MECHANISM['knob'];px,py,pz=BOLT_MECHANISM['pivot']
+                    knob=pos(px+x*math.cos(angle)-y*math.sin(angle),
+                        py+x*math.sin(angle)+y*math.cos(angle),pz+z+BOLT_MECHANISM['travel']*pull)
                     grip=target.copy()
                     operate=knob+pos(.08,.064+.046*(1-lift),.012)
-                    outside=pos(.13,.32,.30)
-                    # Clear the receiver before crossing over to the handle; use the
-                    # same raised route on return instead of cutting through the stock.
+                    outside=pos(.16,.23,.28)
+                    release_at=.90 if name=='ViewReload' else .88
+                    clear_at=release_at+(.05 if name=='ViewReload' else .06)
+                    # Approach from the RIGHT with the index off the trigger.
+                    # Keep the grip through locking, then clear the handle and return.
                     if phase<.055:
                         target=grip.lerp(outside,motion_value([[0,0],[.055,1]],phase,1))
                     elif phase<.12:
                         target=outside.lerp(operate,motion_value([[.055,0],[.12,1]],phase,1))
-                    elif phase<.90:
+                    elif phase<release_at:
                         target=operate
-                    elif phase<.96:
-                        target=operate.lerp(outside,motion_value([[.90,0],[.96,1]],phase,1))
+                    elif phase<clear_at:
+                        target=operate.lerp(outside,motion_value([[release_at,0],[clear_at,1]],phase,1))
                     else:
-                        target=outside.lerp(grip,motion_value([[.96,0],[1,1]],phase,1))
-                    operating=motion_value([[0,0],[.055,0],[.12,1],[.90,1],[.96,0],[1,0]],phase,1)
-                    release=motion_value([[0,0],[.015,1],[.065,1],[.12,0],[.90,0],[.96,1],[.985,1],[1,0]],phase,1)
-                    hand_forward=hand_forward.lerp(pos(-1,-.15,0),operating)
-                    hand_palm=hand_palm.lerp(pos(0,-1,0),operating)
+                        target=outside.lerp(grip,motion_value([[clear_at,0],[1,1]],phase,1))
+                    operating=motion_value([[0,0],[.055,0],[.12,1],[release_at,1],[clear_at,0],[1,0]],phase,1)
+                    release=motion_value([[0,0],[.015,1],[.065,1],[.12,0],[release_at,0],
+                        [clear_at,1],[max(clear_at,.985),1],[1,0]],phase,1)
+                    turn=math.radians(20*lift)
+                    hand_forward=hand_forward.lerp(pos(-math.cos(turn)+.15*math.sin(turn),
+                        -math.sin(turn)-.15*math.cos(turn),0),operating)
+                    hand_palm=hand_palm.lerp(pos(math.sin(turn),-math.cos(turn),0),operating)
                     if name=='ViewReload':
                         loading=motion_value([[0,0],[.24,0],[.31,1],[.65,1],[.74,0],[1,0]],phase,1)
                         press=motion_value([[0,0],[.34,0],[.42,1],[.48,0],[.59,1],[.65,0],[1,0]],phase,1)

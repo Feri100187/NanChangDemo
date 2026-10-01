@@ -2,7 +2,7 @@ import { PlayerController } from "./PlayerController";
 import { EnemyAI } from "./EnemyAI";
 import { GameClock } from "./GameClock";
 import { KnifeView } from "./KnifeView";
-import { BOLT_CYCLE_MS, BOLT_MOTION, motionValue } from "./WeaponMotion";
+import { BOLT_CYCLE_MS, BOLT_MECHANISM, BOLT_MOTION, motionValue } from "./WeaponMotion";
 
 const { regClass, property } = Laya;
 
@@ -485,8 +485,9 @@ export class RifleController extends Laya.Script {
         const tilt = (phase >= 0 ? motionValue(keys, phase, 3) : 0)
             * (this.reloading ? 1 : 0.65 * (1 - this.aimProgress));
         if (this.bolt) {
-            this.boltPosition.setValue(this.boltHome.x, this.boltHome.y, this.boltHome.z + pull * 0.10);
-            this.boltRotation.setValue(this.boltHomeRotation.x, this.boltHomeRotation.y, this.boltHomeRotation.z - lift * 60);
+            this.boltPosition.setValue(this.boltHome.x, this.boltHome.y, this.boltHome.z + pull * BOLT_MECHANISM.travel);
+            this.boltRotation.setValue(this.boltHomeRotation.x, this.boltHomeRotation.y,
+                this.boltHomeRotation.z + lift * BOLT_MECHANISM.liftDegrees);
             this.bolt.transform.localPosition = this.boltPosition;
             this.bolt.transform.localRotationEuler = this.boltRotation;
         }
@@ -499,8 +500,10 @@ export class RifleController extends Laya.Script {
         // Bring the stock into the shoulder rather than stretching the character
         // to an arm's-length camera prop. At ADS, the red dot's +0.18 Y offset
         // cancels this -0.18 Y and X matches PlayerController's sight offset.
-        this.modelTarget.setValue(this.rifleHome.x - 0.02 * this.aimProgress - tilt * 0.035 + bobX,
-            this.rifleHome.y + 0.14 * this.aimProgress - tilt * 0.025 + bobY,
+        // Bring the operating hand into view for hip-fire/reload. ADS shooting
+        // has zero tilt and keeps the sight's original camera alignment.
+        this.modelTarget.setValue(this.rifleHome.x - 0.02 * this.aimProgress - tilt * 0.20 + bobX,
+            this.rifleHome.y + 0.14 * this.aimProgress + tilt * 0.12 + bobY,
             this.rifleHome.z + raiseTuck + this.kickBack + tilt * 0.045);
         Laya.Vector3.lerp(this.rifleModel.transform.localPosition, this.modelTarget, blend, this.modelPosition);
         this.rifleModel.transform.localPosition = this.modelPosition;

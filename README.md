@@ -126,9 +126,11 @@ Demo01 和 Scene.ls 各有 1 把玩家枪、4 把敌人枪，共 10 处实例，
 
 如需从源文件重建运行模型，可用 Blender 5.2 在独立后台进程运行 `blender --background --factory-startup --python tools/prepare-provided-rifle.py`。脚本不修改源 FBX/贴图，将枪口朝向统一为本地 -Z，并对齐既有瞄准线；敌人实例旋转 180° 朝向本地 +Z。导出后由 IDE 重新导入，保留现有 `.meta` 的 UUID。
 
-`ProvidedRifle.lh` 现在引用 `RifleMechanism.glb`：由 `tools/prepare-rifle-mechanism.py` 从原网格分出 Static 与 Bolt，闭锁状态保留原有全部 10324 个三角面，不叠加假枪栓。玩家每次真实射击后执行约 1.05 秒的抬柄、后拉、前推和压柄；装填时保持开栓，再闭锁并回正枪身。原射速、装填耗时与伤害不变。Bolt 节点的原点是旋转轴，名称用于控制器查找；旧外部场景没有此节点时安全跳过。暂停冻结动作，装填取消后复位；在已开栓时开始装填不会先跳回闭锁位置。重建顺序为原枪 GLB → `blender --background --factory-startup --python tools/prepare-rifle-mechanism.py` → 等待 IDE 导入，并保留新 GLB 及提取贴图的 `.meta`。
+`ProvidedRifle.lh` 现在引用 `RifleMechanism.glb`：由 `tools/prepare-rifle-mechanism.py` 从原网格分出 Static 与 Bolt，并在 Blender 中将移动枪机与拉柄修正到射手右侧（枪局部 +X），同步修正三角面朝向；保留原有 10324 个三角面数量、UV 与材质，枪托、机匣和瞄具保持原样。玩家和敌人的 10 处枪实例共用此资源。玩家每次真实射击后执行约 1.05 秒的抬柄解锁、后拉、前推和压柄锁定；装填时保持开栓，再闭锁并回正枪身。原射速、逐发装填耗时与伤害不变。Bolt 节点的原点是旋转轴，名称用于控制器查找；旧外部场景没有此节点时安全跳过。暂停冻结动作，装填取消后复位；在已开栓时开始装填不会先跳回闭锁位置。重建顺序为原枪 GLB → `blender --background --factory-startup --python tools/prepare-rifle-mechanism.py` → 等待 IDE 导入，并保留 GLB 及提取贴图原有 `.meta` 的 UUID。
 
-拉栓与装填的右手先松开手指，向外上方离开握把，再从机匣上方接近枪栓；手掌转向与手指弯曲跟随操作，收手沿上方退回后恢复握枪。`tools/check-bolt-clearance.py` 只检查 GLB 内烘焙的目标姿态，不能代替当前可见身体双臂的检查。可见双臂须结合运行时 IK 后的骨骼矩阵与实际画面核查，重点覆盖低头、下蹲开镜、拉栓、换弹和贴墙。握持手掌与枪、肩部与身体的正常接触不作为穿模错误。
+可编辑枪机源文件位于 `source-assets/weapons/HanyangRifleMechanism.blend`，包含 Static、Bolt 和隐藏的原模型参考。材质与贴图仍来自用户提供的模型；没有下载新的模型素材。外观方向的参考入口为 [NRA Museum 的 M1888 藏品照片](https://www.nramuseum.org/guns/the-galleries/world-war-i-and-firearms-innovation/case-34-world-war-i-the-central-powers/mauser-model-1888-commission-bolt-action-rifle.aspx)，本工程仍为玩法原型。`src/WeaponMotion.ts` 的 `BOLT_MECHANISM` 与 `BOLT_MOTION` 供模型生成器、手部动画生成器及运行时共同读取，控制右侧抬柄方向、轴心、行程和动作时序。
+
+拉栓时左手始终托住前护木；右手食指离开扳机，向右上方离开握把，从枪身右侧抓住拉柄，跟随抬柄、后拉、前推和压回动作，锁定完成后才松开拉柄并回到扳机位置。腰射拉栓及装填时枪身略抬高、收向画面中央，便于看清操作；开镜射击的瞄点仍保持对齐。实际抛壳发生在后拉过程中，弹壳向右上方飞出。逐发装填仍由右手放入每发子弹，再回到拉柄处完成闭锁。`tools/check-bolt-clearance.py` 只检查 GLB 内烘焙的目标姿态，不能代替当前可见身体双臂的检查。可见双臂须结合运行时 IK 后的骨骼矩阵与实际画面核查，重点覆盖低头、下蹲开镜、拉栓、换弹和贴墙。握持手掌与枪、肩部与身体的正常接触不作为穿模错误。
 
 ## 弹药模型
 
