@@ -159,6 +159,10 @@ export class RifleController extends Laya.Script {
         // Start in the same reachable pose used by the update loop. Do not blend
         // from the old scene-authored camera offset on the first gameplay frames.
         this.rifleModel.transform.localPosition = this.rifleHome;
+        // The old greybox sight marker is a separate mesh, not part of the
+        // rifle's iron sights. Never render it, including in legacy test scenes.
+        const sightMarker = this.findVisual(this.rifleModel, "RedDot");
+        if (sightMarker) sightMarker.active = false;
         this.knife = new KnifeView(this.rifleModel.parent as Laya.Sprite3D);
         this.knife.setPose(0);
         this.bolt = this.findVisual(this.rifleModel, "Bolt");
@@ -498,13 +502,13 @@ export class RifleController extends Laya.Script {
         const bobY = Math.cos(now * 20) * 0.006 * moving;
         const raiseTuck = Math.max(0, this.viewCamera.transform.rotationEuler.x - 35) * 0.002;
         // Bring the stock into the shoulder rather than stretching the character
-        // to an arm's-length camera prop. At ADS, the red dot's +0.18 Y offset
+        // to an arm's-length camera prop. At ADS, the sight line's +0.18 Y offset
         // cancels this -0.18 Y and X matches PlayerController's sight offset.
         // Bring the operating hand into view for hip-fire/reload. ADS shooting
         // has zero tilt and keeps the sight's original camera alignment.
         this.modelTarget.setValue(this.rifleHome.x - 0.02 * this.aimProgress - tilt * 0.20 + bobX,
             this.rifleHome.y + 0.14 * this.aimProgress + tilt * 0.12 + bobY,
-            this.rifleHome.z + raiseTuck + this.kickBack + tilt * 0.045);
+            this.rifleHome.z + raiseTuck + this.kickBack - tilt * 0.09);
         Laya.Vector3.lerp(this.rifleModel.transform.localPosition, this.modelTarget, blend, this.modelPosition);
         this.rifleModel.transform.localPosition = this.modelPosition;
         this.weaponRotation.setValue(-7 * tilt, 8 * tilt, -18 * tilt);

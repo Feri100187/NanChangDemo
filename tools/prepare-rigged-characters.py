@@ -70,6 +70,17 @@ def motion_value(keys, phase, column):
     return keys[-1][column]
 
 
+def grip_finger(rig, finger, goal, amount):
+    """Close the thumb/index/middle around the actual small bolt knob."""
+    first,second,last=[rig.pose.bones[f'R_{finger}_{i:02}'] for i in [1,2,3]]
+    tip=last.tail.copy().lerp(goal,amount)
+    direction=(tip-first.head).normalized()
+    end=tip-direction*(last.tail-last.head).length
+    pole=second.head.copy()
+    limb(rig,first.name,second.name,last.name,end,pole)
+    aim(rig,last.name,None,tip)
+
+
 def knife_pose(phase, heavy=False):
     """Same visual motion as KnifeView.setPose; all values are camera-local metres/degrees."""
     keys=KNIFE_MOTION['heavy' if heavy else 'light']
@@ -284,8 +295,13 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                     knob=pos(px+x*math.cos(angle)-y*math.sin(angle),
                         py+x*math.sin(angle)+y*math.cos(angle),pz+z+BOLT_MECHANISM['travel']*pull)
                     grip=target.copy()
-                    operate=knob+pos(.08,.064+.046*(1-lift),.012)
-                    outside=pos(.16,.23,.28)
+                    # Grasp the knob from the RIGHT, with the wrist behind it
+                    # and the fingers pointing forward. Rotate this grip with the
+                    # handle: palm inward while closed, pronating as it lifts.
+                    gx,gy,gz=.060,-.012,.080
+                    operate=knob+pos(gx*math.cos(angle)-gy*math.sin(angle),
+                        gx*math.sin(angle)+gy*math.cos(angle),gz)
+                    outside=pos(.14,.15,.28)
                     release_at=.90 if name=='ViewReload' else .88
                     clear_at=release_at+(.05 if name=='ViewReload' else .06)
                     # Approach from the RIGHT with the index off the trigger.
@@ -303,10 +319,9 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                     operating=motion_value([[0,0],[.055,0],[.12,1],[release_at,1],[clear_at,0],[1,0]],phase,1)
                     release=motion_value([[0,0],[.015,1],[.065,1],[.12,0],[release_at,0],
                         [clear_at,1],[max(clear_at,.985),1],[1,0]],phase,1)
-                    turn=math.radians(20*lift)
-                    hand_forward=hand_forward.lerp(pos(-math.cos(turn)+.15*math.sin(turn),
-                        -math.sin(turn)-.15*math.cos(turn),0),operating)
-                    hand_palm=hand_palm.lerp(pos(math.sin(turn),-math.cos(turn),0),operating)
+                    hand_forward=hand_forward.lerp(pos(-.10*math.sin(angle),
+                        .10*math.cos(angle),-.995),operating)
+                    hand_palm=hand_palm.lerp(pos(-math.cos(angle),-math.sin(angle),0),operating)
                     if name=='ViewReload':
                         loading=motion_value([[0,0],[.24,0],[.31,1],[.65,1],[.74,0],[1,0]],phase,1)
                         press=motion_value([[0,0],[.34,0],[.42,1],[.48,0],[.59,1],[.65,0],[1,0]],phase,1)
@@ -351,6 +366,17 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                         if side=='L' and knife: angles=[25,35,25]
                         angle=angles[int(segment)-1]
                     if bone: bone.rotation_quaternion=Quaternion((1,0,0),math.radians(angle))
+            if view and side=='R' and name in ['ViewBolt','ViewReload']:
+                contact=operating*(1-loading)*(1-release)
+                if contact>.001:
+                    bpy.context.view_layer.update()
+                    handle_angle=math.radians(BOLT_MECHANISM['liftDegrees']*lift)
+                    for finger,offset in [('Thumb',(.005,.007,.002)),
+                        ('Index',(-.007,.002,.004)),('Middle',(.005,-.006,.003))]:
+                        x,y,z=offset
+                        goal=knob+pos(x*math.cos(handle_angle)-y*math.sin(handle_angle),
+                            x*math.sin(handle_angle)+y*math.cos(handle_angle),z)
+                        grip_finger(rig,finger,goal,contact)
             if view and side=='L' and not knife:
                 bpy.context.view_layer.update()
                 # The thumb follows the same fore-end grip as the palm. Its old

@@ -42,7 +42,7 @@ export class PlayerController extends Laya.Script {
     private readonly movement = new Laya.Vector3();
     private readonly cameraPosition = new Laya.Vector3();
     private readonly viewPosition = new Laya.Vector3();
-    // 瞄具红点相对角色眼位的水平/垂直偏移，开镜时将相机移到此处。
+    // 机械瞄准线相对角色眼位的水平/垂直偏移，开镜时将相机移到此处。
     private readonly sightOffset = new Laya.Vector3(0.18, 0, 0);
     private readonly sightOffsetWorld = new Laya.Vector3();
     private readonly cameraRotation = new Laya.Vector3();
@@ -225,7 +225,7 @@ export class PlayerController extends Laya.Script {
         this.updateCamera();
     }
 
-    /** 0 为腰射视点，1 为与枪上红点共线的开镜视点。 */
+    /** 0 为腰射视点，1 为沿机械瞄准线对齐的开镜视点。 */
     setAimProgress(value: number): void {
         this.aimProgress = Math.max(0, Math.min(1, value));
         this.updateCamera();
