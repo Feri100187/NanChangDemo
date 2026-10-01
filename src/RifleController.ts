@@ -86,6 +86,7 @@ export class RifleController extends Laya.Script {
 
     get currentWeapon(): "rifle" | "knife" { return this.weaponMode; }
     get isReloading(): boolean { return this.reloading; }
+    get aimBlend(): number { return this.aimProgress; }
     get reloadProgress(): number {
         return this.reloading ? 1 - (this.reloadEndAt - (this.clock?.now() ?? performance.now()))
             / (this.reloadSeconds * 1000) : 0;

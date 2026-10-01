@@ -35,6 +35,37 @@
           },
           "cullingMode": 0
         }
+      ],
+      "_$child": [
+        {
+          "_$override": "#74",
+          "active": false
+        }
+      ]
+    },
+    {
+      "_$id": "firstpersonarms",
+      "_$prefab": "e5ce8d67-f98f-4d91-9634-6fa149299577",
+      "name": "FirstPersonArms",
+      "active": false,
+      "layer": 0,
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3"
+        },
+        "localRotation": {
+          "_$type": "Quaternion"
+        }
+      },
+      "_$comp": [
+        {
+          "_$override": "Animator",
+          "controller": {
+            "_$uuid": "4fdb53d2-ae3a-43f0-a6b9-98834e870cbc",
+            "_$type": "AnimationController"
+          },
+          "cullingMode": 0
+        }
       ]
     }
   ]

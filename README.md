@@ -126,13 +126,17 @@ Demo01 和 Scene.ls 各有 1 把玩家枪、4 把敌人枪，共 10 处实例，
 
 玩家和敌人现在使用用户桌面“模型”目录中 `player_LayaAir/Player.glb`、`enemy_LayaAir/Enemy.glb` 的新版角色，均有 71 根骨骼、手指蒙皮和 2048×2048 贴图，玩家包含修复后的手部贴图。源文件原样保存在 `source-assets/characters/rigged/`，不改动桌面文件。源模型为 T 姿态、没有动画；本工程为它们新增了轻量的原地骨骼动画，属于玩法原型动作，不是动作捕捉或精修成品。早期 FBX、静态姿态资源与旧转换脚本仍保留，但公共预制体已不再引用旧静态模型。
 
-运行资源位于 `assets/resources/characters/Enemy/` 和 `Player/`：`AnimatedEnemy.glb` / `AnimatedPlayer.glb` 包含蒙皮与动画，`EnemyAnimation.controller` / `PlayerAnimation.controller` 是可在 IDE 打开的状态机，原公共 `ProvidedEnemy.lh` / `ProvidedPlayer.lh` 内的 `AnimatedModel` 绑定相应状态机。Demo01 与 Scene.ls 自动复用这两个公共预制体，两份场景文件未改。模型、状态机、IDE 提取的 `textures/` 与全部 `.meta` 应一起保留。敌人仍高 2.55 米；原 Head、Torso、Legs、LeftArm、RightArm 受击区域、汉阳造挂点、伤害、视野、巡逻和击倒计数保持不变。死亡时沿用原来的即时隐藏行为，同时正确关闭蒙皮渲染器。
+运行资源位于 `assets/resources/characters/Enemy/` 和 `Player/`：`AnimatedEnemy.glb` / `AnimatedPlayer.glb` 包含蒙皮与动画，`EnemyAnimation.controller` / `PlayerAnimation.controller` 是可在 IDE 打开的状态机，原公共 `ProvidedEnemy.lh` / `ProvidedPlayer.lh` 内的 `AnimatedModel` 绑定相应状态机。Demo01 与 Scene.ls 自动复用这两个公共预制体，两份场景文件未改。模型、状态机、IDE 提取的 `textures/` 与全部 `.meta` 应一起保留。敌人仍高 2.55 米；原 Head、Torso、Legs、LeftArm、RightArm 受击区域、汉阳造挂点、伤害、视野参数、巡逻范围和击倒计数保持不变。死亡时沿用原来的即时隐藏行为，同时正确关闭蒙皮渲染器。
 
-玩家仍高 1.8 米，现在由同一蒙皮在站立与下蹲动作间过渡，运行时仅隐藏 `FirstPersonHiddenHead`；IDE 中可查看完整人物。身体仍只跟随水平朝向，脚底射线与 0.04 米补偿保持原样，站立/下蹲碰撞高度仍为 2/1.2 米。现有第一人称枪械、镜头、后坐力和短刀外观继续由原控制器负责。
+玩家仍高 1.8 米，由同一蒙皮在站立与下蹲动作间过渡，运行时隐藏 `FirstPersonHiddenHead`；IDE 中可查看完整人物。持枪时另隐藏身体上的 `Arms`，由同一 GLB 的 `ViewArms` 显示第一人称双手，切刀时恢复身体双臂。身体仍只跟随水平朝向，脚底射线与 0.04 米补偿保持原样，站立/下蹲碰撞高度仍为 2/1.2 米。现有第一人称枪械、镜头、后坐力和短刀外观继续由原控制器负责。
 
-`src/CharacterAnimation.ts` 只读取现有游戏状态与实际开火/挥刀事件，通过 Animator 播放、融合已绑定状态，不移动角色、不修改伤害或装填完成时间。玩家使用 Idle、Walk、Run、CrouchIdle、CrouchWalk、Aim、Jump、Fire、Reload、Melee、HeavyMelee 及蹲姿动作；敌人使用 Idle、左右横移、Aim、Fire，横移匹配已有巡逻方式。暂停和结算冻结动画，继续保留进度；取消装填返回当前移动状态，重开销毁旧实例与监听。控制器 Entry 指向 Idle，状态切换由这一个表现脚本驱动，避免与游戏状态竞争。
+`src/CharacterAnimation.ts` 只读取现有游戏状态与实际开火/挥刀事件，通过 Animator 播放、融合已绑定状态，不移动角色、不修改伤害或装填完成时间。玩家持枪使用 Hold、HoldWalk、HoldRun、Aim、AimWalk 及其蹲姿状态，保留跳跃、装填、开火和近战状态。敌人巡逻使用 Walk：沿原有 X 方向 ±1.6 米范围，以原 0.75 米/秒速度前进，先原地转向目标（180 度/秒），对齐后才迈步；到端点后停步转身，视锥跟随实际朝向。警戒与战斗仍按原逻辑面向玩家。
+
+`ProvidedPlayer.lh/FirstPersonArms` 是同一 `AnimatedPlayer.glb` 的额外实例，共享模型、材质、贴图和状态机，IDE 默认隐藏，运行时按武器切换显示。ViewHold 左手托护木、右手握枪柄，ViewAim 收拢双肘，ViewReload 配合现有装填时长。手臂实例按枪械实际位置和旋转更新，跟随俯仰、开镜与后坐；不修改枪身、红点、射线或镜头参数。ViewArms 的肩部权重仅用于第一人称袖口，避免拉扯到胸部；其渲染裁剪范围覆盖视图姿态，不增加碰撞体。暂停和结算冻结动画，继续保留进度；取消装填返回当前状态，切刀再切回重新选取握枪状态，重开销毁旧实例与监听。
 
 重建步骤：运行 `blender --background --factory-startup --python tools/prepare-rigged-characters.py`，等待 IDE 导入完成，再运行 `node tools/configure-character-animations.cjs`。后一个命令会重建两份 `.controller` 的状态列表，若已在 IDE 手调状态机，应先保存改动再决定是否覆盖；它不修改场景或公共预制体。Blender 中可编辑生成于 `.tmp/AnimatedPlayer.blend` / `.tmp/AnimatedEnemy.blend` 的动作，正式导出仍须保留现有 GLB `.meta` 以稳定引用。源模型与贴图权利仍归原提供方，本轮没有下载新人物素材。
+
+只调整玩家动作时，使用 `blender --background --factory-startup --python tools/prepare-rigged-characters.py -- --player-only`，导入完成后运行 `node tools/configure-character-animations.cjs Player`，以免重写敌人资源。第一人称握持位置在生成脚本的 `View` 姿态分支中调整。
 
 重建运行网格：`blender --background --factory-startup --python tools/prepare-provided-characters.py`。脚本保留源文件，在缺少运行颜色贴图时生成 2048 JPEG，并将各姿态脚底归零、正面统一为本地 +Z；导入后应保留现有 `.meta` 的 UUID。玩家场景实例旋转 180°，与第一人称相机的本地 -Z 朝向一致。
 

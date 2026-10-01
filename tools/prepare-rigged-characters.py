@@ -6,6 +6,7 @@ The supplied GLBs under source-assets/characters/rigged are never modified.
 import bpy
 import bmesh
 import math
+import sys
 from pathlib import Path
 from mathutils import Matrix, Vector, Quaternion
 
@@ -43,8 +44,11 @@ CLIPS = {'Idle':2.0, 'Walk':1.0, 'Run':.64, 'CrouchIdle':2.0,
          'Jump':.7, 'Melee':.32, 'HeavyMelee':.62,
          'CrouchFire':.4, 'CrouchReload':3.3, 'CrouchMelee':.32,
          'CrouchHeavyMelee':.62, 'StrafeLeft':1.0, 'StrafeRight':1.0}
+PLAYER_CLIPS = {'Hold':2.0, 'HoldWalk':1.0, 'HoldRun':.64, 'CrouchHold':2.0,
+                'CrouchHoldWalk':1.2, 'AimWalk':1.0, 'CrouchAim':2.0,
+                'CrouchAimWalk':1.2, 'ViewHold':2.0, 'ViewAim':2.0, 'ViewReload':3.3}
 
-for role in ['Player', 'Enemy']:
+for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
     bpy.ops.object.select_all(action='SELECT')
     bpy.ops.object.delete(use_global=False)
     for action in list(bpy.data.actions):
@@ -59,19 +63,42 @@ for role in ['Player', 'Enemy']:
         groups = {g.index for g in mesh.vertex_groups if g.name in ['Head','NeckTwist01','NeckTwist02']}
         weights = {v.index:sum(g.weight for g in v.groups if g.group in groups) for v in mesh.data.vertices}
         faces = {p.index for p in mesh.data.polygons if sum(weights[i] for i in p.vertices)/len(p.vertices) > .5}
-        head = mesh.copy()
-        head.data = mesh.data.copy()
-        head.name = 'FirstPersonHiddenHead'
-        bpy.context.collection.objects.link(head)
-        meshes.append(head)
-        for obj, keep in [(mesh, False), (head, True)]:
+        arm_groups = {g.index for g in mesh.vertex_groups if any(s in g.name for s in
+            ['Upperarm','Forearm','Hand','Index_','Middle_','Ring_','Little_','Thumb_'])}
+        arm_weights = {v.index:sum(g.weight for g in v.groups if g.group in arm_groups) for v in mesh.data.vertices}
+        arm_faces = {p.index for p in mesh.data.polygons if p.index not in faces
+            and sum(arm_weights[i] for i in p.vertices)/len(p.vertices) > .5}
+        for name, selected in [('FirstPersonHiddenHead',faces),('Arms',arm_faces)]:
+            part = mesh.copy()
+            part.data = mesh.data.copy()
+            part.name = name
+            bpy.context.collection.objects.link(part)
+            meshes.append(part)
+        for obj, selected in [(mesh,faces|arm_faces),(meshes[1],faces),(meshes[2],arm_faces)]:
             bm = bmesh.new()
             bm.from_mesh(obj.data)
             bm.faces.ensure_lookup_table()
-            bmesh.ops.delete(bm, geom=[f for f in bm.faces if (f.index in faces) != keep], context='FACES_ONLY')
+            keep = obj != mesh
+            bmesh.ops.delete(bm, geom=[f for f in bm.faces if (f.index in selected) != keep], context='FACES_ONLY')
             bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context='VERTS')
             bm.to_mesh(obj.data)
             bm.free()
+        # The full-body shoulder blends into the clavicle/chest. The FPS copy is an
+        # open sleeve cut: remove those chest influences so moving its shoulder into
+        # camera space cannot stretch triangles back towards the torso's rest pose.
+        view_mesh = meshes[2].copy()
+        view_mesh.data = meshes[2].data.copy()
+        view_mesh.name = 'ViewArms'
+        bpy.context.collection.objects.link(view_mesh)
+        meshes.append(view_mesh)
+        for vertex in view_mesh.data.vertices:
+            weights = [(g.group,g.weight) for g in vertex.groups if g.group in arm_groups]
+            if not weights:
+                side = 'L' if vertex.co.x > 0 else 'R'
+                weights = [(view_mesh.vertex_groups[f'{side}_Upperarm'].index,1)]
+            total = sum(w for _,w in weights)
+            for group in list(vertex.groups): view_mesh.vertex_groups[group.group].remove([vertex.index])
+            for index,weight in weights: view_mesh.vertex_groups[index].add([vertex.index],weight/total,'REPLACE')
     scale = 1 if role == 'Player' else 2.55/1.8
     def pos(x,y,z):
         return Vector((x*scale,-z*scale,y*scale))
@@ -84,7 +111,7 @@ for role in ['Player', 'Enemy']:
             bone.rotation_mode = 'QUATERNION'
         bpy.context.view_layer.update()
         crouch = name.startswith('Crouch')
-        walking = name in ['Walk','Run','CrouchWalk','StrafeLeft','StrafeRight']
+        walking = name.endswith('Walk') or name.endswith('Run') or name.startswith('Strafe')
         cycle = phase*math.tau
         hip = rig.pose.bones['Hip']
         mat = hip.matrix.copy()
@@ -99,7 +126,7 @@ for role in ['Player', 'Enemy']:
         for side, sign in [('L',1),('R',-1)]:
             foot = feet[side].copy()
             stride = math.sin(cycle+(0 if side=='L' else math.pi)) if walking else 0
-            foot += pos(0,max(0,stride)*(.10 if name=='Run' else .055),stride*(.16 if name=='Run' else .10))
+            foot += pos(0,max(0,stride)*(.10 if name.endswith('Run') else .055),stride*(.16 if name.endswith('Run') else .10))
             if name.startswith('Strafe'):
                 foot = feet[side] + pos(stride*.09*(1 if name=='StrafeLeft' else -1),max(0,stride)*.045,0)
             if name=='Jump':
@@ -110,12 +137,17 @@ for role in ['Player', 'Enemy']:
             mat.translation=pb.head.copy()
             pb.matrix=mat
             bpy.context.view_layer.update()
-            # Enemy grip matches the existing world-space rifle mount. Player arms remain
-            # below the first-person camera; the existing weapon view handles aiming/recoil.
+            # World-space body poses. First-person grip uses the same mesh/rig in a
+            # second, arms-only instance attached to the existing rifle transform.
             y = (1.72 if side=='L' else 1.65)/scale if role=='Enemy' else .94
             x = (.12 if side=='L' else .03)/scale if role=='Enemy' else sign*.23
             z = (.38 if side=='L' else .08)/scale if role=='Enemy' else .05
             y -= .40 if crouch else 0
+            holding = role=='Player' and ('Hold' in name or 'Aim' in name)
+            if holding:
+                x = -.09 if side=='L' else -.20
+                y = (1.34 if 'Aim' in name else 1.18) - (.40 if crouch else 0)
+                z = .32 if side=='L' else .10
             if name.endswith('Fire'): z -= .045*math.sin(math.pi*phase)
             if name.endswith('Reload') and side=='R':
                 y += .08*math.sin(phase*math.tau*2)
@@ -123,9 +155,42 @@ for role in ['Player', 'Enemy']:
             if name.endswith('Melee') and side=='R':
                 y += .16*math.sin(math.pi*phase)
                 z += .23*math.sin(math.pi*phase)
-            limb(rig,f'{side}_Upperarm',f'{side}_Forearm',f'{side}_Hand',pos(x,y,z),pos(sign*.42,y-.15,.02))
+            view = name.startswith('View')
+            if view:
+                # Coordinates below are metres relative to the unscaled rifle mesh.
+                # Put the sleeve cut behind/below the view; keep both grip points fixed
+                # while tucking the elbows for ADS. The gun/camera still own ADS motion.
+                ads = name=='ViewAim'
+                shoulder = pos(-.33 if side=='L' else .25, -.52 if ads else -.47, .24 if side=='L' else .63)
+                upper = rig.pose.bones[f'{side}_Upperarm']
+                matrix = upper.matrix.copy()
+                matrix.translation = shoulder
+                upper.matrix = matrix
+                bpy.context.view_layer.update()
+                target = pos(-.018 if side=='L' else .025, .045 if side=='L' else .015, -.16 if side=='L' else .23)
+                if name=='ViewReload' and side=='R':
+                    target += pos(-.05*math.sin(math.pi*phase), .12*math.sin(math.pi*phase), -.17*math.sin(math.pi*phase))
+                # FPS projection requires longer sleeves than the full-body rig. Stretch
+                # only this baked view pose; original mesh and body poses stay unchanged.
+                reach=(target-upper.head).length
+                chain=(rig.pose.bones[f'{side}_Forearm'].head-upper.head).length + (rig.pose.bones[f'{side}_Hand'].head-rig.pose.bones[f'{side}_Forearm'].head).length
+                matrix=upper.matrix.copy()
+                factor=max(1,reach/(chain*.92))
+                for column in range(3): matrix.col[column].xyz *= factor
+                upper.matrix=matrix
+                bpy.context.view_layer.update()
+                limb(rig,f'{side}_Upperarm',f'{side}_Forearm',f'{side}_Hand',target,
+                    pos(-.42 if side=='L' else .36,-.32 if ads else -.28,.36 if side=='L' else .48))
+            else:
+                limb(rig,f'{side}_Upperarm',f'{side}_Forearm',f'{side}_Hand',pos(x,y,z),pos(sign*.42,y-.15,.02))
             hand=rig.pose.bones[f'{side}_Hand']
-            aim(rig,hand.name,None,hand.head+(pos(0,0,.1) if role=='Enemy' else pos(0,-.1,0)))
+            aim(rig,hand.name,None,hand.head+(pos(0,0,-.1) if view else pos(0,0,.1) if role=='Enemy' or holding else pos(0,-.1,0)))
+            if view:
+                # Cancel inherited stretch at the wrist so the supplied hands keep size.
+                matrix=hand.matrix.copy()
+                for column in range(3): matrix.col[column].xyz = matrix.col[column].xyz.normalized()
+                hand.matrix=matrix
+                bpy.context.view_layer.update()
             for finger in ['Index','Middle','Ring','Little','Thumb']:
                 for segment in ['01','02','03']:
                     bone=rig.pose.bones.get(f'{side}_{finger}_{segment}')
@@ -133,7 +198,8 @@ for role in ['Player', 'Enemy']:
         bpy.context.view_layer.update()
 
     bpy.context.scene.render.fps=30
-    for name,duration in CLIPS.items():
+    clips = {**CLIPS, **(PLAYER_CLIPS if role=='Player' else {})}
+    for name,duration in clips.items():
         action=bpy.data.actions.new(name)
         action.use_fake_user=True
         rig.animation_data_create()
@@ -155,4 +221,4 @@ for role in ['Player', 'Enemy']:
         use_selection=True,export_animations=True,export_animation_mode='ACTIONS',
         export_force_sampling=True,export_optimize_animation_size=False,export_yup=True)
     bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'.tmp'/f'Animated{role}.blend'))
-    print('EXPORTED',role,len(rig.data.bones),'bones',list(CLIPS))
+    print('EXPORTED',role,len(rig.data.bones),'bones',list(clips))

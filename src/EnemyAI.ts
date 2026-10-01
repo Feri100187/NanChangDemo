@@ -153,16 +153,19 @@ export class EnemyAI extends Laya.Script {
         const remaining = targetX - position.x;
         if (Math.abs(remaining) < 0.08) {
             this.patrolIndex = (this.patrolIndex + 1) % this.patrolOffsets.length;
-        } else {
-            const step = Math.min(Math.abs(remaining), Math.max(0, this.patrolSpeed) * dt);
-            this.enemy.transform.position = new Laya.Vector3(position.x + Math.sign(remaining) * step,
-                this.spawnPosition.y, this.spawnPosition.z);
+            return;
         }
-        // 巡逻时恢复朝向玩家可能出现的正面方向，以维持固定扇形视野。
+        // 沿原有巡逻线前进；转弯时先停步转身，避免面朝一边却横向滑行。
+        const targetYaw = remaining > 0 ? 90 : -90;
         const yaw = this.enemy.transform.rotationEuler.y;
-        const delta = ((-yaw + 540) % 360) - 180;
-        this.lookEuler.setValue(0, yaw + Math.max(-90 * dt, Math.min(90 * dt, delta)), 0);
+        const delta = ((targetYaw - yaw + 540) % 360) - 180;
+        const turn = 180 * dt;
+        this.lookEuler.setValue(0, yaw + Math.max(-turn, Math.min(turn, delta)), 0);
         this.enemy.transform.rotationEuler = this.lookEuler;
+        if (Math.abs(delta) > turn + 0.001) return;
+        const step = Math.min(Math.abs(remaining), Math.max(0, this.patrolSpeed) * dt);
+        this.enemy.transform.position = new Laya.Vector3(position.x + Math.sign(remaining) * step,
+            this.spawnPosition.y, this.spawnPosition.z);
     }
 
     private facePlayer(): void {

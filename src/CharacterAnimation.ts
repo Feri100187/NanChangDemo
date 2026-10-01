@@ -12,6 +12,10 @@ export class CharacterAnimation extends Laya.Script {
     blend = 0.10;
 
     private animator: Laya.Animator;
+    private viewAnimator: Laya.Animator;
+    private viewArms: Laya.Sprite3D;
+    private bodyArms: Laya.Node;
+    private viewState = "";
     private actor: Laya.Sprite3D;
     private player: PlayerController;
     private health: PlayerHealth;
@@ -37,10 +41,32 @@ export class CharacterAnimation extends Laya.Script {
                 break;
             }
         }
-        this.visit(this.owner, node => {
+        const body = this.owner.getChildByName("AnimatedModel") || this.owner;
+        this.visit(body, node => {
             this.animator ||= node.getComponent(Laya.Animator);
             if (this.player && node.name === "FirstPersonHiddenHead") node.active = false;
+            if (node.name === "ViewArms") node.active = false;
+            if (this.player && node.name === "Arms") this.bodyArms = node;
         });
+        this.viewArms = this.owner.getChildByName("FirstPersonArms") as Laya.Sprite3D;
+        if (this.player && this.viewArms) {
+            this.viewAnimator = this.viewArms.getComponent(Laya.Animator);
+            this.visit(this.viewArms, node => {
+                if (node.name === "Body" || node.name === "FirstPersonHiddenHead" || node.name === "Arms") node.active = false;
+                const renderer = node.getComponent(Laya.SkinnedMeshRenderer);
+                if (renderer && node.name === "ViewArms") {
+                    // The imported bound describes the T-pose. View poses move these
+                    // same vertices around the gun; include that range in bone space.
+                    renderer.localBounds = new Laya.Bounds(new Laya.Vector3(-2, -2, -2), new Laya.Vector3(2, 2, 2));
+                    renderer.castShadow = false;
+                }
+            });
+            this.viewAnimator.cullingMode = Laya.Animator.CULLINGMODE_ALWAYSANIMATE;
+            this.updateArmsVisibility();
+            this.viewAnimator.play("ViewHold", 0, 0);
+            this.viewState = "ViewHold";
+            this.viewAnimator.speed = this.clock?.paused ? 0 : 1;
+        }
         if (this.actor) this.previousX = this.actor.transform.position.x;
         if (this.animator) {
             this.animator.cullingMode = Laya.Animator.CULLINGMODE_ALWAYSANIMATE;
@@ -77,7 +103,10 @@ export class CharacterAnimation extends Laya.Script {
         const stopped = this.clock?.paused || (this.player && (!this.player.enabled || !this.health?.isAlive))
             || (this.enemy && (!this.enemy.enabled || !this.enemy.isAlive));
         this.animator.speed = stopped ? 0 : 1;
+        if (this.viewAnimator) this.viewAnimator.speed = stopped ? 0 : 1;
+        this.updateArmsVisibility();
         if (stopped) return;
+        this.updateViewState();
         const crouch = this.player?.isCrouching ?? false;
         if (this.rifle?.isReloading) {
             this.setState(crouch ? "CrouchReload" : "Reload", this.rifle.reloadProgress, true);
@@ -92,16 +121,51 @@ export class CharacterAnimation extends Laya.Script {
         let state = "Idle";
         if (this.enemy) {
             state = this.enemy.state === "Patrol" && Math.abs(dx) > 0.00001
-                ? dx > 0 ? "StrafeLeft" : "StrafeRight"
+                ? "Walk"
                 : this.enemy.state === "Combat" || this.enemy.state === "Alert" ? "Aim" : "Idle";
         } else if (this.player) {
+            const holding = this.rifle?.currentWeapon === "rifle";
+            const aiming = holding && this.rifle.aimBlend > 0.5;
+            const moving = this.player.movementSpeed > 0;
             state = !this.player.isGrounded ? "Jump"
-                : crouch ? this.player.movementSpeed > 0 ? "CrouchWalk" : "CrouchIdle"
+                : holding ? crouch
+                    ? aiming ? moving ? "CrouchAimWalk" : "CrouchAim" : moving ? "CrouchHoldWalk" : "CrouchHold"
+                    : aiming ? moving ? "AimWalk" : "Aim"
+                    : this.player.movementSpeed > this.player.walkSpeed ? "HoldRun" : moving ? "HoldWalk" : "Hold"
+                : crouch ? moving ? "CrouchWalk" : "CrouchIdle"
                 : this.player.movementSpeed > this.player.walkSpeed ? "Run"
-                : this.player.movementSpeed > 0 ? "Walk"
+                : moving ? "Walk"
                 : this.player.isAimActive ? "Aim" : "Idle";
         }
         this.setState(state);
+    }
+
+    private updateArmsVisibility(): void {
+        if (!this.viewArms || !this.rifle) return;
+        const holding = this.rifle.currentWeapon === "rifle";
+        if (this.viewArms.active !== holding) {
+            this.viewArms.active = holding;
+            // Re-enabling an imported Animator may replay its default body state.
+            this.viewState = "";
+        }
+        if (this.bodyArms) this.bodyArms.active = !holding;
+    }
+
+    private updateViewState(): void {
+        if (!this.viewAnimator || !this.rifle || !this.viewArms.active) return;
+        const state = this.rifle.isReloading ? "ViewReload" : this.rifle.aimBlend > 0.5 ? "ViewAim" : "ViewHold";
+        if (state === this.viewState) return;
+        if (state === "ViewReload" || !this.viewState) this.viewAnimator.play(state, 0, this.rifle.isReloading ? this.rifle.reloadProgress : 0);
+        else this.viewAnimator.crossFade(state, this.blend, 0, 0);
+        this.viewState = state;
+    }
+
+    onLateUpdate(): void {
+        if (!this.viewArms?.active || !this.rifle?.rifleModel) return;
+        // The same unscaled mesh is used by the rifle prefab. Follow its actual world
+        // pose so pitch, ADS camera motion and recoil never separate hands from the gun.
+        this.viewArms.transform.position = this.rifle.rifleModel.transform.position;
+        this.viewArms.transform.rotation = this.rifle.rifleModel.transform.rotation;
     }
 
     private setState(name: string, progress = 0, immediate = false): void {
@@ -119,6 +183,7 @@ export class CharacterAnimation extends Laya.Script {
     onDisable(): void {
         this.actor?.offAllCaller(this);
         if (this.animator) this.animator.speed = 0;
+        if (this.viewAnimator) this.viewAnimator.speed = 0;
         this.resetAction();
     }
 }
