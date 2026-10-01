@@ -56,6 +56,7 @@ export class CharacterAnimation extends Laya.Script {
     private actionAt = 0;
     private actionDuration = 0;
     private previousX = 0;
+    private previousZ = 0;
 
     private get clock() { return this.player?.clock || this.enemy?.clock; }
     private now(): number { return this.clock?.now() ?? performance.now(); }
@@ -100,7 +101,10 @@ export class CharacterAnimation extends Laya.Script {
             const armRenderer = this.bodyArms?.getComponent(Laya.SkinnedMeshRenderer);
             if (armRenderer) armRenderer.localBounds = new Laya.Bounds(new Laya.Vector3(-1.5, -0.5, -1.5), new Laya.Vector3(1.5, 2.5, 1.5));
         }
-        if (this.actor) this.previousX = this.actor.transform.position.x;
+        if (this.actor) {
+            this.previousX = this.actor.transform.position.x;
+            this.previousZ = this.actor.transform.position.z;
+        }
         if (this.animator) {
             this.animator.cullingMode = Laya.Animator.CULLINGMODE_ALWAYSANIMATE;
             this.setState("Idle", 0, true);
@@ -139,9 +143,11 @@ export class CharacterAnimation extends Laya.Script {
         else if (!this.clock?.paused) this.casings?.update(
             Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05), this.now());
         if (!this.animator || !this.actor) return;
-        const x = this.actor.transform.position.x;
+        const { x, z } = this.actor.transform.position;
         const dx = x - this.previousX;
+        const dz = z - this.previousZ;
         this.previousX = x;
+        this.previousZ = z;
         const stopped = this.clock?.paused || (this.player && (!this.player.enabled || !this.health?.isAlive))
             || (this.enemy && (!this.enemy.enabled || !this.enemy.isAlive));
         this.animator.speed = stopped ? 0 : 1;
@@ -176,7 +182,7 @@ export class CharacterAnimation extends Laya.Script {
         this.action = "";
         let state = "Idle";
         if (this.enemy) {
-            state = this.enemy.state === "Patrol" && Math.abs(dx) > 0.00001
+            state = this.enemy.state === "Patrol" && (Math.hypot(dx, dz) > 0.00001 || this.enemy.horizontalSpeed > 0.01)
                 ? "Walk"
                 : this.enemy.state === "Combat" || this.enemy.state === "Alert" ? "Aim" : "Idle";
         } else if (this.player) {

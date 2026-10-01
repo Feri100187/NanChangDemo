@@ -13,6 +13,8 @@ LayaAir 3.4.1 第一人称灰盒玩法原型。默认启动 `assets/Demo01.ls`�
 | `SpawnPoint_SafeZone` | 本关出生点与朝向，初始位置 `(-10, 1.1, 4)`；开局和跌落恢复均使用此点 |
 | `Demo01_Blockout` 下的 `00_Bounds_Closed`～`06_TargetBuilding` | 外圈边界、出生区建筑、转角、两处交火区、掩体和目标建筑；实体块均带静态碰撞 |
 | `Street_Enemy01/02`、`Courtyard_Enemy01/02` | 两组敌人，X/Z 为 `(-4,-20)`、`(5,-23)`、`(-6,-45)`、`(6,-48)` |
+| `EnemyPatrolRoutes/Route_1～4` | 每名敌人独立的三个巡逻点；在 EnemyAI 的 `patrolPoints` 中按顺序引用 |
+| 敌人下的 `ObservationPoint`、`EnemyRifle/ShotBase` 与 `ShotPoint` | 观察眼位、枪膛检查点与枪口；可在 IDE 调整位置并在 EnemyAI 中修改引用 |
 | `RouteFloorMarkers`、`RouteHintPoints` | 地面引导标线与提示点；提示点的节点名就是 HUD 文案，位置决定提示切换时机 |
 | `07_ExitZone` | 建筑后方终点，中心 `(0,1,-60.2)`，半尺寸 `(1.3,2,1)` 与地面标记对应 |
 | 根节点的 `LevelController` | 只统计 `enemies` 数组指定的本关 4 名敌人，配置目标文案、终点、路线提示和重开场景 |
@@ -100,7 +102,11 @@ Demo01 的 `CombatFeedback` 组件提供基础战斗反馈：玩家与敌人每�
 
 旧灰盒的 `RedDot` 是独立测试网格，并非步枪模型的一部分，已关闭显示；Demo01 的节点在 IDE 中也默认隐藏，Scene.ls 由同一控制器在运行时关闭。拉栓和装填时不再出现悬浮红点。按住右键时使用模型自带的机械瞄具，沿现有瞄准线进入开镜视点，完全对齐后屏幕十字准星会隐藏；松开后返回普通视点，视野角始终是 60°。腰射每发让镜头上抬 1.35°、准星上抬 0.45°，开镜每发让镜头上抬 1.8°；另有左右交替的 0.12° 小幅水平后坐。枪身后移 0.10 米，再以 0.32 米/秒回位。射线始终沿当前准星方向发射；射击后后坐角度逐渐恢复，长按左键也不会卡住回正。
 
-场景配置了 4 名独立敌军，每名初始 100 HP，复用同一套 EnemyAI。其状态为 Idle、Patrol、Alert、Combat、Dead：短暂站岗后在几个固定点间巡逻，看到玩家会逐渐警戒，进入战斗后转向并用射线开枪；玩家跑出视距或被物体挡住时，警戒下降并能重新巡逻。血量、警戒和攻击计时均由各自实例保存。敌军每次射击造成 18 点伤害，射击间隔为 1.8 秒；警戒、巡逻与攻击判定流程不变。玩家初始 100 HP，归零后立即判负。
+场景配置了 4 名独立敌军，每名初始 100 HP，复用同一套 EnemyAI。其状态为 Idle、Patrol、Alert、Combat、Dead：短暂站岗后巡逻，看到玩家时更新最后已知位置并逐渐警戒，进入战斗后转向并用射线开枪。失去视线后只观察最后已知位置，默认 2.2 秒后放弃并恢复巡逻；不会用隐藏玩家的实时坐标转向，也不会跨区追逐。受击可进入短暂警戒，只有实际可见时才更新位置；后续隐蔽命中不延长旧位置的有效期。血量、警戒、观察期限和攻击冷却均由各自实例保存，使用 LevelController 分配的 GameClock。敌军每次射击仍造成 18 点伤害，射击间隔仍为 1.8 秒。玩家初始 100 HP，归零后立即判负。
+
+观察射线从可配置的真实眼位投向玩家中心，不再有 0.7 米内直接可见或把起点向前移 0.65 米的捷径。物理全命中查询按距离选择最近结果，只排除当前敌人自身的节点；其他敌人、墙和掩体仍会遮挡。射击先检查眼位到枪膛、枪膛到枪口，再从枪口判定玩家；枪口越过墙或枪管路径被挡时不扣血、不触发开火事件。近距离玩家已被枪管段截获时直接使用该命中，避免从已经进入玩家胶囊的枪口反向查询。`observationPoint`、`shotBase`、`shotPoint` 未配置时使用 EnemyAI 的三个本地偏移属性，旧场景也可安全运行。默认眼高 2.30 米，枪口位置与现有 2.55 米蒙皮人物和枪口闪光对应。
+
+巡逻点的世界位置与 Y 轴旋转决定到点位置、观察朝向；点上的 `EnemyPatrolPoint.waitSeconds` 控制停留（默认 1.2 秒），`useFacing` 控制是否转到节点朝向。EnemyAI 的 `turnSpeed` 默认 180 度/秒，转身对齐后才迈步；`patrolSpeed` 仍为 0.75 米/秒。`patrolRadius` 默认 1.6 米，以关卡加载时的出生位置为中心限制路点，四名敌人的默认中心、东端、西端位置均保持原样。只在同一地面高度移动，移动前用查询体扫掠墙体和其他角色；受阻时停步，短暂等待后尝试下一点，不增加新实体碰撞体或寻路。点未配置时仍沿原来的 X 方向三个偏移巡逻。移动敌人出生位置时，应同时移动对应 Route 分组，并为整个活动区和身体留出墙体间距。
 
 系统测试场的 4 名敌军初始 X/Z 坐标分别为 `(0, -15)`、`(-4, -13)`、`(4, -19)`、`(0, -25)`，沿原有 X 方向 ±1.6 米的范围巡逻，避开两侧房屋和掩体墙。本轮没有加入寻路。
 
@@ -144,11 +150,11 @@ Demo01 和 Scene.ls 各有 1 把玩家枪、4 把敌人枪，共 10 处实例，
 
 玩家和敌人现在使用用户桌面“模型”目录中 `player_LayaAir/Player.glb`、`enemy_LayaAir/Enemy.glb` 的新版角色，均有 71 根骨骼、手指蒙皮和 2048×2048 贴图，玩家包含修复后的手部贴图。源文件原样保存在 `source-assets/characters/rigged/`，不改动桌面文件。源模型为 T 姿态、没有动画；本工程为它们新增了轻量的原地骨骼动画，属于玩法原型动作，不是动作捕捉或精修成品。早期 FBX、静态姿态资源与旧转换脚本仍保留，但公共预制体已不再引用旧静态模型。
 
-运行资源位于 `assets/resources/characters/Enemy/` 和 `Player/`：`AnimatedEnemy.glb` / `AnimatedPlayer.glb` 包含蒙皮与动画，`EnemyAnimation.controller` / `PlayerAnimation.controller` 是可在 IDE 打开的状态机，原公共 `ProvidedEnemy.lh` / `ProvidedPlayer.lh` 内的 `AnimatedModel` 绑定相应状态机。Demo01 与 Scene.ls 自动复用这两个公共预制体，两份场景文件未改。模型、状态机、IDE 提取的 `textures/` 与全部 `.meta` 应一起保留。敌人仍高 2.55 米；原 Head、Torso、Legs、LeftArm、RightArm 受击区域、汉阳造挂点、伤害、视野参数、巡逻范围和击倒计数保持不变。死亡时沿用原来的即时隐藏行为，同时正确关闭蒙皮渲染器。
+运行资源位于 `assets/resources/characters/Enemy/` 和 `Player/`：`AnimatedEnemy.glb` / `AnimatedPlayer.glb` 包含蒙皮与动画，`EnemyAnimation.controller` / `PlayerAnimation.controller` 是可在 IDE 打开的状态机，原公共 `ProvidedEnemy.lh` / `ProvidedPlayer.lh` 内的 `AnimatedModel` 绑定相应状态机。Demo01 与 Scene.ls 自动复用这两个公共预制体；本轮仅补充 AI 观察点、枪口和巡逻配置，沿用已有模型与动画。模型、状态机、IDE 提取的 `textures/` 与全部 `.meta` 应一起保留。敌人仍高 2.55 米；原 Head、Torso、Legs、LeftArm、RightArm 受击区域、汉阳造挂点、伤害、视野参数、巡逻范围和击倒计数保持不变。死亡时沿用原来的即时隐藏行为，同时正确关闭蒙皮渲染器。
 
 玩家仍高 1.8 米，由同一蒙皮在站立与下蹲动作间过渡，运行时隐藏 `FirstPersonHiddenHead`；IDE 中可查看完整人物。持枪和持刀现在显示原身体的 `Arms`，肩部固定在身体锁骨连接点；额外的第一人称实例只提供动作目标，不再绘制悬浮的双臂。身体仍只跟随水平朝向，脚底射线与 0.04 米补偿保持原样，站立/下蹲碰撞高度仍为 2/1.2 米。第一人称枪械、镜头和后坐力仍由原控制器负责。
 
-`src/CharacterAnimation.ts` 只读取现有游戏状态与实际开火/挥刀事件，通过 Animator 播放、融合已绑定状态，不移动角色、不修改伤害或装填完成时间。玩家持枪使用 Hold、HoldWalk、HoldRun、Aim、AimWalk 及其蹲姿状态，保留跳跃、装填、开火和近战状态。敌人巡逻使用 Walk：沿原有 X 方向 ±1.6 米范围，以原 0.75 米/秒速度前进，先原地转向目标（180 度/秒），对齐后才迈步；到端点后停步转身，视锥跟随实际朝向。警戒与战斗仍按原逻辑面向玩家。
+`src/CharacterAnimation.ts` 只读取游戏状态与实际开火/挥刀事件，通过 Animator 播放、融合已绑定状态，不移动角色、不修改伤害或装填完成时间。玩家持枪使用 Hold、HoldWalk、HoldRun、Aim、AimWalk 及其蹲姿状态，保留跳跃、装填、开火和近战状态。敌人巡逻按实际 X/Z 水平位移或 EnemyAI 的实际水平速度选择 Walk，纯 Z 方向也能播放行走；原地转向和停留使用已有 Idle。警戒与战斗复用 Aim，受击、枪声与开火动画仍由原事件触发，不新增死亡动画。
 
 `ProvidedPlayer.lh/FirstPersonArms` 是同一 `AnimatedPlayer.glb` 的额外实例，共享状态机，运行时隐藏其全部网格，只读取手腕与手指的动作目标。ViewHold 左手托护木，右手掌贴合枪托、食指靠近扳机护圈；ViewAim 提供瞄准手掌姿态。ViewReloadPrepare、ViewReloadInsert、ViewReloadFinish 按阶段时长调节速度，每一发重新播放 Insert，不重复开关枪栓。手掌、手指和装填目标继续来自这套原有动画，原动作时长不变。
 

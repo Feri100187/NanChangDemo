@@ -3122,7 +3122,46 @@
               "loseTargetTime": 2.2,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75
+              "patrolSpeed": 0.75,
+              "observationPoint": {
+                "_$ref": "ai_target001_eye"
+              },
+              "shotPoint": {
+                "_$ref": "ai_target001_muzzle"
+              },
+              "shotBase": {
+                "_$ref": "ai_target001_breech"
+              },
+              "observationOffset": {
+                "_$type": "Vector3",
+                "y": 2.3
+              },
+              "shotOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.8
+              },
+              "shotBaseOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.26
+              },
+              "patrolPoints": [
+                {
+                  "_$ref": "ai_target001_patrol_0"
+                },
+                {
+                  "_$ref": "ai_target001_patrol_1"
+                },
+                {
+                  "_$ref": "ai_target001_patrol_2"
+                }
+              ],
+              "patrolRadius": 1.6,
+              "patrolWaitSeconds": 1.2,
+              "turnSpeed": 180
             }
           ],
           "_$child": [
@@ -3559,6 +3598,29 @@
                       "z": 1.2195121951219512
                     }
                   }
+                },
+                {
+                  "_$id": "ai_target001_breech",
+                  "_$type": "Sprite3D",
+                  "name": "ShotBase",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "_$id": "ai_target001_muzzle",
+                  "_$type": "Sprite3D",
+                  "name": "ShotPoint",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  }
                 }
               ]
             },
@@ -3566,6 +3628,17 @@
               "_$id": "charvisual1",
               "_$prefab": "df374c28-d931-4eb6-9b13-638709b65707",
               "name": "EnemyVisual"
+            },
+            {
+              "_$id": "ai_target001_eye",
+              "_$type": "Sprite3D",
+              "name": "ObservationPoint",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.3
+                }
+              }
             }
           ]
         },
@@ -6154,7 +6227,46 @@
               "loseTargetTime": 2.2,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75
+              "patrolSpeed": 0.75,
+              "observationPoint": {
+                "_$ref": "ai_enemy002_eye"
+              },
+              "shotPoint": {
+                "_$ref": "ai_enemy002_muzzle"
+              },
+              "shotBase": {
+                "_$ref": "ai_enemy002_breech"
+              },
+              "observationOffset": {
+                "_$type": "Vector3",
+                "y": 2.3
+              },
+              "shotOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.8
+              },
+              "shotBaseOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.26
+              },
+              "patrolPoints": [
+                {
+                  "_$ref": "ai_enemy002_patrol_0"
+                },
+                {
+                  "_$ref": "ai_enemy002_patrol_1"
+                },
+                {
+                  "_$ref": "ai_enemy002_patrol_2"
+                }
+              ],
+              "patrolRadius": 1.6,
+              "patrolWaitSeconds": 1.2,
+              "turnSpeed": 180
             }
           ],
           "_$child": [
@@ -6591,6 +6703,29 @@
                       "z": 1.2195121951219512
                     }
                   }
+                },
+                {
+                  "_$id": "ai_enemy002_breech",
+                  "_$type": "Sprite3D",
+                  "name": "ShotBase",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "_$id": "ai_enemy002_muzzle",
+                  "_$type": "Sprite3D",
+                  "name": "ShotPoint",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  }
                 }
               ]
             },
@@ -6598,6 +6733,17 @@
               "_$id": "charvisual2",
               "_$prefab": "df374c28-d931-4eb6-9b13-638709b65707",
               "name": "EnemyVisual"
+            },
+            {
+              "_$id": "ai_enemy002_eye",
+              "_$type": "Sprite3D",
+              "name": "ObservationPoint",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.3
+                }
+              }
             }
           ]
         },
@@ -6626,7 +6772,46 @@
               "loseTargetTime": 2.2,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75
+              "patrolSpeed": 0.75,
+              "observationPoint": {
+                "_$ref": "ai_enemy003_eye"
+              },
+              "shotPoint": {
+                "_$ref": "ai_enemy003_muzzle"
+              },
+              "shotBase": {
+                "_$ref": "ai_enemy003_breech"
+              },
+              "observationOffset": {
+                "_$type": "Vector3",
+                "y": 2.3
+              },
+              "shotOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.8
+              },
+              "shotBaseOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.26
+              },
+              "patrolPoints": [
+                {
+                  "_$ref": "ai_enemy003_patrol_0"
+                },
+                {
+                  "_$ref": "ai_enemy003_patrol_1"
+                },
+                {
+                  "_$ref": "ai_enemy003_patrol_2"
+                }
+              ],
+              "patrolRadius": 1.6,
+              "patrolWaitSeconds": 1.2,
+              "turnSpeed": 180
             }
           ],
           "_$child": [
@@ -7063,6 +7248,29 @@
                       "z": 1.2195121951219512
                     }
                   }
+                },
+                {
+                  "_$id": "ai_enemy003_breech",
+                  "_$type": "Sprite3D",
+                  "name": "ShotBase",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "_$id": "ai_enemy003_muzzle",
+                  "_$type": "Sprite3D",
+                  "name": "ShotPoint",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  }
                 }
               ]
             },
@@ -7070,6 +7278,17 @@
               "_$id": "charvisual3",
               "_$prefab": "df374c28-d931-4eb6-9b13-638709b65707",
               "name": "EnemyVisual"
+            },
+            {
+              "_$id": "ai_enemy003_eye",
+              "_$type": "Sprite3D",
+              "name": "ObservationPoint",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.3
+                }
+              }
             }
           ]
         },
@@ -7098,7 +7317,46 @@
               "loseTargetTime": 2.2,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75
+              "patrolSpeed": 0.75,
+              "observationPoint": {
+                "_$ref": "ai_enemy004_eye"
+              },
+              "shotPoint": {
+                "_$ref": "ai_enemy004_muzzle"
+              },
+              "shotBase": {
+                "_$ref": "ai_enemy004_breech"
+              },
+              "observationOffset": {
+                "_$type": "Vector3",
+                "y": 2.3
+              },
+              "shotOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.8
+              },
+              "shotBaseOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.26
+              },
+              "patrolPoints": [
+                {
+                  "_$ref": "ai_enemy004_patrol_0"
+                },
+                {
+                  "_$ref": "ai_enemy004_patrol_1"
+                },
+                {
+                  "_$ref": "ai_enemy004_patrol_2"
+                }
+              ],
+              "patrolRadius": 1.6,
+              "patrolWaitSeconds": 1.2,
+              "turnSpeed": 180
             }
           ],
           "_$child": [
@@ -7535,6 +7793,29 @@
                       "z": 1.2195121951219512
                     }
                   }
+                },
+                {
+                  "_$id": "ai_enemy004_breech",
+                  "_$type": "Sprite3D",
+                  "name": "ShotBase",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "_$id": "ai_enemy004_muzzle",
+                  "_$type": "Sprite3D",
+                  "name": "ShotPoint",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  }
                 }
               ]
             },
@@ -7542,6 +7823,17 @@
               "_$id": "charvisual4",
               "_$prefab": "df374c28-d931-4eb6-9b13-638709b65707",
               "name": "EnemyVisual"
+            },
+            {
+              "_$id": "ai_enemy004_eye",
+              "_$type": "Sprite3D",
+              "name": "ObservationPoint",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.3
+                }
+              }
             }
           ]
         },
@@ -17195,6 +17487,313 @@
                     {
                       "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
                       "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_$id": "enemy_patrol_routes",
+          "_$type": "Sprite3D",
+          "name": "EnemyPatrolRoutes",
+          "_$child": [
+            {
+              "_$id": "ai_target001_route",
+              "_$type": "Sprite3D",
+              "name": "Route_1",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -4,
+                  "z": -20
+                }
+              },
+              "_$child": [
+                {
+                  "_$id": "ai_target001_patrol_0",
+                  "_$type": "Sprite3D",
+                  "name": "Patrol_Center",
+                  "_$comp": [
+                    {
+                      "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
+                      "scriptPath": "../src/EnemyPatrolPoint.ts",
+                      "waitSeconds": 1.2,
+                      "useFacing": true
+                    }
+                  ]
+                },
+                {
+                  "_$id": "ai_target001_patrol_1",
+                  "_$type": "Sprite3D",
+                  "name": "Patrol_East",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 1.6
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "y": 0.7071067811865475,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
+                      "scriptPath": "../src/EnemyPatrolPoint.ts",
+                      "waitSeconds": 1.2,
+                      "useFacing": true
+                    }
+                  ]
+                },
+                {
+                  "_$id": "ai_target001_patrol_2",
+                  "_$type": "Sprite3D",
+                  "name": "Patrol_West",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -1.6
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "y": -0.7071067811865475,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
+                      "scriptPath": "../src/EnemyPatrolPoint.ts",
+                      "waitSeconds": 1.2,
+                      "useFacing": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "ai_enemy002_route",
+              "_$type": "Sprite3D",
+              "name": "Route_2",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 5,
+                  "z": -23
+                }
+              },
+              "_$child": [
+                {
+                  "_$id": "ai_enemy002_patrol_0",
+                  "_$type": "Sprite3D",
+                  "name": "Patrol_Center",
+                  "_$comp": [
+                    {
+                      "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
+                      "scriptPath": "../src/EnemyPatrolPoint.ts",
+                      "waitSeconds": 1.2,
+                      "useFacing": true
+                    }
+                  ]
+                },
+                {
+                  "_$id": "ai_enemy002_patrol_1",
+                  "_$type": "Sprite3D",
+                  "name": "Patrol_East",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 1.6
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "y": 0.7071067811865475,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
+                      "scriptPath": "../src/EnemyPatrolPoint.ts",
+                      "waitSeconds": 1.2,
+                      "useFacing": true
+                    }
+                  ]
+                },
+                {
+                  "_$id": "ai_enemy002_patrol_2",
+                  "_$type": "Sprite3D",
+                  "name": "Patrol_West",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -1.6
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "y": -0.7071067811865475,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
+                      "scriptPath": "../src/EnemyPatrolPoint.ts",
+                      "waitSeconds": 1.2,
+                      "useFacing": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "ai_enemy003_route",
+              "_$type": "Sprite3D",
+              "name": "Route_3",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -6,
+                  "z": -45
+                }
+              },
+              "_$child": [
+                {
+                  "_$id": "ai_enemy003_patrol_0",
+                  "_$type": "Sprite3D",
+                  "name": "Patrol_Center",
+                  "_$comp": [
+                    {
+                      "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
+                      "scriptPath": "../src/EnemyPatrolPoint.ts",
+                      "waitSeconds": 1.2,
+                      "useFacing": true
+                    }
+                  ]
+                },
+                {
+                  "_$id": "ai_enemy003_patrol_1",
+                  "_$type": "Sprite3D",
+                  "name": "Patrol_East",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 1.6
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "y": 0.7071067811865475,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
+                      "scriptPath": "../src/EnemyPatrolPoint.ts",
+                      "waitSeconds": 1.2,
+                      "useFacing": true
+                    }
+                  ]
+                },
+                {
+                  "_$id": "ai_enemy003_patrol_2",
+                  "_$type": "Sprite3D",
+                  "name": "Patrol_West",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -1.6
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "y": -0.7071067811865475,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
+                      "scriptPath": "../src/EnemyPatrolPoint.ts",
+                      "waitSeconds": 1.2,
+                      "useFacing": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "ai_enemy004_route",
+              "_$type": "Sprite3D",
+              "name": "Route_4",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 6,
+                  "z": -48
+                }
+              },
+              "_$child": [
+                {
+                  "_$id": "ai_enemy004_patrol_0",
+                  "_$type": "Sprite3D",
+                  "name": "Patrol_Center",
+                  "_$comp": [
+                    {
+                      "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
+                      "scriptPath": "../src/EnemyPatrolPoint.ts",
+                      "waitSeconds": 1.2,
+                      "useFacing": true
+                    }
+                  ]
+                },
+                {
+                  "_$id": "ai_enemy004_patrol_1",
+                  "_$type": "Sprite3D",
+                  "name": "Patrol_East",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 1.6
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "y": 0.7071067811865475,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
+                      "scriptPath": "../src/EnemyPatrolPoint.ts",
+                      "waitSeconds": 1.2,
+                      "useFacing": true
+                    }
+                  ]
+                },
+                {
+                  "_$id": "ai_enemy004_patrol_2",
+                  "_$type": "Sprite3D",
+                  "name": "Patrol_West",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -1.6
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "y": -0.7071067811865475,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
+                      "scriptPath": "../src/EnemyPatrolPoint.ts",
+                      "waitSeconds": 1.2,
+                      "useFacing": true
                     }
                   ]
                 }
