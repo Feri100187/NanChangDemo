@@ -7,7 +7,9 @@
     {
       "_$type": "50eb7f2b-3dec-457d-8c04-4757703be35d",
       "scriptPath": "../src/CharacterAnimation.ts",
-      "blend": 0.06
+      "blend": 0.06,
+      "casingLifetime": 4,
+      "casingSpeed": 1
     }
   ],
   "_$child": [
@@ -72,6 +74,21 @@
       "_$id": "reloadcartridge",
       "_$prefab": "91f89a91-15f6-4332-a84f-17148ca0c86a",
       "name": "ReloadCartridge",
+      "active": false,
+      "layer": 0,
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3"
+        },
+        "localRotation": {
+          "_$type": "Quaternion"
+        }
+      }
+    },
+    {
+      "_$id": "ejectedcasetemplate",
+      "_$prefab": "9fe8e2ed-2645-40c2-9229-fd31fb7e524d",
+      "name": "EjectedCaseTemplate",
       "active": false,
       "layer": 0,
       "transform": {

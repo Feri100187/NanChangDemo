@@ -212,4 +212,39 @@ check('configured timings are fixed for all rounds of an active reload',()=>{
     r.handleKeyDown({keyCode:82});e.tick(1100);e.tick(1200);
     assert.deepEqual([r.magazine,r.isReloading],[3,false]);
 });
+check('one spent case ejects when the bolt opens; topping up does not eject another',()=>{
+    const e=environment(),r=e.rifle;r.tryFire(0);
+    e.tick(200);assert.equal(e.events.events.filter(x=>x==='rifle-case-ejected').length,0);
+    e.tick(450);e.tick(520);assert.equal(e.events.events.filter(x=>x==='rifle-case-ejected').length,1);
+    r.startReload(1500);for(const t of [1900,2200,2850,3100,3300])e.tick(t);
+    assert.deepEqual([r.magazine,r.reserve],[5,44]);
+    assert.equal(e.events.events.filter(x=>x==='rifle-case-ejected').length,1);
+});
+check('one-round top-up hides the loose cartridge throughout reload finish',()=>{
+    const e=environment(),r=e.rifle;
+    const {CharacterAnimation}=e.load('CharacterAnimation');
+    const a=Object.create(CharacterAnimation.prototype);
+    a.rifle=r;a.reloadCartridge={active:true};r.magazine=4;r.startReload(0);
+    e.tick(700);e.tick(1350);assert.equal(r.reloadPhase,'finish');
+    for(const t of [1350,1450,1600,1799]){
+        e.at(t);a.reloadCartridge.active=true;a.updateReloadCartridge();
+        assert.equal(a.reloadCartridge.active,false);
+    }
+    assert.deepEqual([r.magazine,r.reserve],[5,44]);
+});
+check('last-shot auto-reload ejects one case and pause delays it',()=>{
+    const e=environment(),r=e.rifle;r.magazine=1;r.tryFire(0);
+    assert.equal(r.reloadPhase,'prepare');r.clock.paused=true;e.tick(400);
+    assert.equal(e.events.events.filter(x=>x==='rifle-case-ejected').length,0);
+    r.clock.paused=false;e.tick(400);e.tick(700);e.tick(1350);
+    assert.equal(e.events.events.filter(x=>x==='rifle-case-ejected').length,1);
+});
+check('disable or a skipped bolt animation cannot replay an old case during a later reload',()=>{
+    for(const stop of ['disable','stall']){
+        const e=environment(),r=e.rifle;r.tryFire(0);
+        if(stop==='disable')r.onDisable();else e.tick(2000);
+        e.at(2200);r.startReload(2200);e.tick(2600);
+        assert.equal(e.events.events.filter(x=>x==='rifle-case-ejected').length,0);
+    }
+});
 console.log(`PASS ${passed} weapon/state/audio/settings regression groups`);

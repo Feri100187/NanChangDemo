@@ -3,6 +3,7 @@ import { PlayerController } from "./PlayerController";
 import { PlayerHealth } from "./PlayerHealth";
 import { RifleController } from "./RifleController";
 import { BOLT_CYCLE_MS } from "./WeaponMotion";
+import { CasingEjection } from "./CasingEjection";
 
 const { regClass, property } = Laya;
 
@@ -11,6 +12,10 @@ const { regClass, property } = Laya;
 export class CharacterAnimation extends Laya.Script {
     @property({ type: Number, caption: "动画融合比例" })
     blend = 0.06;
+    @property({ type: Number, caption: "弹壳保留时间（秒）" })
+    casingLifetime = 4;
+    @property({ type: Number, caption: "弹壳抛出速度倍率" })
+    casingSpeed = 1;
 
     private animator: Laya.Animator;
     private viewAnimator: Laya.Animator;
@@ -22,6 +27,7 @@ export class CharacterAnimation extends Laya.Script {
     private viewWeapon = "";
     private viewRightHand: Laya.Sprite3D;
     private reloadCartridge: Laya.Sprite3D;
+    private casings: CasingEjection;
     private readonly cartridgeLocal = new Laya.Vector3();
     private readonly cartridgeWorld = new Laya.Vector3();
     private readonly cartridgeRotation = new Laya.Quaternion();
@@ -71,6 +77,11 @@ export class CharacterAnimation extends Laya.Script {
         });
         this.viewArms = this.owner.getChildByName("FirstPersonArms") as Laya.Sprite3D;
         this.reloadCartridge = this.owner.getChildByName("ReloadCartridge") as Laya.Sprite3D;
+        const casingTemplate = this.owner.getChildByName("EjectedCaseTemplate") as Laya.Sprite3D;
+        if (casingTemplate && this.rifle) {
+            casingTemplate.active = false;
+            this.casings = new CasingEjection(casingTemplate, this.actor.scene as Laya.Scene3D);
+        }
         if (this.player && this.viewArms) {
             this.viewAnimator = this.viewArms.getComponent(Laya.Animator);
             this.visit(this.viewArms, node => {
@@ -102,12 +113,17 @@ export class CharacterAnimation extends Laya.Script {
         if (!this.actor) return;
         this.actor.on(EnemyAI.FIRED, this, this.fire);
         this.actor.on(RifleController.FIRED, this, this.fire);
+        this.actor.on(RifleController.CASE_EJECTED, this, this.ejectCase);
         this.actor.on(RifleController.MELEE_SWUNG, this, this.melee);
         this.actor.on(RifleController.MELEE_HEAVY_SWUNG, this, this.heavyMelee);
         this.actor.on(PlayerController.RESPAWNED, this, this.resetAction);
     }
 
     private fire(): void { this.startAction("Fire", 400); }
+    private ejectCase(): void {
+        if (this.clock?.paused || !this.rifle?.enabled) return;
+        this.casings?.eject(this.rifle.rifleModel.transform, this.now(), this.casingLifetime, this.casingSpeed);
+    }
     private melee(): void { this.startAction("Melee", 320); }
     private heavyMelee(): void { this.startAction("HeavyMelee", 620); }
     private startAction(name: string, duration: number): void {
@@ -119,6 +135,9 @@ export class CharacterAnimation extends Laya.Script {
     private resetAction(): void { this.action = ""; this.current = ""; }
 
     onUpdate(): void {
+        if (this.rifle && !this.rifle.enabled) this.casings?.clear();
+        else if (!this.clock?.paused) this.casings?.update(
+            Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05), this.now());
         if (!this.animator || !this.actor) return;
         const x = this.actor.transform.position.x;
         const dx = x - this.previousX;
@@ -241,11 +260,11 @@ export class CharacterAnimation extends Laya.Script {
             const t = p * p * (3 - 2 * p);
             this.cartridgeLocal.setValue(0.045 * (1 - t), 0.275 - 0.12 * t, 0.13);
             angle = 1 - t;
-        } else if (r.hasRoundToChamber) {
-            const phase = r.reloadPhase === "finish" ? r.reloadProgress : r.boltCycleProgress;
-            const start = r.reloadPhase === "finish" ? 0.65 : 0.30;
-            const push = r.reloadPhase === "finish" ? 0.72 : 0.60;
-            const end = r.reloadPhase === "finish" ? 0.92 : 0.86;
+        } else if (!r.isReloading && r.hasRoundToChamber) {
+            // Reload finish only closes the bolt. Re-showing a loose round here
+            // makes a one-round top-up look like two separate insertions.
+            const phase = r.boltCycleProgress;
+            const start = 0.48, push = 0.60, end = 0.86;
             if (phase < start || phase >= end) return;
             const rise = Math.max(0, Math.min(1, (phase - start) / 0.12));
             let t = Math.max(0, Math.min(1, (phase - push) / (end - push)));
@@ -293,10 +312,13 @@ export class CharacterAnimation extends Laya.Script {
     }
 
     onDisable(): void {
+        this.casings?.clear();
         if (this.reloadCartridge) this.reloadCartridge.active = false;
         this.actor?.offAllCaller(this);
         if (this.animator) this.animator.speed = 0;
         if (this.viewAnimator) this.viewAnimator.speed = 0;
         this.resetAction();
     }
+
+    onDestroy(): void { this.casings?.clear(); }
 }

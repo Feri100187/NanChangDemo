@@ -134,7 +134,9 @@ Demo01 和 Scene.ls 各有 1 把玩家枪、4 把敌人枪，共 10 处实例，
 
 `assets/resources/weapons/Ammunition/Cartridge792.lh` 是可在 IDE 中编辑和复用的完整步枪弹预制体，引用同目录 `Cartridge792.glb`。它是为本原型原创制作的轻量外观模型：黄铜瓶颈弹壳、铜色弹头、底火共 3 个网格和 3 个材质，900 个三角面，不依赖贴图。外观参考 7.92 毫米步枪弹，尺寸为游戏显示比例，不是历史测绘或工程图；弹头朝本地 -Z。
 
-可编辑 Blender 文件在 `source-assets/ammunition/Cartridge792.blend`；运行 `blender --background --factory-startup --python tools/create-cartridge-model.py` 可重建源模型和 GLB。保留 GLB、预制体的 `.meta` 以维持引用。`ProvidedPlayer.lh/ReloadCartridge` 按每一发的独立装填进度显示弹药；射后弹仓还有弹药时，也会在开栓后显示下一发上升、前推进入枪膛，空仓不会凭空出现下一发。收尾时会显示新装入弹药上膛。同一个节点重复使用，不逐发创建对象；暂停冻结位置，取消、结算和场景销毁会隐藏或释放它。命中继续使用原射线系统。Demo01 和 Scene.ls 共用此玩家预制体。
+可编辑 Blender 文件在 `source-assets/ammunition/Cartridge792.blend`；运行 `blender --background --factory-startup --python tools/create-cartridge-model.py` 可重建源模型和 GLB。保留 GLB、预制体的 `.meta` 以维持引用。`ProvidedPlayer.lh/ReloadCartridge` 只在每一发的装入阶段显示手中弹药，收尾仅关栓收手，不再重复显示一枚实弹，补 1 发只出现 1 次装入。射后弹仓还有弹药时，在抛壳之后显示下一发从弹仓上升、前推进入枪膛，空仓不会凭空出现下一发。同一个节点重复使用；暂停冻结位置，取消、结算和场景销毁会隐藏或释放它。命中继续使用原射线系统。Demo01 和 Scene.ls 共用此玩家预制体。
+
+空弹壳使用独立的原创 `Ammunition/EjectedCase792.lh` / `.glb`，只有开口黄铜壳与底火，不带弹头；Blender 源文件在 `source-assets/ammunition/EjectedCase792.blend`，在上述重建命令末尾加 `-- --case-only` 可单独重建。`ProvidedPlayer.lh/EjectedCaseTemplate` 是默认隐藏的模板。每次实际射击留下一个待抛壳标记，枪栓后拉到位时只抛出一次，最后一发自动装填也适用；单纯按 R 补弹不会凭空抛壳。`CasingEjection.ts` 使用重力、角速度和沿位移的分段射线检测，遇现有关卡墙地面反弹、衰减并落稳；不添加会拦截双方射线或推挤角色的碰撞体。CharacterAnimation 可调抛出速度倍率和保留时间（默认 4 秒、最多同时 8 枚）。寿命与运动随关卡暂停，结算及销毁清理，不使用异步加载或延迟回调。
 
 ## 角色模型资源
 

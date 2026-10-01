@@ -1,0 +1,13 @@
+{
+  "_$ver": 1,
+  "_$id": "a192krdw",
+  "_$type": "Sprite3D",
+  "name": "EjectedCase792",
+  "_$child": [
+    {
+      "_$id": "emptycasemodel",
+      "_$prefab": "0f0cb1f0-ef60-4a2b-b84b-7f017c55bb63",
+      "name": "EmptyCaseModel"
+    }
+  ]
+}

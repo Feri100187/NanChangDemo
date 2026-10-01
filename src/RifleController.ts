@@ -10,6 +10,7 @@ const { regClass, property } = Laya;
 @regClass()
 export class RifleController extends Laya.Script {
     static readonly FIRED = "rifle-fired";
+    static readonly CASE_EJECTED = "rifle-case-ejected";
     static readonly RELOAD_STARTED = "rifle-reload-started";
     static readonly RELOAD_ENDED = "rifle-reload-ended";
     static readonly RELOAD_STAGE_CHANGED = "rifle-reload-stage";
@@ -106,6 +107,7 @@ export class RifleController extends Laya.Script {
     private boltPull = 0;
     private reloadInitialLift = 0;
     private reloadInitialPull = 0;
+    private spentCasePending = false;
 
     get currentWeapon(): "rifle" | "knife" { return this.weaponMode; }
     get isReloading(): boolean { return this.reloading; }
@@ -347,6 +349,7 @@ export class RifleController extends Laya.Script {
         this.magazine--;
         this.shotCount++;
         this.lastShotAt = now;
+        this.spentCasePending = true;
         this.owner.event(RifleController.FIRED);
         this.playerControl.syncCameraForShot();
         const p = this.viewCamera.transform.position;
@@ -493,6 +496,16 @@ export class RifleController extends Laya.Script {
         this.rifleModel.transform.localPosition = this.modelPosition;
         this.weaponRotation.setValue(-7 * tilt, 8 * tilt, -18 * tilt);
         this.rifleModel.transform.localRotationEuler = this.weaponRotation;
+        // The last shot enters reload preparation immediately, so follow actual
+        // bolt travel rather than the standalone shot animation's progress.
+        if (this.spentCasePending) {
+            if (this.enabled && this.weaponMode === "rifle" && pull >= 0.65) {
+                this.spentCasePending = false;
+                this.owner.event(RifleController.CASE_EJECTED);
+            } else if (this.weaponMode !== "rifle" || phase < 0) {
+                this.spentCasePending = false; // Never replay an old ejection after a stall/switch.
+            }
+        }
     }
 
     private updateAimPoint(): void {
@@ -533,6 +546,7 @@ export class RifleController extends Laya.Script {
     }
 
     onDisable(): void {
+        this.spentCasePending = false;
         this.stopTrigger();
         this.cancelReload();
         this.pendingMeleeHit = false;
