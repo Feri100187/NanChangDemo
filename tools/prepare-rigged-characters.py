@@ -39,6 +39,31 @@ def limb(rig, upper, lower, end, target, pole):
     aim(rig, lower, end, shoulder+direction*distance)
 
 
+def hand_frame(rig, rest, side, wrist, forward, palm):
+    """Place the palm, not just the wrist: the local bend direction faces the grip."""
+    hand = rig.pose.bones[f'{side}_Hand']
+    rest_forward = (rest[f'{side}_Middle_01'].translation-rest[hand.name].translation).normalized()
+    finger = rest[f'{side}_Middle_01'].to_3x3()
+    rest_palm = finger.col[0].cross(finger.col[1]).normalized()
+    def frame(f, p):
+        f=f.normalized();p=(p-f*p.dot(f)).normalized()
+        return Matrix((f,p,f.cross(p))).transposed()
+    rotation=frame(forward,palm) @ frame(rest_forward,rest_palm).transposed()
+    matrix=(rotation @ rest[hand.name].to_3x3().normalized()).to_4x4()
+    matrix.translation=wrist
+    hand.matrix=matrix
+    bpy.context.view_layer.update()
+
+
+def knife_pose(phase, heavy=False):
+    """Same visual motion as KnifeView.setPose; all values are camera-local metres/degrees."""
+    swing=math.sin(max(0,min(1,phase))*math.pi)
+    p=Vector((.25-swing*(.36 if heavy else .22),-.08+swing*(.18 if heavy else .08),-.90-swing*(.34 if heavy else .24)))
+    x,y,z=[math.radians(v) for v in (35-swing*(80 if heavy else 45),-18+swing*(35 if heavy else 65),-28+swing*(-105 if heavy else 75))]
+    rotation=Matrix.Rotation(y,3,'Y') @ Matrix.Rotation(x,3,'X') @ Matrix.Rotation(z,3,'Z')
+    return p,rotation
+
+
 CLIPS = {'Idle':2.0, 'Walk':1.0, 'Run':.64, 'CrouchIdle':2.0,
          'CrouchWalk':1.2, 'Aim':2.0, 'Fire':.4, 'Reload':3.3,
          'Jump':.7, 'Melee':.32, 'HeavyMelee':.62,
@@ -46,7 +71,9 @@ CLIPS = {'Idle':2.0, 'Walk':1.0, 'Run':.64, 'CrouchIdle':2.0,
          'CrouchHeavyMelee':.62, 'StrafeLeft':1.0, 'StrafeRight':1.0}
 PLAYER_CLIPS = {'Hold':2.0, 'HoldWalk':1.0, 'HoldRun':.64, 'CrouchHold':2.0,
                 'CrouchHoldWalk':1.2, 'AimWalk':1.0, 'CrouchAim':2.0,
-                'CrouchAimWalk':1.2, 'ViewHold':2.0, 'ViewAim':2.0, 'ViewReload':3.3}
+                'CrouchAimWalk':1.2, 'ViewHold':2.0, 'ViewAim':2.0, 'ViewReload':3.3,
+                'KnifeHold':2.0, 'KnifeWalk':1.0, 'KnifeRun':.64, 'CrouchKnifeHold':2.0,
+                'CrouchKnifeWalk':1.2, 'ViewKnifeHold':2.0, 'ViewKnifeLight':.32, 'ViewKnifeHeavy':.62}
 
 for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
     bpy.ops.object.select_all(action='SELECT')
@@ -97,7 +124,7 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                 side = 'L' if vertex.co.x > 0 else 'R'
                 weights = [(view_mesh.vertex_groups[f'{side}_Upperarm'].index,1)]
             total = sum(w for _,w in weights)
-            for group in list(vertex.groups): view_mesh.vertex_groups[group.group].remove([vertex.index])
+            for index in [g.group for g in vertex.groups]: view_mesh.vertex_groups[index].remove([vertex.index])
             for index,weight in weights: view_mesh.vertex_groups[index].add([vertex.index],weight/total,'REPLACE')
     scale = 1 if role == 'Player' else 2.55/1.8
     def pos(x,y,z):
@@ -156,18 +183,33 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                 y += .16*math.sin(math.pi*phase)
                 z += .23*math.sin(math.pi*phase)
             view = name.startswith('View')
+            knife = 'Knife' in name
+            hand_forward = hand_palm = None
             if view:
                 # Coordinates below are metres relative to the unscaled rifle mesh.
                 # Put the sleeve cut behind/below the view; keep both grip points fixed
                 # while tucking the elbows for ADS. The gun/camera still own ADS motion.
                 ads = name=='ViewAim'
                 shoulder = pos(-.33 if side=='L' else .25, -.52 if ads else -.47, .24 if side=='L' else .63)
+                if knife: shoulder=pos(-.32 if side=='L' else .34,-.73,.04)
                 upper = rig.pose.bones[f'{side}_Upperarm']
                 matrix = upper.matrix.copy()
                 matrix.translation = shoulder
                 upper.matrix = matrix
                 bpy.context.view_layer.update()
-                target = pos(-.018 if side=='L' else .025, .045 if side=='L' else .015, -.16 if side=='L' else .23)
+                target = pos(-.062,.089,-.17) if side=='L' else pos(.034,.130,.325)
+                hand_forward = pos(.97,.10,-.20) if side=='L' else pos(0,-.62,-.78)
+                hand_palm = pos(0,1,0) if side=='L' else pos(-1,0,0)
+                if knife:
+                    p,rotation=knife_pose(phase if name!='ViewKnifeHold' else 0,name=='ViewKnifeHeavy')
+                    if side=='R':
+                        target=pos(*(p+rotation@Vector((.035,.050,.23))))
+                        hand_forward=pos(*(rotation@Vector((0,-.80,-.60))))
+                        hand_palm=pos(*(rotation@Vector((-1,0,0))))
+                    else:
+                        target=pos(-.25,-.19,-.56-.025*math.sin(phase*math.pi) if name!='ViewKnifeHold' else -.56)
+                        hand_forward=pos(.15,.1,-.98)
+                        hand_palm=pos(0,-1,0)
                 if name=='ViewReload' and side=='R':
                     target += pos(-.05*math.sin(math.pi*phase), .12*math.sin(math.pi*phase), -.17*math.sin(math.pi*phase))
                 # FPS projection requires longer sleeves than the full-body rig. Stretch
@@ -179,24 +221,38 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                 for column in range(3): matrix.col[column].xyz *= factor
                 upper.matrix=matrix
                 bpy.context.view_layer.update()
+                pole=pos(-.42 if side=='L' else .36,-.32 if ads else -.28,.36 if side=='L' else .48)
+                if knife: pole=pos(-.42 if side=='L' else .52,-.55,-.14)
                 limb(rig,f'{side}_Upperarm',f'{side}_Forearm',f'{side}_Hand',target,
-                    pos(-.42 if side=='L' else .36,-.32 if ads else -.28,.36 if side=='L' else .48))
+                    pole)
             else:
                 limb(rig,f'{side}_Upperarm',f'{side}_Forearm',f'{side}_Hand',pos(x,y,z),pos(sign*.42,y-.15,.02))
             hand=rig.pose.bones[f'{side}_Hand']
             aim(rig,hand.name,None,hand.head+(pos(0,0,-.1) if view else pos(0,0,.1) if role=='Enemy' or holding else pos(0,-.1,0)))
             if view:
-                # Cancel inherited stretch at the wrist so the supplied hands keep size.
-                matrix=hand.matrix.copy()
-                for column in range(3): matrix.col[column].xyz = matrix.col[column].xyz.normalized()
-                hand.matrix=matrix
-                bpy.context.view_layer.update()
+                hand_frame(rig,rest,side,target,hand_forward,hand_palm)
             for finger in ['Index','Middle','Ring','Little','Thumb']:
                 for segment in ['01','02','03']:
                     bone=rig.pose.bones.get(f'{side}_{finger}_{segment}')
-                    if bone: bone.rotation_quaternion=Quaternion((1,0,0),math.radians(20 if finger=='Index' else 38))
+                    angle=20 if finger=='Index' else 38
+                    if view:
+                        angles= [50,60,45] if side=='R' else [45,55,40]
+                        if finger=='Thumb': angles=[25,35,25]
+                        if side=='R' and finger=='Index' and not knife: angles=[8,32,25]
+                        if side=='L' and knife: angles=[25,35,25]
+                        angle=angles[int(segment)-1]
+                    if bone: bone.rotation_quaternion=Quaternion((1,0,0),math.radians(angle))
+            if view and side=='L' and not knife:
+                bpy.context.view_layer.update()
+                limb(rig,'L_Thumb_01','L_Thumb_02','L_Thumb_03',pos(0,.14,-.18),pos(-.04,.155,-.16))
+                thumb=rig.pose.bones['L_Thumb_03']
+                aim(rig,thumb.name,None,thumb.head+pos(.02,0,0))
         bpy.context.view_layer.update()
 
+    if ('--preview-grip' in sys.argv or '--preview-knife' in sys.argv) and role=='Player':
+        pose('ViewKnifeHold' if '--preview-knife' in sys.argv else 'ViewHold',0)
+        bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'.tmp/GripPreview.blend'))
+        continue
     bpy.context.scene.render.fps=30
     clips = {**CLIPS, **(PLAYER_CLIPS if role=='Player' else {})}
     for name,duration in clips.items():

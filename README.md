@@ -128,11 +128,15 @@ Demo01 和 Scene.ls 各有 1 把玩家枪、4 把敌人枪，共 10 处实例，
 
 运行资源位于 `assets/resources/characters/Enemy/` 和 `Player/`：`AnimatedEnemy.glb` / `AnimatedPlayer.glb` 包含蒙皮与动画，`EnemyAnimation.controller` / `PlayerAnimation.controller` 是可在 IDE 打开的状态机，原公共 `ProvidedEnemy.lh` / `ProvidedPlayer.lh` 内的 `AnimatedModel` 绑定相应状态机。Demo01 与 Scene.ls 自动复用这两个公共预制体，两份场景文件未改。模型、状态机、IDE 提取的 `textures/` 与全部 `.meta` 应一起保留。敌人仍高 2.55 米；原 Head、Torso、Legs、LeftArm、RightArm 受击区域、汉阳造挂点、伤害、视野参数、巡逻范围和击倒计数保持不变。死亡时沿用原来的即时隐藏行为，同时正确关闭蒙皮渲染器。
 
-玩家仍高 1.8 米，由同一蒙皮在站立与下蹲动作间过渡，运行时隐藏 `FirstPersonHiddenHead`；IDE 中可查看完整人物。持枪时另隐藏身体上的 `Arms`，由同一 GLB 的 `ViewArms` 显示第一人称双手，切刀时恢复身体双臂。身体仍只跟随水平朝向，脚底射线与 0.04 米补偿保持原样，站立/下蹲碰撞高度仍为 2/1.2 米。现有第一人称枪械、镜头、后坐力和短刀外观继续由原控制器负责。
+玩家仍高 1.8 米，由同一蒙皮在站立与下蹲动作间过渡，运行时隐藏 `FirstPersonHiddenHead`；IDE 中可查看完整人物。持枪和持刀均隐藏身体上的 `Arms`，由同一 GLB 的 `ViewArms` 显示第一人称双手，避免重复手臂。身体仍只跟随水平朝向，脚底射线与 0.04 米补偿保持原样，站立/下蹲碰撞高度仍为 2/1.2 米。第一人称枪械、镜头和后坐力仍由原控制器负责。
 
 `src/CharacterAnimation.ts` 只读取现有游戏状态与实际开火/挥刀事件，通过 Animator 播放、融合已绑定状态，不移动角色、不修改伤害或装填完成时间。玩家持枪使用 Hold、HoldWalk、HoldRun、Aim、AimWalk 及其蹲姿状态，保留跳跃、装填、开火和近战状态。敌人巡逻使用 Walk：沿原有 X 方向 ±1.6 米范围，以原 0.75 米/秒速度前进，先原地转向目标（180 度/秒），对齐后才迈步；到端点后停步转身，视锥跟随实际朝向。警戒与战斗仍按原逻辑面向玩家。
 
-`ProvidedPlayer.lh/FirstPersonArms` 是同一 `AnimatedPlayer.glb` 的额外实例，共享模型、材质、贴图和状态机，IDE 默认隐藏，运行时按武器切换显示。ViewHold 左手托护木、右手握枪柄，ViewAim 收拢双肘，ViewReload 配合现有装填时长。手臂实例按枪械实际位置和旋转更新，跟随俯仰、开镜与后坐；不修改枪身、红点、射线或镜头参数。ViewArms 的肩部权重仅用于第一人称袖口，避免拉扯到胸部；其渲染裁剪范围覆盖视图姿态，不增加碰撞体。暂停和结算冻结动画，继续保留进度；取消装填返回当前状态，切刀再切回重新选取握枪状态，重开销毁旧实例与监听。
+`ProvidedPlayer.lh/FirstPersonArms` 是同一 `AnimatedPlayer.glb` 的额外实例，共享模型、材质、贴图和状态机，IDE 默认隐藏，运行时选取当前武器的握持姿态。ViewHold 左手托护木，右手掌包住枪托细部，食指靠近扳机护圈；手掌方向、拇指和各指节分别拟合实际网格，消除只定位手腕留下的空隙。ViewAim 收拢双肘，ViewReload 配合现有装填时长。手臂实例跟随枪身实际位置、俯仰、开镜与后坐，不修改枪身、红点、射线或镜头参数。
+
+短刀使用 ViewKnifeHold、ViewKnifeLight、ViewKnifeHeavy，身体对应 KnifeHold、KnifeWalk、KnifeRun 及蹲姿状态。右手握刀，左手保持防护姿态；轻击横挥、重击下压，随后回到待机。刀柄与护手调整到手掌可包住的比例，刀柄降低高光；刀刃尺寸不变。仅调整短刀视图的握持位置和挥动姿态，伤害、距离、320/620 毫秒动作窗口、命中时刻及冷却全部沿用 RifleController。ViewKnifeLight/Heavy 按真实动作时长校正播放速度；LayaAir 3.4.1 的 Animator 在 LateUpdate 之后更新，因此 `onAfterSceneUpdate` 再按实际刀柄对齐右手握点及朝向，避免高帧率或动作切换时脱手。切换武器时立即切换视图坐标系，不在两种坐标系之间混合。
+
+ViewArms 的肩部权重仅用于第一人称袖口，避免拉扯到胸部；其渲染裁剪范围覆盖视图姿态，不增加碰撞体。暂停和结算冻结手部、刀身与动画进度，继续保留原动作；取消装填和切换武器会选择正确握持状态，重开销毁旧实例与监听。修改刀柄握点或挥动轨迹时，应同步 `KnifeView.setPose`、生成脚本的 `knife_pose` / 手掌姿态，以及 CharacterAnimation 的握点约束；握点旋转包含 glTF 导入的关节局部 X 轴 -90° 修正。
 
 重建步骤：运行 `blender --background --factory-startup --python tools/prepare-rigged-characters.py`，等待 IDE 导入完成，再运行 `node tools/configure-character-animations.cjs`。后一个命令会重建两份 `.controller` 的状态列表，若已在 IDE 手调状态机，应先保存改动再决定是否覆盖；它不修改场景或公共预制体。Blender 中可编辑生成于 `.tmp/AnimatedPlayer.blend` / `.tmp/AnimatedEnemy.blend` 的动作，正式导出仍须保留现有 GLB `.meta` 以稳定引用。源模型与贴图权利仍归原提供方，本轮没有下载新人物素材。
 

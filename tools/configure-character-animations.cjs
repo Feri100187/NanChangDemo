@@ -13,7 +13,7 @@ for (const role of (process.argv[2] ? [process.argv[2]] : ['Player', 'Enemy'])) 
     const states = gltf.animations.map((clip, i) => ({
         id: String(i), name: clip.name,
         clip: { _$uuid: `${uuid}@lani${i}` },
-        _isLooping: /Fire|Reload|Melee|Jump/.test(clip.name) ? 2 : 1,
+        _isLooping: /Fire|Reload|Melee|Jump|ViewKnifeLight|ViewKnifeHeavy/.test(clip.name) ? 2 : 1,
         speed: 1, clipStart: 0, clipEnd: 1,
         x: 280 + (i % 4) * 220, y: 80 + Math.floor(i / 4) * 110,
         soloTransitions: []

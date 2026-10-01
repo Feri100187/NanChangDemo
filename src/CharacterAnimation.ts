@@ -16,6 +16,19 @@ export class CharacterAnimation extends Laya.Script {
     private viewArms: Laya.Sprite3D;
     private bodyArms: Laya.Node;
     private viewState = "";
+    private viewWeapon = "";
+    private viewRightHand: Laya.Sprite3D;
+    // Weapon-local wrist frame baked by prepare-rigged-characters.py. The hand
+    // stays attached even when Animator and weapon updates land on different frames.
+    private readonly knifeGrip = new Laya.Vector3(0.035, 0.050, 0.23);
+    // Includes the glTF joint-axis correction (-90 degrees around local X).
+    private readonly knifeGripRotation = new Laya.Quaternion(-0.6824695299, -0.1804619160, 0.6808968266, 0.1950598605);
+    private readonly gripTarget = new Laya.Vector3();
+    private readonly correctedPosition = new Laya.Vector3();
+    private readonly gripRotation = new Laya.Quaternion();
+    private readonly inverseHand = new Laya.Quaternion();
+    private readonly correction = new Laya.Quaternion();
+    private readonly correctedRotation = new Laya.Quaternion();
     private actor: Laya.Sprite3D;
     private player: PlayerController;
     private health: PlayerHealth;
@@ -52,6 +65,7 @@ export class CharacterAnimation extends Laya.Script {
         if (this.player && this.viewArms) {
             this.viewAnimator = this.viewArms.getComponent(Laya.Animator);
             this.visit(this.viewArms, node => {
+                if (node.name === "R_Hand") this.viewRightHand = node as Laya.Sprite3D;
                 if (node.name === "Body" || node.name === "FirstPersonHiddenHead" || node.name === "Arms") node.active = false;
                 const renderer = node.getComponent(Laya.SkinnedMeshRenderer);
                 if (renderer && node.name === "ViewArms") {
@@ -107,6 +121,12 @@ export class CharacterAnimation extends Laya.Script {
         this.updateArmsVisibility();
         if (stopped) return;
         this.updateViewState();
+        if (this.viewAnimator && this.rifle?.meleeViewState) {
+            const clip = this.viewAnimator.getControllerLayer(0).getAnimatorState(this.viewState)?.clip;
+            // Baked clips are frame-quantized; match the weapon's exact 320/620 ms
+            // motion instead of letting that rounding separate the hand and blade.
+            this.viewAnimator.speed = clip ? clip.duration() / this.rifle.meleeDurationSeconds : 1;
+        }
         const crouch = this.player?.isCrouching ?? false;
         if (this.rifle?.isReloading) {
             this.setState(crouch ? "CrouchReload" : "Reload", this.rifle.reloadProgress, true);
@@ -132,30 +152,33 @@ export class CharacterAnimation extends Laya.Script {
                     ? aiming ? moving ? "CrouchAimWalk" : "CrouchAim" : moving ? "CrouchHoldWalk" : "CrouchHold"
                     : aiming ? moving ? "AimWalk" : "Aim"
                     : this.player.movementSpeed > this.player.walkSpeed ? "HoldRun" : moving ? "HoldWalk" : "Hold"
-                : crouch ? moving ? "CrouchWalk" : "CrouchIdle"
-                : this.player.movementSpeed > this.player.walkSpeed ? "Run"
-                : moving ? "Walk"
-                : this.player.isAimActive ? "Aim" : "Idle";
+                : crouch ? moving ? "CrouchKnifeWalk" : "CrouchKnifeHold"
+                : this.player.movementSpeed > this.player.walkSpeed ? "KnifeRun"
+                : moving ? "KnifeWalk" : "KnifeHold";
         }
         this.setState(state);
     }
 
     private updateArmsVisibility(): void {
         if (!this.viewArms || !this.rifle) return;
-        const holding = this.rifle.currentWeapon === "rifle";
-        if (this.viewArms.active !== holding) {
-            this.viewArms.active = holding;
-            // Re-enabling an imported Animator may replay its default body state.
+        if (!this.viewArms.active || this.viewWeapon !== this.rifle.currentWeapon) {
+            this.viewArms.active = true;
+            this.viewWeapon = this.rifle.currentWeapon;
+            // Rifle poses are gun-local; knife poses are camera-pivot-local. Never
+            // blend between these spaces when switching weapons.
             this.viewState = "";
         }
-        if (this.bodyArms) this.bodyArms.active = !holding;
+        if (this.bodyArms) this.bodyArms.active = false;
     }
 
     private updateViewState(): void {
         if (!this.viewAnimator || !this.rifle || !this.viewArms.active) return;
-        const state = this.rifle.isReloading ? "ViewReload" : this.rifle.aimBlend > 0.5 ? "ViewAim" : "ViewHold";
+        const knifeAction = this.rifle.meleeViewState;
+        const state = this.rifle.currentWeapon === "knife" ? knifeAction || "ViewKnifeHold"
+            : this.rifle.isReloading ? "ViewReload" : this.rifle.aimBlend > 0.5 ? "ViewAim" : "ViewHold";
         if (state === this.viewState) return;
-        if (state === "ViewReload" || !this.viewState) this.viewAnimator.play(state, 0, this.rifle.isReloading ? this.rifle.reloadProgress : 0);
+        if (state === "ViewReload" || knifeAction || !this.viewState) this.viewAnimator.play(state, 0,
+            knifeAction ? this.rifle.meleeProgress : this.rifle.isReloading ? this.rifle.reloadProgress : 0);
         else this.viewAnimator.crossFade(state, this.blend, 0, 0);
         this.viewState = state;
     }
@@ -164,8 +187,32 @@ export class CharacterAnimation extends Laya.Script {
         if (!this.viewArms?.active || !this.rifle?.rifleModel) return;
         // The same unscaled mesh is used by the rifle prefab. Follow its actual world
         // pose so pitch, ADS camera motion and recoil never separate hands from the gun.
-        this.viewArms.transform.position = this.rifle.rifleModel.transform.position;
-        this.viewArms.transform.rotation = this.rifle.rifleModel.transform.rotation;
+        const reference = this.rifle.currentWeapon === "knife"
+            ? this.rifle.rifleModel.parent as Laya.Sprite3D : this.rifle.rifleModel;
+        this.viewArms.transform.position = reference.transform.position;
+        this.viewArms.transform.rotation = reference.transform.rotation;
+    }
+
+    onAfterSceneUpdate(): void {
+        // LayaAir 3.4.1 evaluates Animator AFTER onLateUpdate. Apply the grip
+        // constraint to the final bone pose, before skinned rendering is prepared.
+        if (this.viewArms?.active && this.rifle?.currentWeapon === "knife") this.alignKnifeGrip();
+    }
+
+    private alignKnifeGrip(): void {
+        const knife = this.rifle.knifeModel;
+        if (!knife || !this.viewRightHand) return;
+        Laya.Quaternion.multiply(knife.transform.rotation, this.knifeGripRotation, this.gripRotation);
+        Laya.Quaternion.invert(this.viewRightHand.transform.rotation, this.inverseHand);
+        Laya.Quaternion.multiply(this.gripRotation, this.inverseHand, this.correction);
+        Laya.Quaternion.multiply(this.correction, this.viewArms.transform.rotation, this.correctedRotation);
+        this.viewArms.transform.rotation = this.correctedRotation;
+        Laya.Vector3.transformCoordinate(this.knifeGrip, knife.transform.worldMatrix, this.gripTarget);
+        const hand = this.viewRightHand.transform.position;
+        const position = this.viewArms.transform.position;
+        this.correctedPosition.setValue(position.x + this.gripTarget.x - hand.x,
+            position.y + this.gripTarget.y - hand.y, position.z + this.gripTarget.z - hand.z);
+        this.viewArms.transform.position = this.correctedPosition;
     }
 
     private setState(name: string, progress = 0, immediate = false): void {

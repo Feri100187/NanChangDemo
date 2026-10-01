@@ -87,6 +87,14 @@ export class RifleController extends Laya.Script {
     get currentWeapon(): "rifle" | "knife" { return this.weaponMode; }
     get isReloading(): boolean { return this.reloading; }
     get aimBlend(): number { return this.aimProgress; }
+    get knifeModel(): Laya.Sprite3D { return this.knife?.root; }
+    /** Read-only animation timing; damage and cooldowns remain owned by this controller. */
+    get meleeProgress(): number { return ((this.clock?.now() ?? performance.now()) - this.swingStartAt) / this.swingDuration; }
+    get meleeDurationSeconds(): number { return this.swingDuration / 1000; }
+    get meleeViewState(): "ViewKnifeLight" | "ViewKnifeHeavy" | null {
+        return this.weaponMode === "knife" && this.meleeProgress >= 0 && this.meleeProgress < 1
+            ? this.heavySwing ? "ViewKnifeHeavy" : "ViewKnifeLight" : null;
+    }
     get reloadProgress(): number {
         return this.reloading ? 1 - (this.reloadEndAt - (this.clock?.now() ?? performance.now()))
             / (this.reloadSeconds * 1000) : 0;
