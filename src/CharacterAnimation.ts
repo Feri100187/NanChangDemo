@@ -4,6 +4,7 @@ import { PlayerHealth } from "./PlayerHealth";
 import { RifleController } from "./RifleController";
 import { BOLT_CYCLE_MS } from "./WeaponMotion";
 import { CasingEjection } from "./CasingEjection";
+import { FirstPersonArmIK } from "./FirstPersonArmIK";
 
 const { regClass, property } = Laya;
 
@@ -28,6 +29,7 @@ export class CharacterAnimation extends Laya.Script {
     private viewRightHand: Laya.Sprite3D;
     private reloadCartridge: Laya.Sprite3D;
     private casings: CasingEjection;
+    private armIK: FirstPersonArmIK;
     private readonly cartridgeLocal = new Laya.Vector3();
     private readonly cartridgeWorld = new Laya.Vector3();
     private readonly cartridgeRotation = new Laya.Quaternion();
@@ -87,20 +89,16 @@ export class CharacterAnimation extends Laya.Script {
             this.viewAnimator = this.viewArms.getComponent(Laya.Animator);
             this.visit(this.viewArms, node => {
                 if (node.name === "R_Hand") this.viewRightHand = node as Laya.Sprite3D;
-                if (node.name === "Body" || node.name === "FirstPersonHiddenHead" || node.name === "Arms") node.active = false;
-                const renderer = node.getComponent(Laya.SkinnedMeshRenderer);
-                if (renderer && node.name === "ViewArms") {
-                    // The imported bound describes the T-pose. View poses move these
-                    // same vertices around the gun; include that range in bone space.
-                    renderer.localBounds = new Laya.Bounds(new Laya.Vector3(-2, -2, -2), new Laya.Vector3(2, 2, 2));
-                    renderer.castShadow = false;
-                }
+                if (node.name === "Body" || node.name === "FirstPersonHiddenHead" || node.name === "Arms" || node.name === "ViewArms") node.active = false;
             });
             this.viewAnimator.cullingMode = Laya.Animator.CULLINGMODE_ALWAYSANIMATE;
             this.updateArmsVisibility();
             this.viewAnimator.play("ViewHold", 0, 0);
             this.viewState = "ViewHold";
             this.viewAnimator.speed = this.clock?.paused ? 0 : 1;
+            this.armIK = new FirstPersonArmIK(body as Laya.Sprite3D, this.viewArms, this.actor.scene as Laya.Scene3D);
+            const armRenderer = this.bodyArms?.getComponent(Laya.SkinnedMeshRenderer);
+            if (armRenderer) armRenderer.localBounds = new Laya.Bounds(new Laya.Vector3(-1.5, -0.5, -1.5), new Laya.Vector3(1.5, 2.5, 1.5));
         }
         if (this.actor) this.previousX = this.actor.transform.position.x;
         if (this.animator) {
@@ -206,7 +204,7 @@ export class CharacterAnimation extends Laya.Script {
             // blend between these spaces when switching weapons.
             this.viewState = "";
         }
-        if (this.bodyArms) this.bodyArms.active = false;
+        if (this.bodyArms) this.bodyArms.active = true;
     }
 
     private updateViewState(): void {
@@ -235,8 +233,8 @@ export class CharacterAnimation extends Laya.Script {
 
     onLateUpdate(): void {
         if (!this.viewArms?.active || !this.rifle?.rifleModel) return;
-        // The same unscaled mesh is used by the rifle prefab. Follow its actual world
-        // pose so pitch, ADS camera motion and recoil never separate hands from the gun.
+        // Follow the weapon with the hidden hand targets. The visible arms keep
+        // their body anchors and are solved after the Animator has evaluated.
         const reference = this.rifle.currentWeapon === "knife"
             ? this.rifle.rifleModel.parent as Laya.Sprite3D : this.rifle.rifleModel;
         this.viewArms.transform.position = reference.transform.position;
@@ -252,6 +250,8 @@ export class CharacterAnimation extends Laya.Script {
         // Re-read the final camera/clearance pose after all LateUpdate callbacks.
         this.onLateUpdate();
         if (this.viewArms?.active && this.rifle?.currentWeapon === "knife") this.alignKnifeGrip();
+        if (!this.clock?.paused && this.player?.enabled) this.armIK?.update(this.player.viewModelScale,
+            Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05));
         this.updateReloadCartridge();
     }
 
@@ -329,5 +329,5 @@ export class CharacterAnimation extends Laya.Script {
         this.resetAction();
     }
 
-    onDestroy(): void { this.casings?.clear(); }
+    onDestroy(): void { this.casings?.clear(); this.armIK?.destroy(); }
 }

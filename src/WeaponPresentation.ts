@@ -1,7 +1,7 @@
-/** Fits the whole first-person assembly into the free space around the camera.
- * Uses ordinary world depth/lighting; never draws the gun through a wall. */
+/** Fits weapons and hand targets into the free space around the camera.
+ * Visible arms are anchored separately; world depth and lighting remain enabled. */
 export class WeaponPresentation {
-    scale = 1;
+    scale = 0.55;
     private obstruction = 0;
     private readonly probe = new Laya.SphereColliderShape(0.045);
     private readonly hit = new Laya.HitResult();
@@ -29,7 +29,7 @@ export class WeaponPresentation {
 
     update(eye: Laya.Vector3, camera: Laya.Camera, angles: Laya.Vector3, aim: number, dt: number): void {
         this.apply(eye, camera, angles, aim);
-        let safeScale = 1;
+        let safeScale = 0.55;
         const start = camera.transform.position;
         // A padded envelope covers the muzzle, sleeves, reload hand and knife swing.
         // Sweeps have volume, including at door edges and oblique wall approaches.
@@ -47,7 +47,7 @@ export class WeaponPresentation {
         // Move inward immediately for safety; ease out to avoid a pop on leaving a wall.
         this.scale = safeScale < this.scale ? safeScale
             : this.scale + (safeScale - this.scale) * (1 - Math.exp(-12 * dt));
-        this.obstruction += ((1 - safeScale) - this.obstruction) * (1 - Math.exp(-12 * dt));
+        this.obstruction += ((1 - safeScale / 0.55) - this.obstruction) * (1 - Math.exp(-12 * dt));
         this.apply(eye, camera, angles, aim);
     }
 
