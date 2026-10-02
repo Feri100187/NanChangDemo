@@ -254,6 +254,21 @@
           "x": 280,
           "y": 520,
           "soloTransitions": []
+        },
+        {
+          "id": "17",
+          "name": "Death",
+          "clip": {
+            "_$uuid": "e81a0fa5-37eb-4993-bc2f-9593d7b122fc@lani17"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 520,
+          "soloTransitions": [],
+          "transitions": []
         }
       ]
     }

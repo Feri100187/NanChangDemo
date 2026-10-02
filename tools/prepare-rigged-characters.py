@@ -11,6 +11,9 @@ import json
 import re
 from pathlib import Path
 from mathutils import Matrix, Vector, Quaternion
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.dont_write_bytecode = True
+from append_death_animation import append_death_animation
 
 ROOT = Path(__file__).resolve().parents[1]
 motion_source = (ROOT/'src/WeaponMotion.ts').read_text(encoding='utf8')
@@ -101,7 +104,10 @@ PLAYER_CLIPS = {'Hold':2.0, 'HoldWalk':1.0, 'HoldRun':.64, 'CrouchHold':2.0,
                 'ViewBolt':1.05, 'KnifeHold':2.0, 'KnifeWalk':1.0, 'KnifeRun':.64, 'CrouchKnifeHold':2.0,
                 'CrouchKnifeWalk':1.2, 'ViewKnifeHold':2.0, 'ViewKnifeLight':.32, 'ViewKnifeHeavy':.62}
 
-for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
+death_only = '--enemy-death-only' in sys.argv
+if '--player-only' in sys.argv and ('--enemy-only' in sys.argv or death_only):
+    raise ValueError('Choose only one character export scope')
+for role in (['Player'] if '--player-only' in sys.argv else ['Enemy'] if '--enemy-only' in sys.argv or death_only else ['Player','Enemy']):
     bpy.ops.object.select_all(action='SELECT')
     bpy.ops.object.delete(use_global=False)
     for action in list(bpy.data.actions):
@@ -188,6 +194,44 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
     feet = {s:rest[f'{s}_Foot'].translation.copy() for s in ['L','R']}
 
     def pose(name, phase):
+        if name == 'Death':
+            # Reuse the rifle-holding pose and supplied skin. Buckle with planted
+            # feet, then fall into a compact bent-knee pose; never move the AI root.
+            pose('Aim', 0)
+            buckle = min(1, phase / .32)
+            buckle = buckle * buckle * (3 - 2 * buckle)
+            fall = max(0, min(1, (phase - .18) / .72))
+            fall = fall * fall * (3 - 2 * fall)
+            hip = rig.pose.bones['Hip']
+            matrix = hip.matrix.copy()
+            matrix.translation += pos(0, -.38 * buckle, 0)
+            hip.matrix = matrix
+            bpy.context.view_layer.update()
+            for side, sign in [('L', 1), ('R', -1)]:
+                limb(rig, f'{side}_Thigh', f'{side}_Calf', f'{side}_Foot',
+                     feet[side], pos(sign * .25, .45, .5))
+                foot = rig.pose.bones[f'{side}_Foot']
+                foot_matrix = rest[foot.name].copy()
+                foot_matrix.translation = foot.head.copy()
+                foot.matrix = foot_matrix
+                bpy.context.view_layer.update()
+            pivot = hip.head.copy()
+            # Blender Z is height and -Y is character forward.
+            rotation = Matrix.Rotation(math.radians(86) * fall, 4, 'X')
+            matrix = Matrix.Translation(pivot) @ rotation @ Matrix.Translation(-pivot) @ hip.matrix
+            matrix.translation += pos(0, -.65 * fall, -.12 * fall)
+            hip.matrix = matrix
+            bpy.context.view_layer.update()
+            # Bake floor contact from this skin's evaluated vertices, not from a
+            # guessed hip height. This adds no runtime corpse collider/physics.
+            evaluated = mesh.evaluated_get(bpy.context.evaluated_depsgraph_get())
+            bottom = min((evaluated.matrix_world @ v.co).z for v in evaluated.data.vertices)
+            if bottom < .005:
+                matrix = hip.matrix.copy()
+                matrix.translation.z += .005 - bottom
+                hip.matrix = matrix
+                bpy.context.view_layer.update()
+            return
         for bone in rig.pose.bones:
             bone.matrix_basis = Matrix.Identity(4)
             bone.rotation_mode = 'QUATERNION'
@@ -391,7 +435,7 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
         bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'.tmp/GripPreview.blend'))
         continue
     bpy.context.scene.render.fps=30
-    clips = {**CLIPS, **(PLAYER_CLIPS if role=='Player' else {})}
+    clips = {'Death': 1.2} if death_only else {**CLIPS, **(PLAYER_CLIPS if role=='Player' else {'Death': 1.2})}
     for name,duration in clips.items():
         action=bpy.data.actions.new(name)
         action.use_fake_user=True
@@ -404,14 +448,17 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
                 bone.keyframe_insert('location',frame=frame,group=bone.name)
                 bone.keyframe_insert('rotation_quaternion',frame=frame,group=bone.name)
                 bone.keyframe_insert('scale',frame=frame,group=bone.name)
-    rig.animation_data.action=bpy.data.actions['Idle']
+    rig.animation_data.action=bpy.data.actions['Death' if death_only else 'Idle']
     bpy.context.scene.frame_set(0)
     bpy.ops.object.select_all(action='DESELECT')
     for obj in [rig]+meshes: obj.select_set(True)
     bpy.context.view_layer.objects.active=rig
     folder=ROOT/'assets/resources/characters'/role
-    bpy.ops.export_scene.gltf(filepath=str(folder/f'Animated{role}.glb'),export_format='GLB',
+    export_path = ROOT/'.tmp/EnemyDeath.glb' if death_only else folder/f'Animated{role}.glb'
+    bpy.ops.export_scene.gltf(filepath=str(export_path),export_format='GLB',
         use_selection=True,export_animations=True,export_animation_mode='ACTIONS',
         export_force_sampling=True,export_optimize_animation_size=False,export_yup=True)
-    bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'.tmp'/f'Animated{role}.blend'))
+    if death_only:
+        append_death_animation(folder/f'Animated{role}.glb', export_path)
+    bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'.tmp'/('EnemyDeath.blend' if death_only else f'Animated{role}.blend')))
     print('EXPORTED',role,len(rig.data.bones),'bones',list(clips))

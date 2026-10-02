@@ -167,7 +167,7 @@ export class EnemyAI extends Laya.Script {
             this._state = "Dead";
             this.clearPerception();
             this._horizontalSpeed = 0;
-            this.hideBodyAndColliders(this.owner);
+            this.disableColliders(this.owner);
             // 先置为 Dead，再通知关卡；后续命中不会再次发出死亡事件。
             this.owner.event(EnemyAI.DIED, this);
         } else if (this.playerHealth?.isAlive) {
@@ -191,13 +191,12 @@ export class EnemyAI extends Laya.Script {
         return 1;
     }
 
-    private hideBodyAndColliders(node: Laya.Node): void {
+    private disableColliders(node: Laya.Node): void {
         for (const component of node.components) {
-            if (component instanceof Laya.MeshRenderer || component instanceof Laya.SkinnedMeshRenderer
-                || component instanceof Laya.PhysicsCollider)
+            if (component instanceof Laya.PhysicsCollider)
                 component.enabled = false;
         }
-        for (let i = 0; i < node.numChildren; i++) this.hideBodyAndColliders(node.getChildAt(i));
+        for (let i = 0; i < node.numChildren; i++) this.disableColliders(node.getChildAt(i));
     }
 
     private updatePatrol(dt: number): void {

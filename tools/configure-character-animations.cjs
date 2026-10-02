@@ -13,13 +13,28 @@ for (const role of (process.argv[2] ? [process.argv[2]] : ['Player', 'Enemy'])) 
     const states = gltf.animations.map((clip, i) => ({
         id: String(i), name: clip.name,
         clip: { _$uuid: `${uuid}@lani${i}` },
-        _isLooping: /Fire|Reload|Melee|Jump|ViewBolt|ViewKnifeLight|ViewKnifeHeavy/.test(clip.name) ? 2 : 1,
+        _isLooping: /Fire|Reload|Melee|Jump|ViewBolt|ViewKnifeLight|ViewKnifeHeavy|Death/.test(clip.name) ? 2 : 1,
         speed: 1, clipStart: 0, clipEnd: 1,
         x: 280 + (i % 4) * 220, y: 80 + Math.floor(i / 4) * 110,
         soloTransitions: []
     }));
     const idle = states.find(s => s.name === 'Idle');
     if (!idle || states.length < 11) throw new Error('Missing exported animations');
+    if (process.argv.includes('--death-only')) {
+        if (role !== 'Enemy') throw new Error('--death-only requires Enemy');
+        const controllerPath = path.join(dir, 'EnemyAnimation.controller');
+        const controller = JSON.parse(fs.readFileSync(controllerPath, 'utf8'));
+        const layer = controller.controllerLayers[0];
+        const generated = states.find(s => s.name === 'Death');
+        if (!generated) throw new Error('Missing exported Death');
+        const existing = layer.states.find(s => s.name === 'Death');
+        if (existing) Object.assign(existing, {clip:generated.clip, _isLooping:2, speed:1,
+            clipStart:0, clipEnd:1, soloTransitions:[], transitions:[]});
+        else layer.states.push({...generated, id:String(Math.max(...layer.states.map(s => Number(s.id)))+1)});
+        fs.writeFileSync(controllerPath, JSON.stringify(controller, null, 2) + '\n');
+        console.log('Enemy: updated only non-looping Death; preserved other states');
+        continue;
+    }
     if (role === 'Player') {
         for (const prefix of ['View', '', 'Crouch']) {
             const original = states.find(s => s.name === `${prefix}Reload`);
