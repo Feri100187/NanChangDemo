@@ -1,0 +1,32 @@
+{
+  "ground": {
+    "objects": 26,
+    "unique_meshes": 8,
+    "triangles": 1016
+  },
+  "landmark": {
+    "objects": 130,
+    "unique_meshes": 79,
+    "triangles": 9360
+  },
+  "street-buildings": {
+    "objects": 249,
+    "unique_meshes": 87,
+    "triangles": 9940
+  },
+  "mission-building": {
+    "objects": 67,
+    "unique_meshes": 26,
+    "triangles": 2812
+  },
+  "props": {
+    "objects": 44,
+    "unique_meshes": 16,
+    "triangles": 1968
+  },
+  "collision-proxies": {
+    "objects": 57,
+    "unique_meshes": 46,
+    "triangles": 684
+  }
+}

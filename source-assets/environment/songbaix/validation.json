@@ -1,0 +1,159 @@
+{
+  "blender_version": "5.2.0 LTS",
+  "source_open": "PASS",
+  "source_sha256": "1b77040f431c1bc175fd158488bcb3d5519d7e977e1669281d9dce88b711ebcf",
+  "modules": {
+    "ground": {
+      "source_bounds": [
+        [
+          -40.0,
+          -33.0,
+          -0.675000011920929
+        ],
+        [
+          58.0,
+          41.0,
+          0.07000000029802322
+        ]
+      ],
+      "source_errors": [],
+      "file_bytes": 1050572,
+      "glb_attributes": "NORMAL + TEXCOORD_0",
+      "required_extensions": [],
+      "sha256": "3d9c99b6fc198f396ffdde550afadf13fd9b72c0db5d3790986e44528b063d2e",
+      "reimport": "PASS",
+      "bounds_max_error_m": 0.0,
+      "reimport_mesh_objects": 26,
+      "image_count": 3
+    },
+    "landmark": {
+      "source_bounds": [
+        [
+          5.75,
+          -13.399999618530273,
+          0.0
+        ],
+        [
+          56.400001525878906,
+          13.399999618530273,
+          22.649999618530273
+        ]
+      ],
+      "source_errors": [],
+      "file_bytes": 1931956,
+      "glb_attributes": "NORMAL + TEXCOORD_0",
+      "required_extensions": [],
+      "sha256": "d5accf4ed9ae3fd1968ef3b80f13457d2ef38a09d07e8dcdb8bbe32d8314dd33",
+      "reimport": "PASS",
+      "bounds_max_error_m": 0.0,
+      "reimport_mesh_objects": 130,
+      "image_count": 4
+    },
+    "street-buildings": {
+      "source_bounds": [
+        [
+          -40.28499984741211,
+          -32.29499816894531,
+          0.0
+        ],
+        [
+          58.28499984741211,
+          40.29499816894531,
+          8.430000305175781
+        ]
+      ],
+      "source_errors": [],
+      "file_bytes": 2026684,
+      "glb_attributes": "NORMAL + TEXCOORD_0",
+      "required_extensions": [],
+      "sha256": "60eb79b59843eb3c21a14674a53961a4a0be6af02af14db04cd996d0502b1948",
+      "reimport": "PASS",
+      "bounds_max_error_m": 0.0,
+      "reimport_mesh_objects": 249,
+      "image_count": 5
+    },
+    "mission-building": {
+      "source_bounds": [
+        [
+          -27.399999618530273,
+          21.549999237060547,
+          -0.12999999523162842
+        ],
+        [
+          -12.600000381469727,
+          33.45000076293945,
+          6.180000305175781
+        ]
+      ],
+      "source_errors": [],
+      "file_bytes": 1850100,
+      "glb_attributes": "NORMAL + TEXCOORD_0",
+      "required_extensions": [],
+      "sha256": "67eb6fc93d8c7fb069e0ba68af7b867a56fb5996869ac9cf74feb1ff9e25a602",
+      "reimport": "PASS",
+      "bounds_max_error_m": 4.76837158203125e-07,
+      "reimport_mesh_objects": 67,
+      "image_count": 5
+    },
+    "props": {
+      "source_bounds": [
+        [
+          -30.780000686645508,
+          -12.5,
+          0.0
+        ],
+        [
+          2.4649999141693115,
+          30.434999465942383,
+          2.0
+        ]
+      ],
+      "source_errors": [],
+      "file_bytes": 779400,
+      "glb_attributes": "NORMAL + TEXCOORD_0",
+      "required_extensions": [],
+      "sha256": "2c17422326b63acd3d5078e092ad400fcd152628daedbfcfa245c5fdd080ad06",
+      "reimport": "PASS",
+      "bounds_max_error_m": 0.0,
+      "reimport_mesh_objects": 44,
+      "image_count": 2
+    },
+    "collision-proxies": {
+      "source_bounds": [
+        [
+          -40.28499984741211,
+          -33.0,
+          -0.675000011920929
+        ],
+        [
+          58.28499984741211,
+          41.0,
+          10.300000190734863
+        ]
+      ],
+      "source_errors": [],
+      "file_bytes": 73368,
+      "glb_attributes": "NORMAL + TEXCOORD_0",
+      "required_extensions": [],
+      "sha256": "26f1043833f54e366fb244ee8b7292743cd7dc5af299ec13cad52ae4beea818a",
+      "reimport": "PASS",
+      "bounds_max_error_m": 0.0,
+      "reimport_mesh_objects": 57,
+      "image_count": 0
+    }
+  },
+  "limitations": [
+    "No LayaAir runtime import or gameplay test in this asset-only delivery.",
+    "No historical survey: all dimensions estimated."
+  ],
+  "packed_texture_count": 7,
+  "route_static_proxy_clearance": {
+    "sample_step_m": 0.15,
+    "radius_m": 0.45,
+    "height_m": 2,
+    "collisions": [],
+    "scope": "XY samples against static proxy boxes; not physics/navmesh/combat test",
+    "result": "PASS"
+  },
+  "source_geometry": "PASS"
+}
