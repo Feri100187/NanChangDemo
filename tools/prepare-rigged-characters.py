@@ -1,0 +1,417 @@
+"""Bake editable, in-place prototype animations onto the supplied 71-bone characters.
+
+Run with Blender --background --factory-startup --python tools/prepare-rigged-characters.py.
+The supplied GLBs under source-assets/characters/rigged are never modified.
+"""
+import bpy
+import bmesh
+import math
+import sys
+import json
+import re
+from pathlib import Path
+from mathutils import Matrix, Vector, Quaternion
+
+ROOT = Path(__file__).resolve().parents[1]
+motion_source = (ROOT/'src/WeaponMotion.ts').read_text(encoding='utf8')
+KNIFE_MOTION = json.loads(re.search(r'export const KNIFE_MOTION = (\{.*?\n\});',motion_source,re.S).group(1))
+BOLT_MOTION = json.loads(re.search(r'export const BOLT_MOTION = (\{.*?\n\});',motion_source,re.S).group(1))
+BOLT_MECHANISM = json.loads(re.search(r'export const BOLT_MECHANISM = (\{.*?\n\});',motion_source,re.S).group(1))
+if not bpy.app.background or bpy.data.filepath:
+    raise RuntimeError('Use a separate background factory-startup Blender process.')
+
+
+def aim(rig, name, child, target):
+    bone = rig.pose.bones[name]
+    head = bone.head.copy()
+    tip = rig.pose.bones[child].head.copy() if child else bone.tail.copy()
+    rotation = (tip - head).rotation_difference(target - head).to_matrix().to_4x4()
+    bone.matrix = Matrix.Translation(head) @ rotation @ Matrix.Translation(-head) @ bone.matrix
+    bpy.context.view_layer.update()
+
+
+def limb(rig, upper, lower, end, target, pole):
+    shoulder = rig.pose.bones[upper].head.copy()
+    elbow = rig.pose.bones[lower].head.copy()
+    hand = rig.pose.bones[end].head.copy()
+    a, b = (elbow - shoulder).length, (hand - elbow).length
+    direction = (target - shoulder).normalized()
+    distance = max(abs(a-b)+.001, min(a+b-.001, (target-shoulder).length))
+    along = (a*a-b*b+distance*distance)/(2*distance)
+    normal = pole - shoulder
+    normal = (normal-direction*normal.dot(direction)).normalized()
+    joint = shoulder + direction*along + normal*math.sqrt(max(0, a*a-along*along))
+    aim(rig, upper, lower, joint)
+    aim(rig, lower, end, shoulder+direction*distance)
+
+
+def hand_frame(rig, rest, side, wrist, forward, palm):
+    """Place the palm, not just the wrist: the local bend direction faces the grip."""
+    hand = rig.pose.bones[f'{side}_Hand']
+    rest_forward = (rest[f'{side}_Middle_01'].translation-rest[hand.name].translation).normalized()
+    finger = rest[f'{side}_Middle_01'].to_3x3()
+    rest_palm = finger.col[0].cross(finger.col[1]).normalized()
+    def frame(f, p):
+        f=f.normalized();p=(p-f*p.dot(f)).normalized()
+        return Matrix((f,p,f.cross(p))).transposed()
+    rotation=frame(forward,palm) @ frame(rest_forward,rest_palm).transposed()
+    matrix=(rotation @ rest[hand.name].to_3x3().normalized()).to_4x4()
+    matrix.translation=wrist
+    hand.matrix=matrix
+    bpy.context.view_layer.update()
+
+
+def motion_value(keys, phase, column):
+    t=max(0,min(1,phase))
+    for a,b in zip(keys,keys[1:]):
+        if t<=b[0]:
+            u=(t-a[0])/(b[0]-a[0]);u=u*u*(3-2*u)
+            return a[column]+(b[column]-a[column])*u
+    return keys[-1][column]
+
+
+def grip_finger(rig, finger, goal, amount):
+    """Close the thumb/index/middle around the actual small bolt knob."""
+    first,second,last=[rig.pose.bones[f'R_{finger}_{i:02}'] for i in [1,2,3]]
+    tip=last.tail.copy().lerp(goal,amount)
+    direction=(tip-first.head).normalized()
+    end=tip-direction*(last.tail-last.head).length
+    pole=second.head.copy()
+    limb(rig,first.name,second.name,last.name,end,pole)
+    aim(rig,last.name,None,tip)
+
+
+def knife_pose(phase, heavy=False):
+    """Same visual motion as KnifeView.setPose; all values are camera-local metres/degrees."""
+    keys=KNIFE_MOTION['heavy' if heavy else 'light']
+    p=Vector(tuple(motion_value(keys,phase,c) for c in [1,2,3]))
+    x,y,z=[math.radians(motion_value(keys,phase,c)) for c in [4,5,6]]
+    rotation=Matrix.Rotation(y,3,'Y') @ Matrix.Rotation(x,3,'X') @ Matrix.Rotation(z,3,'Z')
+    return p,rotation
+
+
+CLIPS = {'Idle':2.0, 'Walk':1.0, 'Run':.64, 'CrouchIdle':2.0,
+         'CrouchWalk':1.2, 'Aim':2.0, 'Fire':.4, 'Reload':3.3,
+         'Jump':.7, 'Melee':.32, 'HeavyMelee':.62,
+         'CrouchFire':.4, 'CrouchReload':3.3, 'CrouchMelee':.32,
+         'CrouchHeavyMelee':.62, 'StrafeLeft':1.0, 'StrafeRight':1.0}
+PLAYER_CLIPS = {'Hold':2.0, 'HoldWalk':1.0, 'HoldRun':.64, 'CrouchHold':2.0,
+                'CrouchHoldWalk':1.2, 'AimWalk':1.0, 'CrouchAim':2.0,
+                'CrouchAimWalk':1.2, 'ViewHold':2.0, 'ViewAim':2.0, 'ViewReload':3.3,
+                'ViewBolt':1.05, 'KnifeHold':2.0, 'KnifeWalk':1.0, 'KnifeRun':.64, 'CrouchKnifeHold':2.0,
+                'CrouchKnifeWalk':1.2, 'ViewKnifeHold':2.0, 'ViewKnifeLight':.32, 'ViewKnifeHeavy':.62}
+
+for role in (['Player'] if '--player-only' in sys.argv else ['Player','Enemy']):
+    bpy.ops.object.select_all(action='SELECT')
+    bpy.ops.object.delete(use_global=False)
+    for action in list(bpy.data.actions):
+        bpy.data.actions.remove(action)
+    bpy.ops.import_scene.gltf(filepath=str(ROOT / 'source-assets/characters/rigged' / f'{role}.glb'))
+    rig = next(o for o in bpy.context.scene.objects if o.type == 'ARMATURE')
+    mesh = next(o for o in bpy.context.scene.objects if o.type == 'MESH')
+    rig.name = f'{role}Rig'
+    mesh.name = 'Body'
+    meshes = [mesh]
+    if role == 'Player':
+        # The supplied forearm has almost rigid Twist01/Twist02 weight islands.
+        # Spread pronation continuously from elbow to wrist instead of collapsing
+        # one ring of vertices when the hand turns over to operate the bolt.
+        for side in ['L','R']:
+            elbow=rig.data.bones[f'{side}_Forearm'].head_local
+            wrist=rig.data.bones[f'{side}_Hand'].head_local
+            axis=wrist-elbow;length=axis.length;axis.normalize()
+            names=[f'{side}_Forearm',f'{side}_ForearmTwist01',f'{side}_ForearmTwist02',f'{side}_Hand']
+            indices={mesh.vertex_groups[n].index for n in names}
+            forearm_indices={mesh.vertex_groups[n].index for n in names[:3]}
+            for vertex in mesh.data.vertices:
+                if not any(g.group in forearm_indices and g.weight>.001 for g in vertex.groups):continue
+                total=sum(g.weight for g in vertex.groups if g.group in indices)
+                t=max(0,min(1,(vertex.co-elbow).dot(axis)/length))*3
+                segment=min(2,int(t));blend=t-segment
+                for index in indices:mesh.vertex_groups[index].remove([vertex.index])
+                mesh.vertex_groups[names[segment]].add([vertex.index],total*(1-blend),'REPLACE')
+                mesh.vertex_groups[names[segment+1]].add([vertex.index],total*blend,'REPLACE')
+        groups = {g.index for g in mesh.vertex_groups if g.name in ['Head','NeckTwist01','NeckTwist02']}
+        weights = {v.index:sum(g.weight for g in v.groups if g.group in groups) for v in mesh.data.vertices}
+        faces = {p.index for p in mesh.data.polygons if sum(weights[i] for i in p.vertices)/len(p.vertices) > .5}
+        arm_groups = {g.index for g in mesh.vertex_groups if any(s in g.name for s in
+            ['Upperarm','Forearm','Hand','Index_','Middle_','Ring_','Little_','Thumb_'])}
+        arm_weights = {v.index:sum(g.weight for g in v.groups if g.group in arm_groups) for v in mesh.data.vertices}
+        arm_faces = {p.index for p in mesh.data.polygons if p.index not in faces
+            and sum(arm_weights[i] for i in p.vertices)/len(p.vertices) > .5}
+        for name, selected in [('FirstPersonHiddenHead',faces),('Arms',arm_faces)]:
+            part = mesh.copy()
+            part.data = mesh.data.copy()
+            part.name = name
+            bpy.context.collection.objects.link(part)
+            meshes.append(part)
+        for obj, selected in [(mesh,faces|arm_faces),(meshes[1],faces),(meshes[2],arm_faces)]:
+            bm = bmesh.new()
+            bm.from_mesh(obj.data)
+            bm.faces.ensure_lookup_table()
+            keep = obj != mesh
+            bmesh.ops.delete(bm, geom=[f for f in bm.faces if (f.index in selected) != keep], context='FACES_ONLY')
+            bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context='VERTS')
+            bm.to_mesh(obj.data)
+            bm.free()
+        # The full-body shoulder blends into the clavicle/chest. The FPS copy is an
+        # open sleeve cut: remove those chest influences so moving its shoulder into
+        # camera space cannot stretch triangles back towards the torso's rest pose.
+        view_mesh = meshes[2].copy()
+        view_mesh.data = meshes[2].data.copy()
+        view_mesh.name = 'ViewArms'
+        bpy.context.collection.objects.link(view_mesh)
+        meshes.append(view_mesh)
+        for vertex in view_mesh.data.vertices:
+            weights = [(g.group,g.weight) for g in vertex.groups if g.group in arm_groups]
+            if not weights:
+                side = 'L' if vertex.co.x > 0 else 'R'
+                weights = [(view_mesh.vertex_groups[f'{side}_Upperarm'].index,1)]
+            total = sum(w for _,w in weights)
+            for index in [g.group for g in vertex.groups]: view_mesh.vertex_groups[index].remove([vertex.index])
+            for index,weight in weights: view_mesh.vertex_groups[index].add([vertex.index],weight/total,'REPLACE')
+    scale = 1 if role == 'Player' else 2.55/1.8
+    def pos(x,y,z):
+        return Vector((x*scale,-z*scale,y*scale))
+    rest = {b.name:b.matrix_local.copy() for b in rig.data.bones}
+    if role=='Player':
+        # Bind frames used by the runtime shoulder-anchored arm solver. Keep these
+        # in sync with the supplied skeleton instead of guessing joint axes in TS.
+        convert=Matrix.Rotation(-math.pi/2,4,'X')
+        bind={}
+        for side in ['L','R']:
+            bind[side]={}
+            for part in ['Upperarm','UpperarmTwist01','UpperarmTwist02','Forearm','ForearmTwist01','ForearmTwist02','Hand']:
+                m=convert@rest[f'{side}_{part}'];q=m.to_quaternion();p=m.translation
+                bind[side][part]={'p':[round(v,9) for v in p], 'q':[round(q.x,9),round(q.y,9),round(q.z,9),round(q.w,9)]}
+        (ROOT/'src/ArmBindPose.ts').write_text('// Generated by tools/prepare-rigged-characters.py from the supplied player bind pose.\nexport const ARM_BIND_POSE = '+json.dumps(bind,separators=(',',':'))+';\n',encoding='utf8')
+    feet = {s:rest[f'{s}_Foot'].translation.copy() for s in ['L','R']}
+
+    def pose(name, phase):
+        for bone in rig.pose.bones:
+            bone.matrix_basis = Matrix.Identity(4)
+            bone.rotation_mode = 'QUATERNION'
+        bpy.context.view_layer.update()
+        crouch = name.startswith('Crouch')
+        walking = name.endswith('Walk') or name.endswith('Run') or name.startswith('Strafe')
+        cycle = phase*math.tau
+        hip = rig.pose.bones['Hip']
+        mat = hip.matrix.copy()
+        # Player eyes drop 0.65 m on crouch. The old 0.43 m visual drop left
+        # the shoulders at camera height and put the camera inside the chest.
+        crouch_drop = .65 if role=='Player' else .43
+        mat.translation += pos(.016*math.sin(cycle) if walking else 0,
+            (-crouch_drop if crouch else 0)+(-.035+.013*math.cos(cycle*2) if walking else .004*math.sin(cycle)),0)
+        hip.matrix = mat
+        bpy.context.view_layer.update()
+        if walking:
+            spine=rig.pose.bones['Spine01'];pivot=spine.head.copy()
+            twist=Matrix.Rotation(math.radians(2.5)*math.sin(cycle),4,'Z')
+            spine.matrix=Matrix.Translation(pivot)@twist@Matrix.Translation(-pivot)@spine.matrix
+            bpy.context.view_layer.update()
+        if crouch:
+            spine = rig.pose.bones['Spine01']
+            p = spine.head.copy()
+            spine.matrix = Matrix.Translation(p) @ Matrix.Rotation(math.radians(12),4,'X') @ Matrix.Translation(-p) @ spine.matrix
+            bpy.context.view_layer.update()
+        for side, sign in [('L',1),('R',-1)]:
+            foot = feet[side].copy()
+            u=(phase+(0 if side=='L' else .5))%1
+            if u<.6:
+                stride=1-2*u/.6;lift=0
+            else:
+                swing=(u-.6)/.4;smooth=swing*swing*(3-2*swing)
+                stride=-1+2*smooth;lift=math.sin(math.pi*swing)
+            if not walking:stride=lift=0
+            amplitude=.159 if role=='Enemy' else .25 if name.endswith('Run') else .18
+            foot += pos(0,lift*(.12 if name.endswith('Run') else .07),stride*amplitude)
+            if name.startswith('Strafe'):
+                foot = feet[side] + pos(stride*.09*(1 if name=='StrafeLeft' else -1),max(0,stride)*.045,0)
+            if name=='Jump':
+                foot += pos(0,.10*math.sin(math.pi*phase),-.08*math.sin(math.pi*phase))
+            limb(rig,f'{side}_Thigh',f'{side}_Calf',f'{side}_Foot',foot,pos(sign*.2,.5,.6))
+            pb=rig.pose.bones[f'{side}_Foot']
+            mat=rest[pb.name].copy()
+            mat.translation=pb.head.copy()
+            pb.matrix=mat
+            bpy.context.view_layer.update()
+            # World-space body poses. First-person grip uses the same mesh/rig in a
+            # second, arms-only instance attached to the existing rifle transform.
+            y = (1.72 if side=='L' else 1.65)/scale if role=='Enemy' else .94
+            x = (.12 if side=='L' else .03)/scale if role=='Enemy' else sign*.23
+            z = (.38 if side=='L' else .08)/scale if role=='Enemy' else .05
+            y -= .40 if crouch else 0
+            holding = role=='Player' and ('Hold' in name or 'Aim' in name)
+            if holding:
+                x = -.09 if side=='L' else -.20
+                y = (1.34 if 'Aim' in name else 1.18) - (.40 if crouch else 0)
+                z = .32 if side=='L' else .10
+            if name.endswith('Fire'): z -= .045*math.sin(math.pi*phase)
+            if name.endswith('Reload') and side=='R':
+                y += .08*math.sin(phase*math.tau*2)
+                z += .12*math.sin(math.pi*phase)
+            if name.endswith('Melee') and side=='R':
+                y += .16*math.sin(math.pi*phase)
+                z += .23*math.sin(math.pi*phase)
+            view = name.startswith('View')
+            knife = 'Knife' in name
+            hand_forward = hand_palm = None
+            operating = 0
+            loading = 0
+            release = 0
+            if view:
+                # Coordinates below are metres relative to the unscaled rifle mesh.
+                # Put the sleeve cut behind/below the view; keep both grip points fixed
+                # while tucking the elbows for ADS. The gun/camera still own ADS motion.
+                ads = name=='ViewAim'
+                shoulder = pos(-.33 if side=='L' else .25, -.52 if ads else -.47, .24 if side=='L' else .63)
+                if knife: shoulder=pos(-.25 if side=='L' else .26,-.56,.04)
+                shoulder += pos(.002*math.sin(cycle),.003*math.sin(cycle),0)
+                upper = rig.pose.bones[f'{side}_Upperarm']
+                matrix = upper.matrix.copy()
+                matrix.translation = shoulder
+                upper.matrix = matrix
+                bpy.context.view_layer.update()
+                # Support the rear of the fore-end, within the body's fixed arm
+                # reach, rather than pulling the left elbow straight across ADS.
+                target = pos(-.062,.089,.04) if side=='L' else pos(.034,.035,.28)
+                hand_forward = pos(.97,.10,-.20) if side=='L' else pos(0,.30,-.954)
+                hand_palm = pos(0,1,0) if side=='L' else pos(-1,0,0)
+                if knife:
+                    p,rotation=knife_pose(phase if name!='ViewKnifeHold' else 0,name=='ViewKnifeHeavy')
+                    if side=='R':
+                        target=pos(*(p+rotation@Vector((.035,.050,.23))))
+                        hand_forward=pos(*(rotation@Vector((0,-.80,-.60))))
+                        hand_palm=pos(*(rotation@Vector((-1,0,0))))
+                    else:
+                        target=pos(-.19,-.20,-.38-.018*math.sin(phase*math.pi) if name!='ViewKnifeHold' else -.38)
+                        hand_forward=pos(.15,.1,-.98)
+                        hand_palm=pos(0,-1,0)
+                if name in ['ViewReload','ViewBolt'] and side=='R':
+                    keys=BOLT_MOTION['reload' if name=='ViewReload' else 'shot']
+                    lift=motion_value(keys,phase,1);pull=motion_value(keys,phase,2)
+                    angle=math.radians(BOLT_MECHANISM['liftDegrees']*lift)
+                    x,y,z=BOLT_MECHANISM['knob'];px,py,pz=BOLT_MECHANISM['pivot']
+                    knob=pos(px+x*math.cos(angle)-y*math.sin(angle),
+                        py+x*math.sin(angle)+y*math.cos(angle),pz+z+BOLT_MECHANISM['travel']*pull)
+                    grip=target.copy()
+                    # Grasp the knob from the RIGHT, with the wrist behind it
+                    # and the fingers pointing forward. Rotate this grip with the
+                    # handle: palm inward while closed, pronating as it lifts.
+                    gx,gy,gz=.060,-.012,.080
+                    operate=knob+pos(gx*math.cos(angle)-gy*math.sin(angle),
+                        gx*math.sin(angle)+gy*math.cos(angle),gz)
+                    outside=pos(.14,.15,.28)
+                    release_at=.90 if name=='ViewReload' else .88
+                    clear_at=release_at+(.05 if name=='ViewReload' else .06)
+                    # Approach from the RIGHT with the index off the trigger.
+                    # Keep the grip through locking, then clear the handle and return.
+                    if phase<.055:
+                        target=grip.lerp(outside,motion_value([[0,0],[.055,1]],phase,1))
+                    elif phase<.12:
+                        target=outside.lerp(operate,motion_value([[.055,0],[.12,1]],phase,1))
+                    elif phase<release_at:
+                        target=operate
+                    elif phase<clear_at:
+                        target=operate.lerp(outside,motion_value([[release_at,0],[clear_at,1]],phase,1))
+                    else:
+                        target=outside.lerp(grip,motion_value([[clear_at,0],[1,1]],phase,1))
+                    operating=motion_value([[0,0],[.055,0],[.12,1],[release_at,1],[clear_at,0],[1,0]],phase,1)
+                    release=motion_value([[0,0],[.015,1],[.065,1],[.12,0],[release_at,0],
+                        [clear_at,1],[max(clear_at,.985),1],[1,0]],phase,1)
+                    hand_forward=hand_forward.lerp(pos(-.10*math.sin(angle),
+                        .10*math.cos(angle),-.995),operating)
+                    hand_palm=hand_palm.lerp(pos(-math.cos(angle),-math.sin(angle),0),operating)
+                    if name=='ViewReload':
+                        loading=motion_value([[0,0],[.24,0],[.31,1],[.65,1],[.74,0],[1,0]],phase,1)
+                        press=motion_value([[0,0],[.34,0],[.42,1],[.48,0],[.59,1],[.65,0],[1,0]],phase,1)
+                        # Approach from the side with the palm down. Pointing the
+                        # metacarpals straight down folded the wrist before the
+                        # fingers even curled around the cartridge.
+                        target=target.lerp(pos(.09,.285-.025*press,.22),loading)
+                        hand_forward=hand_forward.lerp(pos(-.55,-.10,-.83),loading)
+                        hand_palm=hand_palm.lerp(pos(0,-1,0),loading)
+                # Keep anatomical length/thickness. Bring the sleeve origin closer
+                # when necessary instead of inflating the whole arm to reach the grip.
+                reach=(target-upper.head).length
+                chain=(rig.pose.bones[f'{side}_Forearm'].head-upper.head).length + (rig.pose.bones[f'{side}_Hand'].head-rig.pose.bones[f'{side}_Forearm'].head).length
+                matrix=upper.matrix.copy()
+                if reach>chain*.92:
+                    matrix.translation += (target-upper.head).normalized()*(reach-chain*.92)
+                upper.matrix=matrix
+                bpy.context.view_layer.update()
+                pole=pos(-.42 if side=='L' else .36,-.32 if ads else -.28,.36 if side=='L' else .48)
+                if knife: pole=pos(-.42 if side=='L' else .52,-.55,-.14)
+                limb(rig,f'{side}_Upperarm',f'{side}_Forearm',f'{side}_Hand',target,
+                    pole)
+            else:
+                limb(rig,f'{side}_Upperarm',f'{side}_Forearm',f'{side}_Hand',pos(x,y,z),pos(sign*.42,y-.15,.02))
+            hand=rig.pose.bones[f'{side}_Hand']
+            aim(rig,hand.name,None,hand.head+(pos(0,0,-.1) if view else pos(0,0,.1) if role=='Enemy' or holding else pos(0,-.1,0)))
+            if view:
+                hand_frame(rig,rest,side,target,hand_forward,hand_palm)
+            for finger in ['Index','Middle','Ring','Little','Thumb']:
+                for segment in ['01','02','03']:
+                    bone=rig.pose.bones.get(f'{side}_{finger}_{segment}')
+                    angle=20 if finger=='Index' else 38
+                    if view:
+                        angles= [50,60,45] if side=='R' else [45,55,40]
+                        if finger=='Thumb': angles=[25,35,25]
+                        if side=='R' and finger=='Index' and not knife: angles=[8,32,25]
+                        if side=='R' and name in ['ViewBolt','ViewReload']:
+                            action_angles=[45,65,45] if finger!='Thumb' else [30,40,30]
+                            action_angles=[a*(1-loading)+b*loading for a,b in zip(action_angles,[15,25,15])]
+                            angles=[a*(1-operating)+b*operating for a,b in zip(angles,action_angles)]
+                            angles=[a*(1-release)+b*release for a,b in zip(angles,[5,10,5])]
+                        if side=='L' and knife: angles=[25,35,25]
+                        angle=angles[int(segment)-1]
+                    if bone: bone.rotation_quaternion=Quaternion((1,0,0),math.radians(angle))
+            if view and side=='R' and name in ['ViewBolt','ViewReload']:
+                contact=operating*(1-loading)*(1-release)
+                if contact>.001:
+                    bpy.context.view_layer.update()
+                    handle_angle=math.radians(BOLT_MECHANISM['liftDegrees']*lift)
+                    for finger,offset in [('Thumb',(.005,.007,.002)),
+                        ('Index',(-.007,.002,.004)),('Middle',(.005,-.006,.003))]:
+                        x,y,z=offset
+                        goal=knob+pos(x*math.cos(handle_angle)-y*math.sin(handle_angle),
+                            x*math.sin(handle_angle)+y*math.cos(handle_angle),z)
+                        grip_finger(rig,finger,goal,contact)
+            if view and side=='L' and not knife:
+                bpy.context.view_layer.update()
+                # The thumb follows the same fore-end grip as the palm. Its old
+                # fixed -0.18 Z target was left behind when the wrist moved back.
+                limb(rig,'L_Thumb_01','L_Thumb_02','L_Thumb_03',pos(0,.14,.03),pos(-.04,.155,.05))
+                thumb=rig.pose.bones['L_Thumb_03']
+                aim(rig,thumb.name,None,thumb.head+pos(.02,0,0))
+        bpy.context.view_layer.update()
+
+    if ('--preview-grip' in sys.argv or '--preview-knife' in sys.argv) and role=='Player':
+        pose('ViewKnifeHold' if '--preview-knife' in sys.argv else 'ViewHold',0)
+        bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'.tmp/GripPreview.blend'))
+        continue
+    bpy.context.scene.render.fps=30
+    clips = {**CLIPS, **(PLAYER_CLIPS if role=='Player' else {})}
+    for name,duration in clips.items():
+        action=bpy.data.actions.new(name)
+        action.use_fake_user=True
+        rig.animation_data_create()
+        rig.animation_data.action=action
+        end=round(duration*30)
+        for frame in range(end+1):
+            pose(name,frame/end)
+            for bone in rig.pose.bones:
+                bone.keyframe_insert('location',frame=frame,group=bone.name)
+                bone.keyframe_insert('rotation_quaternion',frame=frame,group=bone.name)
+                bone.keyframe_insert('scale',frame=frame,group=bone.name)
+    rig.animation_data.action=bpy.data.actions['Idle']
+    bpy.context.scene.frame_set(0)
+    bpy.ops.object.select_all(action='DESELECT')
+    for obj in [rig]+meshes: obj.select_set(True)
+    bpy.context.view_layer.objects.active=rig
+    folder=ROOT/'assets/resources/characters'/role
+    bpy.ops.export_scene.gltf(filepath=str(folder/f'Animated{role}.glb'),export_format='GLB',
+        use_selection=True,export_animations=True,export_animation_mode='ACTIONS',
+        export_force_sampling=True,export_optimize_animation_size=False,export_yup=True)
+    bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'.tmp'/f'Animated{role}.blend'))
+    print('EXPORTED',role,len(rig.data.bones),'bones',list(clips))

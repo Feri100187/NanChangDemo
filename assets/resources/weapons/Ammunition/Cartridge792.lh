@@ -1,13 +1,13 @@
 {
   "_$ver": 1,
-  "_$id": "jv6gaky0",
+  "_$id": "brxtr3mv",
   "_$type": "Sprite3D",
-  "name": "ProvidedRifle",
+  "name": "Cartridge792",
   "_$child": [
     {
-      "_$id": "mechanism",
-      "_$prefab": "34aceaba-83d4-4caf-a450-771cabc06eef",
-      "name": "RifleMechanism",
+      "_$id": "cartridgemodel",
+      "_$prefab": "b878db24-b076-4cdb-8fc0-f7204fab1bdf",
+      "name": "CartridgeModel",
       "active": true,
       "layer": 0,
       "transform": {

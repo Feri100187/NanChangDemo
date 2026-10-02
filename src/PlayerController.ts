@@ -1,5 +1,6 @@
 import { PlayerHealth } from "./PlayerHealth";
 import { GameClock } from "./GameClock";
+import { WeaponPresentation } from "./WeaponPresentation";
 
 const { regClass, property } = Laya;
 
@@ -41,8 +42,8 @@ export class PlayerController extends Laya.Script {
     private readonly movement = new Laya.Vector3();
     private readonly cameraPosition = new Laya.Vector3();
     private readonly viewPosition = new Laya.Vector3();
-    // 瞄具红点相对角色眼位的水平/垂直偏移，开镜时将相机移到此处。
-    private readonly sightOffset = new Laya.Vector3(0.34, -0.14, 0);
+    // 机械瞄准线相对角色眼位的水平/垂直偏移，开镜时将相机移到此处。
+    private readonly sightOffset = new Laya.Vector3(0.18, 0, 0);
     private readonly sightOffsetWorld = new Laya.Vector3();
     private readonly cameraRotation = new Laya.Vector3();
     private readonly jumpVelocity = new Laya.Vector3();
@@ -53,8 +54,16 @@ export class PlayerController extends Laya.Script {
     private spawnYaw = 0;
     private playerHealth: PlayerHealth;
     private controller: Laya.CharacterController;
+    private weaponPresentation: WeaponPresentation;
+    private originalNearPlane = 0.1;
+    get viewModelScale(): number { return this.weaponPresentation?.scale ?? 1; }
     private standingVisual: Laya.Sprite3D;
     private crouchingVisual: Laya.Sprite3D;
+    private animatedVisual: Laya.Sprite3D;
+    get isCrouching(): boolean { return this.crouching; }
+    get isGrounded(): boolean { return this.controller?.isOnGround() ?? false; }
+    get isAimActive(): boolean { return this.isAiming; }
+    get movementSpeed(): number { return this.currentSpeed; }
     private readonly bodyPosition = new Laya.Vector3();
     private readonly bodyRotation = new Laya.Vector3();
     private readonly bodyGroundRay = new Laya.Ray(new Laya.Vector3(), new Laya.Vector3(0, -1, 0));
@@ -216,9 +225,14 @@ export class PlayerController extends Laya.Script {
         this.updateCamera();
     }
 
-    /** 0 为腰射视点，1 为与枪上红点共线的开镜视点。 */
+    /** 0 为腰射视点，1 为沿机械瞄准线对齐的开镜视点。 */
     setAimProgress(value: number): void {
         this.aimProgress = Math.max(0, Math.min(1, value));
+        this.updateCamera();
+    }
+
+    setWeaponPresentationScale(value: number): void {
+        this.weaponPresentation?.setMaximumScale(value);
         this.updateCamera();
     }
 
@@ -243,11 +257,19 @@ export class PlayerController extends Laya.Script {
         this.yaw = this.spawnYaw;
         this.playerHealth = this.player.getComponent(PlayerHealth);
         this.controller = this.player.getComponent(Laya.CharacterController);
+        if (this.weaponPivot && this.followCamera) {
+            this.weaponPresentation = new WeaponPresentation(this.weaponPivot, this.player.scene as Laya.Scene3D);
+            this.originalNearPlane = this.followCamera.nearPlane;
+            this.followCamera.nearPlane = Math.min(this.originalNearPlane, 0.01);
+        }
         this.canvas = Laya.Browser.mainCanvas.source;
         this.canvas.tabIndex = 0;
         this.standingVisual = this.body.getChildByName("Standing") as Laya.Sprite3D;
         this.crouchingVisual = this.body.getChildByName("Crouching") as Laya.Sprite3D;
-        if (this.standingVisual && this.crouchingVisual) {
+        this.animatedVisual = this.body.getChildByName("AnimatedModel") as Laya.Sprite3D;
+        if (this.animatedVisual) {
+            this.updateBodyVisual();
+        } else if (this.standingVisual && this.crouchingVisual) {
             // 只隐藏头颈，保留低头时的身体和腿部；编辑器中仍显示完整人物。
             for (const visual of [this.standingVisual, this.crouchingVisual]) {
                 const head = visual.getChildByName("Head");
@@ -371,6 +393,8 @@ export class PlayerController extends Laya.Script {
             if (Math.abs(this.recoilYaw) < 0.001) this.recoilYaw = 0;
             this.updateCameraRotation();
         }
+        this.weaponPresentation?.update(this.cameraPosition, this.followCamera, this.cameraRotation,
+            this.aimProgress, Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05));
     }
 
     private setCrouching(value: boolean): void {
@@ -420,15 +444,22 @@ export class PlayerController extends Laya.Script {
         const p = this.player.transform.position;
         const feetY = p.y - this.controller.height / 2;
         const eyeHeight = this.crouching ? 1.0 : 1.65;
-        this.cameraPosition.setValue(p.x, feetY + eyeHeight, p.z);
+        // A small forward head lean at steep downward angles keeps the stock
+        // and wrists in front of the chest. Move camera and weapon together so
+        // ADS remains collinear; the capsule, feet and movement never move.
+        const lean = 0.20 * Math.min(1, Math.max(0, (-this.cameraRotation.x - 35) / 50)) ** 2;
+        const yaw = this.yaw * Math.PI / 180;
+        this.cameraPosition.setValue(p.x - Math.sin(yaw) * lean, feetY + eyeHeight,
+            p.z - Math.cos(yaw) * lean);
         this.weaponPivot.transform.position = this.cameraPosition;
-        Laya.Vector3.transformQuat(this.sightOffset, this.weaponPivot.transform.rotation,
+        Laya.Vector3.transformQuat(this.sightOffset, this.followCamera.transform.rotation,
             this.sightOffsetWorld);
         this.viewPosition.setValue(
             this.cameraPosition.x + this.sightOffsetWorld.x * this.aimProgress,
             this.cameraPosition.y + this.sightOffsetWorld.y * this.aimProgress,
             this.cameraPosition.z + this.sightOffsetWorld.z * this.aimProgress);
         this.followCamera.transform.position = this.viewPosition;
+        this.weaponPresentation?.apply(this.cameraPosition, this.followCamera, this.cameraRotation, this.aimProgress);
     }
 
     private updateCameraRotation(): void {
@@ -438,16 +469,19 @@ export class PlayerController extends Laya.Script {
         this.followCamera.transform.rotationEuler = this.cameraRotation;
         this.weaponPivot.transform.rotationEuler = this.cameraRotation;
         this.updateBodyVisual();
+        this.weaponPresentation?.apply(this.cameraPosition, this.followCamera, this.cameraRotation, this.aimProgress);
     }
 
     private updateBodyVisual(): void {
-        if (!this.standingVisual || !this.crouchingVisual) return;
-        this.standingVisual.active = !this.crouching;
-        this.crouchingVisual.active = this.crouching;
+        if (!this.animatedVisual && (!this.standingVisual || !this.crouchingVisual)) return;
+        if (!this.animatedVisual) {
+            this.standingVisual.active = !this.crouching;
+            this.crouchingVisual.active = this.crouching;
+        }
         // 模型以脚底为原点，碰撞体以中心为原点；下蹲时脚底保持贴地。
         // 身体跟随水平朝向，不跟随俯仰、开镜位移和枪械后坐力。
         const angle = this.yaw * Math.PI / 180;
-        const behindEyes = 0.28;
+        const behindEyes = 0.04;
         let feetOffset = -this.controller.height / 2;
         const physics = (this.player.scene as Laya.Scene3D)?.physicsSimulation;
         if (physics && this.controller.isOnGround()) {
@@ -455,7 +489,7 @@ export class PlayerController extends Laya.Script {
             this.bodyGroundRay.origin = this.player.transform.position;
             if (physics.rayCast(this.bodyGroundRay, this.bodyGroundHit, this.controller.height / 2 + 0.25,
                 -1, ~Laya.Physics3DUtils.COLLISIONFILTERGROUP_CHARACTERFILTER)) {
-                const pose = this.crouching ? this.crouchingVisual : this.standingVisual;
+                const pose = this.animatedVisual || (this.crouching ? this.crouchingVisual : this.standingVisual);
                 feetOffset = this.bodyGroundHit.point.y - this.player.transform.position.y
                     - pose.transform.localPosition.y;
             }
@@ -478,5 +512,10 @@ export class PlayerController extends Laya.Script {
         document.removeEventListener("mousemove", this.handleMouseMove);
         this.canvas.removeEventListener("pointerdown", this.handleLockedPointerDown, true);
         this.canvas.removeEventListener("contextmenu", this.preventContextMenu);
+    }
+
+    onDestroy(): void {
+        this.weaponPresentation?.destroy();
+        if (this.followCamera && !this.followCamera.destroyed) this.followCamera.nearPlane = this.originalNearPlane;
     }
 }

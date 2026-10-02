@@ -1,3 +1,5 @@
+import { KNIFE_MOTION, motionValue } from "./WeaponMotion";
+
 /** 第一人称短刀外观：深木握柄、深色护手和亮钢刀身，不依赖外部模型资源。 */
 export class KnifeView {
     readonly root = new Laya.Sprite3D("FieldKnife");
@@ -6,9 +8,9 @@ export class KnifeView {
 
     constructor(parent: Laya.Sprite3D) {
         parent.addChild(this.root);
-        this.addPart("WoodGrip", 0.095, 0.11, 0.28, new Laya.Vector3(0, 0, 0.17),
+        this.addPart("WoodGrip", 0.055, 0.065, 0.17, new Laya.Vector3(0, 0, 0.12),
             new Laya.Color(0.23, 0.12, 0.07, 1));
-        this.addPart("IronGuard", 0.29, 0.035, 0.07, new Laya.Vector3(0, 0, 0.005),
+        this.addPart("IronGuard", 0.18, 0.035, 0.07, new Laya.Vector3(0, 0, 0.005),
             new Laya.Color(0.16, 0.19, 0.20, 1));
         this.addPart("SteelBlade", 0.13, 0.022, 0.52, new Laya.Vector3(0, 0, -0.29),
             new Laya.Color(0.78, 0.84, 0.84, 1));
@@ -22,6 +24,7 @@ export class KnifeView {
         const mesh = Laya.PrimitiveMesh.createBox(width, height, depth);
         const material = new Laya.BlinnPhongMaterial();
         material.albedoColor = color;
+        if (name === "WoodGrip") material.specularColor = new Laya.Color(0.03, 0.02, 0.01, 1);
         const node = new Laya.MeshSprite3D(mesh, name);
         node.meshRenderer.sharedMaterial = material;
         node.transform.localPosition = position;
@@ -31,11 +34,11 @@ export class KnifeView {
     }
 
     setPose(progress: number, heavy = false): void {
-        const swing = Math.sin(Math.max(0, Math.min(1, progress)) * Math.PI);
-        this.root.transform.localPosition = new Laya.Vector3(0.38 - swing * (heavy ? 0.36 : 0.22),
-            -0.26 + swing * (heavy ? 0.18 : 0.08), -0.68 - swing * (heavy ? 0.34 : 0.24));
-        this.root.transform.localRotationEuler = new Laya.Vector3(-10 + swing * (heavy ? 78 : 35),
-            -18 + swing * (heavy ? 35 : 65), -28 + swing * (heavy ? -105 : 75));
+        const keys = heavy ? KNIFE_MOTION.heavy : KNIFE_MOTION.light;
+        this.root.transform.localPosition = new Laya.Vector3(motionValue(keys, progress, 1),
+            motionValue(keys, progress, 2), motionValue(keys, progress, 3));
+        this.root.transform.localRotationEuler = new Laya.Vector3(motionValue(keys, progress, 4),
+            motionValue(keys, progress, 5), motionValue(keys, progress, 6));
     }
 
     destroy(): void {

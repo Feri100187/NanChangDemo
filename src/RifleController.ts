@@ -2,6 +2,7 @@ import { PlayerController } from "./PlayerController";
 import { EnemyAI } from "./EnemyAI";
 import { GameClock } from "./GameClock";
 import { KnifeView } from "./KnifeView";
+import { BOLT_CYCLE_MS, BOLT_MECHANISM, BOLT_MOTION, motionValue } from "./WeaponMotion";
 
 const { regClass, property } = Laya;
 
@@ -9,8 +10,11 @@ const { regClass, property } = Laya;
 @regClass()
 export class RifleController extends Laya.Script {
     static readonly FIRED = "rifle-fired";
+    static readonly CASE_EJECTED = "rifle-case-ejected";
     static readonly RELOAD_STARTED = "rifle-reload-started";
     static readonly RELOAD_ENDED = "rifle-reload-ended";
+    static readonly RELOAD_STAGE_CHANGED = "rifle-reload-stage";
+    static readonly ROUND_INSERTED = "rifle-round-inserted";
     static readonly MELEE_SWUNG = "melee-swung";
     static readonly MELEE_HEAVY_SWUNG = "melee-heavy-swung";
     clock: GameClock;
@@ -32,8 +36,12 @@ export class RifleController extends Laya.Script {
     startingReserve = 45;
     @property({ type: Number, caption: "射速（发/分钟）" })
     roundsPerMinute = 45;
-    @property({ type: Number, caption: "换弹时间（秒）" })
-    reloadSeconds = 3.3;
+    @property({ type: Number, caption: "装填准备时间（秒）" })
+    reloadPrepareSeconds = 0.7;
+    @property({ type: Number, caption: "每发装填时间（秒）" })
+    reloadRoundSeconds = 0.65;
+    @property({ type: Number, caption: "装填收尾时间（秒）" })
+    reloadFinishSeconds = 0.45;
     @property({ type: Number, caption: "基础伤害" })
     baseDamage = 70;
     @property({ type: Number, caption: "腰射镜头上抬（度）" })
@@ -59,7 +67,13 @@ export class RifleController extends Laya.Script {
     private heavyHeld = false;
     private aimHeld = false;
     private reloading = false;
-    private reloadEndAt = 0;
+    private reloadStage: "idle" | "prepare" | "insert" | "finish" = "idle";
+    private reloadStageStart = 0;
+    private reloadStageEnd = 0;
+    private reloadDurations = { prepare: 700, insert: 650, finish: 450 };
+    private reloadStopRequested = false;
+    private reloadSequence = 0;
+    private reloadKeyHeld = false;
     private nextShotAt = 0;
     private shotCount = 0;
     private lastShotAt = 0;
@@ -73,6 +87,7 @@ export class RifleController extends Laya.Script {
     private readonly hit = new Laya.HitResult();
     private readonly modelTarget = new Laya.Vector3();
     private readonly modelPosition = new Laya.Vector3();
+    private readonly rifleHome = new Laya.Vector3(0.20, -0.32, -0.50);
     private kickBack = 0;
     private aimProgress = 0;
     private ballisticRise = 0;
@@ -83,8 +98,55 @@ export class RifleController extends Laya.Script {
     private swingHitAt = 0;
     private pendingMeleeHit = false;
     private heavySwing = false;
+    private bolt: Laya.Sprite3D;
+    private boltHome: Laya.Vector3;
+    private boltHomeRotation: Laya.Vector3;
+    private readonly boltPosition = new Laya.Vector3();
+    private readonly boltRotation = new Laya.Vector3();
+    private readonly weaponRotation = new Laya.Vector3();
+    private boltLift = 0;
+    private boltPull = 0;
+    private reloadInitialLift = 0;
+    private reloadInitialPull = 0;
+    private spentCasePending = false;
 
     get currentWeapon(): "rifle" | "knife" { return this.weaponMode; }
+    get isReloading(): boolean { return this.reloading; }
+    get reloadPhase(): "idle" | "prepare" | "insert" | "finish" { return this.reloadStage; }
+    get reloadStep(): number { return this.reloadSequence; }
+    get reloadStageSeconds(): number {
+        return Math.max(0.001, (this.reloadStageEnd - this.reloadStageStart) / 1000);
+    }
+    get reloadStageProgress(): number {
+        if (!this.reloading) return 0;
+        return Math.max(0, Math.min(1, ((this.clock?.now() ?? performance.now()) - this.reloadStageStart)
+            / Math.max(1, this.reloadStageEnd - this.reloadStageStart)));
+    }
+    get hasRoundToChamber(): boolean { return this.magazine > 0; }
+    get reloadRoundCount(): number {
+        return this.reloading ? Math.max(0, Math.min(this.magazineSize - this.magazine, this.reserve)) : 0;
+    }
+    get aimBlend(): number { return this.aimProgress; }
+    get boltCycleProgress(): number {
+        if (!this.shotCount || this.reloading || this.weaponMode !== "rifle") return -1;
+        const progress = ((this.clock?.now() ?? performance.now()) - this.lastShotAt) / BOLT_CYCLE_MS;
+        return progress >= 0 && progress < 1 ? progress : -1;
+    }
+    get knifeModel(): Laya.Sprite3D { return this.knife?.root; }
+    /** Read-only animation timing; damage and cooldowns remain owned by this controller. */
+    get meleeProgress(): number { return ((this.clock?.now() ?? performance.now()) - this.swingStartAt) / this.swingDuration; }
+    get meleeDurationSeconds(): number { return this.swingDuration / 1000; }
+    get meleeViewState(): "ViewKnifeLight" | "ViewKnifeHeavy" | null {
+        return this.weaponMode === "knife" && this.meleeProgress >= 0 && this.meleeProgress < 1
+            ? this.heavySwing ? "ViewKnifeHeavy" : "ViewKnifeLight" : null;
+    }
+    get reloadProgress(): number {
+        // Map the logical phases onto the existing, collision-checked bolt/hand motion.
+        const t = this.reloadStageProgress;
+        return this.reloadStage === "prepare" ? t * 0.34
+            : this.reloadStage === "insert" ? 0.34 + t * 0.14
+            : this.reloadStage === "finish" ? 0.65 + t * 0.35 : 0;
+    }
 
     private get swingDuration(): number { return this.heavySwing ? 620 : 320; }
 
@@ -94,15 +156,37 @@ export class RifleController extends Laya.Script {
         this.magazine = this.magazineSize;
         this.reserve = this.startingReserve;
         this.viewCamera.fieldOfView = 60;
+        // Start in the same reachable pose used by the update loop. Do not blend
+        // from the old scene-authored camera offset on the first gameplay frames.
+        this.rifleModel.transform.localPosition = this.rifleHome;
+        // The old greybox sight marker is a separate mesh, not part of the
+        // rifle's iron sights. Never render it, including in legacy test scenes.
+        const sightMarker = this.findVisual(this.rifleModel, "RedDot");
+        if (sightMarker) sightMarker.active = false;
         this.knife = new KnifeView(this.rifleModel.parent as Laya.Sprite3D);
         this.knife.setPose(0);
+        this.bolt = this.findVisual(this.rifleModel, "Bolt");
+        if (this.bolt) {
+            this.boltHome = this.bolt.transform.localPosition.clone();
+            this.boltHomeRotation = this.bolt.transform.localRotationEuler.clone();
+        }
         this.updateHud((this.clock?.now() ?? performance.now()));
+    }
+
+    private findVisual(node: Laya.Sprite3D, name: string): Laya.Sprite3D {
+        if (node.name === name) return node;
+        for (let i = 0; i < (node.numChildren || 0); i++) {
+            const found = this.findVisual(node.getChildAt(i) as Laya.Sprite3D, name);
+            if (found) return found;
+        }
+        return null;
     }
 
     onEnable(): void {
         this.canvas.addEventListener("mousedown", this.handleMouseDown);
         window.addEventListener("mouseup", this.handleMouseUp);
         Laya.stage.on(Laya.Event.KEY_DOWN, this, this.handleKeyDown);
+        Laya.stage.on(Laya.Event.KEY_UP, this, this.handleKeyUp);
         document.addEventListener("pointerlockchange", this.handleFocusChange);
         window.addEventListener("blur", this.stopTrigger);
         document.addEventListener("visibilitychange", this.handleFocusChange);
@@ -144,6 +228,7 @@ export class RifleController extends Laya.Script {
     };
 
     private readonly stopTrigger = () => {
+        this.reloadKeyHeld = false;
         this.triggerHeld = false;
         this.heavyHeld = false;
         this.aimHeld = false;
@@ -171,7 +256,18 @@ export class RifleController extends Laya.Script {
         }
         if (event.keyCode !== 82 || this.weaponMode !== "rifle") return;
         event.nativeEvent?.preventDefault();
-        this.startReload((this.clock?.now() ?? performance.now()));
+        if (this.reloadKeyHeld || (event.nativeEvent as KeyboardEvent)?.repeat) return;
+        this.reloadKeyHeld = true;
+        const now = this.clock?.now() ?? performance.now();
+        if (this.reloading) {
+            if (this.reloadStage !== "finish") this.reloadStopRequested = true;
+            this.advanceReload(now);
+        } else this.startReload(now);
+        this.updateHud(now);
+    }
+
+    private handleKeyUp(event: Laya.Event): void {
+        if (event.keyCode === 82) this.reloadKeyHeld = false;
     }
 
     private selectWeapon(mode: "rifle" | "knife"): void {
@@ -183,6 +279,7 @@ export class RifleController extends Laya.Script {
         this.weaponMode = mode;
         this.rifleModel.active = mode === "rifle";
         this.knife.root.active = mode === "knife";
+        this.playerControl.setWeaponPresentationScale(mode === "rifle" ? 0.90 : 0.55);
         this.aimProgress = 0;
         this.playerControl.setAimProgress(0);
         this.ballisticRise = 0;
@@ -194,7 +291,7 @@ export class RifleController extends Laya.Script {
         const now = this.clock?.now() ?? performance.now();
         const dt = Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05);
         if (!this.playerControl.isGameplayFocused()) this.stopTrigger();
-        if (this.reloading && now >= this.reloadEndAt) this.finishReload(now);
+        if (this.reloading) this.advanceReload(now);
         if (this.pendingMeleeHit && now >= this.swingHitAt) {
             this.pendingMeleeHit = false;
             // 单次命中在动作中段结算；卡顿跨过整个动作后不追补伤害。
@@ -261,6 +358,7 @@ export class RifleController extends Laya.Script {
         this.magazine--;
         this.shotCount++;
         this.lastShotAt = now;
+        this.spentCasePending = true;
         this.owner.event(RifleController.FIRED);
         this.playerControl.syncCameraForShot();
         const p = this.viewCamera.transform.position;
@@ -319,24 +417,55 @@ export class RifleController extends Laya.Script {
     private startReload(now: number): void {
         if (!this.enabled || this.clock?.paused || this.weaponMode !== "rifle"
             || this.reloading || this.magazine >= this.magazineSize || this.reserve <= 0) return;
+        this.reloadInitialLift = this.boltLift;
+        this.reloadInitialPull = this.boltPull;
         this.reloading = true;
-        this.reloadEndAt = now + this.reloadSeconds * 1000;
+        const duration = (value: number, fallback: number) =>
+            (Number.isFinite(value) ? Math.max(0.05, value) : fallback) * 1000;
+        // Snapshot once, so every round in this reload has exactly the same duration.
+        this.reloadDurations = {
+            prepare: duration(this.reloadPrepareSeconds, 0.7),
+            insert: duration(this.reloadRoundSeconds, 0.65),
+            finish: duration(this.reloadFinishSeconds, 0.45)
+        };
+        this.reloadStopRequested = false;
         this.owner.event(RifleController.RELOAD_STARTED);
+        this.enterReloadStage("prepare", now);
     }
 
-    private finishReload(now: number): void {
-        if (!this.reloading || this.weaponMode !== "rifle") return;
-        const count = Math.min(this.magazineSize - this.magazine, this.reserve);
-        this.magazine += count;
-        this.reserve -= count;
-        this.cancelReload();
-        this.nextShotAt = Math.max(this.nextShotAt, now);
+    private enterReloadStage(stage: "prepare" | "insert" | "finish", now: number): void {
+        this.reloadStage = stage;
+        this.reloadStageStart = now;
+        this.reloadStageEnd = now + this.reloadDurations[stage];
+        ++this.reloadSequence;
+        this.owner.event(RifleController.RELOAD_STAGE_CHANGED, { stage, durationMs: this.reloadDurations[stage] });
+    }
+
+    private advanceReload(now: number): void {
+        if (!this.reloading || this.clock?.paused || !this.enabled || now < this.reloadStageEnd) return;
+        // At most one completed round per rendered update. A stall cannot dump several
+        // rounds into the HUD at once or skip all of the remaining visible reload.
+        if (this.reloadStage === "prepare") {
+            this.enterReloadStage(this.reloadRoundCount > 0 ? "insert" : "finish", now);
+        } else if (this.reloadStage === "insert") {
+            if (this.magazine < this.magazineSize && this.reserve > 0) {
+                ++this.magazine;
+                --this.reserve;
+                this.owner.event(RifleController.ROUND_INSERTED);
+            }
+            this.enterReloadStage(this.reloadStopRequested || this.reloadRoundCount === 0 ? "finish" : "insert", now);
+        } else if (this.reloadStage === "finish") {
+            this.cancelReload();
+            this.nextShotAt = Math.max(this.nextShotAt, now);
+        }
     }
 
     private cancelReload(): void {
         if (!this.reloading) return;
         this.reloading = false;
-        this.reloadEndAt = 0;
+        this.reloadStage = "idle";
+        this.reloadStageStart = this.reloadStageEnd = 0;
+        this.reloadStopRequested = false;
         this.owner.event(RifleController.RELOAD_ENDED);
     }
 
@@ -347,9 +476,53 @@ export class RifleController extends Laya.Script {
         this.aimProgress += (Number(aiming) - this.aimProgress) * blend;
         this.playerControl.setAimProgress(this.aimProgress);
         this.kickBack = Math.max(0, this.kickBack - dt * this.recoilReturnSpeed);
-        this.modelTarget.setValue(0.34, -0.32, -0.72 + this.kickBack);
+        const phase = this.reloading ? this.reloadProgress : this.boltCycleProgress;
+        const keys = this.reloading ? BOLT_MOTION.reload : BOLT_MOTION.shot;
+        let lift = phase >= 0 ? motionValue(keys, phase, 1) : 0;
+        let pull = phase >= 0 ? motionValue(keys, phase, 2) : 0;
+        if (this.reloading && phase < 0.22) {
+            lift = this.reloadInitialLift + (1 - this.reloadInitialLift) * lift;
+            pull = this.reloadInitialPull + (1 - this.reloadInitialPull) * pull;
+        }
+        this.boltLift = lift;
+        this.boltPull = pull;
+        const tilt = (phase >= 0 ? motionValue(keys, phase, 3) : 0)
+            * (this.reloading ? 1 : 0.65 * (1 - this.aimProgress));
+        if (this.bolt) {
+            this.boltPosition.setValue(this.boltHome.x, this.boltHome.y, this.boltHome.z + pull * BOLT_MECHANISM.travel);
+            this.boltRotation.setValue(this.boltHomeRotation.x, this.boltHomeRotation.y,
+                this.boltHomeRotation.z + lift * BOLT_MECHANISM.liftDegrees);
+            this.bolt.transform.localPosition = this.boltPosition;
+            this.bolt.transform.localRotationEuler = this.boltRotation;
+        }
+        const now = (this.clock?.now() ?? performance.now()) / 1000;
+        const moving = Math.min(1, (this.playerControl.movementSpeed || 0) / 5)
+            * (1 - this.aimProgress) ** 2 * (phase < 0 ? 1 : 0);
+        const bobX = Math.sin(now * 10) * 0.004 * moving;
+        const bobY = Math.cos(now * 20) * 0.006 * moving;
+        const raiseTuck = Math.max(0, this.viewCamera.transform.rotationEuler.x - 35) * 0.002;
+        // Bring the stock into the shoulder rather than stretching the character
+        // to an arm's-length camera prop. At ADS, the sight line's +0.18 Y offset
+        // cancels this -0.18 Y and X matches PlayerController's sight offset.
+        // Bring the operating hand into view for hip-fire/reload. ADS shooting
+        // has zero tilt and keeps the sight's original camera alignment.
+        this.modelTarget.setValue(this.rifleHome.x - 0.02 * this.aimProgress - tilt * 0.20 + bobX,
+            this.rifleHome.y + 0.14 * this.aimProgress + tilt * 0.12 + bobY,
+            this.rifleHome.z + raiseTuck + this.kickBack - tilt * 0.09);
         Laya.Vector3.lerp(this.rifleModel.transform.localPosition, this.modelTarget, blend, this.modelPosition);
         this.rifleModel.transform.localPosition = this.modelPosition;
+        this.weaponRotation.setValue(-7 * tilt, 8 * tilt, -18 * tilt);
+        this.rifleModel.transform.localRotationEuler = this.weaponRotation;
+        // The last shot enters reload preparation immediately, so follow actual
+        // bolt travel rather than the standalone shot animation's progress.
+        if (this.spentCasePending) {
+            if (this.enabled && this.weaponMode === "rifle" && pull >= 0.65) {
+                this.spentCasePending = false;
+                this.owner.event(RifleController.CASE_EJECTED);
+            } else if (this.weaponMode !== "rifle" || phase < 0) {
+                this.spentCasePending = false; // Never replay an old ejection after a stall/switch.
+            }
+        }
     }
 
     private updateAimPoint(): void {
@@ -366,7 +539,10 @@ export class RifleController extends Laya.Script {
                     ? `收招中 ${((this.attackReadyAt - now) / 1000).toFixed(1)}s` : "左键轻击 · 右键重击";
                 this.ammoText.text = `短刀  ·  ${recovery}  ·  1 切回汉阳造`;
             } else {
-                const action = this.reloading ? `装填中 ${Math.max(0, (this.reloadEndAt - now) / 1000).toFixed(1)}s`
+                const reloadLabel = this.reloadStage === "prepare" ? "装填准备"
+                    : this.reloadStage === "finish" ? "装填收尾" : "逐发装填";
+                const action = this.reloading ? `${reloadLabel} ${Math.max(0, (this.reloadStageEnd - now) / 1000).toFixed(1)}s`
+                    + (this.reloadStage === "finish" ? "" : this.reloadStopRequested ? " · 本发完成后结束" : " · 再按 R 提前收尾")
                     : now < this.nextShotAt ? `拉栓中 ${((this.nextShotAt - now) / 1000).toFixed(1)}s`
                     : this.magazine === 0 && this.reserve === 0 ? "弹药耗尽" : "单发 · R 装填";
                 this.ammoText.text = `汉阳造  ${this.magazine} / ${this.reserve}   ·   ${action} · 3 切刀`;
@@ -387,6 +563,7 @@ export class RifleController extends Laya.Script {
     }
 
     onDisable(): void {
+        this.spentCasePending = false;
         this.stopTrigger();
         this.cancelReload();
         this.pendingMeleeHit = false;

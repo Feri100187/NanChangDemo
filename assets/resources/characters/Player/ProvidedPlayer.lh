@@ -3,132 +3,100 @@
   "_$id": "k4alik85",
   "_$type": "Sprite3D",
   "name": "ProvidedPlayer",
+  "_$comp": [
+    {
+      "_$type": "50eb7f2b-3dec-457d-8c04-4757703be35d",
+      "scriptPath": "../src/CharacterAnimation.ts",
+      "blend": 0.06,
+      "casingLifetime": 4,
+      "casingSpeed": 1
+    }
+  ],
   "_$child": [
     {
-      "_$id": "plypose0",
-      "_$type": "Sprite3D",
-      "name": "Standing",
+      "_$id": "animatedmodel",
+      "_$prefab": "e5ce8d67-f98f-4d91-9634-6fa149299577",
+      "name": "AnimatedModel",
       "active": true,
-      "_$child": [
-        {
-          "_$id": "plybody0",
-          "_$type": "Sprite3D",
-          "name": "Body",
-          "_$comp": [
-            {
-              "_$type": "MeshFilter",
-              "sharedMesh": {
-                "_$uuid": "4226aa6f-5930-4157-a725-541d6f943684@lm2",
-                "_$type": "Mesh"
-              }
-            },
-            {
-              "_$type": "MeshRenderer",
-              "receiveShadow": true,
-              "castShadow": true,
-              "sharedMaterials": [
-                {
-                  "_$uuid": "4226aa6f-5930-4157-a725-541d6f943684@lmat0",
-                  "_$type": "Material"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "_$id": "plyhead0",
-          "_$type": "Sprite3D",
-          "name": "Head",
-          "_$comp": [
-            {
-              "_$type": "MeshFilter",
-              "sharedMesh": {
-                "_$uuid": "4226aa6f-5930-4157-a725-541d6f943684@lm3",
-                "_$type": "Mesh"
-              }
-            },
-            {
-              "_$type": "MeshRenderer",
-              "receiveShadow": true,
-              "castShadow": true,
-              "sharedMaterials": [
-                {
-                  "_$uuid": "4226aa6f-5930-4157-a725-541d6f943684@lmat0",
-                  "_$type": "Material"
-                }
-              ]
-            }
-          ]
-        }
-      ],
+      "layer": 0,
       "transform": {
         "localPosition": {
           "_$type": "Vector3",
           "y": 0.04
+        },
+        "localRotation": {
+          "_$type": "Quaternion"
+        }
+      },
+      "_$comp": [
+        {
+          "_$override": "Animator",
+          "controller": {
+            "_$uuid": "4fdb53d2-ae3a-43f0-a6b9-98834e870cbc",
+            "_$type": "AnimationController"
+          },
+          "cullingMode": 0
+        }
+      ],
+      "_$child": [
+        {
+          "_$override": "#74",
+          "active": false
+        }
+      ]
+    },
+    {
+      "_$id": "firstpersonarms",
+      "_$prefab": "e5ce8d67-f98f-4d91-9634-6fa149299577",
+      "name": "FirstPersonArms",
+      "active": false,
+      "layer": 0,
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3"
+        },
+        "localRotation": {
+          "_$type": "Quaternion"
+        }
+      },
+      "_$comp": [
+        {
+          "_$override": "Animator",
+          "controller": {
+            "_$uuid": "4fdb53d2-ae3a-43f0-a6b9-98834e870cbc",
+            "_$type": "AnimationController"
+          },
+          "cullingMode": 0
+        }
+      ]
+    },
+    {
+      "_$id": "reloadcartridge",
+      "_$prefab": "91f89a91-15f6-4332-a84f-17148ca0c86a",
+      "name": "ReloadCartridge",
+      "active": false,
+      "layer": 0,
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3"
+        },
+        "localRotation": {
+          "_$type": "Quaternion"
         }
       }
     },
     {
-      "_$id": "plypose1",
-      "_$type": "Sprite3D",
-      "name": "Crouching",
+      "_$id": "ejectedcasetemplate",
+      "_$prefab": "9fe8e2ed-2645-40c2-9229-fd31fb7e524d",
+      "name": "EjectedCaseTemplate",
       "active": false,
-      "_$child": [
-        {
-          "_$id": "plybody1",
-          "_$type": "Sprite3D",
-          "name": "Body",
-          "_$comp": [
-            {
-              "_$type": "MeshFilter",
-              "sharedMesh": {
-                "_$uuid": "4226aa6f-5930-4157-a725-541d6f943684@lm0",
-                "_$type": "Mesh"
-              }
-            },
-            {
-              "_$type": "MeshRenderer",
-              "receiveShadow": true,
-              "castShadow": true,
-              "sharedMaterials": [
-                {
-                  "_$uuid": "4226aa6f-5930-4157-a725-541d6f943684@lmat0",
-                  "_$type": "Material"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "_$id": "plyhead1",
-          "_$type": "Sprite3D",
-          "name": "Head",
-          "_$comp": [
-            {
-              "_$type": "MeshFilter",
-              "sharedMesh": {
-                "_$uuid": "4226aa6f-5930-4157-a725-541d6f943684@lm1",
-                "_$type": "Mesh"
-              }
-            },
-            {
-              "_$type": "MeshRenderer",
-              "receiveShadow": true,
-              "castShadow": true,
-              "sharedMaterials": [
-                {
-                  "_$uuid": "4226aa6f-5930-4157-a725-541d6f943684@lmat0",
-                  "_$type": "Material"
-                }
-              ]
-            }
-          ]
-        }
-      ],
+      "layer": 0,
       "transform": {
         "localPosition": {
-          "_$type": "Vector3",
-          "y": 0.04
+          "_$type": "Vector3"
+        },
+        "localRotation": {
+          "_$type": "Quaternion"
         }
       }
     }

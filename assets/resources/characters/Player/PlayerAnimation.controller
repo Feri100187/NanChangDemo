@@ -1,0 +1,668 @@
+{
+  "controllerLayers": [
+    {
+      "name": "Character",
+      "defaultWeight": 1,
+      "blendingMode": 0,
+      "playOnWake": true,
+      "states": [
+        {
+          "id": "-1",
+          "name": "Entry",
+          "x": 30,
+          "y": 80,
+          "soloTransitions": [
+            {
+              "id": "19"
+            }
+          ]
+        },
+        {
+          "id": "0",
+          "name": "Aim",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani0"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 80,
+          "soloTransitions": []
+        },
+        {
+          "id": "1",
+          "name": "AimWalk",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani1"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 80,
+          "soloTransitions": []
+        },
+        {
+          "id": "2",
+          "name": "CrouchAim",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani2"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 80,
+          "soloTransitions": []
+        },
+        {
+          "id": "3",
+          "name": "CrouchAimWalk",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani3"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 80,
+          "soloTransitions": []
+        },
+        {
+          "id": "4",
+          "name": "CrouchFire",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani4"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 190,
+          "soloTransitions": []
+        },
+        {
+          "id": "5",
+          "name": "CrouchHeavyMelee",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani5"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 190,
+          "soloTransitions": []
+        },
+        {
+          "id": "6",
+          "name": "CrouchHold",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani6"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 190,
+          "soloTransitions": []
+        },
+        {
+          "id": "7",
+          "name": "CrouchHoldWalk",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani7"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 190,
+          "soloTransitions": []
+        },
+        {
+          "id": "8",
+          "name": "CrouchIdle",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani8"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 300,
+          "soloTransitions": []
+        },
+        {
+          "id": "9",
+          "name": "CrouchKnifeHold",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani9"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 300,
+          "soloTransitions": []
+        },
+        {
+          "id": "10",
+          "name": "CrouchKnifeWalk",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani10"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 300,
+          "soloTransitions": []
+        },
+        {
+          "id": "11",
+          "name": "CrouchMelee",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani11"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 300,
+          "soloTransitions": []
+        },
+        {
+          "id": "12",
+          "name": "CrouchReload",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani12"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 410,
+          "soloTransitions": []
+        },
+        {
+          "id": "13",
+          "name": "CrouchWalk",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani13"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 410,
+          "soloTransitions": []
+        },
+        {
+          "id": "14",
+          "name": "Fire",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani14"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 410,
+          "soloTransitions": []
+        },
+        {
+          "id": "15",
+          "name": "HeavyMelee",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani15"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 410,
+          "soloTransitions": []
+        },
+        {
+          "id": "16",
+          "name": "Hold",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani16"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 520,
+          "soloTransitions": []
+        },
+        {
+          "id": "17",
+          "name": "HoldRun",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani17"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 520,
+          "soloTransitions": []
+        },
+        {
+          "id": "18",
+          "name": "HoldWalk",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani18"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 520,
+          "soloTransitions": []
+        },
+        {
+          "id": "19",
+          "name": "Idle",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani19"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 520,
+          "soloTransitions": []
+        },
+        {
+          "id": "20",
+          "name": "Jump",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani20"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 630,
+          "soloTransitions": []
+        },
+        {
+          "id": "21",
+          "name": "KnifeHold",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani21"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 630,
+          "soloTransitions": []
+        },
+        {
+          "id": "22",
+          "name": "KnifeRun",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani22"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 630,
+          "soloTransitions": []
+        },
+        {
+          "id": "23",
+          "name": "KnifeWalk",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani23"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 630,
+          "soloTransitions": []
+        },
+        {
+          "id": "24",
+          "name": "Melee",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani24"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 740,
+          "soloTransitions": []
+        },
+        {
+          "id": "25",
+          "name": "Reload",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani25"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 740,
+          "soloTransitions": []
+        },
+        {
+          "id": "26",
+          "name": "Run",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani26"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 740,
+          "soloTransitions": []
+        },
+        {
+          "id": "27",
+          "name": "StrafeLeft",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani27"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 740,
+          "soloTransitions": []
+        },
+        {
+          "id": "28",
+          "name": "StrafeRight",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani28"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 850,
+          "soloTransitions": []
+        },
+        {
+          "id": "29",
+          "name": "ViewAim",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani29"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 850,
+          "soloTransitions": []
+        },
+        {
+          "id": "30",
+          "name": "ViewBolt",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani30"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 850,
+          "soloTransitions": []
+        },
+        {
+          "id": "31",
+          "name": "ViewHold",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani31"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 850,
+          "soloTransitions": []
+        },
+        {
+          "id": "32",
+          "name": "ViewKnifeHeavy",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani32"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 960,
+          "soloTransitions": []
+        },
+        {
+          "id": "33",
+          "name": "ViewKnifeHold",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani33"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 960,
+          "soloTransitions": []
+        },
+        {
+          "id": "34",
+          "name": "ViewKnifeLight",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani34"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 960,
+          "soloTransitions": []
+        },
+        {
+          "id": "35",
+          "name": "ViewReload",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani35"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 960,
+          "soloTransitions": []
+        },
+        {
+          "id": "36",
+          "name": "Walk",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani36"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 1070,
+          "soloTransitions": []
+        },
+        {
+          "id": "37",
+          "name": "ViewReloadPrepare",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani35"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 0.34,
+          "x": 500,
+          "y": 1070,
+          "soloTransitions": []
+        },
+        {
+          "id": "38",
+          "name": "ViewReloadInsert",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani35"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0.34,
+          "clipEnd": 0.48,
+          "x": 720,
+          "y": 1070,
+          "soloTransitions": []
+        },
+        {
+          "id": "39",
+          "name": "ViewReloadFinish",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani35"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0.65,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 1070,
+          "soloTransitions": []
+        },
+        {
+          "id": "40",
+          "name": "ReloadPrepare",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani25"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 0.34,
+          "x": 280,
+          "y": 1180,
+          "soloTransitions": []
+        },
+        {
+          "id": "41",
+          "name": "ReloadInsert",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani25"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0.34,
+          "clipEnd": 0.48,
+          "x": 500,
+          "y": 1180,
+          "soloTransitions": []
+        },
+        {
+          "id": "42",
+          "name": "ReloadFinish",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani25"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0.65,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 1180,
+          "soloTransitions": []
+        },
+        {
+          "id": "43",
+          "name": "CrouchReloadPrepare",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani12"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 0.34,
+          "x": 940,
+          "y": 1180,
+          "soloTransitions": []
+        },
+        {
+          "id": "44",
+          "name": "CrouchReloadInsert",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani12"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0.34,
+          "clipEnd": 0.48,
+          "x": 280,
+          "y": 1290,
+          "soloTransitions": []
+        },
+        {
+          "id": "45",
+          "name": "CrouchReloadFinish",
+          "clip": {
+            "_$uuid": "e5ce8d67-f98f-4d91-9634-6fa149299577@lani12"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0.65,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 1290,
+          "soloTransitions": []
+        }
+      ]
+    }
+  ],
+  "animatorParams": []
+}
