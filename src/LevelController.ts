@@ -189,7 +189,7 @@ export class LevelController extends Laya.Script {
         this.resultTitle.color = "#ffcf80";
         this.resultDetail.text = ready
             ? (this.hasMission
-                ? "虚构布局与任务文件，仅用于玩法设计。\n清理街口2人 → 院落2人 → 建筑内按 E 取文件 → 橙色终点。"
+                ? `虚构布局与任务文件，仅用于玩法设计。\n清理街区${this.streetTargets.length}人 → 院区${this.courtyardTargets.length}人（含屋内） → 按 E 取文件 → 橙色终点。`
                 : "虚构布局的玩法原型，不复原真实历史地点。\n清除全部敌人，抵达橙色终点。")
                 + "\n\nWASD 移动 · 左键单发 / 轻击 · 右键开镜 / 重击\n1 汉阳造 · 3 短刀 · R 装填 · Space 跳跃\nShift 疾跑 · C 下蹲 · Esc 暂停"
             : "战斗与换弹已冻结。\n点击继续，取得鼠标控制后恢复游戏。\n\n鼠标锁定受限时，仍可在画面内移动鼠标转向。";

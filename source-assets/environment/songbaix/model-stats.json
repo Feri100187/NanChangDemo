@@ -5,19 +5,19 @@
     "triangles": 1016
   },
   "landmark": {
-    "objects": 130,
-    "unique_meshes": 79,
-    "triangles": 9360
+    "objects": 170,
+    "unique_meshes": 80,
+    "triangles": 11508
   },
   "street-buildings": {
-    "objects": 249,
-    "unique_meshes": 87,
-    "triangles": 9940
+    "objects": 396,
+    "unique_meshes": 110,
+    "triangles": 15904
   },
   "mission-building": {
-    "objects": 67,
+    "objects": 73,
     "unique_meshes": 26,
-    "triangles": 2812
+    "triangles": 3076
   },
   "props": {
     "objects": 44,
@@ -25,8 +25,8 @@
     "triangles": 1968
   },
   "collision-proxies": {
-    "objects": 57,
-    "unique_meshes": 46,
-    "triangles": 684
+    "objects": 358,
+    "unique_meshes": 153,
+    "triangles": 4296
   }
 }

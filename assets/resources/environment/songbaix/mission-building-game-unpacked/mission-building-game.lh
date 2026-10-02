@@ -1,6 +1,6 @@
 {
   "_$ver": 1,
-  "_$id": "uhon3pdu",
+  "_$id": "oscx96py",
   "_$type": "Sprite3D",
   "name": "Scene",
   "_$child": [
@@ -20,7 +20,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "cc45a0cd-9bcf-435d-9c4f-93825477d079",
+            "_$uuid": "8a5b3098-3f37-459f-90c1-1f3496bdb555",
             "_$type": "Mesh"
           }
         },
@@ -33,7 +33,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -56,7 +56,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "1d0a3be9-9e9e-4924-bae3-89ba0facbdbf",
+            "_$uuid": "575b86ab-51da-42d4-8b80-b409bdc076c6",
             "_$type": "Mesh"
           }
         },
@@ -69,7 +69,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -92,7 +92,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "1d0a3be9-9e9e-4924-bae3-89ba0facbdbf",
+            "_$uuid": "575b86ab-51da-42d4-8b80-b409bdc076c6",
             "_$type": "Mesh"
           }
         },
@@ -105,7 +105,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -114,6 +114,438 @@
     },
     {
       "_$id": "#7",
+      "_$type": "Sprite3D",
+      "name": "Mission_ClearPortal_RaisedJamb",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -20.09000015258789,
+          "y": 1.399999976158142,
+          "z": -21.770000457763672
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "2a872cef-72ca-4ecf-a086-cfd2f9c5531c",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#8",
+      "_$type": "Sprite3D",
+      "name": "Mission_ClearPortal_RaisedJamb.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -17.510000228881836,
+          "y": 1.399999976158142,
+          "z": -21.770000457763672
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "2a872cef-72ca-4ecf-a086-cfd2f9c5531c",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#9",
+      "_$type": "Sprite3D",
+      "name": "Mission_ClearPortal_RaisedJamb.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -20.09000015258789,
+          "y": 1.399999976158142,
+          "z": -22.229999542236328
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "2a872cef-72ca-4ecf-a086-cfd2f9c5531c",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#10",
+      "_$type": "Sprite3D",
+      "name": "Mission_ClearPortal_RaisedJamb.003",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -17.510000228881836,
+          "y": 1.399999976158142,
+          "z": -22.229999542236328
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "2a872cef-72ca-4ecf-a086-cfd2f9c5531c",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#11",
+      "_$type": "Sprite3D",
+      "name": "Mission_ClearPortal_RaisedJamb.004",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -20.09000015258789,
+          "y": 1.399999976158142,
+          "z": -32.77000045776367
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "2a872cef-72ca-4ecf-a086-cfd2f9c5531c",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#12",
+      "_$type": "Sprite3D",
+      "name": "Mission_ClearPortal_RaisedJamb.005",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -17.510000228881836,
+          "y": 1.399999976158142,
+          "z": -32.77000045776367
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "2a872cef-72ca-4ecf-a086-cfd2f9c5531c",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#13",
+      "_$type": "Sprite3D",
+      "name": "Mission_ClearPortal_RaisedJamb.006",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -20.09000015258789,
+          "y": 1.399999976158142,
+          "z": -33.22999954223633
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "2a872cef-72ca-4ecf-a086-cfd2f9c5531c",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#14",
+      "_$type": "Sprite3D",
+      "name": "Mission_ClearPortal_RaisedJamb.007",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -17.510000228881836,
+          "y": 1.399999976158142,
+          "z": -33.22999954223633
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "2a872cef-72ca-4ecf-a086-cfd2f9c5531c",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#15",
+      "_$type": "Sprite3D",
+      "name": "Mission_ClearPortal_RaisedLintel",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -18.799999237060547,
+          "y": 2.880000114440918,
+          "z": -21.770000457763672
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "a25ef7d3-f093-4119-a426-2aa8ae821061",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#16",
+      "_$type": "Sprite3D",
+      "name": "Mission_ClearPortal_RaisedLintel.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -18.799999237060547,
+          "y": 2.880000114440918,
+          "z": -22.229999542236328
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "a25ef7d3-f093-4119-a426-2aa8ae821061",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#17",
+      "_$type": "Sprite3D",
+      "name": "Mission_ClearPortal_RaisedLintel.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -18.799999237060547,
+          "y": 2.880000114440918,
+          "z": -32.77000045776367
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "a25ef7d3-f093-4119-a426-2aa8ae821061",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#18",
+      "_$type": "Sprite3D",
+      "name": "Mission_ClearPortal_RaisedLintel.003",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -18.799999237060547,
+          "y": 2.880000114440918,
+          "z": -33.22999954223633
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "a25ef7d3-f093-4119-a426-2aa8ae821061",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#19",
       "_$type": "Sprite3D",
       "name": "Mission_DoorHead",
       "transform": {
@@ -128,7 +560,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "0836f97e-334e-4d6e-ba29-ce7b9e6981e4",
+            "_$uuid": "958a7bb9-bb36-4ba2-adc9-943ee96a9aef",
             "_$type": "Mesh"
           }
         },
@@ -141,7 +573,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -149,7 +581,7 @@
       ]
     },
     {
-      "_$id": "#8",
+      "_$id": "#20",
       "_$type": "Sprite3D",
       "name": "Mission_DoorHead.001",
       "transform": {
@@ -164,7 +596,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "0836f97e-334e-4d6e-ba29-ce7b9e6981e4",
+            "_$uuid": "958a7bb9-bb36-4ba2-adc9-943ee96a9aef",
             "_$type": "Mesh"
           }
         },
@@ -177,7 +609,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -185,223 +617,7 @@
       ]
     },
     {
-      "_$id": "#9",
-      "_$type": "Sprite3D",
-      "name": "Mission_DoorJamb",
-      "transform": {
-        "localPosition": {
-          "_$type": "Vector3",
-          "x": -20.079999923706055,
-          "y": 1.399999976158142,
-          "z": -22
-        }
-      },
-      "_$comp": [
-        {
-          "_$type": "MeshFilter",
-          "sharedMesh": {
-            "_$uuid": "18c28028-ea4c-42f5-af12-30210f7a9db0",
-            "_$type": "Mesh"
-          }
-        },
-        {
-          "_$type": "MeshRenderer",
-          "receiveShadow": true,
-          "castShadow": true,
-          "lightmapScaleOffset": {
-            "_$type": "Vector4"
-          },
-          "sharedMaterials": [
-            {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
-              "_$type": "Material"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "_$id": "#10",
-      "_$type": "Sprite3D",
-      "name": "Mission_DoorJamb.001",
-      "transform": {
-        "localPosition": {
-          "_$type": "Vector3",
-          "x": -17.520000457763672,
-          "y": 1.399999976158142,
-          "z": -22
-        }
-      },
-      "_$comp": [
-        {
-          "_$type": "MeshFilter",
-          "sharedMesh": {
-            "_$uuid": "18c28028-ea4c-42f5-af12-30210f7a9db0",
-            "_$type": "Mesh"
-          }
-        },
-        {
-          "_$type": "MeshRenderer",
-          "receiveShadow": true,
-          "castShadow": true,
-          "lightmapScaleOffset": {
-            "_$type": "Vector4"
-          },
-          "sharedMaterials": [
-            {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
-              "_$type": "Material"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "_$id": "#11",
-      "_$type": "Sprite3D",
-      "name": "Mission_DoorJamb.002",
-      "transform": {
-        "localPosition": {
-          "_$type": "Vector3",
-          "x": -20.079999923706055,
-          "y": 1.399999976158142,
-          "z": -33
-        }
-      },
-      "_$comp": [
-        {
-          "_$type": "MeshFilter",
-          "sharedMesh": {
-            "_$uuid": "18c28028-ea4c-42f5-af12-30210f7a9db0",
-            "_$type": "Mesh"
-          }
-        },
-        {
-          "_$type": "MeshRenderer",
-          "receiveShadow": true,
-          "castShadow": true,
-          "lightmapScaleOffset": {
-            "_$type": "Vector4"
-          },
-          "sharedMaterials": [
-            {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
-              "_$type": "Material"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "_$id": "#12",
-      "_$type": "Sprite3D",
-      "name": "Mission_DoorJamb.003",
-      "transform": {
-        "localPosition": {
-          "_$type": "Vector3",
-          "x": -17.520000457763672,
-          "y": 1.399999976158142,
-          "z": -33
-        }
-      },
-      "_$comp": [
-        {
-          "_$type": "MeshFilter",
-          "sharedMesh": {
-            "_$uuid": "18c28028-ea4c-42f5-af12-30210f7a9db0",
-            "_$type": "Mesh"
-          }
-        },
-        {
-          "_$type": "MeshRenderer",
-          "receiveShadow": true,
-          "castShadow": true,
-          "lightmapScaleOffset": {
-            "_$type": "Vector4"
-          },
-          "sharedMaterials": [
-            {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
-              "_$type": "Material"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "_$id": "#13",
-      "_$type": "Sprite3D",
-      "name": "Mission_DoorLintel",
-      "transform": {
-        "localPosition": {
-          "_$type": "Vector3",
-          "x": -18.799999237060547,
-          "y": 2.8499999046325684,
-          "z": -22
-        }
-      },
-      "_$comp": [
-        {
-          "_$type": "MeshFilter",
-          "sharedMesh": {
-            "_$uuid": "2e03591b-1b8f-4ef4-8f44-f66a9379907f",
-            "_$type": "Mesh"
-          }
-        },
-        {
-          "_$type": "MeshRenderer",
-          "receiveShadow": true,
-          "castShadow": true,
-          "lightmapScaleOffset": {
-            "_$type": "Vector4"
-          },
-          "sharedMaterials": [
-            {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
-              "_$type": "Material"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "_$id": "#14",
-      "_$type": "Sprite3D",
-      "name": "Mission_DoorLintel.001",
-      "transform": {
-        "localPosition": {
-          "_$type": "Vector3",
-          "x": -18.799999237060547,
-          "y": 2.8499999046325684,
-          "z": -33
-        }
-      },
-      "_$comp": [
-        {
-          "_$type": "MeshFilter",
-          "sharedMesh": {
-            "_$uuid": "2e03591b-1b8f-4ef4-8f44-f66a9379907f",
-            "_$type": "Mesh"
-          }
-        },
-        {
-          "_$type": "MeshRenderer",
-          "receiveShadow": true,
-          "castShadow": true,
-          "lightmapScaleOffset": {
-            "_$type": "Vector4"
-          },
-          "sharedMaterials": [
-            {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
-              "_$type": "Material"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "_$id": "#15",
+      "_$id": "#21",
       "_$type": "Sprite3D",
       "name": "Mission_DoorWallSegment",
       "transform": {
@@ -416,7 +632,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "66ea9eab-b9f4-40e0-96c1-ae726376a2ed",
+            "_$uuid": "5854a2cf-7166-4473-8309-6f6578a64697",
             "_$type": "Mesh"
           }
         },
@@ -429,7 +645,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -437,7 +653,7 @@
       ]
     },
     {
-      "_$id": "#16",
+      "_$id": "#22",
       "_$type": "Sprite3D",
       "name": "Mission_DoorWallSegment.001",
       "transform": {
@@ -452,7 +668,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "544c6d92-c645-4a48-8d73-e435b795b974",
+            "_$uuid": "d919041d-ff73-42df-9d52-ea8d36b4e073",
             "_$type": "Mesh"
           }
         },
@@ -465,7 +681,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -473,7 +689,7 @@
       ]
     },
     {
-      "_$id": "#17",
+      "_$id": "#23",
       "_$type": "Sprite3D",
       "name": "Mission_DoorWallSegment.002",
       "transform": {
@@ -488,7 +704,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "66ea9eab-b9f4-40e0-96c1-ae726376a2ed",
+            "_$uuid": "5854a2cf-7166-4473-8309-6f6578a64697",
             "_$type": "Mesh"
           }
         },
@@ -501,7 +717,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -509,7 +725,7 @@
       ]
     },
     {
-      "_$id": "#18",
+      "_$id": "#24",
       "_$type": "Sprite3D",
       "name": "Mission_DoorWallSegment.003",
       "transform": {
@@ -524,7 +740,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "544c6d92-c645-4a48-8d73-e435b795b974",
+            "_$uuid": "d919041d-ff73-42df-9d52-ea8d36b4e073",
             "_$type": "Mesh"
           }
         },
@@ -537,7 +753,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -545,7 +761,7 @@
       ]
     },
     {
-      "_$id": "#19",
+      "_$id": "#25",
       "_$type": "Sprite3D",
       "name": "Mission_ExposedBeam",
       "transform": {
@@ -560,7 +776,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "78e323c2-9e1f-4aaf-9658-0c16c4684e54",
+            "_$uuid": "636bd99b-12bf-4d29-87e1-915f1376ef94",
             "_$type": "Mesh"
           }
         },
@@ -573,7 +789,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -581,7 +797,7 @@
       ]
     },
     {
-      "_$id": "#20",
+      "_$id": "#26",
       "_$type": "Sprite3D",
       "name": "Mission_ExposedBeam.001",
       "transform": {
@@ -596,7 +812,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "78e323c2-9e1f-4aaf-9658-0c16c4684e54",
+            "_$uuid": "636bd99b-12bf-4d29-87e1-915f1376ef94",
             "_$type": "Mesh"
           }
         },
@@ -609,7 +825,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -617,7 +833,7 @@
       ]
     },
     {
-      "_$id": "#21",
+      "_$id": "#27",
       "_$type": "Sprite3D",
       "name": "Mission_ExposedBeam.002",
       "transform": {
@@ -632,7 +848,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "78e323c2-9e1f-4aaf-9658-0c16c4684e54",
+            "_$uuid": "636bd99b-12bf-4d29-87e1-915f1376ef94",
             "_$type": "Mesh"
           }
         },
@@ -645,7 +861,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -653,7 +869,7 @@
       ]
     },
     {
-      "_$id": "#22",
+      "_$id": "#28",
       "_$type": "Sprite3D",
       "name": "Mission_Floor",
       "transform": {
@@ -668,7 +884,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "af3674b6-45ac-4b63-be55-57b3a229522e",
+            "_$uuid": "7fe7eaa5-1489-4a19-91d8-45d47f0b3360",
             "_$type": "Mesh"
           }
         },
@@ -681,7 +897,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -689,14 +905,14 @@
       ]
     },
     {
-      "_$id": "#23",
+      "_$id": "#29",
       "_$type": "Sprite3D",
       "name": "Mission_Gable",
       "_$comp": [
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "e23d0982-14a4-419f-ab25-0d4ea67b3bcf",
+            "_$uuid": "5745167d-1f3b-4640-872c-563f16f00db0",
             "_$type": "Mesh"
           }
         },
@@ -709,7 +925,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -717,14 +933,14 @@
       ]
     },
     {
-      "_$id": "#24",
+      "_$id": "#30",
       "_$type": "Sprite3D",
       "name": "Mission_Gable.001",
       "_$comp": [
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "7bf038d1-74d8-46ed-9ed4-ee2c0773ff5d",
+            "_$uuid": "5543a667-9e9f-4a3f-99af-953965d28117",
             "_$type": "Mesh"
           }
         },
@@ -737,7 +953,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -745,7 +961,7 @@
       ]
     },
     {
-      "_$id": "#25",
+      "_$id": "#31",
       "_$type": "Sprite3D",
       "name": "Mission_InteriorScreen",
       "transform": {
@@ -760,7 +976,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "2844c632-c5c3-4ae2-af2d-fc322baeb968",
+            "_$uuid": "296668b1-7581-42fe-b7d9-aa6369b1e815",
             "_$type": "Mesh"
           }
         },
@@ -773,7 +989,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -781,7 +997,7 @@
       ]
     },
     {
-      "_$id": "#26",
+      "_$id": "#32",
       "_$type": "Sprite3D",
       "name": "Mission_Shelf",
       "transform": {
@@ -796,7 +1012,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "c449498f-0e49-455f-b43e-509d277fbfac",
+            "_$uuid": "cebc5e11-fd8f-47e3-a0aa-e90ccf44b34f",
             "_$type": "Mesh"
           }
         },
@@ -809,7 +1025,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -817,7 +1033,7 @@
       ]
     },
     {
-      "_$id": "#27",
+      "_$id": "#33",
       "_$type": "Sprite3D",
       "name": "Mission_Shelf.001",
       "transform": {
@@ -832,7 +1048,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "c449498f-0e49-455f-b43e-509d277fbfac",
+            "_$uuid": "cebc5e11-fd8f-47e3-a0aa-e90ccf44b34f",
             "_$type": "Mesh"
           }
         },
@@ -845,7 +1061,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -853,7 +1069,7 @@
       ]
     },
     {
-      "_$id": "#28",
+      "_$id": "#34",
       "_$type": "Sprite3D",
       "name": "Mission_Shelf.002",
       "transform": {
@@ -868,7 +1084,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "c449498f-0e49-455f-b43e-509d277fbfac",
+            "_$uuid": "cebc5e11-fd8f-47e3-a0aa-e90ccf44b34f",
             "_$type": "Mesh"
           }
         },
@@ -881,7 +1097,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -889,7 +1105,7 @@
       ]
     },
     {
-      "_$id": "#29",
+      "_$id": "#35",
       "_$type": "Sprite3D",
       "name": "Mission_Shelf.003",
       "transform": {
@@ -904,7 +1120,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "c449498f-0e49-455f-b43e-509d277fbfac",
+            "_$uuid": "cebc5e11-fd8f-47e3-a0aa-e90ccf44b34f",
             "_$type": "Mesh"
           }
         },
@@ -917,7 +1133,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -925,7 +1141,7 @@
       ]
     },
     {
-      "_$id": "#30",
+      "_$id": "#36",
       "_$type": "Sprite3D",
       "name": "Mission_ShelfBack",
       "transform": {
@@ -940,7 +1156,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "ee60867c-4008-4be4-9080-95d74cb8bf09",
+            "_$uuid": "bf8e07bd-9ab7-499a-9230-50a27eec8112",
             "_$type": "Mesh"
           }
         },
@@ -953,7 +1169,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -961,7 +1177,7 @@
       ]
     },
     {
-      "_$id": "#31",
+      "_$id": "#37",
       "_$type": "Sprite3D",
       "name": "Mission_SideLowerWall",
       "transform": {
@@ -976,7 +1192,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "00d55ed4-2bc5-4257-a6f3-ad4f45fae065",
+            "_$uuid": "d0f04d34-4066-449d-9964-8b2f9d18ef75",
             "_$type": "Mesh"
           }
         },
@@ -989,7 +1205,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "bc2e1afa-836f-4ec0-89f2-b0004660969a",
+              "_$uuid": "fdfd6e16-806d-4fda-8a01-514df6108326",
               "_$type": "Material"
             }
           ]
@@ -997,7 +1213,7 @@
       ]
     },
     {
-      "_$id": "#32",
+      "_$id": "#38",
       "_$type": "Sprite3D",
       "name": "Mission_SideLowerWall.001",
       "transform": {
@@ -1012,7 +1228,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "00d55ed4-2bc5-4257-a6f3-ad4f45fae065",
+            "_$uuid": "d0f04d34-4066-449d-9964-8b2f9d18ef75",
             "_$type": "Mesh"
           }
         },
@@ -1025,7 +1241,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "bc2e1afa-836f-4ec0-89f2-b0004660969a",
+              "_$uuid": "fdfd6e16-806d-4fda-8a01-514df6108326",
               "_$type": "Material"
             }
           ]
@@ -1033,7 +1249,7 @@
       ]
     },
     {
-      "_$id": "#33",
+      "_$id": "#39",
       "_$type": "Sprite3D",
       "name": "Mission_SideUpperWall",
       "transform": {
@@ -1048,7 +1264,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "8b8a4727-220c-4f29-8b06-7708151cc732",
+            "_$uuid": "c7c76683-06da-41fc-97d2-77a45dd711a1",
             "_$type": "Mesh"
           }
         },
@@ -1061,7 +1277,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -1069,7 +1285,7 @@
       ]
     },
     {
-      "_$id": "#34",
+      "_$id": "#40",
       "_$type": "Sprite3D",
       "name": "Mission_SideUpperWall.001",
       "transform": {
@@ -1084,7 +1300,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "8b8a4727-220c-4f29-8b06-7708151cc732",
+            "_$uuid": "c7c76683-06da-41fc-97d2-77a45dd711a1",
             "_$type": "Mesh"
           }
         },
@@ -1097,7 +1313,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -1105,7 +1321,7 @@
       ]
     },
     {
-      "_$id": "#35",
+      "_$id": "#41",
       "_$type": "Sprite3D",
       "name": "Mission_SideWindowPier",
       "transform": {
@@ -1120,7 +1336,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "a3c32697-34ca-41c2-adba-56a2626f12aa",
+            "_$uuid": "4e48a6f5-410f-4dd8-acb4-92d375dccf6a",
             "_$type": "Mesh"
           }
         },
@@ -1133,7 +1349,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -1141,7 +1357,7 @@
       ]
     },
     {
-      "_$id": "#36",
+      "_$id": "#42",
       "_$type": "Sprite3D",
       "name": "Mission_SideWindowPier.001",
       "transform": {
@@ -1156,7 +1372,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "a3c32697-34ca-41c2-adba-56a2626f12aa",
+            "_$uuid": "4e48a6f5-410f-4dd8-acb4-92d375dccf6a",
             "_$type": "Mesh"
           }
         },
@@ -1169,7 +1385,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -1177,7 +1393,7 @@
       ]
     },
     {
-      "_$id": "#37",
+      "_$id": "#43",
       "_$type": "Sprite3D",
       "name": "Mission_SideWindowPier.002",
       "transform": {
@@ -1192,7 +1408,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "a3c32697-34ca-41c2-adba-56a2626f12aa",
+            "_$uuid": "4e48a6f5-410f-4dd8-acb4-92d375dccf6a",
             "_$type": "Mesh"
           }
         },
@@ -1205,7 +1421,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -1213,7 +1429,7 @@
       ]
     },
     {
-      "_$id": "#38",
+      "_$id": "#44",
       "_$type": "Sprite3D",
       "name": "Mission_SideWindowPier.003",
       "transform": {
@@ -1228,7 +1444,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "a3c32697-34ca-41c2-adba-56a2626f12aa",
+            "_$uuid": "4e48a6f5-410f-4dd8-acb4-92d375dccf6a",
             "_$type": "Mesh"
           }
         },
@@ -1241,7 +1457,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -1249,7 +1465,7 @@
       ]
     },
     {
-      "_$id": "#39",
+      "_$id": "#45",
       "_$type": "Sprite3D",
       "name": "Mission_SideWindowPier.004",
       "transform": {
@@ -1264,7 +1480,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "a3c32697-34ca-41c2-adba-56a2626f12aa",
+            "_$uuid": "4e48a6f5-410f-4dd8-acb4-92d375dccf6a",
             "_$type": "Mesh"
           }
         },
@@ -1277,7 +1493,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -1285,7 +1501,7 @@
       ]
     },
     {
-      "_$id": "#40",
+      "_$id": "#46",
       "_$type": "Sprite3D",
       "name": "Mission_SideWindowPier.005",
       "transform": {
@@ -1300,7 +1516,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "a3c32697-34ca-41c2-adba-56a2626f12aa",
+            "_$uuid": "4e48a6f5-410f-4dd8-acb4-92d375dccf6a",
             "_$type": "Mesh"
           }
         },
@@ -1313,7 +1529,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "efb3631f-8b0c-4416-9bd9-403c01dfaae9",
+              "_$uuid": "af2633c1-166f-4769-b093-4565bf3ad645",
               "_$type": "Material"
             }
           ]
@@ -1321,7 +1537,7 @@
       ]
     },
     {
-      "_$id": "#41",
+      "_$id": "#47",
       "_$type": "Sprite3D",
       "name": "Mission_TableLeg",
       "transform": {
@@ -1336,7 +1552,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "4dc861bd-38ad-43b9-a821-d2444be07c7e",
+            "_$uuid": "dc8da02b-d4a6-4c3f-9963-45661ed0d442",
             "_$type": "Mesh"
           }
         },
@@ -1349,7 +1565,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1357,7 +1573,7 @@
       ]
     },
     {
-      "_$id": "#42",
+      "_$id": "#48",
       "_$type": "Sprite3D",
       "name": "Mission_TableLeg.001",
       "transform": {
@@ -1372,7 +1588,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "4dc861bd-38ad-43b9-a821-d2444be07c7e",
+            "_$uuid": "dc8da02b-d4a6-4c3f-9963-45661ed0d442",
             "_$type": "Mesh"
           }
         },
@@ -1385,7 +1601,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1393,7 +1609,7 @@
       ]
     },
     {
-      "_$id": "#43",
+      "_$id": "#49",
       "_$type": "Sprite3D",
       "name": "Mission_TableLeg.002",
       "transform": {
@@ -1408,7 +1624,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "4dc861bd-38ad-43b9-a821-d2444be07c7e",
+            "_$uuid": "dc8da02b-d4a6-4c3f-9963-45661ed0d442",
             "_$type": "Mesh"
           }
         },
@@ -1421,7 +1637,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1429,7 +1645,7 @@
       ]
     },
     {
-      "_$id": "#44",
+      "_$id": "#50",
       "_$type": "Sprite3D",
       "name": "Mission_TableLeg.003",
       "transform": {
@@ -1444,7 +1660,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "4dc861bd-38ad-43b9-a821-d2444be07c7e",
+            "_$uuid": "dc8da02b-d4a6-4c3f-9963-45661ed0d442",
             "_$type": "Mesh"
           }
         },
@@ -1457,7 +1673,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1465,7 +1681,7 @@
       ]
     },
     {
-      "_$id": "#45",
+      "_$id": "#51",
       "_$type": "Sprite3D",
       "name": "Mission_TableTop",
       "transform": {
@@ -1480,7 +1696,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "8d18486d-064f-4ef3-9724-3650af4a2130",
+            "_$uuid": "b2681a05-9a03-42bd-9f41-c3305a576f1a",
             "_$type": "Mesh"
           }
         },
@@ -1493,7 +1709,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1501,7 +1717,7 @@
       ]
     },
     {
-      "_$id": "#46",
+      "_$id": "#52",
       "_$type": "Sprite3D",
       "name": "Mission_TileRoof_EaveFascia",
       "transform": {
@@ -1516,7 +1732,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "b9fa8b5b-90e8-493d-8509-dd56e115614d",
+            "_$uuid": "deca3548-5ae1-4c22-80c5-b9e38e157c37",
             "_$type": "Mesh"
           }
         },
@@ -1529,7 +1745,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1537,7 +1753,7 @@
       ]
     },
     {
-      "_$id": "#47",
+      "_$id": "#53",
       "_$type": "Sprite3D",
       "name": "Mission_TileRoof_EaveFascia.001",
       "transform": {
@@ -1552,7 +1768,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "b9fa8b5b-90e8-493d-8509-dd56e115614d",
+            "_$uuid": "deca3548-5ae1-4c22-80c5-b9e38e157c37",
             "_$type": "Mesh"
           }
         },
@@ -1565,7 +1781,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1573,14 +1789,14 @@
       ]
     },
     {
-      "_$id": "#48",
+      "_$id": "#54",
       "_$type": "Sprite3D",
       "name": "Mission_TileRoof_N",
       "_$comp": [
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "246d4eda-39c4-4927-8fe2-586e33e36bbd",
+            "_$uuid": "f52e7b60-3ec3-471e-9b21-d9d81d24b114",
             "_$type": "Mesh"
           }
         },
@@ -1593,7 +1809,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9152068a-b71d-4a34-b3a2-93efb6ca8705",
+              "_$uuid": "dc949873-85e8-4715-a373-83ee7aca2637",
               "_$type": "Material"
             }
           ]
@@ -1601,7 +1817,7 @@
       ]
     },
     {
-      "_$id": "#49",
+      "_$id": "#55",
       "_$type": "Sprite3D",
       "name": "Mission_TileRoof_Ridge",
       "transform": {
@@ -1623,7 +1839,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "122819d5-5daf-4320-8d4f-efb6a21f2c0f",
+            "_$uuid": "8cd6f796-8c0f-4232-9931-1f3a17392bdd",
             "_$type": "Mesh"
           }
         },
@@ -1636,7 +1852,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9152068a-b71d-4a34-b3a2-93efb6ca8705",
+              "_$uuid": "dc949873-85e8-4715-a373-83ee7aca2637",
               "_$type": "Material"
             }
           ]
@@ -1644,14 +1860,14 @@
       ]
     },
     {
-      "_$id": "#50",
+      "_$id": "#56",
       "_$type": "Sprite3D",
       "name": "Mission_TileRoof_S",
       "_$comp": [
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "3066dfa0-0912-4aa7-b962-4930dc38267a",
+            "_$uuid": "db0d3500-d1c3-40a2-a465-d0ab6ee7595d",
             "_$type": "Mesh"
           }
         },
@@ -1664,7 +1880,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9152068a-b71d-4a34-b3a2-93efb6ca8705",
+              "_$uuid": "dc949873-85e8-4715-a373-83ee7aca2637",
               "_$type": "Material"
             }
           ]
@@ -1672,7 +1888,7 @@
       ]
     },
     {
-      "_$id": "#51",
+      "_$id": "#57",
       "_$type": "Sprite3D",
       "name": "Mission_WindowBar",
       "transform": {
@@ -1687,7 +1903,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "adf3bb06-5998-4953-a2ac-fbd50153c846",
+            "_$uuid": "6e1a19a6-c995-4d63-bf90-ea91e66b4d8a",
             "_$type": "Mesh"
           }
         },
@@ -1700,7 +1916,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1708,7 +1924,7 @@
       ]
     },
     {
-      "_$id": "#52",
+      "_$id": "#58",
       "_$type": "Sprite3D",
       "name": "Mission_WindowBar.001",
       "transform": {
@@ -1723,7 +1939,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "adf3bb06-5998-4953-a2ac-fbd50153c846",
+            "_$uuid": "6e1a19a6-c995-4d63-bf90-ea91e66b4d8a",
             "_$type": "Mesh"
           }
         },
@@ -1736,7 +1952,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1744,7 +1960,7 @@
       ]
     },
     {
-      "_$id": "#53",
+      "_$id": "#59",
       "_$type": "Sprite3D",
       "name": "Mission_WindowBar.002",
       "transform": {
@@ -1759,7 +1975,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "adf3bb06-5998-4953-a2ac-fbd50153c846",
+            "_$uuid": "6e1a19a6-c995-4d63-bf90-ea91e66b4d8a",
             "_$type": "Mesh"
           }
         },
@@ -1772,7 +1988,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1780,7 +1996,7 @@
       ]
     },
     {
-      "_$id": "#54",
+      "_$id": "#60",
       "_$type": "Sprite3D",
       "name": "Mission_WindowBar.003",
       "transform": {
@@ -1795,7 +2011,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "adf3bb06-5998-4953-a2ac-fbd50153c846",
+            "_$uuid": "6e1a19a6-c995-4d63-bf90-ea91e66b4d8a",
             "_$type": "Mesh"
           }
         },
@@ -1808,7 +2024,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1816,7 +2032,7 @@
       ]
     },
     {
-      "_$id": "#55",
+      "_$id": "#61",
       "_$type": "Sprite3D",
       "name": "Mission_WindowBar.004",
       "transform": {
@@ -1831,7 +2047,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "adf3bb06-5998-4953-a2ac-fbd50153c846",
+            "_$uuid": "6e1a19a6-c995-4d63-bf90-ea91e66b4d8a",
             "_$type": "Mesh"
           }
         },
@@ -1844,7 +2060,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1852,7 +2068,7 @@
       ]
     },
     {
-      "_$id": "#56",
+      "_$id": "#62",
       "_$type": "Sprite3D",
       "name": "Mission_WindowBar.005",
       "transform": {
@@ -1867,7 +2083,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "adf3bb06-5998-4953-a2ac-fbd50153c846",
+            "_$uuid": "6e1a19a6-c995-4d63-bf90-ea91e66b4d8a",
             "_$type": "Mesh"
           }
         },
@@ -1880,7 +2096,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1888,7 +2104,7 @@
       ]
     },
     {
-      "_$id": "#57",
+      "_$id": "#63",
       "_$type": "Sprite3D",
       "name": "Mission_WindowBar.006",
       "transform": {
@@ -1903,7 +2119,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "adf3bb06-5998-4953-a2ac-fbd50153c846",
+            "_$uuid": "6e1a19a6-c995-4d63-bf90-ea91e66b4d8a",
             "_$type": "Mesh"
           }
         },
@@ -1916,7 +2132,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1924,7 +2140,7 @@
       ]
     },
     {
-      "_$id": "#58",
+      "_$id": "#64",
       "_$type": "Sprite3D",
       "name": "Mission_WindowBar.007",
       "transform": {
@@ -1939,7 +2155,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "adf3bb06-5998-4953-a2ac-fbd50153c846",
+            "_$uuid": "6e1a19a6-c995-4d63-bf90-ea91e66b4d8a",
             "_$type": "Mesh"
           }
         },
@@ -1952,7 +2168,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1960,7 +2176,7 @@
       ]
     },
     {
-      "_$id": "#59",
+      "_$id": "#65",
       "_$type": "Sprite3D",
       "name": "Mission_WindowBar.008",
       "transform": {
@@ -1975,7 +2191,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "adf3bb06-5998-4953-a2ac-fbd50153c846",
+            "_$uuid": "6e1a19a6-c995-4d63-bf90-ea91e66b4d8a",
             "_$type": "Mesh"
           }
         },
@@ -1988,7 +2204,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -1996,7 +2212,7 @@
       ]
     },
     {
-      "_$id": "#60",
+      "_$id": "#66",
       "_$type": "Sprite3D",
       "name": "Mission_WindowBar.009",
       "transform": {
@@ -2011,7 +2227,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "adf3bb06-5998-4953-a2ac-fbd50153c846",
+            "_$uuid": "6e1a19a6-c995-4d63-bf90-ea91e66b4d8a",
             "_$type": "Mesh"
           }
         },
@@ -2024,7 +2240,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -2032,7 +2248,7 @@
       ]
     },
     {
-      "_$id": "#61",
+      "_$id": "#67",
       "_$type": "Sprite3D",
       "name": "Mission_WindowBar.010",
       "transform": {
@@ -2047,7 +2263,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "adf3bb06-5998-4953-a2ac-fbd50153c846",
+            "_$uuid": "6e1a19a6-c995-4d63-bf90-ea91e66b4d8a",
             "_$type": "Mesh"
           }
         },
@@ -2060,7 +2276,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -2068,7 +2284,7 @@
       ]
     },
     {
-      "_$id": "#62",
+      "_$id": "#68",
       "_$type": "Sprite3D",
       "name": "Mission_WindowBar.011",
       "transform": {
@@ -2083,7 +2299,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "adf3bb06-5998-4953-a2ac-fbd50153c846",
+            "_$uuid": "6e1a19a6-c995-4d63-bf90-ea91e66b4d8a",
             "_$type": "Mesh"
           }
         },
@@ -2096,7 +2312,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "9f2d6178-715c-43d0-878a-74265f12fe78",
+              "_$uuid": "4f877b4c-c167-475f-8974-567ab8618c01",
               "_$type": "Material"
             }
           ]
@@ -2104,7 +2320,7 @@
       ]
     },
     {
-      "_$id": "#63",
+      "_$id": "#69",
       "_$type": "Sprite3D",
       "name": "Mission_WindowSill",
       "transform": {
@@ -2119,7 +2335,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "d7ffc6de-6785-429a-9f49-36460958454c",
+            "_$uuid": "ff93db08-288c-4934-8f7c-c4a3b8b929cb",
             "_$type": "Mesh"
           }
         },
@@ -2132,7 +2348,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "734917df-6da5-4a87-9731-4a9373d46400",
+              "_$uuid": "6a51bf2a-82cc-47f8-93be-c5962162f598",
               "_$type": "Material"
             }
           ]
@@ -2140,7 +2356,7 @@
       ]
     },
     {
-      "_$id": "#64",
+      "_$id": "#70",
       "_$type": "Sprite3D",
       "name": "Mission_WindowSill.001",
       "transform": {
@@ -2155,7 +2371,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "d7ffc6de-6785-429a-9f49-36460958454c",
+            "_$uuid": "ff93db08-288c-4934-8f7c-c4a3b8b929cb",
             "_$type": "Mesh"
           }
         },
@@ -2168,7 +2384,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "734917df-6da5-4a87-9731-4a9373d46400",
+              "_$uuid": "6a51bf2a-82cc-47f8-93be-c5962162f598",
               "_$type": "Material"
             }
           ]
@@ -2176,7 +2392,7 @@
       ]
     },
     {
-      "_$id": "#65",
+      "_$id": "#71",
       "_$type": "Sprite3D",
       "name": "Mission_WindowSill.002",
       "transform": {
@@ -2191,7 +2407,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "d7ffc6de-6785-429a-9f49-36460958454c",
+            "_$uuid": "ff93db08-288c-4934-8f7c-c4a3b8b929cb",
             "_$type": "Mesh"
           }
         },
@@ -2204,7 +2420,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "734917df-6da5-4a87-9731-4a9373d46400",
+              "_$uuid": "6a51bf2a-82cc-47f8-93be-c5962162f598",
               "_$type": "Material"
             }
           ]
@@ -2212,7 +2428,7 @@
       ]
     },
     {
-      "_$id": "#66",
+      "_$id": "#72",
       "_$type": "Sprite3D",
       "name": "Mission_WindowSill.003",
       "transform": {
@@ -2227,7 +2443,7 @@
         {
           "_$type": "MeshFilter",
           "sharedMesh": {
-            "_$uuid": "d7ffc6de-6785-429a-9f49-36460958454c",
+            "_$uuid": "ff93db08-288c-4934-8f7c-c4a3b8b929cb",
             "_$type": "Mesh"
           }
         },
@@ -2240,7 +2456,7 @@
           },
           "sharedMaterials": [
             {
-              "_$uuid": "734917df-6da5-4a87-9731-4a9373d46400",
+              "_$uuid": "6a51bf2a-82cc-47f8-93be-c5962162f598",
               "_$type": "Material"
             }
           ]

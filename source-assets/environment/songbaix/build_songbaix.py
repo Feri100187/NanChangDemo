@@ -290,18 +290,22 @@ for x in (-30.7,-29.3):
     rod('HandcartHandle',(x,6,.6),(x,9,.9),.045,wood)
 for y in (5.2,6.8):box('HandcartEnd',(-30,y,.98),(1.15,.10,.6),wood)
 
+# Revision 2: replace solid shells with enterable rooms; explicit split collision boxes.
+exec(compile((HERE/'interiors_v2.py').read_text(encoding='utf8'),str(HERE/'interiors_v2.py'),'exec'))
 # Explicit proxy collection: simple boxes only, hidden in review, separate export.
 visible=[o for c in list(groups.values())[:5] for o in c.objects if o.type=='MESH']
 bpy.context.view_layer.update()
 active=groups['90_CollisionProxies']
 for o in visible:
-    if any(s in o.name for s in ('Substrate','Paving','LongHall','_Walls','DoorWallSegment','DoorHead','SideLowerWall','SideUpperWall','SideWindowPier','Mission_Floor','InteriorScreen','Boundary','Screen','LowCover','ForecourtSouthWall','ForecourtNorthWall')):
+    if any(s in o.name for s in ('Substrate','Paving','DoorWallSegment','DoorHead','SideLowerWall','SideUpperWall','SideWindowPier','Mission_Floor','InteriorScreen','Boundary','Screen','LowCover','ForecourtSouthWall','ForecourtNorthWall','RoomFloor','InteriorBlock')):
         coords=[o.matrix_world @ Vector(v) for v in o.bound_box]
         lo=Vector(tuple(min(v[i] for v in coords) for i in range(3)));hi=Vector(tuple(max(v[i] for v in coords) for i in range(3)))
         p=box('COL_'+o.name,(lo+hi)/2,tuple(hi-lo),proxyMat,0);p.display_type='WIRE';p.hide_render=True
         p['purpose']='Optional box proxy; not connected to Laya physics yet'
+for name,loc,size in room_collision_boxes:
+    p=box('COL_'+name,loc,size,proxyMat,0);p.display_type='WIRE';p.hide_render=True
 active=groups['91_LayoutAndScale']
-route=[(-28,-27),(-28,-14),(-20,-14),(-11,-12),(-11,-2),(-11,5),(-7.5,6),(-4,10),(-6,17),(-18.8,19),(-18.8,25),(-18.8,31),(-18.8,36),(-32,36)]
+route=[(-28,-27),(-28,-14),(-20,-14),(-11,-12),(-11,-2),(-11,4.5),(-7.5,4.5),(-7.5,7.5),(-4,10),(-7,12),(-7,18),(-18.8,20),(-18.8,25),(-18.8,31),(-18.8,36),(-32,36)]
 for i,(x,y) in enumerate(route):
     o=bpy.data.objects.new('Route_%02d_Fictional'%i,None);active.objects.link(o);o.location=(x,y,.05);o.empty_display_type='ARROWS';o.empty_display_size=.6
 for name,loc in [('Street_Encounter_Fictional',(-23,-12,0)),('Courtyard_Encounter_Fictional',(-4,12,0)),('Document_VisualAnchor',(-22.7,25.7,1)),('Exit_Fictional',(-32,36,0))]:
@@ -317,6 +321,8 @@ scene.world.color=(.5,.5,.5)
 scene.world.use_nodes=True;scene.world.node_tree.nodes['Background'].inputs[0].default_value=(.65,.72,.8,1);scene.world.node_tree.nodes['Background'].inputs[1].default_value=.65
 bpy.ops.object.light_add(type='SUN',location=(-25,-30,40));sun=move(bpy.context.object);sun.name='Inspection_Sun';sun.data.energy=2.3;sun.data.angle=.12;sun.rotation_euler=(.45,-.5,-.45)
 bpy.ops.object.light_add(type='AREA',location=(-23,25.5,3.3));area=move(bpy.context.object);area.name='Inspection_InteriorFill';area.data.energy=1000;area.data.shape='DISK';area.data.size=4
+for xx,yy,zz,power,sz in [(-18,0,3.8,450,5),(28,0,10,2200,14)]:
+    bpy.ops.object.light_add(type='AREA',location=(xx,yy,zz));o=move(bpy.context.object);o.name='Inspection_AddedRoomFill';o.data.energy=power;o.data.size=sz
 cameras={}
 def camera(name,pos,target,lens=40,ortho=None):
     bpy.ops.object.camera_add(location=pos);o=move(bpy.context.object);o.name=name;o.rotation_euler=(Vector(target)-o.location).to_track_quat('-Z','Y').to_euler();o.data.lens=lens;o.data.clip_end=500
@@ -326,6 +332,8 @@ camera('01_Birdseye',(-68,-69,86),(5,3,0),ortho=140)
 camera('02_Street',(-27,-16,1.65),(-5,6,6),lens=23)
 camera('03_Landmark',(-3,0,11),(7.7,0,11),ortho=38.5)
 camera('04_MissionInterior',(-18.6,22.7,1.65),(-23.1,26.6,1.4),lens=22)
+camera('05_HouseInterior',(-18,-3.5,1.65),(-21,2,1.5),lens=24)
+camera('06_ChurchInterior',(12,0,1.65),(37,0,7),lens=25)
 scene.view_settings.view_transform='AgX'
 scene['setting']='1927-08-01 before dawn; REVIEW uses daylight; fictional gameplay layout'
 scene['coordinates']='Metres; +X east +Y north +Z up; origin forecourt reference (0,0,0); not georeferenced'

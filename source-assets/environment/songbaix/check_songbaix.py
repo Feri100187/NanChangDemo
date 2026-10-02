@@ -10,7 +10,7 @@ OUT=ROOT/'assets/resources/environment/songbaix'
 bpy.ops.wm.open_mainfile(filepath=str(HERE/'Songbaix_Block.blend'))
 bpy.data.collections['90_CollisionProxies'].hide_viewport=False
 bpy.context.view_layer.update()
-report={'blender_version':bpy.app.version_string,'source_open':'PASS','source_sha256':hashlib.sha256((HERE/'Songbaix_Block.blend').read_bytes()).hexdigest(),'modules':{},'limitations':['No LayaAir runtime import or gameplay test in this asset-only delivery.','No historical survey: all dimensions estimated.']}
+report={'blender_version':bpy.app.version_string,'source_open':'PASS','source_sha256':hashlib.sha256((HERE/'Songbaix_Block.blend').read_bytes()).hexdigest(),'modules':{},'limitations':['This report checks Blender and GLB; engine checks are recorded in docs/songbaix-interiors-checks.json.','No historical survey: all dimensions estimated.']}
 modules={'ground':'01_Ground','landmark':'02_Landmark','street-buildings':'03_StreetBuildings','mission-building':'04_MissionBuilding_Fictional','props':'05_Props','collision-proxies':'90_CollisionProxies'}
 def bounds(obs):
     pts=[o.matrix_world@Vector(v) for o in obs for v in o.bound_box]

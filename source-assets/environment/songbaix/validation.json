@@ -1,7 +1,7 @@
 {
   "blender_version": "5.2.0 LTS",
   "source_open": "PASS",
-  "source_sha256": "1b77040f431c1bc175fd158488bcb3d5519d7e977e1669281d9dce88b711ebcf",
+  "source_sha256": "1c0977f3c25a3658f0e635af9bf013fcd11500a932e78312807c5a535710b36b",
   "modules": {
     "ground": {
       "source_bounds": [
@@ -29,9 +29,9 @@
     "landmark": {
       "source_bounds": [
         [
-          5.75,
+          6.917999744415283,
           -13.399999618530273,
-          0.0
+          -0.04999999701976776
         ],
         [
           56.400001525878906,
@@ -40,13 +40,13 @@
         ]
       ],
       "source_errors": [],
-      "file_bytes": 1931956,
+      "file_bytes": 1947488,
       "glb_attributes": "NORMAL + TEXCOORD_0",
       "required_extensions": [],
-      "sha256": "d5accf4ed9ae3fd1968ef3b80f13457d2ef38a09d07e8dcdb8bbe32d8314dd33",
+      "sha256": "511cdbf7c8273a1ef60d64f0b8086a91c7cbf29be409d996f5e68adcc9a6e9de",
       "reimport": "PASS",
       "bounds_max_error_m": 0.0,
-      "reimport_mesh_objects": 130,
+      "reimport_mesh_objects": 170,
       "image_count": 4
     },
     "street-buildings": {
@@ -54,7 +54,7 @@
         [
           -40.28499984741211,
           -32.29499816894531,
-          0.0
+          -0.09000000357627869
         ],
         [
           58.28499984741211,
@@ -63,13 +63,13 @@
         ]
       ],
       "source_errors": [],
-      "file_bytes": 2026684,
+      "file_bytes": 2090112,
       "glb_attributes": "NORMAL + TEXCOORD_0",
       "required_extensions": [],
-      "sha256": "60eb79b59843eb3c21a14674a53961a4a0be6af02af14db04cd996d0502b1948",
+      "sha256": "5556b5c6ab91900850bc498d033ec49d6ffdfe838c38dc012d39a792f4c97cff",
       "reimport": "PASS",
       "bounds_max_error_m": 0.0,
-      "reimport_mesh_objects": 249,
+      "reimport_mesh_objects": 396,
       "image_count": 5
     },
     "mission-building": {
@@ -86,13 +86,13 @@
         ]
       ],
       "source_errors": [],
-      "file_bytes": 1850100,
+      "file_bytes": 1851092,
       "glb_attributes": "NORMAL + TEXCOORD_0",
       "required_extensions": [],
-      "sha256": "67eb6fc93d8c7fb069e0ba68af7b867a56fb5996869ac9cf74feb1ff9e25a602",
+      "sha256": "a866670188cb93265263e3c34379a5f023549c9d6dfb325b7f6a2965a5b64bd2",
       "reimport": "PASS",
       "bounds_max_error_m": 4.76837158203125e-07,
-      "reimport_mesh_objects": 67,
+      "reimport_mesh_objects": 73,
       "image_count": 5
     },
     "props": {
@@ -128,22 +128,22 @@
         [
           58.28499984741211,
           41.0,
-          10.300000190734863
+          20.0
         ]
       ],
       "source_errors": [],
-      "file_bytes": 73368,
+      "file_bytes": 261380,
       "glb_attributes": "NORMAL + TEXCOORD_0",
       "required_extensions": [],
-      "sha256": "26f1043833f54e366fb244ee8b7292743cd7dc5af299ec13cad52ae4beea818a",
+      "sha256": "c5d465e28abacfe43952e4f9770f1e19c36b449811a8652097c112da29410a5c",
       "reimport": "PASS",
       "bounds_max_error_m": 0.0,
-      "reimport_mesh_objects": 57,
+      "reimport_mesh_objects": 358,
       "image_count": 0
     }
   },
   "limitations": [
-    "No LayaAir runtime import or gameplay test in this asset-only delivery.",
+    "This report checks Blender and GLB; engine checks are recorded in docs/songbaix-interiors-checks.json.",
     "No historical survey: all dimensions estimated."
   ],
   "packed_texture_count": 7,

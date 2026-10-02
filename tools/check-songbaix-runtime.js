@@ -20,7 +20,7 @@ async (page) => {
     for(const enemy of l.targets)enemy.enabled=false;
     return before;
   });
-  if(out.loaded.state!=='Playing'||out.loaded.modules!==5||out.loaded.colliders!==81)throw Error('Map not loaded');
+  if(out.loaded.state!=='Playing'||out.loaded.modules!==5||out.loaded.colliders<300||out.loaded.remaining!==8)throw Error('Map not loaded');
   await page.keyboard.down('w');await page.waitForTimeout(1000);await page.keyboard.up('w');
   out.walk=await page.evaluate(()=>({...songbaixQA.l.player.transform.position,grounded:songbaixQA.pc.controller.isOnGround()}));
   if(out.walk.z>=26||out.walk.y<.8||out.walk.y>1.2)throw Error('Ground/walk failed');
@@ -28,6 +28,20 @@ async (page) => {
   await page.keyboard.down('w');await page.waitForTimeout(1400);await page.keyboard.up('w');
   out.wall=await page.evaluate(()=>({...songbaixQA.l.player.transform.position}));
   if(out.wall.x< -30.65||out.wall.x> -29.8)throw Error('Wall collision failed');
+  out.rooms=[];
+  for(const [name,x,y,insideY] of [['A',-35,-31.3,-30],['B',-18,-30.3,-29],['C',-35,-14.8,-13.5],['D',-18,-6.3,-5],['E',-35,7.2,8.5],['F',-4,-30.3,-29],['G',-3,24.2,25.5]]) {
+    await page.evaluate(({x,y})=>{songbaixQA.move(x,-y);songbaixQA.face(0);},{x,y});
+    await page.keyboard.down('w');await page.waitForTimeout(650);await page.keyboard.up('w');
+    const p=await page.evaluate(()=>({...songbaixQA.l.player.transform.position,grounded:songbaixQA.pc.controller.isOnGround()}));
+    if(p.z> -insideY-.5||p.y<.9)throw Error('Room not enterable: '+name+JSON.stringify(p));
+    out.rooms.push({name,...p});
+    if(name==='D')await page.screenshot({path:'output/playwright/songbaix-house-v2.png'});
+  }
+  await page.evaluate(()=>{songbaixQA.move(5,0);songbaixQA.face(-90);});
+  await page.keyboard.down('w');await page.waitForTimeout(1200);await page.keyboard.up('w');
+  out.church=await page.evaluate(()=>({...songbaixQA.l.player.transform.position,grounded:songbaixQA.pc.controller.isOnGround()}));
+  if(out.church.x<9||out.church.y<.9)throw Error('Church not enterable');
+  await page.screenshot({path:'output/playwright/songbaix-church-v2.png'});
   await page.evaluate(()=>{songbaixQA.move(-18.8,-20.5);songbaixQA.face(0);});
   await page.keyboard.down('w');await page.waitForTimeout(850);await page.keyboard.up('w');
   out.door=await page.evaluate(()=>({...songbaixQA.l.player.transform.position,grounded:songbaixQA.pc.controller.isOnGround()}));
