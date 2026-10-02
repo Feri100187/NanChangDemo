@@ -20,6 +20,8 @@ async page => {
         box('ThinWall',240,1.5,100,.01,3,20);
         box('DiagonalWall',260,1.5,100,.2,3,20,45);
         box('Support',280,-.05,100,10,.1,10);
+        // Ground-aware movement must have real support in the isolated lane.
+        box('MovementSupport',210,-.05,100,240,.1,220);
         level.setGameplayPaused(false);
     });
     // Let Bullet synchronize the newly created static colliders.

@@ -340,7 +340,7 @@ export class PlayerController extends Laya.Script {
         }
         if (!this.isGameplayFocused()) return;
         const key = event.keyCode;
-        if (key === 32 && !this.keys.has(key)) this.jumpRequested = true;
+        if (key === 32 && !this.keys.has(key) && !(event.nativeEvent as KeyboardEvent)?.repeat) this.jumpRequested = true;
         if (key === 67 && !this.keys.has(key) && !(event.nativeEvent as KeyboardEvent)?.repeat) {
             this.crouchRequested = !this.crouchRequested;
         }
