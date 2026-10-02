@@ -11,7 +11,7 @@ function checkPreviewBindings(source, preview) {
     const expected = source._$comp.find(c => c.scriptPath === '../src/LevelController.ts');
     const actual = preview._$comp.find(c => c.scriptPath === '../src/LevelController.ts');
     assert.ok(actual, '预览缓存缺少 LevelController，请在 IDE 重开 Demo01 并重新预览');
-    for (const key of ['streetEnemies', 'courtyardEnemies', 'missionDocument']) {
+    for (const key of ['streetEnemies', 'courtyardEnemies', 'missionDocument', 'teammates', 'reinforcementEnemies', 'reinforcementSpawns']) {
         assert.deepEqual(actual[key], expected[key],
             `IDE 预览的 ${key} 与源场景不同；停止预览、关闭并重开 Demo01，再启动预览，不能仅重编译脚本`);
     }
@@ -64,7 +64,7 @@ function environment(mission=true, menu=true) {
     level.onAwake();level.onEnable();level.onStart();
     const e={level,player,enemies,physics,camera,control,health,stage,win,doc,canvas,Laya,
         start(){level.beginContinue();},kill(i){enemies[i].isAlive=false;enemies[i].owner.event('died',enemies[i]);},
-        down(repeat=false){stage.event('down',{keyCode:69,nativeEvent:{repeat}});},up(){stage.event('up',{keyCode:69});},
+        down(repeat=false){stage.event('down',{keyCode:70,nativeEvent:{repeat}});},up(){stage.event('up',{keyCode:70});},
         enter(){player.transform.position.x=10;level.onUpdate();},leave(){player.transform.position.x=0;level.onUpdate();}};
     return e;
 }
@@ -77,7 +77,7 @@ await check('24 种击杀顺序、重复通知、一次跨越两阶段',()=>{
         const e=environment();e.start();
         e.enemies[0].owner.event('died',e.enemies[0]);assert.equal(e.level.remaining.size,4);
         order.forEach((i,n)=>{e.kill(i);e.kill(i);assert.equal(e.level.remaining.size,3-n);});
-        assert.match(e.level.objectiveText.text,/任务 3\/4/);assert.match(e.level.remainingText.text,/街口 2\/2 · 院落 2\/2/);
+        assert.match(e.level.objectiveText.text,/任务 3\/4/);assert.match(e.level.remainingText.text,/一组 2\/2 · 二组 2\/2/);
     }
 });
 await check('开始菜单、清敌前、距离、背向、遮挡、焦点、长按限制',()=>{
@@ -119,9 +119,9 @@ await check('Scene.ls 无配置仍沿用清敌和终点重新进入规则',()=>{
 });
 await check('场景显式分组、文件位置/资源、LayaAir 版本',()=>{
     const scene=JSON.parse(fs.readFileSync(path.join(root,'assets/Demo01.ls'),'utf8')),c=scene._$comp[0];
-    assert.deepEqual(c.streetEnemies.map(x=>x._$ref),['target001','enemy002']);assert.deepEqual(c.courtyardEnemies.map(x=>x._$ref),['enemy003','enemy004']);
+    assert.deepEqual(c.streetEnemies.map(x=>x._$ref),['target001','enemy002','enemy005','enemy006']);assert.deepEqual(c.courtyardEnemies.map(x=>x._$ref),['enemy003','enemy004','enemy007','enemy008']);
     const items=scene._$child[0]._$child,doc=items.find(x=>x._$id===c.missionDocument._$ref);
-    assert.ok(doc);assert.equal(doc.transform.localPosition.z,-53.8);assert.equal(doc._$child.length,3);
+    assert.ok(doc);assert.equal(doc.transform.localPosition.z,-25.7);assert.equal(doc._$child.length,3);
     const mat=JSON.parse(fs.readFileSync(path.join(root,'assets/resources/MissionDocument.lmat.meta'),'utf8'));
     assert.equal(doc._$child[0]._$comp[1].sharedMaterials[0]._$uuid,mat.uuid);
     assert.equal(JSON.parse(fs.readFileSync(path.join(root,'NanChangDemo.laya'),'utf8')).version,'3.4.1');

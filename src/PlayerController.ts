@@ -1,3 +1,4 @@
+import { LeanMotion } from "./LeanMotion";
 import { PlayerHealth } from "./PlayerHealth";
 import { GameClock } from "./GameClock";
 import { WeaponPresentation } from "./WeaponPresentation";
@@ -39,6 +40,12 @@ export class PlayerController extends Laya.Script {
     private readonly crouchingHeight = 1.2;
     private readonly radius = 0.45;
     private readonly keys = new Set<number>();
+    private readonly leaning = new LeanMotion();
+    private readonly leanEye = new Laya.Vector3();
+    private readonly leanRight = new Laya.Vector3();
+    private leanHead: Laya.Sprite3D;
+    private leanCollider: Laya.PhysicsCollider;
+    get leanAmount(): number { return this.leaning.value; }
     private readonly movement = new Laya.Vector3();
     private readonly cameraPosition = new Laya.Vector3();
     private readonly viewPosition = new Laya.Vector3();
@@ -98,6 +105,8 @@ export class PlayerController extends Laya.Script {
 
     private readonly clearInput = () => {
         this.keys.clear();
+        this.leaning.value = 0;
+        if (this.leanCollider) this.leanCollider.enabled = false;
         // 失焦取消尚未落地执行的请求，但保留已经切换的蹲姿。
         this.crouchRequested = this.crouching;
         this.jumpRequested = false;
@@ -336,7 +345,7 @@ export class PlayerController extends Laya.Script {
             this.crouchRequested = !this.crouchRequested;
         }
         this.keys.add(key);
-        if ([87, 65, 83, 68, 32, 16, 67].indexOf(key) >= 0) event.nativeEvent?.preventDefault();
+        if ([87, 65, 83, 68, 32, 16, 67, 81, 69].indexOf(key) >= 0) event.nativeEvent?.preventDefault();
     }
 
     private handleKeyUp(event: Laya.Event): void {
@@ -364,7 +373,7 @@ export class PlayerController extends Laya.Script {
         this.currentSpeed = length === 0 ? 0 : this.isAiming
             ? Math.min(this.aimWalkSpeed, this.crouching ? this.crouchSpeed : this.walkSpeed)
             : this.crouching ? this.crouchSpeed
-            : this.keys.has(16) ? this.sprintSpeed : this.walkSpeed;
+            : this.keys.has(16) && !this.keys.has(81) && !this.keys.has(69) ? this.sprintSpeed : this.walkSpeed;
         if (length > 0) {
             x /= length;
             z /= length;
@@ -374,10 +383,11 @@ export class PlayerController extends Laya.Script {
             0, (-x * Math.sin(angle) + z * Math.cos(angle)) * this.currentSpeed * dt);
         this.controller.move(this.movement);
 
-        if (this.jumpRequested && grounded && alive) {
+        if (this.jumpRequested && grounded && alive && !this.crouching) {
             this.jumpVelocity.setValue(0, this.jumpSpeed, 0);
             this.controller.jump(this.jumpVelocity);
         }
+        // 蹲姿的跳跃请求也立即丢弃，不能在站起后补跳。
         // 空格只响应按下沿，按住不连跳，空中按键也不触发二段跳。
         this.jumpRequested = false;
         if (this.player.transform.position.y < -20) this.respawn();
@@ -400,6 +410,14 @@ export class PlayerController extends Laya.Script {
 
     onLateUpdate(): void {
         if (this.clock?.paused) return;
+        const dtLean = Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, .05);
+        const pLean = this.player.transform.position, yawLean = this.yaw * Math.PI / 180;
+        this.leanEye.setValue(pLean.x, pLean.y - this.controller.height / 2 + 1.65 - .65 * this.crouchAmount, pLean.z);
+        this.leanRight.setValue(Math.cos(yawLean), 0, -Math.sin(yawLean));
+        const request = this.isGameplayFocused() && this.isGrounded
+            ? Number(this.keys.has(69)) - Number(this.keys.has(81)) : 0;
+        this.leaning.update(request, dtLean, this.player, this.leanEye, this.leanRight);
+        this.updateCameraRotation();
         this.updateBodyVisual();
         this.updateCamera();
         // 开火后短暂停顿再回正，保留每次射击的上抬冲击。
@@ -470,8 +488,8 @@ export class PlayerController extends Laya.Script {
         // ADS remains collinear; the capsule, feet and movement never move.
         const lean = 0.20 * Math.min(1, Math.max(0, (-this.cameraRotation.x - 35) / 50)) ** 2;
         const yaw = this.yaw * Math.PI / 180;
-        this.cameraPosition.setValue(p.x - Math.sin(yaw) * lean, feetY + eyeHeight,
-            p.z - Math.cos(yaw) * lean);
+        this.cameraPosition.setValue(p.x - Math.sin(yaw) * lean + Math.cos(yaw) * this.leanAmount * LeanMotion.distance, feetY + eyeHeight,
+            p.z - Math.cos(yaw) * lean - Math.sin(yaw) * this.leanAmount * LeanMotion.distance);
         this.weaponPivot.transform.position = this.cameraPosition;
         Laya.Vector3.transformQuat(this.sightOffset, this.followCamera.transform.rotation,
             this.sightOffsetWorld);
@@ -479,14 +497,39 @@ export class PlayerController extends Laya.Script {
             this.cameraPosition.x + this.sightOffsetWorld.x * this.aimProgress,
             this.cameraPosition.y + this.sightOffsetWorld.y * this.aimProgress,
             this.cameraPosition.z + this.sightOffsetWorld.z * this.aimProgress);
+        if (Math.abs(this.leanAmount) > .001) {
+            // Include ADS and downward-looking offsets in the final eye sweep,
+            // including a shot taken between animation frames.
+            this.leanEye.setValue(p.x, feetY + eyeHeight, p.z);
+            const safe = this.leaning.limit(this.player, this.leanEye, this.viewPosition);
+            if (safe < 1) {
+                const dx = (this.leanEye.x - this.viewPosition.x) * (1-safe);
+                const dy = (this.leanEye.y - this.viewPosition.y) * (1-safe);
+                const dz = (this.leanEye.z - this.viewPosition.z) * (1-safe);
+                this.viewPosition.setValue(this.viewPosition.x+dx,this.viewPosition.y+dy,this.viewPosition.z+dz);
+                this.cameraPosition.setValue(this.cameraPosition.x+dx,this.cameraPosition.y+dy,this.cameraPosition.z+dz);
+                this.weaponPivot.transform.position = this.cameraPosition;
+            }
+        }
         this.followCamera.transform.position = this.viewPosition;
+        if (!this.leanHead) {
+            this.leanHead = new Laya.Sprite3D("LeaningHead");
+            this.player.addChild(this.leanHead);
+            this.leanCollider = this.leanHead.addComponent(Laya.PhysicsCollider);
+            this.leanCollider.colliderShape = new Laya.SphereColliderShape(.18);
+            // Queryable by bullets, but must never push its own CharacterController.
+            this.leanCollider.isTrigger = true;
+            this.leanCollider.collisionGroup = Laya.Physics3DUtils.COLLISIONFILTERGROUP_CHARACTERFILTER;
+        }
+        this.leanCollider.enabled = Math.abs(this.leanAmount) > .05 && (!this.playerHealth || this.playerHealth.isAlive);
+        this.leanHead.transform.position = this.viewPosition;
         this.weaponPresentation?.apply(this.cameraPosition, this.followCamera, this.cameraRotation, this.aimProgress);
     }
 
     private updateCameraRotation(): void {
         if (!this.followCamera) return;
         this.cameraRotation.setValue(Math.max(-85, Math.min(85, this.pitch + this.recoilPitch)),
-            this.yaw + this.recoilYaw, 0);
+            this.yaw + this.recoilYaw, -this.leanAmount * LeanMotion.angle);
         this.followCamera.transform.rotationEuler = this.cameraRotation;
         this.weaponPivot.transform.rotationEuler = this.cameraRotation;
         this.updateBodyVisual();
@@ -536,6 +579,7 @@ export class PlayerController extends Laya.Script {
     }
 
     onDestroy(): void {
+        this.leaning.destroy();
         this.weaponPresentation?.destroy();
         if (this.followCamera && !this.followCamera.destroyed) this.followCamera.nearPlane = this.originalNearPlane;
     }

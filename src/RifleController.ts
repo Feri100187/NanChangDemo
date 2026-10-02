@@ -397,7 +397,7 @@ export class RifleController extends Laya.Script {
     private findEnemy(hitNode: Laya.Node): EnemyAI {
         for (let node = hitNode; node; node = node.parent) {
             const enemyAI = node.getComponent(EnemyAI);
-            if (enemyAI) return enemyAI;
+            if (enemyAI) return enemyAI.friendly ? null : enemyAI;
         }
         return null;
     }

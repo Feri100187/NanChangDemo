@@ -61,6 +61,24 @@ export class LevelController extends Laya.Script {
     private state: LevelState = "Playing";
     private readonly remaining = new Set<EnemyAI>();
     private targets: EnemyAI[] = [];
+    @property({ type: [Laya.Sprite3D], caption: "增援预备队（初始隐藏）" })
+    reinforcementEnemies: Laya.Sprite3D[] = [];
+    @property({ type: [Laya.Sprite3D], caption: "增援候选出生点" })
+    reinforcementSpawns: Laya.Sprite3D[] = [];
+    @property({ type: Number, caption: "增援与玩家最小距离" })
+    reinforcementDistance = 35;
+    @property({ type: Number, caption: "增援呼叫延迟（秒）" })
+    reinforcementDelay = 6;
+    @property({ type: Number, caption: "增援呼叫冷却（秒）" })
+    reinforcementCooldown = 45;
+    private reserveIndex = 0;
+    private nextCallAt = 0;
+    private pendingCall: { caller: EnemyAI; at: number; location: Laya.Vector3 };
+    private spawnProbe: Laya.BoxColliderShape;
+    private readonly spawnHits: Laya.HitResult[] = [];
+
+    @property({ type: [Laya.Sprite3D], caption: "三名队友" })
+    teammates: Laya.Sprite3D[] = [];
     private health: PlayerHealth;
     private playerControl: PlayerController;
     private rifle: RifleController;
@@ -80,7 +98,7 @@ export class LevelController extends Laya.Script {
 
     private get hasMission(): boolean { return !!this.missionDocument; }
     private get exitUnlocked(): boolean {
-        return this.remaining.size === 0 && (!this.hasMission || this.documentCollected);
+        return !this.pendingCall && this.remaining.size === 0 && (!this.hasMission || this.documentCollected);
     }
 
     onAwake(): void {
@@ -93,7 +111,7 @@ export class LevelController extends Laya.Script {
         this.world.timer = this.clock.timer;
         this.targets = Array.from(new Set(this.enemies.map(node => node.getComponent(EnemyAI))));
         this.playerControl.clock = this.rifle.clock = this.health.clock = this.clock;
-        for (const enemy of this.targets) if (enemy) enemy.clock = this.clock;
+        for (const enemy of [...this.targets, ...this.teammates.map(n => n.getComponent(EnemyAI))]) if (enemy) enemy.clock = this.clock;
         (this.owner as Laya.Scene).autoDestroyAtClosed = true;
         this.resultPanel.visible = false;
         if (this.continueButton) {
@@ -140,6 +158,8 @@ export class LevelController extends Laya.Script {
             if (enemy.isAlive) this.remaining.add(enemy);
             enemy.owner.on(EnemyAI.DIED, this, this.onEnemyDied);
         }
+        for (const bot of this.allBots()) bot.owner.on(EnemyAI.FIRED, this, this.onBotGunfire);
+        this.player.on(RifleController.FIRED, this, this.onPlayerGunfire);
         this.player.on(PlayerHealth.DIED, this, this.onPlayerDied);
         this.player.on(PlayerController.RESPAWNED, this, this.onPlayerRespawned);
         this.wasInsideExit = this.isInsideExit();
@@ -154,6 +174,7 @@ export class LevelController extends Laya.Script {
             this.finish(false);
             return;
         }
+        this.updateReinforcements();
         const inside = this.isInsideExit();
         if (this.exitUnlocked && inside && !this.wasInsideExit) {
             this.finish(true);
@@ -162,6 +183,89 @@ export class LevelController extends Laya.Script {
         this.wasInsideExit = inside;
         this.updateObjective();
         this.updateRouteHint();
+    }
+
+    private allBots(): EnemyAI[] {
+        return [...this.targets, ...this.teammates.map(n=>n.getComponent(EnemyAI))].filter(b=>!!b);
+    }
+
+    private onPlayerGunfire(): void { this.broadcastGunfire(this.player); }
+    private onBotGunfire(bot: EnemyAI): void { this.broadcastGunfire(bot.owner as Laya.Sprite3D); }
+
+    private broadcastGunfire(shooter: Laya.Sprite3D): void {
+        if (this.state !== "Playing" || this.clock.paused) return;
+        const location = shooter.transform.position.clone(), now = this.clock.now();
+        const caller = this.targets.find(b=>b.isAlive && b.enabled && (b.state === "Patrol" || b.state === "Idle"));
+        // A living patrol can place one call; gunfire cannot reset the deadline each frame.
+        if (caller && !this.pendingCall && now >= this.nextCallAt && this.reserveIndex < this.reinforcementEnemies.length) {
+            this.pendingCall = {caller, at:now+this.reinforcementDelay*1000, location:location.clone()};
+            this.nextCallAt = now + this.reinforcementCooldown*1000;
+        }
+        for (const bot of this.allBots()) if (bot.isAlive && bot.enabled) bot.hearGunshot(location);
+    }
+
+    private safeReinforcementPoints(count: number): Laya.Vector3[] {
+        this.spawnProbe ||= new Laya.BoxColliderShape(.75,1.85,.75);
+        const player = this.player.transform.position, sim = this.world.physicsSimulation;
+        const result: Laya.Vector3[] = [];
+        const choices = this.reinforcementSpawns.filter(n=>n && !n.destroyed).map(n=>n.transform.position.clone())
+            .sort((a,b)=>Math.hypot(b.x-player.x,b.z-player.z)-Math.hypot(a.x-player.x,a.z-player.z));
+        for (const p of choices) {
+            if (Math.hypot(p.x-player.x,p.z-player.z) < this.reinforcementDistance) continue;
+            if (result.some(q=>Math.hypot(p.x-q.x,p.z-q.z)<3)) continue;
+            if (this.allBots().some(b=>b.isAlive && Math.hypot(p.x-(b.owner as Laya.Sprite3D).transform.position.x,
+                p.z-(b.owner as Laya.Sprite3D).transform.position.z)<3)) continue;
+            const ray = new Laya.Ray(new Laya.Vector3(p.x,p.y+3,p.z),new Laya.Vector3(0,-1,0));
+            this.spawnHits.length=0;sim.rayCastAll(ray,this.spawnHits,4,-1,1);
+            const floor = this.spawnHits.sort((a,b)=>a.hitFraction-b.hitFraction)[0];
+            if (!floor || Math.abs(floor.point.y-p.y)>.2) continue;
+            p.y=floor.point.y+.01;
+            this.spawnHits.length=0;
+            sim.shapeCastAll(this.spawnProbe.shape,new Laya.Vector3(p.x,p.y+3,p.z),
+                new Laya.Vector3(p.x,p.y+.94,p.z),this.spawnHits,null,null,-1,1);
+            if (this.spawnHits.length) continue;
+            if (!this.isSpawnHidden(p)) continue;
+            result.push(p);
+            if(result.length===count)break;
+        }
+        return result;
+    }
+
+    private isSpawnHidden(position: Laya.Vector3): boolean {
+        const eye = this.playerControl.followCamera.transform.position;
+        const ray = new Laya.Ray(eye.clone(),new Laya.Vector3());
+        // Require building cover for the head, body and both exposed edges;
+        // being far away or outside the current camera FOV is not sufficient.
+        for (const [x,y,z] of [[0,1.7,0],[-.35,1.7,0],[.35,1.7,0],[0,1.7,-.35],[0,1.7,.35],[0,.7,0]]) {
+            ray.direction.setValue(position.x+x-eye.x,position.y+y-eye.y,position.z+z-eye.z);
+            const distance=ray.direction.length();
+            Laya.Vector3.scale(ray.direction,1/distance,ray.direction);
+            this.spawnHits.length=0;
+            this.world.physicsSimulation.rayCastAll(ray,this.spawnHits,Math.max(0,distance-.4),-1,1);
+            if (!this.spawnHits.length) return false;
+        }
+        return true;
+    }
+
+    private updateReinforcements(): void {
+        const call = this.pendingCall;
+        if (!call) return;
+        if (!call.caller.isAlive) { this.pendingCall=null; return; }
+        if (this.clock.now()<call.at) return;
+        const count=Math.min(2,this.reinforcementEnemies.length-this.reserveIndex);
+        const points=this.safeReinforcementPoints(count);
+        if (points.length<count) { call.at=this.clock.now()+1000; return; }
+        const group=this.streetTargets.indexOf(call.caller)>=0 ? this.streetTargets : this.courtyardTargets;
+        for(let i=0;i<count;i++) {
+            const node=this.reinforcementEnemies[this.reserveIndex++];
+            node.transform.position=points[i];
+            const bot=node.getComponent(EnemyAI);bot.clock=this.clock;
+            this.targets.push(bot);this.remaining.add(bot);group.push(bot);
+            node.on(EnemyAI.DIED,this,this.onEnemyDied);node.on(EnemyAI.FIRED,this,this.onBotGunfire);
+            node.active=true;
+            bot.hearGunshot(call.location);
+        }
+        this.pendingCall=null;
     }
 
     private setGameplayPaused(paused: boolean): void {
@@ -189,9 +293,9 @@ export class LevelController extends Laya.Script {
         this.resultTitle.color = "#ffcf80";
         this.resultDetail.text = ready
             ? (this.hasMission
-                ? `虚构布局与任务文件，仅用于玩法设计。\n清理街区${this.streetTargets.length}人 → 院区${this.courtyardTargets.length}人（含屋内） → 按 E 取文件 → 橙色终点。`
+                ? `虚构布局与任务文件，仅用于玩法设计。\n敌军在远处巡逻；枪声会暴露位置，并可能招来增援。\n清除${this.targets.length}名初始敌军及到达的增援 → 按 F 取文件 → 橙色终点。`
                 : "虚构布局的玩法原型，不复原真实历史地点。\n清除全部敌人，抵达橙色终点。")
-                + "\n\nWASD 移动 · 左键单发 / 轻击 · 右键开镜 / 重击\n1 汉阳造 · 3 短刀 · R 装填 · Space 跳跃\nShift 疾跑 · C 下蹲 · Esc 暂停"
+                + "\n\nWASD 移动 · 左键单发 / 轻击 · 右键开镜 / 重击\n1 汉阳造 · 3 短刀 · R 装填 · Space 跳跃\nQ/E 左右探头 · F 拾取 · Shift 疾跑 · C 下蹲 · Esc 暂停"
             : "战斗与换弹已冻结。\n点击继续，取得鼠标控制后恢复游戏。\n\n鼠标锁定受限时，仍可在画面内移动鼠标转向。";
         this.continueButton.title = ready ? "开始游戏" : "继续游戏";
         this.continueButton.enabled = true;
@@ -253,7 +357,7 @@ export class LevelController extends Laya.Script {
     }
 
     private onInteractDown(event: Laya.Event): void {
-        if (event.keyCode !== 69) return;
+        if (event.keyCode !== 70) return;
         const held = this.interactHeld;
         this.interactHeld = true;
         if (held || (event.nativeEvent as KeyboardEvent)?.repeat || !this.canCollectDocument()) return;
@@ -265,11 +369,11 @@ export class LevelController extends Laya.Script {
     }
 
     private onInteractUp(event: Laya.Event): void {
-        if (event.keyCode === 69) this.interactHeld = false;
+        if (event.keyCode === 70) this.interactHeld = false;
     }
 
     private canCollectDocument(): boolean {
-        if (!this.hasMission || this.documentCollected || this.remaining.size !== 0
+        if (!this.hasMission || this.pendingCall || this.documentCollected || this.remaining.size !== 0
             || this.state !== "Playing" || !this.health.isAlive || !this.playerControl.isGameplayFocused()
             || !this.missionDocument.activeInHierarchy) return false;
         this.playerControl.syncCameraForShot();
@@ -327,17 +431,18 @@ export class LevelController extends Laya.Script {
         if (this.hasMission) {
             const street = this.streetTargets.filter(enemy => !this.remaining.has(enemy)).length;
             const courtyard = this.courtyardTargets.filter(enemy => !this.remaining.has(enemy)).length;
-            this.remainingText.text = `街口 ${street}/${this.streetTargets.length} · 院落 ${courtyard}/${this.courtyardTargets.length} · 文件 ${this.documentCollected ? 1 : 0}/1`;
+            this.remainingText.text = `一组 ${street}/${this.streetTargets.length} · 二组 ${courtyard}/${this.courtyardTargets.length} · 文件 ${this.documentCollected ? 1 : 0}/1`;
             const inside = this.isInsideExit();
             let task: string;
-            if (street < this.streetTargets.length) task = `任务 1/4：清理街口敌人 ${street}/${this.streetTargets.length}`;
-            else if (courtyard < this.courtyardTargets.length) task = `任务 2/4：清理院落敌人 ${courtyard}/${this.courtyardTargets.length}`;
+            if (street < this.streetTargets.length) task = `任务 1/4：清理第一组敌人 ${street}/${this.streetTargets.length}`;
+            else if (courtyard < this.courtyardTargets.length) task = `任务 2/4：清理第二组敌人 ${courtyard}/${this.courtyardTargets.length}`;
             else if (!this.documentCollected) task = this.canCollectDocument()
-                ? "任务 3/4：E 取得文件（虚构任务物件）"
+                ? "任务 3/4：F 取得文件（虚构任务物件）"
                 : "任务 3/4：取得建筑内西侧木桌上的文件 · 0/1";
             else task = inside ? "任务 4/4：请先离开终点区，再进入完成任务" : "任务 4/4：携带文件抵达建筑后方橙色终点 · 0/1";
             this.objectiveText.text = inside && !this.exitUnlocked
                 ? `终点未解锁：${this.remaining.size ? "尚有敌人；" : ""}${this.documentCollected ? "" : "未取得文件；"}${task}` : task;
+            if (this.pendingCall) this.objectiveText.text += ` · 敌方增援呼叫中（${Math.max(0,Math.ceil((this.pendingCall.at-this.clock.now())/1000))}秒）`;
             this.objectiveText.color = this.exitUnlocked ? "#8fffb0" : "#ffcf80";
             return;
         }
@@ -370,7 +475,7 @@ export class LevelController extends Laya.Script {
         this.owner.getComponent(CombatFeedback)?.stop();
         // 同步关停：同一帧里其他敌人和残留射击都不能再造成伤害。
         this.health.enabled = false;
-        for (const enemy of this.targets) enemy.enabled = false;
+        for (const enemy of [...this.targets, ...this.teammates.map(n => n.getComponent(EnemyAI))]) if (enemy) enemy.enabled = false;
         this.rifle.stopCombat();
         this.playerControl.stopGameplay();
         this.resultTitle.text = won ? "任务完成" : "任务失败";
@@ -475,6 +580,10 @@ export class LevelController extends Laya.Script {
         this.continueButton?.offAllCaller(this);
         this.player.off(PlayerHealth.DIED, this, this.onPlayerDied);
         this.player.off(PlayerController.RESPAWNED, this, this.onPlayerRespawned);
+        this.player.off(RifleController.FIRED,this,this.onPlayerGunfire);
+        for (const bot of this.allBots()) bot.owner?.off(EnemyAI.FIRED,this,this.onBotGunfire);
+        this.spawnProbe?.destroy();
+        this.pendingCall=null;
         for (const enemy of this.targets) {
             enemy.owner?.off(EnemyAI.DIED, this, this.onEnemyDied);
         }

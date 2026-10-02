@@ -136,7 +136,85 @@
         "_$ref": "mission_document"
       },
       "documentRange": 2.2,
-      "documentAimRadius": 0.3
+      "documentAimRadius": 0.3,
+      "teammates": [
+        {
+          "_$ref": "squad_0_target001"
+        },
+        {
+          "_$ref": "squad_1_target001"
+        },
+        {
+          "_$ref": "squad_2_target001"
+        }
+      ],
+      "reinforcementEnemies": [
+        {
+          "_$ref": "reinforce_0_target001"
+        },
+        {
+          "_$ref": "reinforce_1_target001"
+        },
+        {
+          "_$ref": "reinforce_2_target001"
+        },
+        {
+          "_$ref": "reinforce_3_target001"
+        }
+      ],
+      "reinforcementSpawns": [
+        {
+          "_$ref": "search_spawn_0"
+        },
+        {
+          "_$ref": "search_spawn_1"
+        },
+        {
+          "_$ref": "search_spawn_2"
+        },
+        {
+          "_$ref": "search_spawn_3"
+        },
+        {
+          "_$ref": "search_spawn_4"
+        },
+        {
+          "_$ref": "search_spawn_5"
+        },
+        {
+          "_$ref": "search_spawn_6"
+        },
+        {
+          "_$ref": "search_spawn_7"
+        },
+        {
+          "_$ref": "search_spawn_8"
+        },
+        {
+          "_$ref": "search_spawn_9"
+        },
+        {
+          "_$ref": "search_spawn_10"
+        },
+        {
+          "_$ref": "search_spawn_11"
+        },
+        {
+          "_$ref": "search_spawn_12"
+        },
+        {
+          "_$ref": "search_spawn_13"
+        },
+        {
+          "_$ref": "search_spawn_14"
+        },
+        {
+          "_$ref": "search_spawn_15"
+        }
+      ],
+      "reinforcementDistance": 35,
+      "reinforcementDelay": 6,
+      "reinforcementCooldown": 45
     },
     {
       "_$type": "6e483e4c-9eef-46bf-b163-00576b2619bd",
@@ -162,6 +240,39 @@
         },
         {
           "_$ref": "enemy004"
+        },
+        {
+          "_$ref": "enemy005"
+        },
+        {
+          "_$ref": "enemy006"
+        },
+        {
+          "_$ref": "enemy007"
+        },
+        {
+          "_$ref": "enemy008"
+        },
+        {
+          "_$ref": "squad_0_target001"
+        },
+        {
+          "_$ref": "squad_1_target001"
+        },
+        {
+          "_$ref": "squad_2_target001"
+        },
+        {
+          "_$ref": "reinforce_0_target001"
+        },
+        {
+          "_$ref": "reinforce_1_target001"
+        },
+        {
+          "_$ref": "reinforce_2_target001"
+        },
+        {
+          "_$ref": "reinforce_3_target001"
         }
       ],
       "enemyFlashes": [
@@ -176,6 +287,39 @@
         },
         {
           "_$ref": "flashen4"
+        },
+        {
+          "_$ref": "sb_e5_flashen1"
+        },
+        {
+          "_$ref": "sb_e6_flashen1"
+        },
+        {
+          "_$ref": "sb_e7_flashen1"
+        },
+        {
+          "_$ref": "sb_e8_flashen1"
+        },
+        {
+          "_$ref": "squad_0_flashen1"
+        },
+        {
+          "_$ref": "squad_1_flashen1"
+        },
+        {
+          "_$ref": "squad_2_flashen1"
+        },
+        {
+          "_$ref": "reinforce_0_flashen1"
+        },
+        {
+          "_$ref": "reinforce_1_flashen1"
+        },
+        {
+          "_$ref": "reinforce_2_flashen1"
+        },
+        {
+          "_$ref": "reinforce_3_flashen1"
         }
       ],
       "playerShotSound": "res://1fdcce3c-8fd4-4804-a490-220ff795e9d5",
@@ -441,10 +585,16 @@
           "name": "Street_Enemy01",
           "transform": {
             "localPosition": {
-              "x": -19,
+              "x": 32,
               "y": 0,
-              "z": 12,
+              "z": 14,
               "_$type": "Vector3"
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
             }
           },
           "_$comp": [
@@ -455,13 +605,13 @@
                 "_$ref": "player01"
               },
               "maxHealth": 100,
-              "sightRange": 26,
-              "fieldOfView": 120,
-              "alertTime": 1.6,
-              "loseTargetTime": 2.2,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75,
+              "patrolSpeed": 2,
               "observationPoint": {
                 "_$ref": "ai_target001_eye"
               },
@@ -489,18 +639,69 @@
               },
               "patrolPoints": [
                 {
-                  "_$ref": "ai_target001_patrol_0"
+                  "_$ref": "search_route_0"
                 },
                 {
-                  "_$ref": "ai_target001_patrol_1"
+                  "_$ref": "search_route_1"
                 },
                 {
-                  "_$ref": "ai_target001_patrol_2"
+                  "_$ref": "search_route_2"
+                },
+                {
+                  "_$ref": "search_route_3"
+                },
+                {
+                  "_$ref": "search_route_4"
+                },
+                {
+                  "_$ref": "search_route_5"
+                },
+                {
+                  "_$ref": "search_route_6"
+                },
+                {
+                  "_$ref": "search_route_7"
+                },
+                {
+                  "_$ref": "search_route_8"
+                },
+                {
+                  "_$ref": "search_route_9"
+                },
+                {
+                  "_$ref": "search_route_10"
+                },
+                {
+                  "_$ref": "search_route_11"
+                },
+                {
+                  "_$ref": "search_route_12"
+                },
+                {
+                  "_$ref": "search_route_13"
+                },
+                {
+                  "_$ref": "search_route_14"
+                },
+                {
+                  "_$ref": "search_route_15"
                 }
               ],
-              "patrolRadius": 1.6,
-              "patrolWaitSeconds": 1.2,
-              "turnSpeed": 180
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.8,
+              "turnSpeed": 240,
+              "opponents": [
+                {
+                  "_$ref": "squad_0_target001"
+                },
+                {
+                  "_$ref": "squad_1_target001"
+                },
+                {
+                  "_$ref": "squad_2_target001"
+                }
+              ],
+              "combatSpeed": 2.2
             }
           ],
           "_$child": [
@@ -564,7 +765,7 @@
                   "_$type": "Vector3",
                   "x": 0.008097410202026367,
                   "y": 1.661618709564209,
-                  "z": 2.9802322387695312e-8
+                  "z": 2.9802322387695312e-08
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -1386,10 +1587,16 @@
           "name": "Street_Enemy02",
           "transform": {
             "localPosition": {
-              "x": -16,
-              "y": 0,
-              "z": 9,
+              "x": 32,
+              "y": 0.08,
+              "z": 8,
               "_$type": "Vector3"
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
             }
           },
           "_$comp": [
@@ -1400,13 +1607,13 @@
                 "_$ref": "player01"
               },
               "maxHealth": 100,
-              "sightRange": 26,
-              "fieldOfView": 120,
-              "alertTime": 1.6,
-              "loseTargetTime": 2.2,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75,
+              "patrolSpeed": 2,
               "observationPoint": {
                 "_$ref": "ai_enemy002_eye"
               },
@@ -1434,18 +1641,69 @@
               },
               "patrolPoints": [
                 {
-                  "_$ref": "ai_enemy002_patrol_0"
+                  "_$ref": "search_route_0"
                 },
                 {
-                  "_$ref": "ai_enemy002_patrol_1"
+                  "_$ref": "search_route_1"
                 },
                 {
-                  "_$ref": "ai_enemy002_patrol_2"
+                  "_$ref": "search_route_2"
+                },
+                {
+                  "_$ref": "search_route_3"
+                },
+                {
+                  "_$ref": "search_route_4"
+                },
+                {
+                  "_$ref": "search_route_5"
+                },
+                {
+                  "_$ref": "search_route_6"
+                },
+                {
+                  "_$ref": "search_route_7"
+                },
+                {
+                  "_$ref": "search_route_8"
+                },
+                {
+                  "_$ref": "search_route_9"
+                },
+                {
+                  "_$ref": "search_route_10"
+                },
+                {
+                  "_$ref": "search_route_11"
+                },
+                {
+                  "_$ref": "search_route_12"
+                },
+                {
+                  "_$ref": "search_route_13"
+                },
+                {
+                  "_$ref": "search_route_14"
+                },
+                {
+                  "_$ref": "search_route_15"
                 }
               ],
-              "patrolRadius": 1.6,
-              "patrolWaitSeconds": 1.2,
-              "turnSpeed": 180
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.8,
+              "turnSpeed": 240,
+              "opponents": [
+                {
+                  "_$ref": "squad_0_target001"
+                },
+                {
+                  "_$ref": "squad_1_target001"
+                },
+                {
+                  "_$ref": "squad_2_target001"
+                }
+              ],
+              "combatSpeed": 2.2
             }
           ],
           "_$child": [
@@ -1509,7 +1767,7 @@
                   "_$type": "Vector3",
                   "x": 0.008097410202026367,
                   "y": 1.661618709564209,
-                  "z": 2.9802322387695312e-8
+                  "z": 2.9802322387695312e-08
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -1932,10 +2190,16 @@
           "name": "Courtyard_Enemy01",
           "transform": {
             "localPosition": {
-              "x": -3,
-              "y": 0.02,
-              "z": -10,
+              "x": 32,
+              "y": 0.08,
+              "z": 2,
               "_$type": "Vector3"
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
             }
           },
           "_$comp": [
@@ -1946,13 +2210,13 @@
                 "_$ref": "player01"
               },
               "maxHealth": 100,
-              "sightRange": 26,
-              "fieldOfView": 120,
-              "alertTime": 1.6,
-              "loseTargetTime": 2.2,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75,
+              "patrolSpeed": 2,
               "observationPoint": {
                 "_$ref": "ai_enemy003_eye"
               },
@@ -1980,18 +2244,69 @@
               },
               "patrolPoints": [
                 {
-                  "_$ref": "ai_enemy003_patrol_0"
+                  "_$ref": "search_route_0"
                 },
                 {
-                  "_$ref": "ai_enemy003_patrol_1"
+                  "_$ref": "search_route_1"
                 },
                 {
-                  "_$ref": "ai_enemy003_patrol_2"
+                  "_$ref": "search_route_2"
+                },
+                {
+                  "_$ref": "search_route_3"
+                },
+                {
+                  "_$ref": "search_route_4"
+                },
+                {
+                  "_$ref": "search_route_5"
+                },
+                {
+                  "_$ref": "search_route_6"
+                },
+                {
+                  "_$ref": "search_route_7"
+                },
+                {
+                  "_$ref": "search_route_8"
+                },
+                {
+                  "_$ref": "search_route_9"
+                },
+                {
+                  "_$ref": "search_route_10"
+                },
+                {
+                  "_$ref": "search_route_11"
+                },
+                {
+                  "_$ref": "search_route_12"
+                },
+                {
+                  "_$ref": "search_route_13"
+                },
+                {
+                  "_$ref": "search_route_14"
+                },
+                {
+                  "_$ref": "search_route_15"
                 }
               ],
-              "patrolRadius": 1.6,
-              "patrolWaitSeconds": 1.2,
-              "turnSpeed": 180
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.8,
+              "turnSpeed": 240,
+              "opponents": [
+                {
+                  "_$ref": "squad_0_target001"
+                },
+                {
+                  "_$ref": "squad_1_target001"
+                },
+                {
+                  "_$ref": "squad_2_target001"
+                }
+              ],
+              "combatSpeed": 2.2
             }
           ],
           "_$child": [
@@ -2055,7 +2370,7 @@
                   "_$type": "Vector3",
                   "x": 0.008097410202026367,
                   "y": 1.661618709564209,
-                  "z": 2.9802322387695312e-8
+                  "z": 2.9802322387695312e-08
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -2478,10 +2793,16 @@
           "name": "Courtyard_Enemy02",
           "transform": {
             "localPosition": {
-              "x": 2,
-              "y": 0.02,
-              "z": -7,
+              "x": 32,
+              "y": 0.08,
+              "z": -4,
               "_$type": "Vector3"
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
             }
           },
           "_$comp": [
@@ -2492,13 +2813,13 @@
                 "_$ref": "player01"
               },
               "maxHealth": 100,
-              "sightRange": 26,
-              "fieldOfView": 120,
-              "alertTime": 1.6,
-              "loseTargetTime": 2.2,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75,
+              "patrolSpeed": 2,
               "observationPoint": {
                 "_$ref": "ai_enemy004_eye"
               },
@@ -2526,18 +2847,69 @@
               },
               "patrolPoints": [
                 {
-                  "_$ref": "ai_enemy004_patrol_0"
+                  "_$ref": "search_route_0"
                 },
                 {
-                  "_$ref": "ai_enemy004_patrol_1"
+                  "_$ref": "search_route_1"
                 },
                 {
-                  "_$ref": "ai_enemy004_patrol_2"
+                  "_$ref": "search_route_2"
+                },
+                {
+                  "_$ref": "search_route_3"
+                },
+                {
+                  "_$ref": "search_route_4"
+                },
+                {
+                  "_$ref": "search_route_5"
+                },
+                {
+                  "_$ref": "search_route_6"
+                },
+                {
+                  "_$ref": "search_route_7"
+                },
+                {
+                  "_$ref": "search_route_8"
+                },
+                {
+                  "_$ref": "search_route_9"
+                },
+                {
+                  "_$ref": "search_route_10"
+                },
+                {
+                  "_$ref": "search_route_11"
+                },
+                {
+                  "_$ref": "search_route_12"
+                },
+                {
+                  "_$ref": "search_route_13"
+                },
+                {
+                  "_$ref": "search_route_14"
+                },
+                {
+                  "_$ref": "search_route_15"
                 }
               ],
-              "patrolRadius": 1.6,
-              "patrolWaitSeconds": 1.2,
-              "turnSpeed": 180
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.8,
+              "turnSpeed": 240,
+              "opponents": [
+                {
+                  "_$ref": "squad_0_target001"
+                },
+                {
+                  "_$ref": "squad_1_target001"
+                },
+                {
+                  "_$ref": "squad_2_target001"
+                }
+              ],
+              "combatSpeed": 2.2
             }
           ],
           "_$child": [
@@ -2601,7 +2973,7 @@
                   "_$type": "Vector3",
                   "x": 0.008097410202026367,
                   "y": 1.661618709564209,
-                  "z": 2.9802322387695312e-8
+                  "z": 2.9802322387695312e-08
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -3331,8 +3703,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3355,8 +3727,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3379,8 +3751,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 }
@@ -3407,8 +3779,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3431,8 +3803,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3455,8 +3827,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 }
@@ -3483,8 +3855,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3507,8 +3879,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3531,8 +3903,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 }
@@ -3559,8 +3931,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3583,8 +3955,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3607,8 +3979,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 }
@@ -3635,8 +4007,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3659,8 +4031,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3683,8 +4055,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 }
@@ -3711,8 +4083,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3735,8 +4107,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3759,8 +4131,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 }
@@ -3787,8 +4159,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3811,8 +4183,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3835,8 +4207,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 }
@@ -3863,8 +4235,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3887,8 +4259,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -3911,8 +4283,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 }
@@ -15175,10 +15547,16 @@
           "name": "Interior_Enemy05_Fictional",
           "transform": {
             "localPosition": {
-              "x": -18,
-              "y": 0.05,
-              "z": 0,
+              "x": 32,
+              "y": 0.08,
+              "z": -10,
               "_$type": "Vector3"
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
             }
           },
           "_$comp": [
@@ -15189,13 +15567,13 @@
                 "_$ref": "player01"
               },
               "maxHealth": 100,
-              "sightRange": 26,
-              "fieldOfView": 120,
-              "alertTime": 1.6,
-              "loseTargetTime": 2.2,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75,
+              "patrolSpeed": 2,
               "observationPoint": {
                 "_$ref": "sb_e5_ai_target001_eye"
               },
@@ -15223,18 +15601,69 @@
               },
               "patrolPoints": [
                 {
-                  "_$ref": "sb_e5_ai_target001_patrol_0"
+                  "_$ref": "search_route_0"
                 },
                 {
-                  "_$ref": "sb_e5_ai_target001_patrol_1"
+                  "_$ref": "search_route_1"
                 },
                 {
-                  "_$ref": "sb_e5_ai_target001_patrol_2"
+                  "_$ref": "search_route_2"
+                },
+                {
+                  "_$ref": "search_route_3"
+                },
+                {
+                  "_$ref": "search_route_4"
+                },
+                {
+                  "_$ref": "search_route_5"
+                },
+                {
+                  "_$ref": "search_route_6"
+                },
+                {
+                  "_$ref": "search_route_7"
+                },
+                {
+                  "_$ref": "search_route_8"
+                },
+                {
+                  "_$ref": "search_route_9"
+                },
+                {
+                  "_$ref": "search_route_10"
+                },
+                {
+                  "_$ref": "search_route_11"
+                },
+                {
+                  "_$ref": "search_route_12"
+                },
+                {
+                  "_$ref": "search_route_13"
+                },
+                {
+                  "_$ref": "search_route_14"
+                },
+                {
+                  "_$ref": "search_route_15"
                 }
               ],
-              "patrolRadius": 1.6,
-              "patrolWaitSeconds": 1.2,
-              "turnSpeed": 180
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.8,
+              "turnSpeed": 240,
+              "opponents": [
+                {
+                  "_$ref": "squad_0_target001"
+                },
+                {
+                  "_$ref": "squad_1_target001"
+                },
+                {
+                  "_$ref": "squad_2_target001"
+                }
+              ],
+              "combatSpeed": 2.2
             }
           ],
           "_$child": [
@@ -15298,7 +15727,7 @@
                   "_$type": "Vector3",
                   "x": 0.008097410202026367,
                   "y": 1.661618709564209,
-                  "z": 2.9802322387695312e-8
+                  "z": 2.9802322387695312e-08
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -15721,10 +16150,16 @@
           "name": "Interior_Enemy06_Fictional",
           "transform": {
             "localPosition": {
-              "x": -35,
-              "y": 0.05,
-              "z": 5,
+              "x": 28,
+              "y": 0,
+              "z": -14,
               "_$type": "Vector3"
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
             }
           },
           "_$comp": [
@@ -15735,13 +16170,13 @@
                 "_$ref": "player01"
               },
               "maxHealth": 100,
-              "sightRange": 26,
-              "fieldOfView": 120,
-              "alertTime": 1.6,
-              "loseTargetTime": 2.2,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75,
+              "patrolSpeed": 2,
               "observationPoint": {
                 "_$ref": "sb_e6_ai_target001_eye"
               },
@@ -15769,18 +16204,69 @@
               },
               "patrolPoints": [
                 {
-                  "_$ref": "sb_e6_ai_target001_patrol_0"
+                  "_$ref": "search_route_0"
                 },
                 {
-                  "_$ref": "sb_e6_ai_target001_patrol_1"
+                  "_$ref": "search_route_1"
                 },
                 {
-                  "_$ref": "sb_e6_ai_target001_patrol_2"
+                  "_$ref": "search_route_2"
+                },
+                {
+                  "_$ref": "search_route_3"
+                },
+                {
+                  "_$ref": "search_route_4"
+                },
+                {
+                  "_$ref": "search_route_5"
+                },
+                {
+                  "_$ref": "search_route_6"
+                },
+                {
+                  "_$ref": "search_route_7"
+                },
+                {
+                  "_$ref": "search_route_8"
+                },
+                {
+                  "_$ref": "search_route_9"
+                },
+                {
+                  "_$ref": "search_route_10"
+                },
+                {
+                  "_$ref": "search_route_11"
+                },
+                {
+                  "_$ref": "search_route_12"
+                },
+                {
+                  "_$ref": "search_route_13"
+                },
+                {
+                  "_$ref": "search_route_14"
+                },
+                {
+                  "_$ref": "search_route_15"
                 }
               ],
-              "patrolRadius": 1.6,
-              "patrolWaitSeconds": 1.2,
-              "turnSpeed": 180
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.8,
+              "turnSpeed": 240,
+              "opponents": [
+                {
+                  "_$ref": "squad_0_target001"
+                },
+                {
+                  "_$ref": "squad_1_target001"
+                },
+                {
+                  "_$ref": "squad_2_target001"
+                }
+              ],
+              "combatSpeed": 2.2
             }
           ],
           "_$child": [
@@ -15844,7 +16330,7 @@
                   "_$type": "Vector3",
                   "x": 0.008097410202026367,
                   "y": 1.661618709564209,
-                  "z": 2.9802322387695312e-8
+                  "z": 2.9802322387695312e-08
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -16267,10 +16753,16 @@
           "name": "Interior_Enemy07_Fictional",
           "transform": {
             "localPosition": {
-              "x": 20,
-              "y": 0.08,
-              "z": 0,
+              "x": 22,
+              "y": 0,
+              "z": -14,
               "_$type": "Vector3"
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
             }
           },
           "_$comp": [
@@ -16281,13 +16773,13 @@
                 "_$ref": "player01"
               },
               "maxHealth": 100,
-              "sightRange": 26,
-              "fieldOfView": 120,
-              "alertTime": 1.6,
-              "loseTargetTime": 2.2,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75,
+              "patrolSpeed": 2,
               "observationPoint": {
                 "_$ref": "sb_e7_ai_target001_eye"
               },
@@ -16315,18 +16807,69 @@
               },
               "patrolPoints": [
                 {
-                  "_$ref": "sb_e7_ai_target001_patrol_0"
+                  "_$ref": "search_route_0"
                 },
                 {
-                  "_$ref": "sb_e7_ai_target001_patrol_1"
+                  "_$ref": "search_route_1"
                 },
                 {
-                  "_$ref": "sb_e7_ai_target001_patrol_2"
+                  "_$ref": "search_route_2"
+                },
+                {
+                  "_$ref": "search_route_3"
+                },
+                {
+                  "_$ref": "search_route_4"
+                },
+                {
+                  "_$ref": "search_route_5"
+                },
+                {
+                  "_$ref": "search_route_6"
+                },
+                {
+                  "_$ref": "search_route_7"
+                },
+                {
+                  "_$ref": "search_route_8"
+                },
+                {
+                  "_$ref": "search_route_9"
+                },
+                {
+                  "_$ref": "search_route_10"
+                },
+                {
+                  "_$ref": "search_route_11"
+                },
+                {
+                  "_$ref": "search_route_12"
+                },
+                {
+                  "_$ref": "search_route_13"
+                },
+                {
+                  "_$ref": "search_route_14"
+                },
+                {
+                  "_$ref": "search_route_15"
                 }
               ],
-              "patrolRadius": 1.6,
-              "patrolWaitSeconds": 1.2,
-              "turnSpeed": 180
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.8,
+              "turnSpeed": 240,
+              "opponents": [
+                {
+                  "_$ref": "squad_0_target001"
+                },
+                {
+                  "_$ref": "squad_1_target001"
+                },
+                {
+                  "_$ref": "squad_2_target001"
+                }
+              ],
+              "combatSpeed": 2.2
             }
           ],
           "_$child": [
@@ -16390,7 +16933,7 @@
                   "_$type": "Vector3",
                   "x": 0.008097410202026367,
                   "y": 1.661618709564209,
-                  "z": 2.9802322387695312e-8
+                  "z": 2.9802322387695312e-08
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -16813,10 +17356,16 @@
           "name": "Interior_Enemy08_Fictional",
           "transform": {
             "localPosition": {
-              "x": -3,
-              "y": 0.05,
-              "z": -29,
+              "x": 16,
+              "y": 0,
+              "z": -14,
               "_$type": "Vector3"
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
             }
           },
           "_$comp": [
@@ -16827,13 +17376,13 @@
                 "_$ref": "player01"
               },
               "maxHealth": 100,
-              "sightRange": 26,
-              "fieldOfView": 120,
-              "alertTime": 1.6,
-              "loseTargetTime": 2.2,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75,
+              "patrolSpeed": 2,
               "observationPoint": {
                 "_$ref": "sb_e8_ai_target001_eye"
               },
@@ -16861,18 +17410,69 @@
               },
               "patrolPoints": [
                 {
-                  "_$ref": "sb_e8_ai_target001_patrol_0"
+                  "_$ref": "search_route_0"
                 },
                 {
-                  "_$ref": "sb_e8_ai_target001_patrol_1"
+                  "_$ref": "search_route_1"
                 },
                 {
-                  "_$ref": "sb_e8_ai_target001_patrol_2"
+                  "_$ref": "search_route_2"
+                },
+                {
+                  "_$ref": "search_route_3"
+                },
+                {
+                  "_$ref": "search_route_4"
+                },
+                {
+                  "_$ref": "search_route_5"
+                },
+                {
+                  "_$ref": "search_route_6"
+                },
+                {
+                  "_$ref": "search_route_7"
+                },
+                {
+                  "_$ref": "search_route_8"
+                },
+                {
+                  "_$ref": "search_route_9"
+                },
+                {
+                  "_$ref": "search_route_10"
+                },
+                {
+                  "_$ref": "search_route_11"
+                },
+                {
+                  "_$ref": "search_route_12"
+                },
+                {
+                  "_$ref": "search_route_13"
+                },
+                {
+                  "_$ref": "search_route_14"
+                },
+                {
+                  "_$ref": "search_route_15"
                 }
               ],
-              "patrolRadius": 1.6,
-              "patrolWaitSeconds": 1.2,
-              "turnSpeed": 180
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.8,
+              "turnSpeed": 240,
+              "opponents": [
+                {
+                  "_$ref": "squad_0_target001"
+                },
+                {
+                  "_$ref": "squad_1_target001"
+                },
+                {
+                  "_$ref": "squad_2_target001"
+                }
+              ],
+              "combatSpeed": 2.2
             }
           ],
           "_$child": [
@@ -16936,7 +17536,7 @@
                   "_$type": "Vector3",
                   "x": 0.008097410202026367,
                   "y": 1.661618709564209,
-                  "z": 2.9802322387695312e-8
+                  "z": 2.9802322387695312e-08
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -17612,6 +18212,5070 @@
               "range": 22
             }
           ]
+        },
+        {
+          "_$id": "squad_0_target001",
+          "_$type": "Sprite3D",
+          "name": "队友_1",
+          "transform": {
+            "localPosition": {
+              "_$type": "Vector3",
+              "x": -29.2,
+              "y": 0.05,
+              "z": 25.2
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
+            }
+          },
+          "_$comp": [
+            {
+              "_$type": "84bdb250-9790-429d-9b97-68d328d7e6f6",
+              "scriptPath": "../src/EnemyAI.ts",
+              "player": {
+                "_$ref": "player01"
+              },
+              "maxHealth": 100,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
+              "attackInterval": 1.8,
+              "shotDamage": 18,
+              "patrolSpeed": 2,
+              "observationPoint": {
+                "_$ref": "squad_0_ai_target001_eye"
+              },
+              "shotPoint": {
+                "_$ref": "squad_0_ai_target001_muzzle"
+              },
+              "shotBase": {
+                "_$ref": "squad_0_ai_target001_breech"
+              },
+              "observationOffset": {
+                "_$type": "Vector3",
+                "y": 2.3
+              },
+              "shotOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.8
+              },
+              "shotBaseOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.26
+              },
+              "patrolPoints": [
+                {
+                  "_$ref": "search_route_0"
+                },
+                {
+                  "_$ref": "search_route_1"
+                },
+                {
+                  "_$ref": "search_route_2"
+                },
+                {
+                  "_$ref": "search_route_3"
+                },
+                {
+                  "_$ref": "search_route_4"
+                },
+                {
+                  "_$ref": "search_route_5"
+                },
+                {
+                  "_$ref": "search_route_6"
+                },
+                {
+                  "_$ref": "search_route_7"
+                },
+                {
+                  "_$ref": "search_route_8"
+                },
+                {
+                  "_$ref": "search_route_9"
+                },
+                {
+                  "_$ref": "search_route_10"
+                },
+                {
+                  "_$ref": "search_route_11"
+                },
+                {
+                  "_$ref": "search_route_12"
+                },
+                {
+                  "_$ref": "search_route_13"
+                },
+                {
+                  "_$ref": "search_route_14"
+                },
+                {
+                  "_$ref": "search_route_15"
+                },
+                {
+                  "_$ref": "search_route_16"
+                },
+                {
+                  "_$ref": "search_route_17"
+                },
+                {
+                  "_$ref": "search_route_18"
+                },
+                {
+                  "_$ref": "search_route_19"
+                },
+                {
+                  "_$ref": "search_route_20"
+                },
+                {
+                  "_$ref": "search_route_21"
+                },
+                {
+                  "_$ref": "search_route_22"
+                },
+                {
+                  "_$ref": "search_route_23"
+                }
+              ],
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.8,
+              "turnSpeed": 240,
+              "opponents": [
+                {
+                  "_$ref": "target001"
+                },
+                {
+                  "_$ref": "enemy002"
+                },
+                {
+                  "_$ref": "enemy003"
+                },
+                {
+                  "_$ref": "enemy004"
+                },
+                {
+                  "_$ref": "enemy005"
+                },
+                {
+                  "_$ref": "enemy006"
+                },
+                {
+                  "_$ref": "enemy007"
+                },
+                {
+                  "_$ref": "enemy008"
+                },
+                {
+                  "_$ref": "reinforce_0_target001"
+                },
+                {
+                  "_$ref": "reinforce_1_target001"
+                },
+                {
+                  "_$ref": "reinforce_2_target001"
+                },
+                {
+                  "_$ref": "reinforce_3_target001"
+                }
+              ],
+              "combatSpeed": 2.2,
+              "friendly": true
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "squad_0_head0001",
+              "_$type": "Sprite3D",
+              "name": "Head",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.0012460872530937195,
+                  "y": 2.295872211456299,
+                  "z": -0.00436006486415863
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.3651001453399658,
+                  "y": 0.5382564067840576,
+                  "z": 0.4485637843608856
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "a7732e8c-7c5c-4809-8405-fa82156b8a31",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "squad_0_marker",
+                  "_$type": "Sprite3D",
+                  "name": "AllyMarker",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0,
+                      "y": 0.48,
+                      "z": 0
+                    },
+                    "localScale": {
+                      "_$type": "Vector3",
+                      "x": 0.7,
+                      "y": 0.2,
+                      "z": 0.7
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "a286a154-9045-4858-b27a-802386815eed",
+                          "_$type": "Material"
+                        }
+                      ],
+                      "enabled": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "squad_0_torso001",
+              "_$type": "Sprite3D",
+              "name": "Torso",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.008097410202026367,
+                  "y": 1.661618709564209,
+                  "z": 2.9802322387695312e-08
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.5905764102935791,
+                  "y": 0.6980665922164917,
+                  "z": 0.5021299719810486
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "d6184b08-3009-49f7-b6b0-646787a302fa",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "squad_0_legs0001",
+              "_$type": "Sprite3D",
+              "name": "Legs",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.031143292784690857,
+                  "y": 0.656292736530304,
+                  "z": 0.008097238838672638
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.7886468172073364,
+                  "y": 1.312585473060608,
+                  "z": 0.48344409465789795
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "squad_0_enemyarm1",
+              "_$type": "Sprite3D",
+              "name": "LeftArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.1789216697216034,
+                  "y": 1.9041393995285034,
+                  "z": 0.16167497634887695
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.4582168459892273,
+                  "y": 0.5020344257354736,
+                  "z": 0.753227710723877
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "squad_0_enemyarm2",
+              "_$type": "Sprite3D",
+              "name": "RightArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.12187999486923218,
+                  "y": 1.8488967418670654,
+                  "z": 0.019862256944179535
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.46084141731262207,
+                  "y": 0.6116403341293335,
+                  "z": 0.48704248666763306
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "squad_0_enemygun1",
+              "_$type": "Sprite3D",
+              "name": "EnemyRifle",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.1,
+                  "y": 1.7,
+                  "z": 0.26
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.14,
+                  "y": 0.14,
+                  "z": 0.82
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "enabled": false,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "squad_0_flashen1",
+                  "_$type": "Sprite3D",
+                  "name": "EnemyMuzzleFlash",
+                  "active": false,
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "squad_0_flashen1h",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1h",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 2,
+                          "y": 0.35,
+                          "z": 0.24
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "squad_0_flashen1v",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1v",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 0.35,
+                          "y": 2,
+                          "z": 0.18
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "squad_0_flashen1c",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1c",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 0.8,
+                          "y": 0.8,
+                          "z": 0.36
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "squad_0_gunvisual0",
+                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
+                  "name": "EnemyProvidedRifle",
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "localRotationEuler": {
+                      "x": 0,
+                      "y": 180,
+                      "z": 0
+                    },
+                    "localScale": {
+                      "x": 7.142857142857142,
+                      "y": 7.142857142857142,
+                      "z": 1.2195121951219512
+                    }
+                  }
+                },
+                {
+                  "_$id": "squad_0_ai_target001_breech",
+                  "_$type": "Sprite3D",
+                  "name": "ShotBase",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "_$id": "squad_0_ai_target001_muzzle",
+                  "_$type": "Sprite3D",
+                  "name": "ShotPoint",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "squad_0_charvisual1",
+              "_$prefab": "5e83b918-5893-466d-8242-ad17ee3d6dab",
+              "name": "AllyVisual",
+              "transform": {
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 1.3914377039129084,
+                  "y": 1.3914377039129084,
+                  "z": 1.3914377039129084
+                }
+              }
+            },
+            {
+              "_$id": "squad_0_ai_target001_eye",
+              "_$type": "Sprite3D",
+              "name": "ObservationPoint",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "squad_1_target001",
+          "_$type": "Sprite3D",
+          "name": "队友_2",
+          "transform": {
+            "localPosition": {
+              "_$type": "Vector3",
+              "x": -26.8,
+              "y": 0.05,
+              "z": 25.2
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
+            }
+          },
+          "_$comp": [
+            {
+              "_$type": "84bdb250-9790-429d-9b97-68d328d7e6f6",
+              "scriptPath": "../src/EnemyAI.ts",
+              "player": {
+                "_$ref": "player01"
+              },
+              "maxHealth": 100,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
+              "attackInterval": 1.8,
+              "shotDamage": 18,
+              "patrolSpeed": 2,
+              "observationPoint": {
+                "_$ref": "squad_1_ai_target001_eye"
+              },
+              "shotPoint": {
+                "_$ref": "squad_1_ai_target001_muzzle"
+              },
+              "shotBase": {
+                "_$ref": "squad_1_ai_target001_breech"
+              },
+              "observationOffset": {
+                "_$type": "Vector3",
+                "y": 2.3
+              },
+              "shotOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.8
+              },
+              "shotBaseOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.26
+              },
+              "patrolPoints": [
+                {
+                  "_$ref": "search_route_0"
+                },
+                {
+                  "_$ref": "search_route_1"
+                },
+                {
+                  "_$ref": "search_route_2"
+                },
+                {
+                  "_$ref": "search_route_3"
+                },
+                {
+                  "_$ref": "search_route_4"
+                },
+                {
+                  "_$ref": "search_route_5"
+                },
+                {
+                  "_$ref": "search_route_6"
+                },
+                {
+                  "_$ref": "search_route_7"
+                },
+                {
+                  "_$ref": "search_route_8"
+                },
+                {
+                  "_$ref": "search_route_9"
+                },
+                {
+                  "_$ref": "search_route_10"
+                },
+                {
+                  "_$ref": "search_route_11"
+                },
+                {
+                  "_$ref": "search_route_12"
+                },
+                {
+                  "_$ref": "search_route_13"
+                },
+                {
+                  "_$ref": "search_route_14"
+                },
+                {
+                  "_$ref": "search_route_15"
+                },
+                {
+                  "_$ref": "search_route_16"
+                },
+                {
+                  "_$ref": "search_route_17"
+                },
+                {
+                  "_$ref": "search_route_18"
+                },
+                {
+                  "_$ref": "search_route_19"
+                },
+                {
+                  "_$ref": "search_route_20"
+                },
+                {
+                  "_$ref": "search_route_21"
+                },
+                {
+                  "_$ref": "search_route_22"
+                },
+                {
+                  "_$ref": "search_route_23"
+                }
+              ],
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.8,
+              "turnSpeed": 240,
+              "opponents": [
+                {
+                  "_$ref": "target001"
+                },
+                {
+                  "_$ref": "enemy002"
+                },
+                {
+                  "_$ref": "enemy003"
+                },
+                {
+                  "_$ref": "enemy004"
+                },
+                {
+                  "_$ref": "enemy005"
+                },
+                {
+                  "_$ref": "enemy006"
+                },
+                {
+                  "_$ref": "enemy007"
+                },
+                {
+                  "_$ref": "enemy008"
+                },
+                {
+                  "_$ref": "reinforce_0_target001"
+                },
+                {
+                  "_$ref": "reinforce_1_target001"
+                },
+                {
+                  "_$ref": "reinforce_2_target001"
+                },
+                {
+                  "_$ref": "reinforce_3_target001"
+                }
+              ],
+              "combatSpeed": 2.2,
+              "friendly": true
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "squad_1_head0001",
+              "_$type": "Sprite3D",
+              "name": "Head",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.0012460872530937195,
+                  "y": 2.295872211456299,
+                  "z": -0.00436006486415863
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.3651001453399658,
+                  "y": 0.5382564067840576,
+                  "z": 0.4485637843608856
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "a7732e8c-7c5c-4809-8405-fa82156b8a31",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "squad_1_marker",
+                  "_$type": "Sprite3D",
+                  "name": "AllyMarker",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0,
+                      "y": 0.48,
+                      "z": 0
+                    },
+                    "localScale": {
+                      "_$type": "Vector3",
+                      "x": 0.7,
+                      "y": 0.2,
+                      "z": 0.7
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "a286a154-9045-4858-b27a-802386815eed",
+                          "_$type": "Material"
+                        }
+                      ],
+                      "enabled": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "squad_1_torso001",
+              "_$type": "Sprite3D",
+              "name": "Torso",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.008097410202026367,
+                  "y": 1.661618709564209,
+                  "z": 2.9802322387695312e-08
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.5905764102935791,
+                  "y": 0.6980665922164917,
+                  "z": 0.5021299719810486
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "d6184b08-3009-49f7-b6b0-646787a302fa",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "squad_1_legs0001",
+              "_$type": "Sprite3D",
+              "name": "Legs",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.031143292784690857,
+                  "y": 0.656292736530304,
+                  "z": 0.008097238838672638
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.7886468172073364,
+                  "y": 1.312585473060608,
+                  "z": 0.48344409465789795
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "squad_1_enemyarm1",
+              "_$type": "Sprite3D",
+              "name": "LeftArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.1789216697216034,
+                  "y": 1.9041393995285034,
+                  "z": 0.16167497634887695
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.4582168459892273,
+                  "y": 0.5020344257354736,
+                  "z": 0.753227710723877
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "squad_1_enemyarm2",
+              "_$type": "Sprite3D",
+              "name": "RightArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.12187999486923218,
+                  "y": 1.8488967418670654,
+                  "z": 0.019862256944179535
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.46084141731262207,
+                  "y": 0.6116403341293335,
+                  "z": 0.48704248666763306
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "squad_1_enemygun1",
+              "_$type": "Sprite3D",
+              "name": "EnemyRifle",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.1,
+                  "y": 1.7,
+                  "z": 0.26
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.14,
+                  "y": 0.14,
+                  "z": 0.82
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "enabled": false,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "squad_1_flashen1",
+                  "_$type": "Sprite3D",
+                  "name": "EnemyMuzzleFlash",
+                  "active": false,
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "squad_1_flashen1h",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1h",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 2,
+                          "y": 0.35,
+                          "z": 0.24
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "squad_1_flashen1v",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1v",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 0.35,
+                          "y": 2,
+                          "z": 0.18
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "squad_1_flashen1c",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1c",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 0.8,
+                          "y": 0.8,
+                          "z": 0.36
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "squad_1_gunvisual0",
+                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
+                  "name": "EnemyProvidedRifle",
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "localRotationEuler": {
+                      "x": 0,
+                      "y": 180,
+                      "z": 0
+                    },
+                    "localScale": {
+                      "x": 7.142857142857142,
+                      "y": 7.142857142857142,
+                      "z": 1.2195121951219512
+                    }
+                  }
+                },
+                {
+                  "_$id": "squad_1_ai_target001_breech",
+                  "_$type": "Sprite3D",
+                  "name": "ShotBase",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "_$id": "squad_1_ai_target001_muzzle",
+                  "_$type": "Sprite3D",
+                  "name": "ShotPoint",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "squad_1_charvisual1",
+              "_$prefab": "5e83b918-5893-466d-8242-ad17ee3d6dab",
+              "name": "AllyVisual",
+              "transform": {
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 1.3914377039129084,
+                  "y": 1.3914377039129084,
+                  "z": 1.3914377039129084
+                }
+              }
+            },
+            {
+              "_$id": "squad_1_ai_target001_eye",
+              "_$type": "Sprite3D",
+              "name": "ObservationPoint",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "squad_2_target001",
+          "_$type": "Sprite3D",
+          "name": "队友_3",
+          "transform": {
+            "localPosition": {
+              "_$type": "Vector3",
+              "x": -28,
+              "y": 0.05,
+              "z": 23.4
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
+            }
+          },
+          "_$comp": [
+            {
+              "_$type": "84bdb250-9790-429d-9b97-68d328d7e6f6",
+              "scriptPath": "../src/EnemyAI.ts",
+              "player": {
+                "_$ref": "player01"
+              },
+              "maxHealth": 100,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
+              "attackInterval": 1.8,
+              "shotDamage": 18,
+              "patrolSpeed": 2,
+              "observationPoint": {
+                "_$ref": "squad_2_ai_target001_eye"
+              },
+              "shotPoint": {
+                "_$ref": "squad_2_ai_target001_muzzle"
+              },
+              "shotBase": {
+                "_$ref": "squad_2_ai_target001_breech"
+              },
+              "observationOffset": {
+                "_$type": "Vector3",
+                "y": 2.3
+              },
+              "shotOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.8
+              },
+              "shotBaseOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.26
+              },
+              "patrolPoints": [
+                {
+                  "_$ref": "search_route_0"
+                },
+                {
+                  "_$ref": "search_route_1"
+                },
+                {
+                  "_$ref": "search_route_2"
+                },
+                {
+                  "_$ref": "search_route_3"
+                },
+                {
+                  "_$ref": "search_route_4"
+                },
+                {
+                  "_$ref": "search_route_5"
+                },
+                {
+                  "_$ref": "search_route_6"
+                },
+                {
+                  "_$ref": "search_route_7"
+                },
+                {
+                  "_$ref": "search_route_8"
+                },
+                {
+                  "_$ref": "search_route_9"
+                },
+                {
+                  "_$ref": "search_route_10"
+                },
+                {
+                  "_$ref": "search_route_11"
+                },
+                {
+                  "_$ref": "search_route_12"
+                },
+                {
+                  "_$ref": "search_route_13"
+                },
+                {
+                  "_$ref": "search_route_14"
+                },
+                {
+                  "_$ref": "search_route_15"
+                },
+                {
+                  "_$ref": "search_route_16"
+                },
+                {
+                  "_$ref": "search_route_17"
+                },
+                {
+                  "_$ref": "search_route_18"
+                },
+                {
+                  "_$ref": "search_route_19"
+                },
+                {
+                  "_$ref": "search_route_20"
+                },
+                {
+                  "_$ref": "search_route_21"
+                },
+                {
+                  "_$ref": "search_route_22"
+                },
+                {
+                  "_$ref": "search_route_23"
+                }
+              ],
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.8,
+              "turnSpeed": 240,
+              "opponents": [
+                {
+                  "_$ref": "target001"
+                },
+                {
+                  "_$ref": "enemy002"
+                },
+                {
+                  "_$ref": "enemy003"
+                },
+                {
+                  "_$ref": "enemy004"
+                },
+                {
+                  "_$ref": "enemy005"
+                },
+                {
+                  "_$ref": "enemy006"
+                },
+                {
+                  "_$ref": "enemy007"
+                },
+                {
+                  "_$ref": "enemy008"
+                },
+                {
+                  "_$ref": "reinforce_0_target001"
+                },
+                {
+                  "_$ref": "reinforce_1_target001"
+                },
+                {
+                  "_$ref": "reinforce_2_target001"
+                },
+                {
+                  "_$ref": "reinforce_3_target001"
+                }
+              ],
+              "combatSpeed": 2.2,
+              "friendly": true
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "squad_2_head0001",
+              "_$type": "Sprite3D",
+              "name": "Head",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.0012460872530937195,
+                  "y": 2.295872211456299,
+                  "z": -0.00436006486415863
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.3651001453399658,
+                  "y": 0.5382564067840576,
+                  "z": 0.4485637843608856
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "a7732e8c-7c5c-4809-8405-fa82156b8a31",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "squad_2_marker",
+                  "_$type": "Sprite3D",
+                  "name": "AllyMarker",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0,
+                      "y": 0.48,
+                      "z": 0
+                    },
+                    "localScale": {
+                      "_$type": "Vector3",
+                      "x": 0.7,
+                      "y": 0.2,
+                      "z": 0.7
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "a286a154-9045-4858-b27a-802386815eed",
+                          "_$type": "Material"
+                        }
+                      ],
+                      "enabled": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "squad_2_torso001",
+              "_$type": "Sprite3D",
+              "name": "Torso",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.008097410202026367,
+                  "y": 1.661618709564209,
+                  "z": 2.9802322387695312e-08
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.5905764102935791,
+                  "y": 0.6980665922164917,
+                  "z": 0.5021299719810486
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "d6184b08-3009-49f7-b6b0-646787a302fa",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "squad_2_legs0001",
+              "_$type": "Sprite3D",
+              "name": "Legs",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.031143292784690857,
+                  "y": 0.656292736530304,
+                  "z": 0.008097238838672638
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.7886468172073364,
+                  "y": 1.312585473060608,
+                  "z": 0.48344409465789795
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "squad_2_enemyarm1",
+              "_$type": "Sprite3D",
+              "name": "LeftArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.1789216697216034,
+                  "y": 1.9041393995285034,
+                  "z": 0.16167497634887695
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.4582168459892273,
+                  "y": 0.5020344257354736,
+                  "z": 0.753227710723877
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "squad_2_enemyarm2",
+              "_$type": "Sprite3D",
+              "name": "RightArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.12187999486923218,
+                  "y": 1.8488967418670654,
+                  "z": 0.019862256944179535
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.46084141731262207,
+                  "y": 0.6116403341293335,
+                  "z": 0.48704248666763306
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "squad_2_enemygun1",
+              "_$type": "Sprite3D",
+              "name": "EnemyRifle",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.1,
+                  "y": 1.7,
+                  "z": 0.26
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.14,
+                  "y": 0.14,
+                  "z": 0.82
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "enabled": false,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "squad_2_flashen1",
+                  "_$type": "Sprite3D",
+                  "name": "EnemyMuzzleFlash",
+                  "active": false,
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "squad_2_flashen1h",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1h",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 2,
+                          "y": 0.35,
+                          "z": 0.24
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "squad_2_flashen1v",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1v",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 0.35,
+                          "y": 2,
+                          "z": 0.18
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "squad_2_flashen1c",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1c",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 0.8,
+                          "y": 0.8,
+                          "z": 0.36
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "squad_2_gunvisual0",
+                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
+                  "name": "EnemyProvidedRifle",
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "localRotationEuler": {
+                      "x": 0,
+                      "y": 180,
+                      "z": 0
+                    },
+                    "localScale": {
+                      "x": 7.142857142857142,
+                      "y": 7.142857142857142,
+                      "z": 1.2195121951219512
+                    }
+                  }
+                },
+                {
+                  "_$id": "squad_2_ai_target001_breech",
+                  "_$type": "Sprite3D",
+                  "name": "ShotBase",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "_$id": "squad_2_ai_target001_muzzle",
+                  "_$type": "Sprite3D",
+                  "name": "ShotPoint",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "squad_2_charvisual1",
+              "_$prefab": "5e83b918-5893-466d-8242-ad17ee3d6dab",
+              "name": "AllyVisual",
+              "transform": {
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 1.3914377039129084,
+                  "y": 1.3914377039129084,
+                  "z": 1.3914377039129084
+                }
+              }
+            },
+            {
+              "_$id": "squad_2_ai_target001_eye",
+              "_$type": "Sprite3D",
+              "name": "ObservationPoint",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "search_route_0",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_0",
+          "transform": {
+            "localPosition": {
+              "x": 32,
+              "y": 0,
+              "z": 14,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_1",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_1",
+          "transform": {
+            "localPosition": {
+              "x": 32,
+              "y": 0.08,
+              "z": 8,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_2",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_2",
+          "transform": {
+            "localPosition": {
+              "x": 32,
+              "y": 0.08,
+              "z": 2,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_3",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_3",
+          "transform": {
+            "localPosition": {
+              "x": 32,
+              "y": 0.08,
+              "z": -4,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_4",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_4",
+          "transform": {
+            "localPosition": {
+              "x": 32,
+              "y": 0.08,
+              "z": -10,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_5",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_5",
+          "transform": {
+            "localPosition": {
+              "x": 28,
+              "y": 0,
+              "z": -14,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_6",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_6",
+          "transform": {
+            "localPosition": {
+              "x": 22,
+              "y": 0,
+              "z": -14,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_7",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_7",
+          "transform": {
+            "localPosition": {
+              "x": 16,
+              "y": 0,
+              "z": -14,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_8",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_8",
+          "transform": {
+            "localPosition": {
+              "x": -38,
+              "y": 0,
+              "z": -30,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_9",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_9",
+          "transform": {
+            "localPosition": {
+              "x": -34,
+              "y": 0,
+              "z": -30,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_10",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_10",
+          "transform": {
+            "localPosition": {
+              "x": -38,
+              "y": 0.05,
+              "z": -20,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_11",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_11",
+          "transform": {
+            "localPosition": {
+              "x": -34,
+              "y": 0.05,
+              "z": -14,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_12",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_12",
+          "transform": {
+            "localPosition": {
+              "x": -20,
+              "y": 0,
+              "z": -16,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_13",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_13",
+          "transform": {
+            "localPosition": {
+              "x": -12,
+              "y": 0,
+              "z": -28,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_14",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_14",
+          "transform": {
+            "localPosition": {
+              "x": -8,
+              "y": 0,
+              "z": -22,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_15",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_15",
+          "transform": {
+            "localPosition": {
+              "x": 4,
+              "y": 0,
+              "z": -26,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_16",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_16",
+          "transform": {
+            "localPosition": {
+              "x": -28,
+              "y": 0,
+              "z": 23,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_17",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_17",
+          "transform": {
+            "localPosition": {
+              "x": -28,
+              "y": 0,
+              "z": 15,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_18",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_18",
+          "transform": {
+            "localPosition": {
+              "x": -26,
+              "y": 0,
+              "z": 7,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_19",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_19",
+          "transform": {
+            "localPosition": {
+              "x": -22,
+              "y": 0,
+              "z": 3,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_20",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_20",
+          "transform": {
+            "localPosition": {
+              "x": -14,
+              "y": 0,
+              "z": -9,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_21",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_21",
+          "transform": {
+            "localPosition": {
+              "x": -6,
+              "y": 0.02,
+              "z": -1,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_22",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_22",
+          "transform": {
+            "localPosition": {
+              "x": 2,
+              "y": 0.02,
+              "z": 3,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_route_23",
+          "_$type": "Sprite3D",
+          "name": "SearchRoute_23",
+          "transform": {
+            "localPosition": {
+              "x": 6,
+              "y": 0.02,
+              "z": 7,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_0",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_0",
+          "transform": {
+            "localPosition": {
+              "x": 32,
+              "y": 0,
+              "z": 14,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_1",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_1",
+          "transform": {
+            "localPosition": {
+              "x": 32,
+              "y": 0.08,
+              "z": 8,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_2",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_2",
+          "transform": {
+            "localPosition": {
+              "x": 32,
+              "y": 0.08,
+              "z": 2,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_3",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_3",
+          "transform": {
+            "localPosition": {
+              "x": 32,
+              "y": 0.08,
+              "z": -4,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_4",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_4",
+          "transform": {
+            "localPosition": {
+              "x": 32,
+              "y": 0.08,
+              "z": -10,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_5",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_5",
+          "transform": {
+            "localPosition": {
+              "x": 28,
+              "y": 0,
+              "z": -14,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_6",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_6",
+          "transform": {
+            "localPosition": {
+              "x": 22,
+              "y": 0,
+              "z": -14,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_7",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_7",
+          "transform": {
+            "localPosition": {
+              "x": 16,
+              "y": 0,
+              "z": -14,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_8",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_8",
+          "transform": {
+            "localPosition": {
+              "x": -38,
+              "y": 0,
+              "z": -30,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_9",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_9",
+          "transform": {
+            "localPosition": {
+              "x": -34,
+              "y": 0,
+              "z": -30,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_10",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_10",
+          "transform": {
+            "localPosition": {
+              "x": -38,
+              "y": 0.05,
+              "z": -20,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_11",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_11",
+          "transform": {
+            "localPosition": {
+              "x": -34,
+              "y": 0.05,
+              "z": -14,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_12",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_12",
+          "transform": {
+            "localPosition": {
+              "x": -20,
+              "y": 0,
+              "z": -16,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_13",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_13",
+          "transform": {
+            "localPosition": {
+              "x": -12,
+              "y": 0,
+              "z": -28,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_14",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_14",
+          "transform": {
+            "localPosition": {
+              "x": -8,
+              "y": 0,
+              "z": -22,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "search_spawn_15",
+          "_$type": "Sprite3D",
+          "name": "FarReinforcementSpawn_15",
+          "transform": {
+            "localPosition": {
+              "x": 4,
+              "y": 0,
+              "z": -26,
+              "_$type": "Vector3"
+            }
+          }
+        },
+        {
+          "_$id": "reinforce_0_target001",
+          "_$type": "Sprite3D",
+          "name": "增援敌人_1",
+          "transform": {
+            "localPosition": {
+              "x": -38,
+              "y": 0,
+              "z": -30,
+              "_$type": "Vector3"
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
+            }
+          },
+          "_$comp": [
+            {
+              "_$type": "84bdb250-9790-429d-9b97-68d328d7e6f6",
+              "scriptPath": "../src/EnemyAI.ts",
+              "player": {
+                "_$ref": "player01"
+              },
+              "maxHealth": 100,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
+              "attackInterval": 1.8,
+              "shotDamage": 18,
+              "patrolSpeed": 2,
+              "observationPoint": {
+                "_$ref": "reinforce_0_ai_target001_eye"
+              },
+              "shotPoint": {
+                "_$ref": "reinforce_0_ai_target001_muzzle"
+              },
+              "shotBase": {
+                "_$ref": "reinforce_0_ai_target001_breech"
+              },
+              "observationOffset": {
+                "_$type": "Vector3",
+                "y": 2.3
+              },
+              "shotOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.8
+              },
+              "shotBaseOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.26
+              },
+              "patrolPoints": [
+                {
+                  "_$ref": "search_route_0"
+                },
+                {
+                  "_$ref": "search_route_1"
+                },
+                {
+                  "_$ref": "search_route_2"
+                },
+                {
+                  "_$ref": "search_route_3"
+                },
+                {
+                  "_$ref": "search_route_4"
+                },
+                {
+                  "_$ref": "search_route_5"
+                },
+                {
+                  "_$ref": "search_route_6"
+                },
+                {
+                  "_$ref": "search_route_7"
+                },
+                {
+                  "_$ref": "search_route_8"
+                },
+                {
+                  "_$ref": "search_route_9"
+                },
+                {
+                  "_$ref": "search_route_10"
+                },
+                {
+                  "_$ref": "search_route_11"
+                },
+                {
+                  "_$ref": "search_route_12"
+                },
+                {
+                  "_$ref": "search_route_13"
+                },
+                {
+                  "_$ref": "search_route_14"
+                },
+                {
+                  "_$ref": "search_route_15"
+                }
+              ],
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.8,
+              "turnSpeed": 240,
+              "opponents": [
+                {
+                  "_$ref": "squad_0_target001"
+                },
+                {
+                  "_$ref": "squad_1_target001"
+                },
+                {
+                  "_$ref": "squad_2_target001"
+                }
+              ],
+              "combatSpeed": 2.2,
+              "reinforcement": true
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "reinforce_0_head0001",
+              "_$type": "Sprite3D",
+              "name": "Head",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.0012460872530937195,
+                  "y": 2.295872211456299,
+                  "z": -0.00436006486415863
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.3651001453399658,
+                  "y": 0.5382564067840576,
+                  "z": 0.4485637843608856
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "a7732e8c-7c5c-4809-8405-fa82156b8a31",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_0_torso001",
+              "_$type": "Sprite3D",
+              "name": "Torso",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.008097410202026367,
+                  "y": 1.661618709564209,
+                  "z": 2.9802322387695312e-08
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.5905764102935791,
+                  "y": 0.6980665922164917,
+                  "z": 0.5021299719810486
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "d6184b08-3009-49f7-b6b0-646787a302fa",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_0_legs0001",
+              "_$type": "Sprite3D",
+              "name": "Legs",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.031143292784690857,
+                  "y": 0.656292736530304,
+                  "z": 0.008097238838672638
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.7886468172073364,
+                  "y": 1.312585473060608,
+                  "z": 0.48344409465789795
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_0_enemyarm1",
+              "_$type": "Sprite3D",
+              "name": "LeftArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.1789216697216034,
+                  "y": 1.9041393995285034,
+                  "z": 0.16167497634887695
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.4582168459892273,
+                  "y": 0.5020344257354736,
+                  "z": 0.753227710723877
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_0_enemyarm2",
+              "_$type": "Sprite3D",
+              "name": "RightArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.12187999486923218,
+                  "y": 1.8488967418670654,
+                  "z": 0.019862256944179535
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.46084141731262207,
+                  "y": 0.6116403341293335,
+                  "z": 0.48704248666763306
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_0_enemygun1",
+              "_$type": "Sprite3D",
+              "name": "EnemyRifle",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.1,
+                  "y": 1.7,
+                  "z": 0.26
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.14,
+                  "y": 0.14,
+                  "z": 0.82
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "enabled": false,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "reinforce_0_flashen1",
+                  "_$type": "Sprite3D",
+                  "name": "EnemyMuzzleFlash",
+                  "active": false,
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "reinforce_0_flashen1h",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1h",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 2,
+                          "y": 0.35,
+                          "z": 0.24
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "reinforce_0_flashen1v",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1v",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 0.35,
+                          "y": 2,
+                          "z": 0.18
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "reinforce_0_flashen1c",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1c",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 0.8,
+                          "y": 0.8,
+                          "z": 0.36
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "reinforce_0_gunvisual0",
+                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
+                  "name": "EnemyProvidedRifle",
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "localRotationEuler": {
+                      "x": 0,
+                      "y": 180,
+                      "z": 0
+                    },
+                    "localScale": {
+                      "x": 7.142857142857142,
+                      "y": 7.142857142857142,
+                      "z": 1.2195121951219512
+                    }
+                  }
+                },
+                {
+                  "_$id": "reinforce_0_ai_target001_breech",
+                  "_$type": "Sprite3D",
+                  "name": "ShotBase",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "_$id": "reinforce_0_ai_target001_muzzle",
+                  "_$type": "Sprite3D",
+                  "name": "ShotPoint",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_0_charvisual1",
+              "_$prefab": "df374c28-d931-4eb6-9b13-638709b65707",
+              "name": "EnemyVisual"
+            },
+            {
+              "_$id": "reinforce_0_ai_target001_eye",
+              "_$type": "Sprite3D",
+              "name": "ObservationPoint",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.3
+                }
+              }
+            }
+          ],
+          "active": false
+        },
+        {
+          "_$id": "reinforce_1_target001",
+          "_$type": "Sprite3D",
+          "name": "增援敌人_2",
+          "transform": {
+            "localPosition": {
+              "x": -34,
+              "y": 0,
+              "z": -30,
+              "_$type": "Vector3"
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
+            }
+          },
+          "_$comp": [
+            {
+              "_$type": "84bdb250-9790-429d-9b97-68d328d7e6f6",
+              "scriptPath": "../src/EnemyAI.ts",
+              "player": {
+                "_$ref": "player01"
+              },
+              "maxHealth": 100,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
+              "attackInterval": 1.8,
+              "shotDamage": 18,
+              "patrolSpeed": 2,
+              "observationPoint": {
+                "_$ref": "reinforce_1_ai_target001_eye"
+              },
+              "shotPoint": {
+                "_$ref": "reinforce_1_ai_target001_muzzle"
+              },
+              "shotBase": {
+                "_$ref": "reinforce_1_ai_target001_breech"
+              },
+              "observationOffset": {
+                "_$type": "Vector3",
+                "y": 2.3
+              },
+              "shotOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.8
+              },
+              "shotBaseOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.26
+              },
+              "patrolPoints": [
+                {
+                  "_$ref": "search_route_0"
+                },
+                {
+                  "_$ref": "search_route_1"
+                },
+                {
+                  "_$ref": "search_route_2"
+                },
+                {
+                  "_$ref": "search_route_3"
+                },
+                {
+                  "_$ref": "search_route_4"
+                },
+                {
+                  "_$ref": "search_route_5"
+                },
+                {
+                  "_$ref": "search_route_6"
+                },
+                {
+                  "_$ref": "search_route_7"
+                },
+                {
+                  "_$ref": "search_route_8"
+                },
+                {
+                  "_$ref": "search_route_9"
+                },
+                {
+                  "_$ref": "search_route_10"
+                },
+                {
+                  "_$ref": "search_route_11"
+                },
+                {
+                  "_$ref": "search_route_12"
+                },
+                {
+                  "_$ref": "search_route_13"
+                },
+                {
+                  "_$ref": "search_route_14"
+                },
+                {
+                  "_$ref": "search_route_15"
+                }
+              ],
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.8,
+              "turnSpeed": 240,
+              "opponents": [
+                {
+                  "_$ref": "squad_0_target001"
+                },
+                {
+                  "_$ref": "squad_1_target001"
+                },
+                {
+                  "_$ref": "squad_2_target001"
+                }
+              ],
+              "combatSpeed": 2.2,
+              "reinforcement": true
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "reinforce_1_head0001",
+              "_$type": "Sprite3D",
+              "name": "Head",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.0012460872530937195,
+                  "y": 2.295872211456299,
+                  "z": -0.00436006486415863
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.3651001453399658,
+                  "y": 0.5382564067840576,
+                  "z": 0.4485637843608856
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "a7732e8c-7c5c-4809-8405-fa82156b8a31",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_1_torso001",
+              "_$type": "Sprite3D",
+              "name": "Torso",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.008097410202026367,
+                  "y": 1.661618709564209,
+                  "z": 2.9802322387695312e-08
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.5905764102935791,
+                  "y": 0.6980665922164917,
+                  "z": 0.5021299719810486
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "d6184b08-3009-49f7-b6b0-646787a302fa",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_1_legs0001",
+              "_$type": "Sprite3D",
+              "name": "Legs",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.031143292784690857,
+                  "y": 0.656292736530304,
+                  "z": 0.008097238838672638
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.7886468172073364,
+                  "y": 1.312585473060608,
+                  "z": 0.48344409465789795
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_1_enemyarm1",
+              "_$type": "Sprite3D",
+              "name": "LeftArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.1789216697216034,
+                  "y": 1.9041393995285034,
+                  "z": 0.16167497634887695
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.4582168459892273,
+                  "y": 0.5020344257354736,
+                  "z": 0.753227710723877
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_1_enemyarm2",
+              "_$type": "Sprite3D",
+              "name": "RightArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.12187999486923218,
+                  "y": 1.8488967418670654,
+                  "z": 0.019862256944179535
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.46084141731262207,
+                  "y": 0.6116403341293335,
+                  "z": 0.48704248666763306
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_1_enemygun1",
+              "_$type": "Sprite3D",
+              "name": "EnemyRifle",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.1,
+                  "y": 1.7,
+                  "z": 0.26
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.14,
+                  "y": 0.14,
+                  "z": 0.82
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "enabled": false,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "reinforce_1_flashen1",
+                  "_$type": "Sprite3D",
+                  "name": "EnemyMuzzleFlash",
+                  "active": false,
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "reinforce_1_flashen1h",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1h",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 2,
+                          "y": 0.35,
+                          "z": 0.24
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "reinforce_1_flashen1v",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1v",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 0.35,
+                          "y": 2,
+                          "z": 0.18
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "reinforce_1_flashen1c",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1c",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 0.8,
+                          "y": 0.8,
+                          "z": 0.36
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "reinforce_1_gunvisual0",
+                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
+                  "name": "EnemyProvidedRifle",
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "localRotationEuler": {
+                      "x": 0,
+                      "y": 180,
+                      "z": 0
+                    },
+                    "localScale": {
+                      "x": 7.142857142857142,
+                      "y": 7.142857142857142,
+                      "z": 1.2195121951219512
+                    }
+                  }
+                },
+                {
+                  "_$id": "reinforce_1_ai_target001_breech",
+                  "_$type": "Sprite3D",
+                  "name": "ShotBase",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "_$id": "reinforce_1_ai_target001_muzzle",
+                  "_$type": "Sprite3D",
+                  "name": "ShotPoint",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_1_charvisual1",
+              "_$prefab": "df374c28-d931-4eb6-9b13-638709b65707",
+              "name": "EnemyVisual"
+            },
+            {
+              "_$id": "reinforce_1_ai_target001_eye",
+              "_$type": "Sprite3D",
+              "name": "ObservationPoint",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.3
+                }
+              }
+            }
+          ],
+          "active": false
+        },
+        {
+          "_$id": "reinforce_2_target001",
+          "_$type": "Sprite3D",
+          "name": "增援敌人_3",
+          "transform": {
+            "localPosition": {
+              "x": -38,
+              "y": 0.05,
+              "z": -20,
+              "_$type": "Vector3"
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
+            }
+          },
+          "_$comp": [
+            {
+              "_$type": "84bdb250-9790-429d-9b97-68d328d7e6f6",
+              "scriptPath": "../src/EnemyAI.ts",
+              "player": {
+                "_$ref": "player01"
+              },
+              "maxHealth": 100,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
+              "attackInterval": 1.8,
+              "shotDamage": 18,
+              "patrolSpeed": 2,
+              "observationPoint": {
+                "_$ref": "reinforce_2_ai_target001_eye"
+              },
+              "shotPoint": {
+                "_$ref": "reinforce_2_ai_target001_muzzle"
+              },
+              "shotBase": {
+                "_$ref": "reinforce_2_ai_target001_breech"
+              },
+              "observationOffset": {
+                "_$type": "Vector3",
+                "y": 2.3
+              },
+              "shotOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.8
+              },
+              "shotBaseOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.26
+              },
+              "patrolPoints": [
+                {
+                  "_$ref": "search_route_0"
+                },
+                {
+                  "_$ref": "search_route_1"
+                },
+                {
+                  "_$ref": "search_route_2"
+                },
+                {
+                  "_$ref": "search_route_3"
+                },
+                {
+                  "_$ref": "search_route_4"
+                },
+                {
+                  "_$ref": "search_route_5"
+                },
+                {
+                  "_$ref": "search_route_6"
+                },
+                {
+                  "_$ref": "search_route_7"
+                },
+                {
+                  "_$ref": "search_route_8"
+                },
+                {
+                  "_$ref": "search_route_9"
+                },
+                {
+                  "_$ref": "search_route_10"
+                },
+                {
+                  "_$ref": "search_route_11"
+                },
+                {
+                  "_$ref": "search_route_12"
+                },
+                {
+                  "_$ref": "search_route_13"
+                },
+                {
+                  "_$ref": "search_route_14"
+                },
+                {
+                  "_$ref": "search_route_15"
+                }
+              ],
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.8,
+              "turnSpeed": 240,
+              "opponents": [
+                {
+                  "_$ref": "squad_0_target001"
+                },
+                {
+                  "_$ref": "squad_1_target001"
+                },
+                {
+                  "_$ref": "squad_2_target001"
+                }
+              ],
+              "combatSpeed": 2.2,
+              "reinforcement": true
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "reinforce_2_head0001",
+              "_$type": "Sprite3D",
+              "name": "Head",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.0012460872530937195,
+                  "y": 2.295872211456299,
+                  "z": -0.00436006486415863
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.3651001453399658,
+                  "y": 0.5382564067840576,
+                  "z": 0.4485637843608856
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "a7732e8c-7c5c-4809-8405-fa82156b8a31",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_2_torso001",
+              "_$type": "Sprite3D",
+              "name": "Torso",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.008097410202026367,
+                  "y": 1.661618709564209,
+                  "z": 2.9802322387695312e-08
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.5905764102935791,
+                  "y": 0.6980665922164917,
+                  "z": 0.5021299719810486
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "d6184b08-3009-49f7-b6b0-646787a302fa",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_2_legs0001",
+              "_$type": "Sprite3D",
+              "name": "Legs",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.031143292784690857,
+                  "y": 0.656292736530304,
+                  "z": 0.008097238838672638
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.7886468172073364,
+                  "y": 1.312585473060608,
+                  "z": 0.48344409465789795
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_2_enemyarm1",
+              "_$type": "Sprite3D",
+              "name": "LeftArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.1789216697216034,
+                  "y": 1.9041393995285034,
+                  "z": 0.16167497634887695
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.4582168459892273,
+                  "y": 0.5020344257354736,
+                  "z": 0.753227710723877
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_2_enemyarm2",
+              "_$type": "Sprite3D",
+              "name": "RightArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.12187999486923218,
+                  "y": 1.8488967418670654,
+                  "z": 0.019862256944179535
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.46084141731262207,
+                  "y": 0.6116403341293335,
+                  "z": 0.48704248666763306
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_2_enemygun1",
+              "_$type": "Sprite3D",
+              "name": "EnemyRifle",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.1,
+                  "y": 1.7,
+                  "z": 0.26
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.14,
+                  "y": 0.14,
+                  "z": 0.82
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "enabled": false,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "reinforce_2_flashen1",
+                  "_$type": "Sprite3D",
+                  "name": "EnemyMuzzleFlash",
+                  "active": false,
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "reinforce_2_flashen1h",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1h",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 2,
+                          "y": 0.35,
+                          "z": 0.24
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "reinforce_2_flashen1v",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1v",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 0.35,
+                          "y": 2,
+                          "z": 0.18
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "reinforce_2_flashen1c",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1c",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 0.8,
+                          "y": 0.8,
+                          "z": 0.36
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "reinforce_2_gunvisual0",
+                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
+                  "name": "EnemyProvidedRifle",
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "localRotationEuler": {
+                      "x": 0,
+                      "y": 180,
+                      "z": 0
+                    },
+                    "localScale": {
+                      "x": 7.142857142857142,
+                      "y": 7.142857142857142,
+                      "z": 1.2195121951219512
+                    }
+                  }
+                },
+                {
+                  "_$id": "reinforce_2_ai_target001_breech",
+                  "_$type": "Sprite3D",
+                  "name": "ShotBase",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "_$id": "reinforce_2_ai_target001_muzzle",
+                  "_$type": "Sprite3D",
+                  "name": "ShotPoint",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_2_charvisual1",
+              "_$prefab": "df374c28-d931-4eb6-9b13-638709b65707",
+              "name": "EnemyVisual"
+            },
+            {
+              "_$id": "reinforce_2_ai_target001_eye",
+              "_$type": "Sprite3D",
+              "name": "ObservationPoint",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.3
+                }
+              }
+            }
+          ],
+          "active": false
+        },
+        {
+          "_$id": "reinforce_3_target001",
+          "_$type": "Sprite3D",
+          "name": "增援敌人_4",
+          "transform": {
+            "localPosition": {
+              "x": -34,
+              "y": 0.05,
+              "z": -14,
+              "_$type": "Vector3"
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
+            }
+          },
+          "_$comp": [
+            {
+              "_$type": "84bdb250-9790-429d-9b97-68d328d7e6f6",
+              "scriptPath": "../src/EnemyAI.ts",
+              "player": {
+                "_$ref": "player01"
+              },
+              "maxHealth": 100,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
+              "attackInterval": 1.8,
+              "shotDamage": 18,
+              "patrolSpeed": 2,
+              "observationPoint": {
+                "_$ref": "reinforce_3_ai_target001_eye"
+              },
+              "shotPoint": {
+                "_$ref": "reinforce_3_ai_target001_muzzle"
+              },
+              "shotBase": {
+                "_$ref": "reinforce_3_ai_target001_breech"
+              },
+              "observationOffset": {
+                "_$type": "Vector3",
+                "y": 2.3
+              },
+              "shotOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.8
+              },
+              "shotBaseOffset": {
+                "_$type": "Vector3",
+                "x": 0.1,
+                "y": 1.84,
+                "z": 0.26
+              },
+              "patrolPoints": [
+                {
+                  "_$ref": "search_route_0"
+                },
+                {
+                  "_$ref": "search_route_1"
+                },
+                {
+                  "_$ref": "search_route_2"
+                },
+                {
+                  "_$ref": "search_route_3"
+                },
+                {
+                  "_$ref": "search_route_4"
+                },
+                {
+                  "_$ref": "search_route_5"
+                },
+                {
+                  "_$ref": "search_route_6"
+                },
+                {
+                  "_$ref": "search_route_7"
+                },
+                {
+                  "_$ref": "search_route_8"
+                },
+                {
+                  "_$ref": "search_route_9"
+                },
+                {
+                  "_$ref": "search_route_10"
+                },
+                {
+                  "_$ref": "search_route_11"
+                },
+                {
+                  "_$ref": "search_route_12"
+                },
+                {
+                  "_$ref": "search_route_13"
+                },
+                {
+                  "_$ref": "search_route_14"
+                },
+                {
+                  "_$ref": "search_route_15"
+                }
+              ],
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.8,
+              "turnSpeed": 240,
+              "opponents": [
+                {
+                  "_$ref": "squad_0_target001"
+                },
+                {
+                  "_$ref": "squad_1_target001"
+                },
+                {
+                  "_$ref": "squad_2_target001"
+                }
+              ],
+              "combatSpeed": 2.2,
+              "reinforcement": true
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "reinforce_3_head0001",
+              "_$type": "Sprite3D",
+              "name": "Head",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.0012460872530937195,
+                  "y": 2.295872211456299,
+                  "z": -0.00436006486415863
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.3651001453399658,
+                  "y": 0.5382564067840576,
+                  "z": 0.4485637843608856
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "a7732e8c-7c5c-4809-8405-fa82156b8a31",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_3_torso001",
+              "_$type": "Sprite3D",
+              "name": "Torso",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.008097410202026367,
+                  "y": 1.661618709564209,
+                  "z": 2.9802322387695312e-08
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.5905764102935791,
+                  "y": 0.6980665922164917,
+                  "z": 0.5021299719810486
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "d6184b08-3009-49f7-b6b0-646787a302fa",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_3_legs0001",
+              "_$type": "Sprite3D",
+              "name": "Legs",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.031143292784690857,
+                  "y": 0.656292736530304,
+                  "z": 0.008097238838672638
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.7886468172073364,
+                  "y": 1.312585473060608,
+                  "z": 0.48344409465789795
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_3_enemyarm1",
+              "_$type": "Sprite3D",
+              "name": "LeftArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.1789216697216034,
+                  "y": 1.9041393995285034,
+                  "z": 0.16167497634887695
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.4582168459892273,
+                  "y": 0.5020344257354736,
+                  "z": 0.753227710723877
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_3_enemyarm2",
+              "_$type": "Sprite3D",
+              "name": "RightArm",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.12187999486923218,
+                  "y": 1.8488967418670654,
+                  "z": 0.019862256944179535
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.46084141731262207,
+                  "y": 0.6116403341293335,
+                  "z": 0.48704248666763306
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484a7ebf-a01c-443f-bcce-3c33d6d2906a",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "enabled": false
+                },
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 64,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_3_enemygun1",
+              "_$type": "Sprite3D",
+              "name": "EnemyRifle",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.1,
+                  "y": 1.7,
+                  "z": 0.26
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.14,
+                  "y": 0.14,
+                  "z": 0.82
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "enabled": false,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "reinforce_3_flashen1",
+                  "_$type": "Sprite3D",
+                  "name": "EnemyMuzzleFlash",
+                  "active": false,
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "reinforce_3_flashen1h",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1h",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 2,
+                          "y": 0.35,
+                          "z": 0.24
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "reinforce_3_flashen1v",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1v",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 0.35,
+                          "y": 2,
+                          "z": 0.18
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "reinforce_3_flashen1c",
+                      "_$type": "Sprite3D",
+                      "name": "flashen1c",
+                      "transform": {
+                        "localScale": {
+                          "_$type": "Vector3",
+                          "x": 0.8,
+                          "y": 0.8,
+                          "z": 0.36
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "68ae5fed-e57b-4c26-a5c6-f70c77a90c3c",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "reinforce_3_gunvisual0",
+                  "_$prefab": "699cea16-d3a0-4cc4-af01-d56bbd95d4ab",
+                  "name": "EnemyProvidedRifle",
+                  "transform": {
+                    "localPosition": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "localRotationEuler": {
+                      "x": 0,
+                      "y": 180,
+                      "z": 0
+                    },
+                    "localScale": {
+                      "x": 7.142857142857142,
+                      "y": 7.142857142857142,
+                      "z": 1.2195121951219512
+                    }
+                  }
+                },
+                {
+                  "_$id": "reinforce_3_ai_target001_breech",
+                  "_$type": "Sprite3D",
+                  "name": "ShotBase",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "_$id": "reinforce_3_ai_target001_muzzle",
+                  "_$type": "Sprite3D",
+                  "name": "ShotPoint",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1,
+                      "z": 0.6585365853658537
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "reinforce_3_charvisual1",
+              "_$prefab": "df374c28-d931-4eb6-9b13-638709b65707",
+              "name": "EnemyVisual"
+            },
+            {
+              "_$id": "reinforce_3_ai_target001_eye",
+              "_$type": "Sprite3D",
+              "name": "ObservationPoint",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.3
+                }
+              }
+            }
+          ],
+          "active": false
         }
       ]
     },
@@ -17623,7 +23287,7 @@
       "y": 22,
       "width": 1250,
       "height": 80,
-      "text": "WASD 移动 · 鼠标转向 · 1 汉阳造 / 3 短刀 · 左键单发 / 轻击 · 右键开镜 / 重击 · R 装填 · Space 跳跃 · Shift 疾跑 · C 下蹲 · Esc 释放",
+      "text": "WASD 移动 · Q/E 左右探头 · Shift 疾跑 · C 下蹲 · F 拾取 · Esc 暂停\n左键射击/轻击 · 右键开镜/重击 · R 装填 · 1/3 切枪/刀 · Space 跳跃",
       "font": "Microsoft YaHei",
       "fontSize": 18,
       "color": "#ffffff",

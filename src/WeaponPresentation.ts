@@ -23,7 +23,9 @@ export class WeaponPresentation {
         // When looking at the feet, the eyes turn farther down than the held rifle.
         // ADS still follows the camera exactly so the sight/ray alignment is unchanged.
         const freeLook = Math.max(0, -angles.x - 45) * 0.55 * (1 - aim);
-        this.rotation.setValue(angles.x + freeLook - 9 * this.obstruction * (1 - aim), angles.y, 0);
+        // Keep roll as well as yaw/pitch: the ADS eye offset is rotated by the
+        // camera, so an upright gun during a lean moves the iron sights off-ray.
+        this.rotation.setValue(angles.x + freeLook - 9 * this.obstruction * (1 - aim), angles.y, angles.z);
         this.pivot.transform.rotationEuler = this.rotation;
         const c = camera.transform.position;
         this.position.setValue(c.x + (eye.x - c.x) * this.scale,

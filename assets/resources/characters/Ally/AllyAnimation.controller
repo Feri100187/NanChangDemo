@@ -1,0 +1,388 @@
+{
+  "controllerLayers": [
+    {
+      "name": "Character",
+      "defaultWeight": 1,
+      "blendingMode": 0,
+      "playOnWake": true,
+      "states": [
+        {
+          "id": "-1",
+          "name": "Entry",
+          "x": 30,
+          "y": 80,
+          "soloTransitions": [
+            {
+              "id": "18"
+            }
+          ]
+        },
+        {
+          "id": "0",
+          "name": "Aim",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani0"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 80,
+          "soloTransitions": []
+        },
+        {
+          "id": "1",
+          "name": "AimWalk",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani1"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 80,
+          "soloTransitions": []
+        },
+        {
+          "id": "2",
+          "name": "CrouchAim",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani2"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 80,
+          "soloTransitions": []
+        },
+        {
+          "id": "3",
+          "name": "CrouchAimWalk",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani3"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 80,
+          "soloTransitions": []
+        },
+        {
+          "id": "4",
+          "name": "CrouchFire",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani4"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 190,
+          "soloTransitions": []
+        },
+        {
+          "id": "5",
+          "name": "CrouchHeavyMelee",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani5"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 190,
+          "soloTransitions": []
+        },
+        {
+          "id": "6",
+          "name": "CrouchHold",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani6"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 190,
+          "soloTransitions": []
+        },
+        {
+          "id": "7",
+          "name": "CrouchHoldWalk",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani7"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 190,
+          "soloTransitions": []
+        },
+        {
+          "id": "8",
+          "name": "CrouchIdle",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani8"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 300,
+          "soloTransitions": []
+        },
+        {
+          "id": "9",
+          "name": "CrouchMelee",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani9"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 300,
+          "soloTransitions": []
+        },
+        {
+          "id": "10",
+          "name": "CrouchReload",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani10"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 300,
+          "soloTransitions": []
+        },
+        {
+          "id": "11",
+          "name": "CrouchWalk",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani11"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 300,
+          "soloTransitions": []
+        },
+        {
+          "id": "12",
+          "name": "Death",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani12"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 410,
+          "soloTransitions": []
+        },
+        {
+          "id": "13",
+          "name": "Fire",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani13"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 410,
+          "soloTransitions": []
+        },
+        {
+          "id": "14",
+          "name": "HeavyMelee",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani14"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 410,
+          "soloTransitions": []
+        },
+        {
+          "id": "15",
+          "name": "Hold",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani15"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 410,
+          "soloTransitions": []
+        },
+        {
+          "id": "16",
+          "name": "HoldRun",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani16"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 520,
+          "soloTransitions": []
+        },
+        {
+          "id": "17",
+          "name": "HoldWalk",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani17"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 520,
+          "soloTransitions": []
+        },
+        {
+          "id": "18",
+          "name": "Idle",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani18"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 520,
+          "soloTransitions": []
+        },
+        {
+          "id": "19",
+          "name": "Jump",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani19"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 520,
+          "soloTransitions": []
+        },
+        {
+          "id": "20",
+          "name": "Melee",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani20"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 630,
+          "soloTransitions": []
+        },
+        {
+          "id": "21",
+          "name": "Reload",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani21"
+          },
+          "_isLooping": 2,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 630,
+          "soloTransitions": []
+        },
+        {
+          "id": "22",
+          "name": "Run",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani22"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 720,
+          "y": 630,
+          "soloTransitions": []
+        },
+        {
+          "id": "23",
+          "name": "StrafeLeft",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani23"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 940,
+          "y": 630,
+          "soloTransitions": []
+        },
+        {
+          "id": "24",
+          "name": "StrafeRight",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani24"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 280,
+          "y": 740,
+          "soloTransitions": []
+        },
+        {
+          "id": "25",
+          "name": "Walk",
+          "clip": {
+            "_$uuid": "e4e693f2-b96c-4fbb-b776-66efd8054870@lani25"
+          },
+          "_isLooping": 1,
+          "speed": 1,
+          "clipStart": 0,
+          "clipEnd": 1,
+          "x": 500,
+          "y": 740,
+          "soloTransitions": []
+        }
+      ]
+    }
+  ],
+  "animatorParams": []
+}

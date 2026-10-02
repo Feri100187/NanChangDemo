@@ -1,0 +1,41 @@
+{
+  "_$ver": 1,
+  "_$id": "allyprefab",
+  "_$type": "Sprite3D",
+  "name": "ProvidedAlly",
+  "_$comp": [
+    {
+      "_$type": "50eb7f2b-3dec-457d-8c04-4757703be35d",
+      "scriptPath": "../src/CharacterAnimation.ts",
+      "blend": 0.06,
+      "corpseHoldSeconds": 4
+    }
+  ],
+  "_$child": [
+    {
+      "_$id": "animatedmodel",
+      "_$prefab": "e4e693f2-b96c-4fbb-b776-66efd8054870",
+      "name": "AnimatedModel",
+      "active": true,
+      "layer": 0,
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3"
+        },
+        "localRotation": {
+          "_$type": "Quaternion"
+        }
+      },
+      "_$comp": [
+        {
+          "_$override": "Animator",
+          "controller": {
+            "_$uuid": "c57383db-256f-442a-9c2b-cdf731d655c9",
+            "_$type": "AnimationController"
+          },
+          "cullingMode": 0
+        }
+      ]
+    }
+  ]
+}
