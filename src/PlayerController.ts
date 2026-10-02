@@ -61,6 +61,12 @@ export class PlayerController extends Laya.Script {
     private crouchingVisual: Laya.Sprite3D;
     private animatedVisual: Laya.Sprite3D;
     get isCrouching(): boolean { return this.crouching; }
+    /** 身体骨骼与眼位共用的姿态过渡时长（秒）。 */
+    readonly crouchTransitionSeconds = 0.25;
+    get postureBlendSeconds(): number { return this.postureDuration; }
+    get postureRemainingSeconds(): number {
+        return Math.abs(Number(this.crouching) - this.crouchAmount) * this.crouchTransitionSeconds;
+    }
     get isGrounded(): boolean { return this.controller?.isOnGround() ?? false; }
     get isAimActive(): boolean { return this.isAiming; }
     get movementSpeed(): number { return this.currentSpeed; }
@@ -69,6 +75,9 @@ export class PlayerController extends Laya.Script {
     private readonly bodyGroundRay = new Laya.Ray(new Laya.Vector3(), new Laya.Vector3(0, -1, 0));
     private readonly bodyGroundHit = new Laya.HitResult();
     private crouching = false;
+    private crouchRequested = false;
+    private crouchAmount = 0;
+    private postureDuration = this.crouchTransitionSeconds;
     private jumpRequested = false;
     private currentSpeed = 0;
     private hudElapsed = 0;
@@ -89,6 +98,8 @@ export class PlayerController extends Laya.Script {
 
     private readonly clearInput = () => {
         this.keys.clear();
+        // 失焦取消尚未落地执行的请求，但保留已经切换的蹲姿。
+        this.crouchRequested = this.crouching;
         this.jumpRequested = false;
         this.mouseFocusClickArmed = false;
         this.movement.setValue(0, 0, 0);
@@ -321,6 +332,9 @@ export class PlayerController extends Laya.Script {
         if (!this.isGameplayFocused()) return;
         const key = event.keyCode;
         if (key === 32 && !this.keys.has(key)) this.jumpRequested = true;
+        if (key === 67 && !this.keys.has(key) && !(event.nativeEvent as KeyboardEvent)?.repeat) {
+            this.crouchRequested = !this.crouchRequested;
+        }
         this.keys.add(key);
         if ([87, 65, 83, 68, 32, 16, 67].indexOf(key) >= 0) event.nativeEvent?.preventDefault();
     }
@@ -335,10 +349,14 @@ export class PlayerController extends Laya.Script {
         const alive = !this.playerHealth || this.playerHealth.isAlive;
         const grounded = this.controller.isOnGround();
         // 在落地时切换姿态，避免重建 Bullet 胶囊形状清掉空中垂直速度。
-        const wantsCrouch = alive && this.hasMouseFocus && this.keys.has(67);
-        if (grounded && wantsCrouch !== this.crouching && (wantsCrouch || this.canStand())) {
+        const wantsCrouch = this.crouchRequested;
+        if (alive && this.isGameplayFocused() && grounded && wantsCrouch !== this.crouching && (wantsCrouch || this.canStand())) {
             this.setCrouching(wantsCrouch);
         }
+        // 只平滑显示姿态；胶囊仍在落地时一次切换，避免逐帧重建破坏物理速度。
+        const postureStep = dt / this.crouchTransitionSeconds;
+        this.crouchAmount = this.crouching ? Math.min(1, this.crouchAmount + postureStep)
+            : Math.max(0, this.crouchAmount - postureStep);
 
         let x = alive ? Number(this.keys.has(68)) - Number(this.keys.has(65)) : 0;
         let z = alive ? Number(this.keys.has(83)) - Number(this.keys.has(87)) : 0;
@@ -398,6 +416,7 @@ export class PlayerController extends Laya.Script {
     }
 
     private setCrouching(value: boolean): void {
+        this.postureDuration = Math.abs(Number(value) - this.crouchAmount) * this.crouchTransitionSeconds;
         const height = value ? this.crouchingHeight : this.standingHeight;
         const p = this.player.transform.position.clone();
         p.y += (height - this.controller.height) / 2;
@@ -429,6 +448,8 @@ export class PlayerController extends Laya.Script {
 
     private respawn(): void {
         this.clearInput();
+        this.crouchRequested = false;
+        this.crouchAmount = 0;
         this.setCrouching(false);
         this.player.transform.position = this.spawnPosition;
         this.controller.position = this.spawnPosition;
@@ -443,7 +464,7 @@ export class PlayerController extends Laya.Script {
         if (!this.followCamera || !this.weaponPivot) return;
         const p = this.player.transform.position;
         const feetY = p.y - this.controller.height / 2;
-        const eyeHeight = this.crouching ? 1.0 : 1.65;
+        const eyeHeight = 1.65 - 0.65 * this.crouchAmount;
         // A small forward head lean at steep downward angles keeps the stock
         // and wrists in front of the chest. Move camera and weapon together so
         // ADS remains collinear; the capsule, feet and movement never move.
