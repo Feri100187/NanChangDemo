@@ -1,0 +1,131 @@
+{
+  "rooms": [
+    {
+      "name": "LaneHouse_A",
+      "outside": [
+        -35,
+        -31.3
+      ],
+      "inside": [
+        -35,
+        -28.4
+      ],
+      "floor": 0.05,
+      "door_width": 2.2,
+      "door_height": 2.9
+    },
+    {
+      "name": "LaneHouse_B",
+      "outside": [
+        -18,
+        -30.3
+      ],
+      "inside": [
+        -18,
+        -27.4
+      ],
+      "floor": 0.05,
+      "door_width": 2.2,
+      "door_height": 2.9
+    },
+    {
+      "name": "LaneHouse_C",
+      "outside": [
+        -35,
+        -14.8
+      ],
+      "inside": [
+        -35,
+        -11.9
+      ],
+      "floor": 0.05,
+      "door_width": 2.2,
+      "door_height": 2.9
+    },
+    {
+      "name": "LaneHouse_D",
+      "outside": [
+        -18,
+        -6.3
+      ],
+      "inside": [
+        -18,
+        -3.4
+      ],
+      "floor": 0.05,
+      "door_width": 2.2,
+      "door_height": 2.9
+    },
+    {
+      "name": "LaneHouse_E",
+      "outside": [
+        -35,
+        7.2
+      ],
+      "inside": [
+        -35,
+        10.1
+      ],
+      "floor": 0.05,
+      "door_width": 2.2,
+      "door_height": 2.9
+    },
+    {
+      "name": "LaneHouse_F",
+      "outside": [
+        -4,
+        -30.3
+      ],
+      "inside": [
+        -4,
+        -27.4
+      ],
+      "floor": 0.05,
+      "door_width": 2.2,
+      "door_height": 2.9
+    },
+    {
+      "name": "LaneHouse_G",
+      "outside": [
+        -3,
+        24.2
+      ],
+      "inside": [
+        -3,
+        27.1
+      ],
+      "floor": 0.05,
+      "door_width": 2.2,
+      "door_height": 2.9
+    },
+    {
+      "name": "Landmark",
+      "outside": [
+        5,
+        0
+      ],
+      "inside": [
+        11,
+        0
+      ],
+      "floor": 0.08,
+      "door_width": 3.4,
+      "door_height": 3.4
+    },
+    {
+      "name": "Mission",
+      "outside": [
+        -18.8,
+        20
+      ],
+      "inside": [
+        -18.8,
+        24
+      ],
+      "floor": 0.03,
+      "door_width": 2.4,
+      "door_height": 2.77
+    }
+  ],
+  "note": "Fictional interior layouts, not a historical survey."
+}

@@ -1,0 +1,164 @@
+{
+  "runtime": {
+    "loaded": {
+      "roots": [
+        "Main Camera",
+        "Direction Light",
+        "Player",
+        "Street_Enemy01",
+        "WeaponPivot",
+        "Street_Enemy02",
+        "Courtyard_Enemy01",
+        "Courtyard_Enemy02",
+        "ExitZone_Songbaix_NorthLane",
+        "SpawnPoint_Songbaix_Entry",
+        "RouteHintPoints",
+        "EnemyPatrolRoutes",
+        "MissionDocument_Fictional_虚构任务文件",
+        "Songbaix_Environment",
+        "Songbaix_StaticCollisions",
+        "Interior_Enemy05_Fictional",
+        "Interior_Enemy06_Fictional",
+        "Interior_Enemy07_Fictional",
+        "Interior_Enemy08_Fictional",
+        "Songbaix_InteriorFill",
+        "RoomFill_0",
+        "RoomFill_1",
+        "RoomFill_2",
+        "RoomFill_3",
+        "RoomFill_4",
+        "RoomFill_5",
+        "RoomFill_6",
+        "RoomFill_7",
+        "RoomFill_8"
+      ],
+      "position": {
+        "x": -28,
+        "y": 0.96,
+        "z": 27
+      },
+      "modules": 5,
+      "colliders": 382,
+      "remaining": 8,
+      "state": "Playing"
+    },
+    "walk": {
+      "x": -28,
+      "y": 0.96,
+      "z": 22.00499999999999,
+      "grounded": true
+    },
+    "wall": {
+      "x": -30.4289999999851,
+      "y": 0.96,
+      "z": 20.9185000000149
+    },
+    "rooms": [
+      {
+        "name": "A",
+        "x": -35,
+        "y": 1.0099999988824129,
+        "z": 28.126499999985107,
+        "grounded": true
+      },
+      {
+        "name": "B",
+        "x": -18,
+        "y": 1.0099999988824129,
+        "z": 26.961499999985104,
+        "grounded": true
+      },
+      {
+        "name": "C",
+        "x": -35,
+        "y": 1.009999998882413,
+        "z": 11.4760000000149,
+        "grounded": true
+      },
+      {
+        "name": "D",
+        "x": -18,
+        "y": 1.0099999988824129,
+        "z": 2.956000000014899,
+        "grounded": true
+      },
+      {
+        "name": "E",
+        "x": -35,
+        "y": 1.0099999988824129,
+        "z": -10.366000000014902,
+        "grounded": true
+      },
+      {
+        "name": "F",
+        "x": -4,
+        "y": 1.0099999988824129,
+        "z": 26.9675000000745,
+        "grounded": true
+      },
+      {
+        "name": "G",
+        "x": -3,
+        "y": 1.0099999988824129,
+        "z": -27.529500000029785,
+        "grounded": true
+      }
+    ],
+    "church": {
+      "x": 10.917500000000002,
+      "y": 1.0399999982118606,
+      "z": -0.08000000000000002,
+      "grounded": true
+    },
+    "door": {
+      "x": -18.800000000000004,
+      "y": 0.9900000011920929,
+      "z": -24.751500000059597,
+      "grounded": true
+    },
+    "beforeClear": {
+      "collected": false,
+      "remaining": 8
+    },
+    "exitLocked": {
+      "state": "Playing",
+      "text": "终点未解锁：未取得文件；任务 3/4：取得建筑内西侧木桌上的文件 · 0/1"
+    },
+    "canCollect": {
+      "canCollect": true,
+      "state": "Playing",
+      "prompt": "任务 3/4：E 取得文件（虚构任务物件）"
+    },
+    "collected": {
+      "collected": true,
+      "visible": false
+    },
+    "exit": {
+      "state": "Won",
+      "title": "任务完成"
+    },
+    "restart": {
+      "state": "Ready",
+      "remaining": 8,
+      "document": true,
+      "position": {
+        "x": -28,
+        "y": 1.1,
+        "z": 27
+      }
+    }
+  },
+  "door_frame_static_check": {
+    "region": [
+      310,
+      300,
+      80,
+      700
+    ],
+    "interval_seconds": 0.6,
+    "changed_rgb_channels": 0,
+    "total_rgb_channels": 168000
+  },
+  "patrol_intersections": [],
+  "scope": "Native doorway and mission fixtures; not a full combat playthrough."
+}
