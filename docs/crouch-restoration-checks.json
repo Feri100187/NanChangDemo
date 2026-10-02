@@ -1,0 +1,252 @@
+{
+  "standing": {
+    "crouch": false,
+    "amount": 0,
+    "height": 2,
+    "eye": 1.6099999999999999,
+    "state": "Hold",
+    "ground": true
+  },
+  "held": {
+    "crouch": true,
+    "amount": 1,
+    "height": 1.2,
+    "eye": 0.9599999999999999,
+    "state": "CrouchHold",
+    "ground": true
+  },
+  "repeat": {
+    "crouch": true,
+    "amount": 1,
+    "height": 1.2,
+    "eye": 0.9599999999999999,
+    "state": "CrouchHold",
+    "ground": true
+  },
+  "released": {
+    "crouch": true,
+    "amount": 1,
+    "height": 1.2,
+    "eye": 0.9599999999999999,
+    "state": "CrouchHold",
+    "ground": true
+  },
+  "samples": [
+    {
+      "amount": 0,
+      "eye": 1.6099999999999999,
+      "state": "Hold",
+      "fade": 0,
+      "hip": 0.8737800121307373
+    },
+    {
+      "amount": 0.06839999997615814,
+      "eye": 1.565540000015497,
+      "state": "CrouchHold",
+      "fade": 1,
+      "hip": 0.8291738629341125
+    },
+    {
+      "amount": 0.14039999997615815,
+      "eye": 1.5187400000154971,
+      "state": "CrouchHold",
+      "fade": 1,
+      "hip": 0.7822516560554504
+    },
+    {
+      "amount": 0.20519999998807908,
+      "eye": 1.4766200000077485,
+      "state": "CrouchHold",
+      "fade": 1,
+      "hip": 0.7400490641593933
+    },
+    {
+      "amount": 0.2731999999880791,
+      "eye": 1.4324200000077485,
+      "state": "CrouchHold",
+      "fade": 1,
+      "hip": 0.6957902908325195
+    },
+    {
+      "amount": 0.3436000000238419,
+      "eye": 1.3866599999845026,
+      "state": "CrouchHold",
+      "fade": 1,
+      "hip": 0.6499980688095093
+    },
+    {
+      "amount": 0.4051999999880791,
+      "eye": 1.3466200000077484,
+      "state": "CrouchHold",
+      "fade": 1,
+      "hip": 0.609954297542572
+    },
+    {
+      "amount": 0.4888000000119209,
+      "eye": 1.2922799999922514,
+      "state": "CrouchHold",
+      "fade": 1,
+      "hip": 0.5556421875953674
+    },
+    {
+      "amount": 0.5483999999761582,
+      "eye": 1.253540000015497,
+      "state": "CrouchHold",
+      "fade": 1,
+      "hip": 0.5169458985328674
+    },
+    {
+      "amount": 0.6000000000000001,
+      "eye": 1.2199999999999998,
+      "state": "CrouchHold",
+      "fade": 1,
+      "hip": 0.4834573268890381
+    },
+    {
+      "amount": 0.6743999999761583,
+      "eye": 1.171640000015497,
+      "state": "CrouchHold",
+      "fade": 1,
+      "hip": 0.43519681692123413
+    },
+    {
+      "amount": 0.736800000011921,
+      "eye": 1.1310799999922512,
+      "state": "CrouchHold",
+      "fade": 1,
+      "hip": 0.39473727345466614
+    },
+    {
+      "amount": 0.8048000000119211,
+      "eye": 1.0868799999922512,
+      "state": "CrouchHold",
+      "fade": 1,
+      "hip": 0.35065990686416626
+    },
+    {
+      "amount": 0.8711999999880793,
+      "eye": 1.0437200000077484,
+      "state": "CrouchHold",
+      "fade": 1,
+      "hip": 0.3074999153614044
+    },
+    {
+      "amount": 0.9363999999761583,
+      "eye": 1.0013400000154968,
+      "state": "CrouchHold",
+      "fade": 1,
+      "hip": 0.26511991024017334
+    },
+    {
+      "amount": 1,
+      "eye": 0.9599999999999999,
+      "state": "CrouchHold",
+      "fade": 0,
+      "hip": 0.22377991676330566
+    }
+  ],
+  "stood": {
+    "crouch": false,
+    "amount": 0,
+    "height": 2,
+    "eye": 1.6099999999999999,
+    "state": "Hold",
+    "ground": true
+  },
+  "reversal": {
+    "crouch": false,
+    "amount": 0,
+    "height": 2,
+    "eye": 1.6099999999999999,
+    "state": "Hold",
+    "ground": true
+  },
+  "blocked": {
+    "crouch": true,
+    "amount": 1,
+    "height": 1.2,
+    "eye": 0.9599999999999999,
+    "state": "CrouchHold",
+    "ground": true
+  },
+  "clear": {
+    "crouch": false,
+    "amount": 0,
+    "height": 2,
+    "eye": 1.6099999999999999,
+    "state": "Hold",
+    "ground": true
+  },
+  "paused": {
+    "crouch": true,
+    "amount": 1,
+    "height": 1.2,
+    "eye": 0.9599999999999999,
+    "state": "CrouchHold",
+    "ground": true
+  },
+  "resumed": {
+    "crouch": true,
+    "amount": 1,
+    "height": 1.2,
+    "eye": 0.9599999999999999,
+    "state": "CrouchHold",
+    "ground": true
+  },
+  "air": {
+    "crouch": false,
+    "amount": 0,
+    "height": 2,
+    "eye": 1.6099999999999999,
+    "state": "Jump",
+    "ground": false
+  },
+  "landed": {
+    "crouch": true,
+    "amount": 1,
+    "height": 1.2,
+    "eye": 0.9599999999999999,
+    "state": "CrouchHold",
+    "ground": true
+  },
+  "fire": {
+    "crouch": true,
+    "amount": 0.8535999999642373,
+    "height": 1.2,
+    "eye": 1.0551600000232457,
+    "state": "CrouchFire",
+    "ground": true
+  },
+  "knife": {
+    "crouch": true,
+    "amount": 1,
+    "height": 1.2,
+    "eye": 0.96,
+    "state": "CrouchKnifeHold",
+    "ground": true
+  },
+  "aim": {
+    "crouch": true,
+    "amount": 1,
+    "height": 1.2,
+    "eye": 0.96,
+    "state": "CrouchAim",
+    "ground": true
+  },
+  "reload": {
+    "crouch": false,
+    "amount": 0,
+    "height": 2,
+    "eye": 1.6099999999999999,
+    "state": "ReloadPrepare",
+    "ground": true
+  },
+  "respawn": {
+    "crouch": false,
+    "amount": 0,
+    "height": 2,
+    "eye": 1.6099999999999999,
+    "state": "ReloadPrepare",
+    "ground": true
+  }
+}

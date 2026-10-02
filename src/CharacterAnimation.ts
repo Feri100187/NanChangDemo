@@ -192,9 +192,9 @@ export class CharacterAnimation extends Laya.Script {
         const crouch = this.player?.isCrouching ?? false;
         if (this.rifle?.isReloading) {
             const state = (crouch ? "CrouchReload" : "Reload") + this.reloadSuffix();
+            this.animator.speed = this.reloadSpeed(this.animator, state);
             this.setState(state, this.rifle.reloadStageProgress, true, this.bodyReloadStep !== this.rifle.reloadStep);
             this.bodyReloadStep = this.rifle.reloadStep;
-            this.animator.speed = this.reloadSpeed(this.animator, state);
             return;
         }
         const actionProgress = (this.now() - this.actionAt) / this.actionDuration;
@@ -358,11 +358,18 @@ export class CharacterAnimation extends Laya.Script {
 
     private setState(name: string, progress = 0, immediate = false, force = false): void {
         if ((!force && this.current === name) || !this.animator.getControllerLayer(0)?.getAnimatorState(name)) return;
-        // The capsule and eye height change together in one frame. Blending a
-        // standing torso against crouched hand targets briefly stretched the arms
-        // by >20 cm; match that posture change while retaining normal state blends.
+        // 与平滑眼位同步混合髋部、膝盖和躯干；持枪/持刀、开镜及装填均沿用各自姿态。
         const postureChanged = !!this.player && name.startsWith("Crouch") !== this.current.startsWith("Crouch");
-        if (immediate || !this.current || postureChanged) this.animator.play(name, 0, Math.max(0, Math.min(1, progress)));
+        // 过渡中开火、移动或切武器时，从当前混合姿态继续，不能跳到最终蹲姿。
+        const postureSeconds = this.player
+            ? postureChanged ? this.player.postureBlendSeconds : this.player.postureRemainingSeconds : 0;
+        if (this.current && postureSeconds > 0) {
+            // Laya 的 fade 参数乘以源 clip 的完整时长，不是秒或裁剪后的片段长度。
+            const source = this.animator.getControllerLayer(0).getCurrentPlayState().currentState;
+            const seconds = source?.clip?.duration() || 1;
+            this.animator.crossFade(name, postureSeconds * this.animator.speed / seconds, 0,
+                Math.max(0, Math.min(1, progress)));
+        } else if (immediate || !this.current) this.animator.play(name, 0, Math.max(0, Math.min(1, progress)));
         else this.animator.crossFade(name, this.blend, 0, 0);
         this.current = name;
     }
