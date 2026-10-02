@@ -40,7 +40,7 @@
         "y": 2,
         "z": 1
       },
-      "combatObjective": "目标：清除街口与院落的敌人，穿过目标建筑抵达终点",
+      "combatObjective": "任务：清理街口、院落，取得建筑内虚构任务文件，再抵达终点",
       "restartScene": "Demo01.ls",
       "routePoints": [
         {
@@ -91,7 +91,28 @@
       },
       "settingsButton": {
         "_$ref": "settingsbtn"
-      }
+      },
+      "streetEnemies": [
+        {
+          "_$ref": "target001"
+        },
+        {
+          "_$ref": "enemy002"
+        }
+      ],
+      "courtyardEnemies": [
+        {
+          "_$ref": "enemy003"
+        },
+        {
+          "_$ref": "enemy004"
+        }
+      ],
+      "missionDocument": {
+        "_$ref": "mission_document"
+      },
+      "documentRange": 2.2,
+      "documentAimRadius": 0.3
     },
     {
       "_$type": "6e483e4c-9eef-46bf-b163-00576b2619bd",
@@ -17800,6 +17821,138 @@
               ]
             }
           ]
+        },
+        {
+          "_$id": "mission_document",
+          "_$type": "Sprite3D",
+          "name": "MissionDocument_Fictional_虚构任务文件",
+          "transform": {
+            "localPosition": {
+              "_$type": "Vector3",
+              "x": -2.45,
+              "y": 1.25,
+              "z": -53.8
+            }
+          },
+          "_$child": [
+            {
+              "_$id": "mission_paper",
+              "_$type": "Sprite3D",
+              "name": "PaperStack",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.46,
+                  "y": 0.06,
+                  "z": 0.62
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "2ef93cde-b34f-4009-af61-61d4fdcbd4e0",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "mission_binding",
+              "_$type": "Sprite3D",
+              "name": "FolderBinding",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.17,
+                  "y": 0.033,
+                  "z": 0
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.035,
+                  "y": 0.008,
+                  "z": 0.62
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "4f9cf165-5fa2-4287-a91e-4a4402158031",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "mission_label",
+              "_$type": "Sprite3D",
+              "name": "BlankLabel_Fictional",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0,
+                  "y": 0.034,
+                  "z": -0.12
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.25,
+                  "y": 0.01,
+                  "z": 0.1
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -17859,7 +18012,7 @@
       "y": 169,
       "width": 630,
       "height": 36,
-      "text": "剩余敌人  4 / 4",
+      "text": "街口 0/2 · 院落 0/2 · 文件 0/1",
       "font": "Microsoft YaHei",
       "fontSize": 18,
       "color": "#ffffff",
@@ -17909,7 +18062,7 @@
       "width": 1150,
       "height": 36,
       "_mouseState": 1,
-      "text": "目标：清除街口与院落的敌人，穿过目标建筑抵达终点",
+      "text": "任务 1/4：清理街口敌人 0/2",
       "font": "Microsoft YaHei",
       "fontSize": 18,
       "color": "#ffffff",
