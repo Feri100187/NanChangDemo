@@ -34,6 +34,7 @@ Esc 暂停，点击“继续游戏”恢复；失焦也会暂停。设置可调�
 维护者使用提交对应源码和已安装的 LayaAir IDE 3.4.1；停止预览，关闭并重开 Demo01 场景，确认当前脚本属性已导入。
 使用 IDE 的 Web 发布（完整构建，不是只重新编译脚本），默认输出 `release/web`。配置固定启动 Demo01、压缩脚本、关闭源码映射和 bin 附带文件复制。
 先提交源码，再重新完整发布，最后执行 `node tools/package-playtest.cjs release/web <新的独立输出目录>`。
+IDE 会复用 `library/minifiedJsCache` 并保留旧时间戳；若打包器报告输出早于提交，先将 `release/web` 和 `library/minifiedJsCache` 移到 `.tmp` 下的新备份目录，再完整发布。不要修改时间戳来绕过检查。
 脚本检查提交状态、构建时间、启动场景及任务绑定，从真正的 Web 产物收集运行依赖，添加启动器、说明、署名和 BUILD.json。
 开发中可追加 `--draft` 生成不可交付的临时测试包。不要把 release、library 或大批构建文件提交进仓库。
 最后用独立静态服务测试该目录，压缩整个目录。包内不含 IDE 缓存、源 FBX／Blend、原始下载音频或离线资源生成器。
