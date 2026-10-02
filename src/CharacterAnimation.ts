@@ -94,6 +94,18 @@ export class CharacterAnimation extends Laya.Script {
             if (this.player && node.name === "Arms") this.bodyArms = node;
         });
         if (this.enemy) this.enemyGun = this.actor.getChildByName("EnemyRifle") as Laya.Sprite3D;
+        // 3.4.1 Web export can deserialize prefab transform overrides into the
+        // vectors without invalidating a cached local matrix. Reapply the same
+        // authored values once, only in the weapon subtree (never IK bones).
+        // Otherwise the inverse greybox scale is ignored and rifles become thin.
+        const weapon = this.enemyGun || this.rifle?.rifleModel;
+        if (weapon) this.visit(weapon, node => {
+            if (!(node instanceof Laya.Sprite3D)) return;
+            const transform = node.transform;
+            transform.localPosition = transform.localPosition.clone();
+            transform.localRotation = transform.localRotation.clone();
+            transform.localScale = transform.localScale.clone();
+        });
         this.viewArms = this.owner.getChildByName("FirstPersonArms") as Laya.Sprite3D;
         this.reloadCartridge = this.owner.getChildByName("ReloadCartridge") as Laya.Sprite3D;
         const casingTemplate = this.owner.getChildByName("EjectedCaseTemplate") as Laya.Sprite3D;

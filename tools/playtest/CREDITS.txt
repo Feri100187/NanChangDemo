@@ -1,0 +1,20 @@
+NanChangDemo / Demo01
+
+Project-original code, scenes, generated old-town art, ammunition and synthetic
+knife effects: MIT, see LICENSE.
+
+LayaAir engine and bundled UI/template resources: Layabox and original owners.
+See LICENSE-LayaAir.txt (MIT, Copyright 2022 layabox).
+Source: https://github.com/layabox/LayaAir/blob/LayaAir_3.4/LICENSE
+Bundled Bullet physics: see LICENSE-Bullet.txt (zlib).
+Source: https://github.com/bulletphysics/bullet3/blob/master/LICENSE.txt
+
+User-provided character models/textures and ProvidedGun rifle models/textures,
+including converted and animated derivatives: rights remain with the original
+providers. They are not relicensed under this project's MIT license. This is a
+member playtest package; permission for broader redistribution is not established
+by this repository. Do not interpret this package as a public asset license.
+
+Rifle audio: Vincent Sevedge / Tabasco (CC BY 3.0), fennelliott (CC0),
+BMacZero / Brian MacIntosh (CC0). Sources, edits and license URLs are in
+audio-credits.md and resources/combat-feedback/AUDIO_LICENSES.txt.

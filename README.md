@@ -1,5 +1,7 @@
 # NanChangDemo
 
+桌面浏览器试玩包的启动、构建与四步人工验收见 [试玩包说明](docs/playtest.md)，本轮实际验证与发布修复见 [发布验证记录](docs/playtest-verification.md)。分发包由 LayaAir 3.4.1 Web 发布产物生成，不包含整个工程。
+
 LayaAir 3.4.1 第一人称灰盒玩法原型。默认启动 `assets/Demo01.ls`；也可以在 IDE 中打开它并运行当前场景。点击“开始游戏”取得鼠标控制后进入战斗；按 Esc 暂停，点击“继续游戏”恢复。`assets/Scene.ls` 保留为原有系统测试场，仍可点击画面直接试玩。两者复用同一套玩家、枪械、EnemyAI 和 LevelController。
 
 ## Demo01 关卡
