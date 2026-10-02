@@ -8,7 +8,7 @@ import { GameClock } from "./GameClock";
 const { regClass, property } = Laya;
 type LevelState = "Ready" | "Playing" | "Paused" | "Won" | "Lost" | "Restarting";
 
-/** 单关卡：指定敌人清零后进入终点，结算后重载完整场景。 */
+/** 单关卡会话；可选分组清敌/取文件任务，结算后重载完整场景。 */
 @regClass()
 export class LevelController extends Laya.Script {
     // 3.4.1 的公开物理更新开关为全局属性。重载期间可能同时存在两个场景，
@@ -19,6 +19,16 @@ export class LevelController extends Laya.Script {
     player: Laya.Sprite3D;
     @property({ type: [Laya.Sprite3D], caption: "本关指定敌人" })
     enemies: Laya.Sprite3D[] = [];
+    @property({ type: [Laya.Sprite3D], caption: "任务：街口敌人（可选）" })
+    streetEnemies: Laya.Sprite3D[] = [];
+    @property({ type: [Laya.Sprite3D], caption: "任务：院落敌人（可选）" })
+    courtyardEnemies: Laya.Sprite3D[] = [];
+    @property({ type: Laya.Sprite3D, caption: "任务：虚构文件物件（可选）" })
+    missionDocument: Laya.Sprite3D;
+    @property({ type: Number, min: 0.1, caption: "文件交互距离（米）" })
+    documentRange = 2.2;
+    @property({ type: Number, min: 0.01, caption: "文件瞄准容差半径（米）" })
+    documentAimRadius = 0.3;
     @property({ type: Laya.Sprite3D, caption: "终点区域中心" })
     exitZone: Laya.Sprite3D;
     @property({ type: Laya.Vector3, caption: "终点区域半尺寸" })
@@ -60,6 +70,18 @@ export class LevelController extends Laya.Script {
     private world: Laya.Scene3D;
     private previousTimer: Laya.Timer;
     private awaitingControls = false;
+    private streetTargets: EnemyAI[] = [];
+    private courtyardTargets: EnemyAI[] = [];
+    private documentCollected = false;
+    private interactHeld = false;
+    private readonly interactionRay = new Laya.Ray(new Laya.Vector3(), new Laya.Vector3());
+    private readonly interactionHit = new Laya.HitResult();
+    private readonly interactionAim = new Laya.Vector2();
+
+    private get hasMission(): boolean { return !!this.missionDocument; }
+    private get exitUnlocked(): boolean {
+        return this.remaining.size === 0 && (!this.hasMission || this.documentCollected);
+    }
 
     onAwake(): void {
         this.health = this.player.getComponent(PlayerHealth);
@@ -83,6 +105,8 @@ export class LevelController extends Laya.Script {
     }
 
     onEnable(): void {
+        Laya.stage.on(Laya.Event.KEY_DOWN, this, this.onInteractDown);
+        Laya.stage.on(Laya.Event.KEY_UP, this, this.onInteractUp);
         this.restartButton.on(Laya.Event.CLICK, this, this.restart);
         if (this.continueButton) {
             this.continueButton.on(Laya.Event.CLICK, this, this.beginContinue);
@@ -101,6 +125,16 @@ export class LevelController extends Laya.Script {
         // 显式场景引用定义任务目标；Set 同时防止重复配置和重复死亡通知。
         if (!this.targets.length || this.targets.some(enemy => !enemy)) {
             throw new Error("LevelController 的指定敌人必须挂有 EnemyAI，且不能留空。");
+        }
+        if (this.hasMission || this.streetEnemies.length || this.courtyardEnemies.length) {
+            this.streetTargets = this.streetEnemies.map(node => node?.getComponent(EnemyAI));
+            this.courtyardTargets = this.courtyardEnemies.map(node => node?.getComponent(EnemyAI));
+            const grouped = [...this.streetTargets, ...this.courtyardTargets];
+            if (!this.hasMission || !this.streetTargets.length || !this.courtyardTargets.length
+                || grouped.some(enemy => !enemy || this.targets.indexOf(enemy) < 0)
+                || new Set(grouped).size !== grouped.length || grouped.length !== this.targets.length) {
+                throw new Error("分阶段任务须配置文件及互不重复的两组敌人，并完整覆盖本关指定敌人。");
+            }
         }
         for (const enemy of this.targets) {
             if (enemy.isAlive) this.remaining.add(enemy);
@@ -121,7 +155,7 @@ export class LevelController extends Laya.Script {
             return;
         }
         const inside = this.isInsideExit();
-        if (this.remaining.size === 0 && inside && !this.wasInsideExit) {
+        if (this.exitUnlocked && inside && !this.wasInsideExit) {
             this.finish(true);
             return;
         }
@@ -142,6 +176,7 @@ export class LevelController extends Laya.Script {
         }
         this.owner.getComponent(CombatFeedback)?.setPaused(paused);
         if (paused) {
+            this.interactHeld = false;
             this.rifle.clearGameplayInput();
             this.playerControl.releaseGameplayFocus();
         }
@@ -153,7 +188,10 @@ export class LevelController extends Laya.Script {
         this.resultTitle.text = ready ? "旧城街巷 · DEMO 01" : "游戏已暂停";
         this.resultTitle.color = "#ffcf80";
         this.resultDetail.text = ready
-            ? "虚构布局的玩法原型，不复原真实历史地点。\n清除 4 名敌人，穿过目标建筑，抵达橙色终点。\n\nWASD 移动 · 左键单发 / 轻击 · 右键开镜 / 重击\n1 汉阳造 · 3 短刀 · R 装填 · Space 跳跃\nShift 疾跑 · C 下蹲 · Esc 暂停"
+            ? (this.hasMission
+                ? "虚构布局与任务文件，仅用于玩法设计。\n清理街口2人 → 院落2人 → 建筑内按 E 取文件 → 橙色终点。"
+                : "虚构布局的玩法原型，不复原真实历史地点。\n清除全部敌人，抵达橙色终点。")
+                + "\n\nWASD 移动 · 左键单发 / 轻击 · 右键开镜 / 重击\n1 汉阳造 · 3 短刀 · R 装填 · Space 跳跃\nShift 疾跑 · C 下蹲 · Esc 暂停"
             : "战斗与换弹已冻结。\n点击继续，取得鼠标控制后恢复游戏。\n\n鼠标锁定受限时，仍可在画面内移动鼠标转向。";
         this.continueButton.title = ready ? "开始游戏" : "继续游戏";
         this.continueButton.enabled = true;
@@ -207,10 +245,51 @@ export class LevelController extends Laya.Script {
     };
 
     private onEnemyDied(enemy: EnemyAI): void {
-        if (this.state !== "Playing" || enemy.isAlive || !this.remaining.delete(enemy)) return;
+        // 记账不受菜单状态影响，防止状态切换同帧丢失已发生的死亡；结算仍只在 Playing。
+        if (enemy.isAlive || !this.remaining.delete(enemy)) return;
         // 在终点内击杀最后一个目标，仍须离开后再进入，不能原地直接获胜。
         if (this.remaining.size === 0) this.wasInsideExit = this.isInsideExit();
         this.updateObjective();
+    }
+
+    private onInteractDown(event: Laya.Event): void {
+        if (event.keyCode !== 69) return;
+        const held = this.interactHeld;
+        this.interactHeld = true;
+        if (held || (event.nativeEvent as KeyboardEvent)?.repeat || !this.canCollectDocument()) return;
+        this.documentCollected = true;
+        this.missionDocument.active = false;
+        // 解锁当刻只采样边界，必须在解锁后重新进入终点。
+        this.wasInsideExit = this.isInsideExit();
+        this.updateObjective();
+    }
+
+    private onInteractUp(event: Laya.Event): void {
+        if (event.keyCode === 69) this.interactHeld = false;
+    }
+
+    private canCollectDocument(): boolean {
+        if (!this.hasMission || this.documentCollected || this.remaining.size !== 0
+            || this.state !== "Playing" || !this.health.isAlive || !this.playerControl.isGameplayFocused()
+            || !this.missionDocument.activeInHierarchy) return false;
+        this.playerControl.syncCameraForShot();
+        const camera = this.playerControl.followCamera;
+        const origin = camera.transform.position;
+        const target = this.missionDocument.transform.position;
+        const dx = target.x - origin.x, dy = target.y - origin.y, dz = target.z - origin.z;
+        const distance = Math.hypot(dx, dy, dz);
+        if (distance <= 0 || distance > this.documentRange) return false;
+        this.interactionAim.setValue(Laya.stage.width / 2, Laya.stage.height / 2);
+        camera.viewportPointToRay(this.interactionAim, this.interactionRay);
+        const ray = this.interactionRay;
+        Laya.Vector3.normalize(ray.direction, ray.direction);
+        const along = dx * ray.direction.x + dy * ray.direction.y + dz * ray.direction.z;
+        if (along <= 0 || distance * distance - along * along > this.documentAimRadius ** 2) return false;
+        // 文件不添加碰撞体；以中心为目标检查现有墙地面，排除玩家胶囊。
+        ray.origin.setValue(origin.x, origin.y, origin.z);
+        ray.direction.setValue(dx / distance, dy / distance, dz / distance);
+        return !this.world.physicsSimulation.rayCast(ray, this.interactionHit, distance,
+            -1, ~Laya.Physics3DUtils.COLLISIONFILTERGROUP_CHARACTERFILTER);
     }
 
     private onPlayerDied(): void {
@@ -245,6 +324,23 @@ export class LevelController extends Laya.Script {
     }
 
     private updateObjective(): void {
+        if (this.hasMission) {
+            const street = this.streetTargets.filter(enemy => !this.remaining.has(enemy)).length;
+            const courtyard = this.courtyardTargets.filter(enemy => !this.remaining.has(enemy)).length;
+            this.remainingText.text = `街口 ${street}/${this.streetTargets.length} · 院落 ${courtyard}/${this.courtyardTargets.length} · 文件 ${this.documentCollected ? 1 : 0}/1`;
+            const inside = this.isInsideExit();
+            let task: string;
+            if (street < this.streetTargets.length) task = `任务 1/4：清理街口敌人 ${street}/${this.streetTargets.length}`;
+            else if (courtyard < this.courtyardTargets.length) task = `任务 2/4：清理院落敌人 ${courtyard}/${this.courtyardTargets.length}`;
+            else if (!this.documentCollected) task = this.canCollectDocument()
+                ? "任务 3/4：E 取得文件（虚构任务物件）"
+                : "任务 3/4：取得建筑内西侧储物箱上的文件 · 0/1";
+            else task = inside ? "任务 4/4：请先离开终点区，再进入完成任务" : "任务 4/4：携带文件抵达建筑后方橙色终点 · 0/1";
+            this.objectiveText.text = inside && !this.exitUnlocked
+                ? `终点未解锁：${this.remaining.size ? "尚有敌人；" : ""}${this.documentCollected ? "" : "未取得文件；"}${task}` : task;
+            this.objectiveText.color = this.exitUnlocked ? "#8fffb0" : "#ffcf80";
+            return;
+        }
         this.remainingText.text = `剩余敌人  ${this.remaining.size} / ${this.targets.length}`;
         const inside = this.isInsideExit();
         if (this.remaining.size > 0) {
@@ -280,7 +376,7 @@ export class LevelController extends Laya.Script {
         this.resultTitle.text = won ? "任务完成" : "任务失败";
         this.resultTitle.color = won ? "#8fffb0" : "#ff7777";
         this.resultDetail.text = (won
-            ? `已清除全部 ${this.targets.length} 名敌人，并抵达终点。`
+            ? `已清除全部 ${this.targets.length} 名敌人，${this.hasMission ? "取得虚构任务文件，并" : "并"}抵达终点。`
             : `玩家已阵亡，本关还剩 ${this.remaining.size} 名敌人。`)
             + (this.continueButton ? "\n重新开始后返回开始界面。" : "\n重新开始后，点击画面取得鼠标控制。");
         this.restartButton.title = "重新开始";
@@ -368,6 +464,7 @@ export class LevelController extends Laya.Script {
     }
 
     onDisable(): void {
+        this.interactHeld = false;
         this.awaitingControls = false;
         this.player.off(PlayerController.CONTROL_ACQUIRED, this, this.onControlsAcquired);
         this.player.off(PlayerController.CONTROL_LOST, this, this.onControlsLost);

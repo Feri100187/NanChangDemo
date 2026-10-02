@@ -1,0 +1,45 @@
+{
+  "version": "LAYAMATERIAL:02",
+  "props": {
+    "type": "Laya.BlinnPhongMaterial",
+    "name": "MissionDocument_Paper",
+    "renderStates": [
+      {
+        "cull": 2,
+        "blend": 0,
+        "srcBlend": 1,
+        "dstBlend": 0,
+        "depthWrite": true,
+        "depthTest": 515
+      }
+    ],
+    "alphaTest": false,
+    "alphaTestValue": 0.5,
+    "renderQueue": 2000,
+    "albedoIntensity": 1,
+    "enableLighting": true,
+    "shininess": 0.015,
+    "textures": [],
+    "vectors": [
+      {
+        "name": "albedoColor",
+        "value": [
+          1,
+          0.88,
+          0.57,
+          1
+        ]
+      },
+      {
+        "name": "specularColor",
+        "value": [
+          0.03,
+          0.03,
+          0.03,
+          1
+        ]
+      }
+    ],
+    "defines": []
+  }
+}
