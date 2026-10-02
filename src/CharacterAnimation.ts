@@ -17,6 +17,8 @@ export class CharacterAnimation extends Laya.Script {
     casingLifetime = 4;
     @property({ type: Number, caption: "弹壳抛出速度倍率" })
     casingSpeed = 1;
+    @property({ type: Number, caption: "敌人倒地后停留（秒）" })
+    corpseHoldSeconds = 4;
 
     private animator: Laya.Animator;
     private viewAnimator: Laya.Animator;
@@ -57,6 +59,17 @@ export class CharacterAnimation extends Laya.Script {
     private actionDuration = 0;
     private previousX = 0;
     private previousZ = 0;
+    private deathStarted = false;
+    private corpseAt = -1;
+    private corpseHidden = false;
+    private enemyHip: Laya.Sprite3D;
+    private enemyGun: Laya.Sprite3D;
+    private readonly deathHipInverse = new Laya.Matrix4x4();
+    private readonly deathHipRotationInverse = new Laya.Quaternion();
+    private readonly deathGunLocal = new Laya.Vector3();
+    private readonly deathGunRotation = new Laya.Quaternion();
+    private readonly deathGunPosition = new Laya.Vector3();
+    private readonly deathGunWorldRotation = new Laya.Quaternion();
 
     private get clock() { return this.player?.clock || this.enemy?.clock; }
     private now(): number { return this.clock?.now() ?? performance.now(); }
@@ -75,10 +88,12 @@ export class CharacterAnimation extends Laya.Script {
         const body = this.owner.getChildByName("AnimatedModel") || this.owner;
         this.visit(body, node => {
             this.animator ||= node.getComponent(Laya.Animator);
+            if (this.enemy && node.name === "Hip") this.enemyHip = node as Laya.Sprite3D;
             if (this.player && node.name === "FirstPersonHiddenHead") node.active = false;
             if (node.name === "ViewArms") node.active = false;
             if (this.player && node.name === "Arms") this.bodyArms = node;
         });
+        if (this.enemy) this.enemyGun = this.actor.getChildByName("EnemyRifle") as Laya.Sprite3D;
         this.viewArms = this.owner.getChildByName("FirstPersonArms") as Laya.Sprite3D;
         this.reloadCartridge = this.owner.getChildByName("ReloadCartridge") as Laya.Sprite3D;
         const casingTemplate = this.owner.getChildByName("EjectedCaseTemplate") as Laya.Sprite3D;
@@ -115,6 +130,7 @@ export class CharacterAnimation extends Laya.Script {
     onEnable(): void {
         if (!this.actor) return;
         this.actor.on(EnemyAI.FIRED, this, this.fire);
+        if (this.enemy) this.actor.on(EnemyAI.DIED, this, this.beginDeath);
         this.actor.on(RifleController.FIRED, this, this.fire);
         this.actor.on(RifleController.CASE_EJECTED, this, this.ejectCase);
         this.actor.on(RifleController.MELEE_SWUNG, this, this.melee);
@@ -131,7 +147,7 @@ export class CharacterAnimation extends Laya.Script {
     private melee(): void { this.startAction("Melee", 320); }
     private heavyMelee(): void { this.startAction("HeavyMelee", 620); }
     private startAction(name: string, duration: number): void {
-        if (this.clock?.paused) return;
+        if (this.clock?.paused || (this.enemy && !this.enemy.isAlive)) return;
         this.action = name;
         this.actionAt = this.now();
         this.actionDuration = duration;
@@ -149,11 +165,18 @@ export class CharacterAnimation extends Laya.Script {
         this.previousX = x;
         this.previousZ = z;
         const stopped = this.clock?.paused || (this.player && (!this.player.enabled || !this.health?.isAlive))
-            || (this.enemy && (!this.enemy.enabled || !this.enemy.isAlive));
+            || (this.enemy && !this.enemy.enabled);
         this.animator.speed = stopped ? 0 : 1;
         if (this.viewAnimator) this.viewAnimator.speed = stopped ? 0 : 1;
         this.updateArmsVisibility();
         if (stopped) return;
+        if (this.enemy && !this.enemy.isAlive) {
+            this.beginDeath();
+            if (this.corpseAt >= 0 || this.corpseHidden) this.animator.speed = 0;
+            const hold = Number.isFinite(this.corpseHoldSeconds) ? Math.max(0, this.corpseHoldSeconds) : 4;
+            if (this.corpseAt >= 0 && this.now() - this.corpseAt >= hold * 1000) this.hideCorpse();
+            return;
+        }
         this.updateViewState();
         if (this.viewAnimator && this.rifle?.isReloading) {
             this.viewAnimator.speed = this.reloadSpeed(this.viewAnimator, this.viewState);
@@ -251,6 +274,24 @@ export class CharacterAnimation extends Laya.Script {
     }
 
     onAfterSceneUpdate(): void {
+        if (this.deathStarted) {
+            if (this.clock?.paused || !this.enemy?.enabled || this.corpseHidden) return;
+            // Evaluate AFTER Animator, so the gun follows this frame's falling hip.
+            if (this.enemyHip && this.enemyGun && !this.enemyGun.destroyed) {
+                Laya.Vector3.transformCoordinate(this.deathGunLocal, this.enemyHip.transform.worldMatrix, this.deathGunPosition);
+                Laya.Quaternion.multiply(this.enemyHip.transform.rotation, this.deathGunRotation, this.deathGunWorldRotation);
+                this.enemyGun.transform.position = this.deathGunPosition;
+                this.enemyGun.transform.rotation = this.deathGunWorldRotation;
+            }
+            const playback = this.animator?.getControllerLayer(0)?.getCurrentPlayState();
+            if (this.corpseAt < 0 && playback?.currentState?.name === "Death" && playback.normalizedTime >= 1) {
+                // The non-looping clip has now evaluated its final pose. No wall-clock
+                // deadline can end it early after a stall or while paused.
+                this.animator.speed = 0;
+                this.corpseAt = this.now();
+            }
+            return;
+        }
         // LayaAir 3.4.1 evaluates Animator AFTER onLateUpdate. Apply the grip
         // constraint to the final bone pose, before skinned rendering is prepared.
         // Re-read the final camera/clearance pose after all LateUpdate callbacks.
@@ -324,6 +365,39 @@ export class CharacterAnimation extends Laya.Script {
         if (immediate || !this.current || postureChanged) this.animator.play(name, 0, Math.max(0, Math.min(1, progress)));
         else this.animator.crossFade(name, this.blend, 0, 0);
         this.current = name;
+    }
+
+    private beginDeath(): void {
+        if (this.deathStarted || !this.enemy || this.enemy.isAlive) return;
+        this.deathStarted = true;
+        this.action = "";
+        if (!this.animator?.getControllerLayer(0)?.getAnimatorState("Death")) {
+            console.warn("敌人缺少 Death 动画，直接清理外观", this.actor.name);
+            this.hideCorpse();
+            return;
+        }
+        // Keep the existing gun hierarchy/scale and capture its offset from the
+        // last living hip pose. Only presentation moves; the AI root stays put.
+        if (this.enemyHip && this.enemyGun) {
+            this.enemyHip.transform.worldMatrix.invert(this.deathHipInverse);
+            Laya.Vector3.transformCoordinate(this.enemyGun.transform.position, this.deathHipInverse, this.deathGunLocal);
+            Laya.Quaternion.invert(this.enemyHip.transform.rotation, this.deathHipRotationInverse);
+            Laya.Quaternion.multiply(this.deathHipRotationInverse, this.enemyGun.transform.rotation, this.deathGunRotation);
+        }
+        this.setState("Death", 0, true);
+        this.animator.speed = this.clock?.paused || !this.enemy.enabled ? 0 : 1;
+    }
+
+    private hideCorpse(): void {
+        if (this.corpseHidden) return;
+        this.corpseHidden = true;
+        this.visit(this.actor, node => {
+            for (const component of node.components) {
+                if (component instanceof Laya.MeshRenderer || component instanceof Laya.SkinnedMeshRenderer)
+                    component.enabled = false;
+            }
+        });
+        if (this.animator) this.animator.speed = 0;
     }
 
     private visit(node: Laya.Node, callback: (node: Laya.Node) => void): void {

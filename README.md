@@ -150,11 +150,22 @@ Demo01 和 Scene.ls 各有 1 把玩家枪、4 把敌人枪，共 10 处实例，
 
 玩家和敌人现在使用用户桌面“模型”目录中 `player_LayaAir/Player.glb`、`enemy_LayaAir/Enemy.glb` 的新版角色，均有 71 根骨骼、手指蒙皮和 2048×2048 贴图，玩家包含修复后的手部贴图。源文件原样保存在 `source-assets/characters/rigged/`，不改动桌面文件。源模型为 T 姿态、没有动画；本工程为它们新增了轻量的原地骨骼动画，属于玩法原型动作，不是动作捕捉或精修成品。早期 FBX、静态姿态资源与旧转换脚本仍保留，但公共预制体已不再引用旧静态模型。
 
-运行资源位于 `assets/resources/characters/Enemy/` 和 `Player/`：`AnimatedEnemy.glb` / `AnimatedPlayer.glb` 包含蒙皮与动画，`EnemyAnimation.controller` / `PlayerAnimation.controller` 是可在 IDE 打开的状态机，原公共 `ProvidedEnemy.lh` / `ProvidedPlayer.lh` 内的 `AnimatedModel` 绑定相应状态机。Demo01 与 Scene.ls 自动复用这两个公共预制体；本轮仅补充 AI 观察点、枪口和巡逻配置，沿用已有模型与动画。模型、状态机、IDE 提取的 `textures/` 与全部 `.meta` 应一起保留。敌人仍高 2.55 米；原 Head、Torso、Legs、LeftArm、RightArm 受击区域、汉阳造挂点、伤害、视野参数、巡逻范围和击倒计数保持不变。死亡时沿用原来的即时隐藏行为，同时正确关闭蒙皮渲染器。
+运行资源位于 `assets/resources/characters/Enemy/` 和 `Player/`：`AnimatedEnemy.glb` / `AnimatedPlayer.glb` 包含蒙皮与动画，`EnemyAnimation.controller` / `PlayerAnimation.controller` 是可在 IDE 打开的状态机，原公共 `ProvidedEnemy.lh` / `ProvidedPlayer.lh` 内的 `AnimatedModel` 绑定相应状态机。Demo01 与 Scene.ls 自动复用这两个公共预制体，沿用现有 AI 观察点、枪口和巡逻配置。模型、状态机、IDE 提取的 `textures/` 与全部 `.meta` 应一起保留。敌人仍高 2.55 米；原 Head、Torso、Legs、LeftArm、RightArm 受击区域、汉阳造挂点、伤害、视野参数、巡逻范围和击倒计数保持不变。
 
 玩家仍高 1.8 米，由同一蒙皮在站立与下蹲动作间过渡，运行时隐藏 `FirstPersonHiddenHead`；IDE 中可查看完整人物。持枪和持刀现在显示原身体的 `Arms`，肩部固定在身体锁骨连接点；额外的第一人称实例只提供动作目标，不再绘制悬浮的双臂。身体仍只跟随水平朝向，脚底射线与 0.04 米补偿保持原样，站立/下蹲碰撞高度仍为 2/1.2 米。第一人称枪械、镜头和后坐力仍由原控制器负责。
 
-`src/CharacterAnimation.ts` 只读取游戏状态与实际开火/挥刀事件，通过 Animator 播放、融合已绑定状态，不移动角色、不修改伤害或装填完成时间。玩家持枪使用 Hold、HoldWalk、HoldRun、Aim、AimWalk 及其蹲姿状态，保留跳跃、装填、开火和近战状态。敌人巡逻按实际 X/Z 水平位移或 EnemyAI 的实际水平速度选择 Walk，纯 Z 方向也能播放行走；原地转向和停留使用已有 Idle。警戒与战斗复用 Aim，受击、枪声与开火动画仍由原事件触发，不新增死亡动画。
+`src/CharacterAnimation.ts` 只读取游戏状态与实际开火/挥刀事件，通过 Animator 播放、融合已绑定状态，不移动角色逻辑根节点、不修改伤害或装填完成时间。玩家持枪使用 Hold、HoldWalk、HoldRun、Aim、AimWalk 及其蹲姿状态，保留跳跃、装填、开火和近战状态。敌人巡逻按实际 X/Z 水平位移或 EnemyAI 的实际水平速度选择 Walk，纯 Z 方向也能播放行走；原地转向和停留使用已有 Idle。警戒与战斗复用 Aim，枪声与开火动画仍由原事件触发。
+
+敌人生命归零即进入 Dead、停攻停巡逻并关闭全部受击碰撞；再次命中不结算伤害，死亡事件和剩余人数当帧只更新一次。表现层立即切换到非循环的 1.2 秒 Death，复用现有蒙皮，屈膝后倒地，保持实际播放完成的末帧，再按 `ProvidedEnemy.lh` 的 CharacterAnimation →「敌人倒地后停留（秒）」隐藏外观，默认 4 秒。枪械按死亡前相对骨盆的偏移随倒地动作移动，人物与枪械一并清理。逻辑根节点保留给关卡引用，没有布娃娃、拾取、尸体碰撞或延迟销毁回调。动画及停留共用 GameClock，暂停冻结，继续恢复；胜负仍即时结算并冻结全关卡，重开销毁旧场景与监听器。
+
+只更新 Death 时，运行 `blender --background --factory-startup --python tools/prepare-rigged-characters.py -- --enemy-death-only`，等待 IDE 导入，再运行 `node tools/configure-character-animations.cjs Enemy --death-only`。前者仅向现有敌人 GLB 追加/替换 Death 轨道，校验骨架绑定帧，保留网格、蒙皮、贴图、既有动画及其索引；后者仅更新 Death 状态，强制非循环且无离开转换，保留其他状态及手调配置。可编辑动作另存于 `.tmp/EnemyDeath.blend`。GLB、控制器和预制体原 `.meta` UUID 保持不变，无需新增独立动画资源引用。全量生成时也包含非循环 Death；`--enemy-only` 可以只重建敌人，但会重写其已有动作，手调资源应使用前述 Death 专用命令。
+
+本轮已进行 TypeScript 检查、资源保留核对、重新生成、IDE 场景保存后短时定点检查：死亡重复命中、关闭碰撞、倒地暂停继续、末帧停留暂停、人物和枪械清理、胜负即时冻结及两种结算后重开。检查直接触发真实脚本，未进行完整实战或全图采样；墙边与门口的最终观感仍需人工验收。建议按以下四步检查：
+
+1. 击倒一名敌人，倒地期间继续射击，确认剩余人数只减一次、敌人停攻且不挡路。
+2. 在倒地中按 Esc，确认姿态和枪械冻结；继续后完成倒地，再暂停尸体停留阶段，确认恢复后才继续计时并一同隐藏。
+3. 在墙边和门口击倒敌人，从近处及侧面观察身体、地面和枪械，确认没有明显悬浮或不可接受的穿插。
+4. 分别完成胜利和失败结算后重开，确认立即结算、四名敌人恢复、没有旧尸体，暂停与继续仍正常。
 
 `ProvidedPlayer.lh/FirstPersonArms` 是同一 `AnimatedPlayer.glb` 的额外实例，共享状态机，运行时隐藏其全部网格，只读取手腕与手指的动作目标。ViewHold 左手托护木，右手掌贴合枪托、食指靠近扳机护圈；ViewAim 提供瞄准手掌姿态。ViewReloadPrepare、ViewReloadInsert、ViewReloadFinish 按阶段时长调节速度，每一发重新播放 Insert，不重复开关枪栓。手掌、手指和装填目标继续来自这套原有动画，原动作时长不变。
 
