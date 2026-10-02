@@ -1858,6 +1858,12 @@
               "x": 0,
               "y": 0,
               "z": -15
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
             }
           },
           "_$comp": [
@@ -1868,13 +1874,13 @@
                 "_$ref": "player01"
               },
               "maxHealth": 100,
-              "sightRange": 26,
-              "fieldOfView": 120,
-              "alertTime": 1.6,
-              "loseTargetTime": 2.2,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75,
+              "patrolSpeed": 2,
               "observationPoint": {
                 "_$ref": "ai_target001_eye"
               },
@@ -1902,6 +1908,33 @@
               },
               "patrolPoints": [
                 {
+                  "_$ref": "ai_enemy002_patrol_0"
+                },
+                {
+                  "_$ref": "ai_enemy002_patrol_1"
+                },
+                {
+                  "_$ref": "ai_enemy002_patrol_2"
+                },
+                {
+                  "_$ref": "ai_enemy003_patrol_0"
+                },
+                {
+                  "_$ref": "ai_enemy003_patrol_1"
+                },
+                {
+                  "_$ref": "ai_enemy003_patrol_2"
+                },
+                {
+                  "_$ref": "ai_enemy004_patrol_0"
+                },
+                {
+                  "_$ref": "ai_enemy004_patrol_1"
+                },
+                {
+                  "_$ref": "ai_enemy004_patrol_2"
+                },
+                {
                   "_$ref": "ai_target001_patrol_0"
                 },
                 {
@@ -1911,9 +1944,10 @@
                   "_$ref": "ai_target001_patrol_2"
                 }
               ],
-              "patrolRadius": 1.6,
-              "patrolWaitSeconds": 1.2,
-              "turnSpeed": 180
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.25,
+              "turnSpeed": 240,
+              "combatSpeed": 2.2
             }
           ],
           "_$child": [
@@ -1979,7 +2013,7 @@
                   "_$type": "Vector3",
                   "x": 0.008097410202026367,
                   "y": 1.661618709564209,
-                  "z": 2.9802322387695312e-8
+                  "z": 2.9802322387695312e-08
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -3606,6 +3640,12 @@
               "x": -4,
               "y": 0,
               "z": -13
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
             }
           },
           "_$comp": [
@@ -3616,13 +3656,13 @@
                 "_$ref": "player01"
               },
               "maxHealth": 100,
-              "sightRange": 26,
-              "fieldOfView": 120,
-              "alertTime": 1.6,
-              "loseTargetTime": 2.2,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75,
+              "patrolSpeed": 2,
               "observationPoint": {
                 "_$ref": "ai_enemy002_eye"
               },
@@ -3650,6 +3690,33 @@
               },
               "patrolPoints": [
                 {
+                  "_$ref": "ai_enemy003_patrol_0"
+                },
+                {
+                  "_$ref": "ai_enemy003_patrol_1"
+                },
+                {
+                  "_$ref": "ai_enemy003_patrol_2"
+                },
+                {
+                  "_$ref": "ai_enemy004_patrol_0"
+                },
+                {
+                  "_$ref": "ai_enemy004_patrol_1"
+                },
+                {
+                  "_$ref": "ai_enemy004_patrol_2"
+                },
+                {
+                  "_$ref": "ai_target001_patrol_0"
+                },
+                {
+                  "_$ref": "ai_target001_patrol_1"
+                },
+                {
+                  "_$ref": "ai_target001_patrol_2"
+                },
+                {
                   "_$ref": "ai_enemy002_patrol_0"
                 },
                 {
@@ -3659,9 +3726,10 @@
                   "_$ref": "ai_enemy002_patrol_2"
                 }
               ],
-              "patrolRadius": 1.6,
-              "patrolWaitSeconds": 1.2,
-              "turnSpeed": 180
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.25,
+              "turnSpeed": 240,
+              "combatSpeed": 2.2
             }
           ],
           "_$child": [
@@ -3727,7 +3795,7 @@
                   "_$type": "Vector3",
                   "x": 0.008097410202026367,
                   "y": 1.661618709564209,
-                  "z": 2.9802322387695312e-8
+                  "z": 2.9802322387695312e-08
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -4042,6 +4110,12 @@
               "x": 4,
               "y": 0,
               "z": -19
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
             }
           },
           "_$comp": [
@@ -4052,13 +4126,13 @@
                 "_$ref": "player01"
               },
               "maxHealth": 100,
-              "sightRange": 26,
-              "fieldOfView": 120,
-              "alertTime": 1.6,
-              "loseTargetTime": 2.2,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75,
+              "patrolSpeed": 2,
               "observationPoint": {
                 "_$ref": "ai_enemy003_eye"
               },
@@ -4086,6 +4160,33 @@
               },
               "patrolPoints": [
                 {
+                  "_$ref": "ai_enemy004_patrol_0"
+                },
+                {
+                  "_$ref": "ai_enemy004_patrol_1"
+                },
+                {
+                  "_$ref": "ai_enemy004_patrol_2"
+                },
+                {
+                  "_$ref": "ai_target001_patrol_0"
+                },
+                {
+                  "_$ref": "ai_target001_patrol_1"
+                },
+                {
+                  "_$ref": "ai_target001_patrol_2"
+                },
+                {
+                  "_$ref": "ai_enemy002_patrol_0"
+                },
+                {
+                  "_$ref": "ai_enemy002_patrol_1"
+                },
+                {
+                  "_$ref": "ai_enemy002_patrol_2"
+                },
+                {
                   "_$ref": "ai_enemy003_patrol_0"
                 },
                 {
@@ -4095,9 +4196,10 @@
                   "_$ref": "ai_enemy003_patrol_2"
                 }
               ],
-              "patrolRadius": 1.6,
-              "patrolWaitSeconds": 1.2,
-              "turnSpeed": 180
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.25,
+              "turnSpeed": 240,
+              "combatSpeed": 2.2
             }
           ],
           "_$child": [
@@ -4163,7 +4265,7 @@
                   "_$type": "Vector3",
                   "x": 0.008097410202026367,
                   "y": 1.661618709564209,
-                  "z": 2.9802322387695312e-8
+                  "z": 2.9802322387695312e-08
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -4478,6 +4580,12 @@
               "x": 0,
               "y": 0,
               "z": -25
+            },
+            "localScale": {
+              "_$type": "Vector3",
+              "x": 0.7186811146398193,
+              "y": 0.7186811146398193,
+              "z": 0.7186811146398193
             }
           },
           "_$comp": [
@@ -4488,13 +4596,13 @@
                 "_$ref": "player01"
               },
               "maxHealth": 100,
-              "sightRange": 26,
-              "fieldOfView": 120,
-              "alertTime": 1.6,
-              "loseTargetTime": 2.2,
+              "sightRange": 65,
+              "fieldOfView": 180,
+              "alertTime": 0.2,
+              "loseTargetTime": 4,
               "attackInterval": 1.8,
               "shotDamage": 18,
-              "patrolSpeed": 0.75,
+              "patrolSpeed": 2,
               "observationPoint": {
                 "_$ref": "ai_enemy004_eye"
               },
@@ -4522,6 +4630,33 @@
               },
               "patrolPoints": [
                 {
+                  "_$ref": "ai_target001_patrol_0"
+                },
+                {
+                  "_$ref": "ai_target001_patrol_1"
+                },
+                {
+                  "_$ref": "ai_target001_patrol_2"
+                },
+                {
+                  "_$ref": "ai_enemy002_patrol_0"
+                },
+                {
+                  "_$ref": "ai_enemy002_patrol_1"
+                },
+                {
+                  "_$ref": "ai_enemy002_patrol_2"
+                },
+                {
+                  "_$ref": "ai_enemy003_patrol_0"
+                },
+                {
+                  "_$ref": "ai_enemy003_patrol_1"
+                },
+                {
+                  "_$ref": "ai_enemy003_patrol_2"
+                },
+                {
                   "_$ref": "ai_enemy004_patrol_0"
                 },
                 {
@@ -4531,9 +4666,10 @@
                   "_$ref": "ai_enemy004_patrol_2"
                 }
               ],
-              "patrolRadius": 1.6,
-              "patrolWaitSeconds": 1.2,
-              "turnSpeed": 180
+              "patrolRadius": 150,
+              "patrolWaitSeconds": 0.25,
+              "turnSpeed": 240,
+              "combatSpeed": 2.2
             }
           ],
           "_$child": [
@@ -4599,7 +4735,7 @@
                   "_$type": "Vector3",
                   "x": 0.008097410202026367,
                   "y": 1.661618709564209,
-                  "z": 2.9802322387695312e-8
+                  "z": 2.9802322387695312e-08
                 },
                 "localScale": {
                   "_$type": "Vector3",
@@ -5091,8 +5227,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -5115,8 +5251,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -5139,8 +5275,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 }
@@ -5166,8 +5302,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -5190,8 +5326,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -5214,8 +5350,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 }
@@ -5241,8 +5377,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -5265,8 +5401,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -5289,8 +5425,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 }
@@ -5315,8 +5451,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -5339,8 +5475,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 },
@@ -5363,8 +5499,8 @@
                     {
                       "_$type": "a97e3d61-e89f-4395-8bb0-38d1db4ee451",
                       "scriptPath": "../src/EnemyPatrolPoint.ts",
-                      "waitSeconds": 1.2,
-                      "useFacing": true
+                      "waitSeconds": 0.25,
+                      "useFacing": false
                     }
                   ]
                 }
@@ -5382,7 +5518,7 @@
       "y": 22,
       "width": 1250,
       "height": 80,
-      "text": "WASD 移动 · 鼠标转向 · 1 汉阳造 / 3 短刀 · 左键单发 / 轻击 · 右键开镜 / 重击 · R 装填 · Space 跳跃 · Shift 疾跑 · C 下蹲 · Esc 释放",
+      "text": "WASD 移动 · Q/E 左右探头 · Shift 疾跑 · C 下蹲 · F 拾取 · Esc 暂停\n左键射击/轻击 · 右键开镜/重击 · R 装填 · 1/3 切枪/刀 · Space 跳跃",
       "font": "Microsoft YaHei",
       "fontSize": 18,
       "color": "#ffffff",

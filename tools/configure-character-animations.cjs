@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const root = path.resolve(__dirname, '..');
 for (const role of (process.argv[2] ? [process.argv[2]] : ['Player', 'Enemy'])) {
-    if (!['Player','Enemy'].includes(role)) throw new Error('Role must be Player or Enemy');
+    if (!['Player','Enemy','Ally'].includes(role)) throw new Error('Role must be Player, Enemy or Ally');
     const dir = path.join(root, 'assets/resources/characters', role);
     const file = path.join(dir, `Animated${role}.glb`);
     const bytes = fs.readFileSync(file);

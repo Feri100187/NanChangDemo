@@ -104,15 +104,16 @@ PLAYER_CLIPS = {'Hold':2.0, 'HoldWalk':1.0, 'HoldRun':.64, 'CrouchHold':2.0,
                 'ViewBolt':1.05, 'KnifeHold':2.0, 'KnifeWalk':1.0, 'KnifeRun':.64, 'CrouchKnifeHold':2.0,
                 'CrouchKnifeWalk':1.2, 'ViewKnifeHold':2.0, 'ViewKnifeLight':.32, 'ViewKnifeHeavy':.62}
 
+NPC_SCALE = 1.65 / 2.295872211456299
 death_only = '--enemy-death-only' in sys.argv
 if '--player-only' in sys.argv and ('--enemy-only' in sys.argv or death_only):
     raise ValueError('Choose only one character export scope')
-for role in (['Player'] if '--player-only' in sys.argv else ['Enemy'] if '--enemy-only' in sys.argv or death_only else ['Player','Enemy']):
+for role in (['Ally'] if '--ally-only' in sys.argv else ['Player'] if '--player-only' in sys.argv else ['Enemy'] if '--enemy-only' in sys.argv or death_only else ['Player','Enemy']):
     bpy.ops.object.select_all(action='SELECT')
     bpy.ops.object.delete(use_global=False)
     for action in list(bpy.data.actions):
         bpy.data.actions.remove(action)
-    bpy.ops.import_scene.gltf(filepath=str(ROOT / 'source-assets/characters/rigged' / f'{role}.glb'))
+    bpy.ops.import_scene.gltf(filepath=str(ROOT / 'source-assets/characters/rigged' / f'{"Player" if role == "Ally" else role}.glb'))
     rig = next(o for o in bpy.context.scene.objects if o.type == 'ARMATURE')
     mesh = next(o for o in bpy.context.scene.objects if o.type == 'MESH')
     rig.name = f'{role}Rig'
@@ -176,7 +177,7 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Enemy'] if '--enem
             total = sum(w for _,w in weights)
             for index in [g.group for g in vertex.groups]: view_mesh.vertex_groups[index].remove([vertex.index])
             for index,weight in weights: view_mesh.vertex_groups[index].add([vertex.index],weight/total,'REPLACE')
-    scale = 1 if role == 'Player' else 2.55/1.8
+    scale = 1 if role in ('Player', 'Ally') else 2.55/1.8
     def pos(x,y,z):
         return Vector((x*scale,-z*scale,y*scale))
     rest = {b.name:b.matrix_local.copy() for b in rig.data.bones}
@@ -243,7 +244,7 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Enemy'] if '--enem
         mat = hip.matrix.copy()
         # Player eyes drop 0.65 m on crouch. The old 0.43 m visual drop left
         # the shoulders at camera height and put the camera inside the chest.
-        crouch_drop = .65 if role=='Player' else .43
+        crouch_drop = .65 if role in ('Player', 'Ally') else .65 / (scale * NPC_SCALE)
         mat.translation += pos(.016*math.sin(cycle) if walking else 0,
             (-crouch_drop if crouch else 0)+(-.035+.013*math.cos(cycle*2) if walking else .004*math.sin(cycle)),0)
         hip.matrix = mat
@@ -284,7 +285,11 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Enemy'] if '--enem
             y = (1.72 if side=='L' else 1.65)/scale if role=='Enemy' else .94
             x = (.12 if side=='L' else .03)/scale if role=='Enemy' else sign*.23
             z = (.38 if side=='L' else .08)/scale if role=='Enemy' else .05
-            y -= .40 if crouch else 0
+            if role == 'Ally':
+                y = (1.72 if side=='L' else 1.65) * NPC_SCALE
+                x = (.12 if side=='L' else .03) * NPC_SCALE
+                z = (.38 if side=='L' else .08) * NPC_SCALE
+            y -= (.40 if role=='Player' else crouch_drop) if crouch else 0
             holding = role=='Player' and ('Hold' in name or 'Aim' in name)
             if holding:
                 x = -.09 if side=='L' else -.20
@@ -391,7 +396,7 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Enemy'] if '--enem
             else:
                 limb(rig,f'{side}_Upperarm',f'{side}_Forearm',f'{side}_Hand',pos(x,y,z),pos(sign*.42,y-.15,.02))
             hand=rig.pose.bones[f'{side}_Hand']
-            aim(rig,hand.name,None,hand.head+(pos(0,0,-.1) if view else pos(0,0,.1) if role=='Enemy' or holding else pos(0,-.1,0)))
+            aim(rig,hand.name,None,hand.head+(pos(0,0,-.1) if view else pos(0,0,.1) if role in ('Enemy', 'Ally') or holding else pos(0,-.1,0)))
             if view:
                 hand_frame(rig,rest,side,target,hand_forward,hand_palm)
             for finger in ['Index','Middle','Ring','Little','Thumb']:
@@ -435,7 +440,7 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Enemy'] if '--enem
         bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'.tmp/GripPreview.blend'))
         continue
     bpy.context.scene.render.fps=30
-    clips = {'Death': 1.2} if death_only else {**CLIPS, **(PLAYER_CLIPS if role=='Player' else {'Death': 1.2})}
+    clips = {'Death': 1.2} if death_only else {**CLIPS, **(PLAYER_CLIPS if role=='Player' else {**{k:v for k,v in PLAYER_CLIPS.items() if not k.startswith('View') and 'Knife' not in k}, 'Death': 1.2})}
     for name,duration in clips.items():
         action=bpy.data.actions.new(name)
         action.use_fake_user=True
@@ -454,11 +459,13 @@ for role in (['Player'] if '--player-only' in sys.argv else ['Enemy'] if '--enem
     for obj in [rig]+meshes: obj.select_set(True)
     bpy.context.view_layer.objects.active=rig
     folder=ROOT/'assets/resources/characters'/role
+    folder.mkdir(parents=True, exist_ok=True)
     export_path = ROOT/'.tmp/EnemyDeath.glb' if death_only else folder/f'Animated{role}.glb'
     bpy.ops.export_scene.gltf(filepath=str(export_path),export_format='GLB',
         use_selection=True,export_animations=True,export_animation_mode='ACTIONS',
         export_force_sampling=True,export_optimize_animation_size=False,export_yup=True)
     if death_only:
         append_death_animation(folder/f'Animated{role}.glb', export_path)
-    bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'.tmp'/('EnemyDeath.blend' if death_only else f'Animated{role}.blend')))
+    if '--no-blend' not in sys.argv:
+        bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'.tmp'/('EnemyDeath.blend' if death_only else f'Animated{role}.blend')))
     print('EXPORTED',role,len(rig.data.bones),'bones',list(clips))

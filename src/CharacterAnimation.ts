@@ -1,3 +1,4 @@
+import { UpperBodyLean } from "./LeanMotion";
 import { EnemyAI } from "./EnemyAI";
 import { PlayerController } from "./PlayerController";
 import { PlayerHealth } from "./PlayerHealth";
@@ -21,6 +22,7 @@ export class CharacterAnimation extends Laya.Script {
     corpseHoldSeconds = 4;
 
     private animator: Laya.Animator;
+    private leanPose: UpperBodyLean;
     private viewAnimator: Laya.Animator;
     private viewArms: Laya.Sprite3D;
     private bodyArms: Laya.Node;
@@ -88,6 +90,7 @@ export class CharacterAnimation extends Laya.Script {
         const body = this.owner.getChildByName("AnimatedModel") || this.owner;
         this.visit(body, node => {
             this.animator ||= node.getComponent(Laya.Animator);
+            if (node.name === "Spine01") this.leanPose = new UpperBodyLean(node as Laya.Sprite3D);
             if (this.enemy && node.name === "Hip") this.enemyHip = node as Laya.Sprite3D;
             if (this.player && node.name === "FirstPersonHiddenHead") node.active = false;
             if (node.name === "ViewArms") node.active = false;
@@ -155,6 +158,7 @@ export class CharacterAnimation extends Laya.Script {
     private resetAction(): void { this.action = ""; this.current = ""; }
 
     onUpdate(): void {
+        if (!this.clock?.paused) this.leanPose?.restore();
         if (this.rifle && !this.rifle.enabled) this.casings?.clear();
         else if (!this.clock?.paused) this.casings?.update(
             Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05), this.now());
@@ -166,7 +170,7 @@ export class CharacterAnimation extends Laya.Script {
         this.previousZ = z;
         const stopped = this.clock?.paused || (this.player && (!this.player.enabled || !this.health?.isAlive))
             || (this.enemy && !this.enemy.enabled);
-        this.animator.speed = stopped ? 0 : 1;
+        this.animator.speed = stopped ? 0 : this.enemy?.isSprinting ? 1.35 : 1;
         if (this.viewAnimator) this.viewAnimator.speed = stopped ? 0 : 1;
         this.updateArmsVisibility();
         if (stopped) return;
@@ -189,7 +193,7 @@ export class CharacterAnimation extends Laya.Script {
             const clip = this.viewAnimator.getControllerLayer(0).getAnimatorState("ViewBolt")?.clip;
             this.viewAnimator.speed = clip ? clip.duration() / (BOLT_CYCLE_MS / 1000) : 1;
         }
-        const crouch = this.player?.isCrouching ?? false;
+        const crouch = this.player?.isCrouching ?? this.enemy?.isCrouching ?? false;
         if (this.rifle?.isReloading) {
             const state = (crouch ? "CrouchReload" : "Reload") + this.reloadSuffix();
             this.animator.speed = this.reloadSpeed(this.animator, state);
@@ -198,16 +202,17 @@ export class CharacterAnimation extends Laya.Script {
             return;
         }
         const actionProgress = (this.now() - this.actionAt) / this.actionDuration;
-        if (this.action && actionProgress < 1) {
+        if (this.action && actionProgress < 1 && !(this.enemy && this.enemy.horizontalSpeed > .1)) {
             this.setState((crouch ? "Crouch" : "") + this.action, actionProgress, true);
             return;
         }
         this.action = "";
         let state = "Idle";
         if (this.enemy) {
-            state = this.enemy.state === "Patrol" && (Math.hypot(dx, dz) > 0.00001 || this.enemy.horizontalSpeed > 0.01)
-                ? "Walk"
-                : this.enemy.state === "Combat" || this.enemy.state === "Alert" ? "Aim" : "Idle";
+            const moving = Math.hypot(dx, dz) > .00001 || this.enemy.horizontalSpeed > .01;
+            const aiming = this.enemy.state === "Combat" || this.enemy.state === "Alert";
+            state = this.enemy.isSprinting ? "HoldRun" : crouch ? aiming ? moving ? "CrouchAimWalk" : "CrouchAim" : moving ? "CrouchHoldWalk" : "CrouchHold"
+                : aiming ? moving ? "AimWalk" : "Aim" : moving ? "HoldWalk" : "Hold";
         } else if (this.player) {
             const holding = this.rifle?.currentWeapon === "rifle";
             const aiming = holding && this.rifle.aimBlend > 0.5;
@@ -296,6 +301,7 @@ export class CharacterAnimation extends Laya.Script {
         // constraint to the final bone pose, before skinned rendering is prepared.
         // Re-read the final camera/clearance pose after all LateUpdate callbacks.
         this.onLateUpdate();
+        if (!this.clock?.paused) this.leanPose?.apply(this.player?.body || this.actor, this.player?.leanAmount ?? this.enemy?.leanAmount ?? 0);
         if (this.viewArms?.active && this.rifle?.currentWeapon === "knife") this.alignKnifeGrip();
         if (!this.clock?.paused && this.player?.enabled) this.armIK?.update(this.player.viewModelScale,
             Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05),
@@ -359,10 +365,10 @@ export class CharacterAnimation extends Laya.Script {
     private setState(name: string, progress = 0, immediate = false, force = false): void {
         if ((!force && this.current === name) || !this.animator.getControllerLayer(0)?.getAnimatorState(name)) return;
         // 与平滑眼位同步混合髋部、膝盖和躯干；持枪/持刀、开镜及装填均沿用各自姿态。
-        const postureChanged = !!this.player && name.startsWith("Crouch") !== this.current.startsWith("Crouch");
+        const postureChanged = !!(this.player || this.enemy) && name.startsWith("Crouch") !== this.current.startsWith("Crouch");
         // 过渡中开火、移动或切武器时，从当前混合姿态继续，不能跳到最终蹲姿。
         const postureSeconds = this.player
-            ? postureChanged ? this.player.postureBlendSeconds : this.player.postureRemainingSeconds : 0;
+            ? postureChanged ? this.player.postureBlendSeconds : this.player.postureRemainingSeconds : postureChanged ? .25 : 0;
         if (this.current && postureSeconds > 0) {
             // Laya 的 fade 参数乘以源 clip 的完整时长，不是秒或裁剪后的片段长度。
             const source = this.animator.getControllerLayer(0).getCurrentPlayState().currentState;
@@ -413,6 +419,7 @@ export class CharacterAnimation extends Laya.Script {
     }
 
     onDisable(): void {
+        this.leanPose?.restore();
         this.casings?.clear();
         if (this.reloadCartridge) this.reloadCartridge.active = false;
         this.actor?.offAllCaller(this);

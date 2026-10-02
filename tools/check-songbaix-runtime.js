@@ -48,7 +48,7 @@ async (page) => {
   if(out.door.z> -22.8||out.door.y<.8)throw Error('Cannot enter mission building');
   await page.evaluate(()=>{songbaixQA.move(-21,-25.7);songbaixQA.aim();});
   await page.waitForTimeout(120);
-  await page.keyboard.press('e');
+  await page.keyboard.press('f');
   out.beforeClear=await page.evaluate(()=>({collected:songbaixQA.l.documentCollected,remaining:songbaixQA.l.remaining.size}));
   if(out.beforeClear.collected)throw Error('Document gate bypassed');
   await page.evaluate(()=>{const {l}=songbaixQA;for(const enemy of l.targets){enemy.enabled=true;enemy.applyHit(enemy.owner.getChildByName('Head'),1000);}});
@@ -61,9 +61,9 @@ async (page) => {
   out.canCollect=await page.evaluate(()=>({canCollect:songbaixQA.l.canCollectDocument(),state:songbaixQA.l.state,prompt:songbaixQA.l.objectiveText.text}));
   await page.screenshot({path:'output/playwright/songbaix-document-runtime.png'});
   if(!out.canCollect.canCollect)throw Error('Document unreachable');
-  await page.keyboard.press('e');await page.waitForTimeout(120);
+  await page.keyboard.press('f');await page.waitForTimeout(120);
   out.collected=await page.evaluate(()=>({collected:songbaixQA.l.documentCollected,visible:songbaixQA.l.missionDocument.active}));
-  if(!out.collected.collected||out.collected.visible)throw Error('Real E pickup failed');
+  if(!out.collected.collected||out.collected.visible)throw Error('Real F pickup failed');
   await page.evaluate(()=>songbaixQA.move(-32,-36));await page.waitForTimeout(120);
   out.exit=await page.evaluate(()=>({state:songbaixQA.l.state,title:songbaixQA.l.resultTitle.text}));
   if(out.exit.state==='Playing')throw Error('Exit not completed');
