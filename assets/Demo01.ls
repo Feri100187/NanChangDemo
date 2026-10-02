@@ -233,9 +233,9 @@
       },
       "ambientColor": {
         "_$type": "Color",
-        "r": 0.424308,
-        "g": 0.4578516,
-        "b": 0.5294118
+        "r": 0.6,
+        "g": 0.62,
+        "b": 0.65
       },
       "fogStart": 0,
       "fogEnd": 300,
@@ -252,10 +252,10 @@
           "name": "Main Camera",
           "transform": {
             "localPosition": {
-              "_$type": "Vector3",
-              "x": -10,
+              "x": -28,
               "y": 1.65,
-              "z": 4
+              "z": 27,
+              "_$type": "Vector3"
             }
           },
           "nearPlane": 0.1,
@@ -300,2722 +300,15 @@
           ]
         },
         {
-          "_$id": "ground01",
-          "_$type": "Sprite3D",
-          "name": "Demo01_Ground_32x74",
-          "transform": {
-            "localPosition": {
-              "_$type": "Vector3",
-              "y": -0.5,
-              "z": -27
-            },
-            "localScale": {
-              "_$type": "Vector3",
-              "x": 32,
-              "y": 1,
-              "z": 74
-            }
-          },
-          "_$comp": [
-            {
-              "_$type": "MeshFilter",
-              "sharedMesh": {
-                "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                "_$type": "Mesh"
-              }
-            },
-            {
-              "_$type": "MeshRenderer",
-              "receiveShadow": true,
-              "lightmapScaleOffset": {
-                "_$type": "Vector4"
-              },
-              "sharedMaterials": [
-                {
-                  "_$uuid": "cf19231d-929a-4453-9a17-dd640aa6f582",
-                  "_$type": "Material"
-                }
-              ]
-            },
-            {
-              "_$type": "PhysicsCollider",
-              "colliderShape": {
-                "_$type": "BoxColliderShape"
-              },
-              "collisionGroup": 1,
-              "canCollideWith": -1
-            }
-          ]
-        },
-        {
-          "_$id": "gridroot",
-          "_$type": "Sprite3D",
-          "name": "RouteFloorMarkers",
-          "_$child": [
-            {
-              "_$id": "d1b0043",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_1_1",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -10,
-                  "y": 0.025,
-                  "z": 3.2
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0044",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_1_3",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -10,
-                  "y": 0.025,
-                  "z": 1.2000000000000002
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0045",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_1_5",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -10,
-                  "y": 0.025,
-                  "z": -0.7999999999999998
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0046",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_1_7",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -10,
-                  "y": 0.025,
-                  "z": -2.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0047",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_1_9",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -10,
-                  "y": 0.025,
-                  "z": -4.800000000000001
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0048",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_2_1",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -9.2,
-                  "y": 0.025,
-                  "z": -6
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0049",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_2_3",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -7.2,
-                  "y": 0.025,
-                  "z": -6
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0050",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_2_5",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -5.2,
-                  "y": 0.025,
-                  "z": -6
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0051",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_2_7",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -3.2,
-                  "y": 0.025,
-                  "z": -6
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0052",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_2_9",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -1.1999999999999993,
-                  "y": 0.025,
-                  "z": -6
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0053",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_2_11",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 0.8000000000000007,
-                  "y": 0.025,
-                  "z": -6
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0054",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_2_13",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 2.8000000000000007,
-                  "y": 0.025,
-                  "z": -6
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0055",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_2_15",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 4.800000000000001,
-                  "y": 0.025,
-                  "z": -6
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0056",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_2_17",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 6.800000000000001,
-                  "y": 0.025,
-                  "z": -6
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0057",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_2_19",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 8.8,
-                  "y": 0.025,
-                  "z": -6
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0058",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_3_1",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 9,
-                  "y": 0.025,
-                  "z": -6.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0059",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_3_3",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 9,
-                  "y": 0.025,
-                  "z": -8.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0060",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_3_5",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 9,
-                  "y": 0.025,
-                  "z": -10.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0061",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_4_1",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 9,
-                  "y": 0.025,
-                  "z": -12.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0062",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_4_3",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 9,
-                  "y": 0.025,
-                  "z": -14.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0063",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_4_5",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 9,
-                  "y": 0.025,
-                  "z": -16.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0064",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_4_7",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 9,
-                  "y": 0.025,
-                  "z": -18.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0065",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_4_9",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 9,
-                  "y": 0.025,
-                  "z": -20.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0066",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_4_11",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 9,
-                  "y": 0.025,
-                  "z": -22.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0067",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_5_1",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 8.2,
-                  "y": 0.025,
-                  "z": -24.5
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0068",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_5_3",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 6.2,
-                  "y": 0.025,
-                  "z": -24.5
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0069",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_5_5",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 4.2,
-                  "y": 0.025,
-                  "z": -24.5
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0070",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_5_7",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 2.2,
-                  "y": 0.025,
-                  "z": -24.5
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0071",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_5_9",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 0.1999999999999993,
-                  "y": 0.025,
-                  "z": -24.5
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0072",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_5_11",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -1.8000000000000007,
-                  "y": 0.025,
-                  "z": -24.5
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0073",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_5_13",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -3.8000000000000007,
-                  "y": 0.025,
-                  "z": -24.5
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0074",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_5_15",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -5.800000000000001,
-                  "y": 0.025,
-                  "z": -24.5
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0075",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_5_17",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -7.800000000000001,
-                  "y": 0.025,
-                  "z": -24.5
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0076",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_6_1",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -9,
-                  "y": 0.025,
-                  "z": -25.3
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0077",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_6_3",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -9,
-                  "y": 0.025,
-                  "z": -27.3
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0078",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_6_5",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -9,
-                  "y": 0.025,
-                  "z": -29.3
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0079",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_7_1",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -8.2,
-                  "y": 0.025,
-                  "z": -30
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0080",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_7_3",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -6.2,
-                  "y": 0.025,
-                  "z": -30
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0081",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_7_5",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -4.2,
-                  "y": 0.025,
-                  "z": -30
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0082",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_7_7",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -2.2,
-                  "y": 0.025,
-                  "z": -30
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0083",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_7_9",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -0.1999999999999993,
-                  "y": 0.025,
-                  "z": -30
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0084",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_7_11",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 1.8000000000000007,
-                  "y": 0.025,
-                  "z": -30
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0085",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_7_13",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 3.8000000000000007,
-                  "y": 0.025,
-                  "z": -30
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0086",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_7_15",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 5.800000000000001,
-                  "y": 0.025,
-                  "z": -30
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0087",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_7_17",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 7.800000000000001,
-                  "y": 0.025,
-                  "z": -30
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0088",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_8_1",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 8.5,
-                  "y": 0.025,
-                  "z": -30.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0089",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_8_3",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 8.5,
-                  "y": 0.025,
-                  "z": -32.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0090",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_8_5",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 8.5,
-                  "y": 0.025,
-                  "z": -34.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0091",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_9_1",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 7.7,
-                  "y": 0.025,
-                  "z": -35.5
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0092",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_9_3",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 5.7,
-                  "y": 0.025,
-                  "z": -35.5
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0093",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_9_5",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 3.7,
-                  "y": 0.025,
-                  "z": -35.5
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0094",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_9_7",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 1.7000000000000002,
-                  "y": 0.025,
-                  "z": -35.5
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.95,
-                  "y": 0.018,
-                  "z": 0.18
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0095",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_10_1",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "y": 0.025,
-                  "z": -36.3
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0096",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_10_3",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "y": 0.025,
-                  "z": -38.3
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0097",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_11_1",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "y": 0.025,
-                  "z": -40.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0098",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_11_3",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "y": 0.025,
-                  "z": -42.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0099",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_11_5",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "y": 0.025,
-                  "z": -44.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0100",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_11_7",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "y": 0.025,
-                  "z": -46.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0101",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_12_1",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "y": 0.025,
-                  "z": -48.3
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0102",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_12_3",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "y": 0.025,
-                  "z": -50.3
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0103",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_12_5",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "y": 0.025,
-                  "z": -52.3
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0104",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_13_1",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "y": 0.025,
-                  "z": -53.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0105",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_13_3",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "y": 0.025,
-                  "z": -55.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0106",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_13_5",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "y": 0.025,
-                  "z": -57.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1b0107",
-              "_$type": "Sprite3D",
-              "name": "RouteDash_13_7",
-              "transform": {
-                "localPosition": {
-                  "_$type": "Vector3",
-                  "y": 0.025,
-                  "z": -59.8
-                },
-                "localScale": {
-                  "_$type": "Vector3",
-                  "x": 0.18,
-                  "y": 0.018,
-                  "z": 0.95
-                }
-              },
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
           "_$id": "player01",
           "_$type": "Sprite3D",
           "name": "Player",
           "transform": {
             "localPosition": {
-              "_$type": "Vector3",
-              "x": -10,
+              "x": -28,
               "y": 1.1,
-              "z": 4
+              "z": 27,
+              "_$type": "Vector3"
             }
           },
           "_$comp": [
@@ -3124,9 +417,10 @@
           "name": "Street_Enemy01",
           "transform": {
             "localPosition": {
-              "_$type": "Vector3",
-              "x": -4,
-              "z": -20
+              "x": -19,
+              "y": 0,
+              "z": 12,
+              "_$type": "Vector3"
             }
           },
           "_$comp": [
@@ -3669,10 +963,10 @@
           "name": "WeaponPivot",
           "transform": {
             "localPosition": {
-              "_$type": "Vector3",
-              "x": -10,
+              "x": -28,
               "y": 1.65,
-              "z": 4
+              "z": 27,
+              "_$type": "Vector3"
             }
           },
           "_$child": [
@@ -4063,2175 +1357,15 @@
           ]
         },
         {
-          "_$id": "bld00000",
-          "_$type": "Sprite3D",
-          "name": "Demo01_Blockout",
-          "_$child": [
-            {
-              "_$id": "d1bounds",
-              "_$type": "Sprite3D",
-              "name": "00_Bounds_Closed",
-              "_$child": [
-                {
-                  "_$id": "d1b0001",
-                  "_$type": "Sprite3D",
-                  "name": "Boundary_West",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -14,
-                      "y": 3,
-                      "z": -27
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.6,
-                      "y": 6,
-                      "z": 70.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0002",
-                  "_$type": "Sprite3D",
-                  "name": "Boundary_East",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 14,
-                      "y": 3,
-                      "z": -27
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.6,
-                      "y": 6,
-                      "z": 70.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0003",
-                  "_$type": "Sprite3D",
-                  "name": "Boundary_South",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 3,
-                      "z": 8
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 28.6,
-                      "y": 6,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0004",
-                  "_$type": "Sprite3D",
-                  "name": "Boundary_North",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 3,
-                      "z": -62
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 28.6,
-                      "y": 6,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1safe",
-              "_$type": "Sprite3D",
-              "name": "01_SafeSpawn",
-              "_$child": [
-                {
-                  "_$id": "d1b0005",
-                  "_$type": "Sprite3D",
-                  "name": "Spawn_Alley_BuildingMass",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4,
-                      "y": 3,
-                      "z": 2
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 20,
-                      "y": 6,
-                      "z": 12
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0006",
-                  "_$type": "Sprite3D",
-                  "name": "SpawnFloor",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -10,
-                      "y": 0.008,
-                      "z": 4
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 3,
-                      "y": 0.016,
-                      "z": 3
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "7fe90ace-ddda-481b-99d5-25ae24500214",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1alley",
-              "_$type": "Sprite3D",
-              "name": "02_CornerAlley",
-              "_$child": [
-                {
-                  "_$id": "d1b0007",
-                  "_$type": "Sprite3D",
-                  "name": "Alley_StreetDoor_Left",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3.5,
-                      "y": 2.9,
-                      "z": -9
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 21,
-                      "y": 5.8,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0008",
-                  "_$type": "Sprite3D",
-                  "name": "Alley_StreetDoor_Right",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 2.9,
-                      "z": -9
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 3,
-                      "y": 5.8,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0009",
-                  "_$type": "Sprite3D",
-                  "name": "Alley_StreetDoor_Lintel",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 9,
-                      "y": 4.5,
-                      "z": -9
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 4,
-                      "y": 2.5999999999999996,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1street",
-              "_$type": "Sprite3D",
-              "name": "03_StreetFight",
-              "_$child": [
-                {
-                  "_$id": "d1b0010",
-                  "_$type": "Sprite3D",
-                  "name": "StreetSurface",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 0.006,
-                      "z": -18
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 27.3,
-                      "y": 0.012,
-                      "z": 17
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "95028424-d9df-40ec-ac59-1cae75f21ee8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0011",
-                  "_$type": "Sprite3D",
-                  "name": "Street_EastBuilding",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 2.4,
-                      "z": -17.5
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 2.4,
-                      "y": 4.8,
-                      "z": 9
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0012",
-                  "_$type": "Sprite3D",
-                  "name": "Street_WestBuilding",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -12.5,
-                      "y": 2.4,
-                      "z": -22
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 2.4,
-                      "y": 4.8,
-                      "z": 6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0013",
-                  "_$type": "Sprite3D",
-                  "name": "Street_LowCover_Crouch",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 6.5,
-                      "y": 0.45,
-                      "z": -14
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 3,
-                      "y": 0.9,
-                      "z": 0.8
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0014",
-                  "_$type": "Sprite3D",
-                  "name": "Street_HighCover",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 1.3,
-                      "z": -15
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 3,
-                      "y": 2.6,
-                      "z": 0.8
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0015",
-                  "_$type": "Sprite3D",
-                  "name": "Street_LeftLowCover",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -8,
-                      "y": 0.55,
-                      "z": -16
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 3,
-                      "y": 1.1,
-                      "z": 1
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0016",
-                  "_$type": "Sprite3D",
-                  "name": "Street_LeftExit_Left",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -12.5,
-                      "y": 2.9,
-                      "z": -27
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 3,
-                      "y": 5.8,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0017",
-                  "_$type": "Sprite3D",
-                  "name": "Street_LeftExit_Right",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 3.5,
-                      "y": 2.9,
-                      "z": -27
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 21,
-                      "y": 5.8,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0018",
-                  "_$type": "Sprite3D",
-                  "name": "Street_LeftExit_Lintel",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -9,
-                      "y": 4.5,
-                      "z": -27
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 4,
-                      "y": 2.5999999999999996,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1transition",
-              "_$type": "Sprite3D",
-              "name": "04_CoverTransition",
-              "_$child": [
-                {
-                  "_$id": "d1b0019",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_RightTurn_Left",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4,
-                      "y": 2.9,
-                      "z": -32.5
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 20,
-                      "y": 5.8,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0020",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_RightTurn_Right",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 2.9,
-                      "z": -32.5
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 3,
-                      "y": 5.8,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0021",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_RightTurn_Lintel",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 8.5,
-                      "y": 4.5,
-                      "z": -32.5
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 5,
-                      "y": 2.5999999999999996,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0022",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_CourtyardDoor_Left",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -8,
-                      "y": 2.9,
-                      "z": -38.5
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 12,
-                      "y": 5.8,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0023",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_CourtyardDoor_Right",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 8,
-                      "y": 2.9,
-                      "z": -38.5
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 12,
-                      "y": 5.8,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0024",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_CourtyardDoor_Lintel",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 4.5,
-                      "z": -38.5
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 4,
-                      "y": 2.5999999999999996,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0025",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_ReloadCover",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3,
-                      "y": 0.6,
-                      "z": -28.7
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 2,
-                      "y": 1.2,
-                      "z": 1
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0026",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_ApproachCover",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 5,
-                      "y": 0.6,
-                      "z": -36.9
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 2,
-                      "y": 1.2,
-                      "z": 1
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1courtyard",
-              "_$type": "Sprite3D",
-              "name": "05_Courtyard",
-              "_$child": [
-                {
-                  "_$id": "d1b0027",
-                  "_$type": "Sprite3D",
-                  "name": "Courtyard_LeftHighCover",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3.5,
-                      "y": 1.3,
-                      "z": -41.5
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 2.4,
-                      "y": 2.6,
-                      "z": 0.8
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0028",
-                  "_$type": "Sprite3D",
-                  "name": "Courtyard_RightLowCover_Crouch",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4,
-                      "y": 0.45,
-                      "z": -43
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 3,
-                      "y": 0.9,
-                      "z": 1
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0029",
-                  "_$type": "Sprite3D",
-                  "name": "Courtyard_WestCover",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11,
-                      "y": 1.4,
-                      "z": -47
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 2.4,
-                      "y": 2.8,
-                      "z": 1
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0030",
-                  "_$type": "Sprite3D",
-                  "name": "Courtyard_NorthWingWest",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -9.25,
-                      "y": 3,
-                      "z": -50
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 9.5,
-                      "y": 6,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0031",
-                  "_$type": "Sprite3D",
-                  "name": "Courtyard_NorthWingEast",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 9.25,
-                      "y": 3,
-                      "z": -50
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 9.5,
-                      "y": 6,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "d1building",
-              "_$type": "Sprite3D",
-              "name": "06_TargetBuilding",
-              "_$child": [
-                {
-                  "_$id": "d1b0032",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_FrontDoor_Left",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -2.85,
-                      "y": 2.2,
-                      "z": -50
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 3.3,
-                      "y": 4.4,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0033",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_FrontDoor_Right",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 2.85,
-                      "y": 2.2,
-                      "z": -50
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 3.3,
-                      "y": 4.4,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0034",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_FrontDoor_Lintel",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 3.6,
-                      "z": -50
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 2.4,
-                      "y": 1.6000000000000005,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0035",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_RearDoor_Left",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -2.85,
-                      "y": 2.2,
-                      "z": -58.5
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 3.3,
-                      "y": 4.4,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0036",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_RearDoor_Right",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 2.85,
-                      "y": 2.2,
-                      "z": -58.5
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 3.3,
-                      "y": 4.4,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0037",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_RearDoor_Lintel",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 3.6,
-                      "z": -58.5
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 2.4,
-                      "y": 1.6000000000000005,
-                      "z": 0.6
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0038",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_WestWall",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4.5,
-                      "y": 2.2,
-                      "z": -54.25
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.4,
-                      "y": 4.4,
-                      "z": 8.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0039",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_EastWall",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4.5,
-                      "y": 2.2,
-                      "z": -54.25
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.4,
-                      "y": 4.4,
-                      "z": 8.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0040",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_Roof",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 4.55,
-                      "z": -54.25
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 9.4,
-                      "y": 0.3,
-                      "z": 9.1
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "7fe90ace-ddda-481b-99d5-25ae24500214",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0041",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_Storage",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -2.7,
-                      "y": 0.6,
-                      "z": -54
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.5,
-                      "y": 1.2,
-                      "z": 1.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "7fe90ace-ddda-481b-99d5-25ae24500214",
-                          "_$type": "Material"
-                        }
-                      ]
-                    },
-                    {
-                      "_$type": "PhysicsCollider",
-                      "colliderShape": {
-                        "_$type": "BoxColliderShape"
-                      },
-                      "collisionGroup": 1,
-                      "canCollideWith": -1
-                    }
-                  ]
-                },
-                {
-                  "_$id": "d1b0042",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_EntranceMark",
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 3.1,
-                      "z": -49.67
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 2.4,
-                      "y": 0.25,
-                      "z": 0.04
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "ce7179c3-e784-4a36-9677-1618bba55c98",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
           "_$id": "enemy002",
           "_$type": "Sprite3D",
           "name": "Street_Enemy02",
           "transform": {
             "localPosition": {
-              "_$type": "Vector3",
-              "x": 5,
-              "z": -23
+              "x": -16,
+              "y": 0,
+              "z": 9,
+              "_$type": "Vector3"
             }
           },
           "_$comp": [
@@ -6774,9 +1908,10 @@
           "name": "Courtyard_Enemy01",
           "transform": {
             "localPosition": {
-              "_$type": "Vector3",
-              "x": -6,
-              "z": -45
+              "x": -3,
+              "y": 0.02,
+              "z": -10,
+              "_$type": "Vector3"
             }
           },
           "_$comp": [
@@ -7319,9 +2454,10 @@
           "name": "Courtyard_Enemy02",
           "transform": {
             "localPosition": {
-              "_$type": "Vector3",
-              "x": 6,
-              "z": -48
+              "x": 2,
+              "y": 0.02,
+              "z": -7,
+              "_$type": "Vector3"
             }
           },
           "_$comp": [
@@ -7861,12 +2997,13 @@
         {
           "_$id": "exitzone1",
           "_$type": "Sprite3D",
-          "name": "07_ExitZone",
+          "name": "ExitZone_Songbaix_NorthLane",
           "transform": {
             "localPosition": {
-              "_$type": "Vector3",
+              "x": -32,
               "y": 1,
-              "z": -60.2
+              "z": -36,
+              "_$type": "Vector3"
             }
           },
           "_$child": [
@@ -8036,13 +3173,13 @@
         {
           "_$id": "d1spawn",
           "_$type": "Sprite3D",
-          "name": "SpawnPoint_SafeZone",
+          "name": "SpawnPoint_Songbaix_Entry",
           "transform": {
             "localPosition": {
-              "_$type": "Vector3",
-              "x": -10,
+              "x": -28,
               "y": 1.1,
-              "z": 4
+              "z": 27,
+              "_$type": "Vector3"
             }
           }
         },
@@ -8054,9464 +3191,93 @@
             {
               "_$id": "d1wp0",
               "_$type": "Sprite3D",
-              "name": "沿橙色标线前行，到前方转角右转",
+              "name": "沿巷前行，到街口右转",
               "transform": {
                 "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -10,
-                  "z": -6
+                  "x": -28,
+                  "y": 0,
+                  "z": 14,
+                  "_$type": "Vector3"
                 }
               }
             },
             {
               "_$id": "d1wp1",
               "_$type": "Sprite3D",
-              "name": "沿小巷向右，到尽头穿过街口门洞",
+              "name": "清理街口两名敌人，沿前方转角通行",
               "transform": {
                 "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 9,
-                  "z": -9
+                  "x": -20,
+                  "y": 0,
+                  "z": 14,
+                  "_$type": "Vector3"
                 }
               }
             },
             {
               "_$id": "d1wp2",
               "_$type": "Sprite3D",
-              "name": "街口交火：处理两名敌人，从左前方门洞继续",
+              "name": "沿院墙走，到尽头右转进院",
               "transform": {
                 "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -9,
-                  "z": -27
+                  "x": -11,
+                  "y": 0,
+                  "z": 2,
+                  "_$type": "Vector3"
                 }
               }
             },
             {
               "_$id": "d1wp3",
               "_$type": "Sprite3D",
-              "name": "掩体过渡：沿隔墙右行，在尽头左转",
+              "name": "清理院落两名敌人",
               "transform": {
                 "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 8.5,
-                  "z": -32.5
+                  "x": -4,
+                  "y": 0,
+                  "z": -10,
+                  "_$type": "Vector3"
                 }
               }
             },
             {
               "_$id": "d1wp4",
               "_$type": "Sprite3D",
-              "name": "沿标线左转，穿过中央门洞进入院落",
+              "name": "进入北侧普通建筑，文件在西侧桌上",
               "transform": {
                 "localPosition": {
-                  "_$type": "Vector3",
-                  "z": -38.5
+                  "x": -18.8,
+                  "y": 0,
+                  "z": -20,
+                  "_$type": "Vector3"
                 }
               }
             },
             {
               "_$id": "d1wp5",
               "_$type": "Sprite3D",
-              "name": "院落交火：处理两名敌人，进入对面的目标建筑",
+              "name": "取得文件后穿过后门",
               "transform": {
                 "localPosition": {
-                  "_$type": "Vector3",
-                  "z": -50
+                  "x": -18.8,
+                  "y": 0,
+                  "z": -31,
+                  "_$type": "Vector3"
                 }
               }
             },
             {
               "_$id": "d1wp6",
               "_$type": "Sprite3D",
-              "name": "穿过建筑后门，清敌后进入橙色终点区",
+              "name": "抵达撤离区",
               "transform": {
                 "localPosition": {
-                  "_$type": "Vector3",
-                  "z": -60.2
+                  "x": -32,
+                  "y": 0,
+                  "z": -36,
+                  "_$type": "Vector3"
                 }
               }
-            }
-          ]
-        },
-        {
-          "_$id": "oldtownart",
-          "_$type": "Sprite3D",
-          "name": "OldTownArt_SpawnToStreet",
-          "_$child": [
-            {
-              "_$id": "otskins",
-              "_$type": "Sprite3D",
-              "name": "01_VisibleShells_KeepOriginalColliders",
-              "_$child": [
-                {
-                  "_$id": "ot_d1b0001",
-                  "_$type": "Sprite3D",
-                  "name": "Boundary_West_ArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -14,
-                      "y": 3,
-                      "z": -9.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm3",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "ot_d1b0002",
-                  "_$type": "Sprite3D",
-                  "name": "Boundary_East_ArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 14,
-                      "y": 3,
-                      "z": -9.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm4",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "ot_d1b0003",
-                  "_$type": "Sprite3D",
-                  "name": "Boundary_South_ArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 3,
-                      "z": 8
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm5",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "ot_d1b0005",
-                  "_$type": "Sprite3D",
-                  "name": "Spawn_Alley_BuildingMass_ArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4,
-                      "y": 3,
-                      "z": 2
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm6",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "ot_d1b0007",
-                  "_$type": "Sprite3D",
-                  "name": "Alley_StreetDoor_Left_ArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3.5,
-                      "y": 2.9,
-                      "z": -9
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm7",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "ot_d1b0008",
-                  "_$type": "Sprite3D",
-                  "name": "Alley_StreetDoor_Right_ArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 2.9,
-                      "z": -9
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm8",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "ot_d1b0009",
-                  "_$type": "Sprite3D",
-                  "name": "Alley_StreetDoor_Lintel_ArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 9,
-                      "y": 4.5,
-                      "z": -9
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm9",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "4f9cf165-5fa2-4287-a91e-4a4402158031",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "ot_d1b0011",
-                  "_$type": "Sprite3D",
-                  "name": "Street_EastBuilding_ArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 2.4,
-                      "z": -17.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm10",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "ot_d1b0012",
-                  "_$type": "Sprite3D",
-                  "name": "Street_WestBuilding_ArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -12.5,
-                      "y": 2.4,
-                      "z": -22
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm11",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "ot_d1b0013",
-                  "_$type": "Sprite3D",
-                  "name": "Street_LowCover_Crouch_ArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 6.5,
-                      "y": 0.45,
-                      "z": -14
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm12",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "ot_d1b0014",
-                  "_$type": "Sprite3D",
-                  "name": "Street_HighCover_ArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 1.3,
-                      "z": -15
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm13",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "ot_d1b0015",
-                  "_$type": "Sprite3D",
-                  "name": "Street_LeftLowCover_ArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -8,
-                      "y": 0.55,
-                      "z": -16
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm14",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "ot_d1b0016",
-                  "_$type": "Sprite3D",
-                  "name": "Street_LeftExit_Left_ArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -12.5,
-                      "y": 2.9,
-                      "z": -27
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm15",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "ot_d1b0017",
-                  "_$type": "Sprite3D",
-                  "name": "Street_LeftExit_Right_ArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 3.5,
-                      "y": 2.9,
-                      "z": -27
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm16",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "ot_d1b0018",
-                  "_$type": "Sprite3D",
-                  "name": "Street_LeftExit_Lintel_ArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -9,
-                      "y": 4.5,
-                      "z": -27
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm17",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "4f9cf165-5fa2-4287-a91e-4a4402158031",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "otdetails",
-              "_$type": "Sprite3D",
-              "name": "02_SharedDoorWindowEavePrefabs",
-              "_$child": [
-                {
-                  "_$id": "otmod0000",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 1.25,
-                      "z": 6.075000000000001
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0001",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 3.62,
-                      "z": 6.075000000000001
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0002",
-                  "_$prefab": "bc14d1cd-39a4-4a42-a7ec-c900660011b7",
-                  "name": "ClosedDoor_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 0.04,
-                      "z": 1.625
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0003",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 1.25,
-                      "z": -2.8249999999999993
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0004",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 3.62,
-                      "z": -2.8249999999999993
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0005",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 1.25,
-                      "z": -7.275
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0006",
-                  "_$prefab": "bc14d1cd-39a4-4a42-a7ec-c900660011b7",
-                  "name": "ClosedDoor_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 0.04,
-                      "z": -11.725000000000001
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0007",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 3.62,
-                      "z": -11.725000000000001
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0008",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 1.25,
-                      "z": -16.175
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0009",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 1.25,
-                      "z": -20.625
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0010",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 3.62,
-                      "z": -20.625
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0011",
-                  "_$prefab": "bc14d1cd-39a4-4a42-a7ec-c900660011b7",
-                  "name": "ClosedDoor_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 0.04,
-                      "z": -25.075
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0012",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": 6.322222222222223
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0013",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": 2.366666666666667
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0014",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -1.5888888888888886
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0015",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -5.544444444444444
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0016",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -9.5
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0017",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -13.455555555555556
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0018",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -17.41111111111111
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0019",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -21.366666666666667
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0020",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -25.32222222222222
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0021",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 1.25,
-                      "z": -25.075000000000003
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0022",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 3.62,
-                      "z": -25.075000000000003
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0023",
-                  "_$prefab": "bc14d1cd-39a4-4a42-a7ec-c900660011b7",
-                  "name": "ClosedDoor_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 0.04,
-                      "z": -20.625
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0024",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 1.25,
-                      "z": -16.175
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0025",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 3.62,
-                      "z": -16.175
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0026",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 1.25,
-                      "z": -11.725
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0027",
-                  "_$prefab": "bc14d1cd-39a4-4a42-a7ec-c900660011b7",
-                  "name": "ClosedDoor_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 0.04,
-                      "z": -7.274999999999999
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0028",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 3.62,
-                      "z": -7.274999999999999
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0029",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 1.25,
-                      "z": -2.8249999999999993
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0030",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 1.25,
-                      "z": 1.625
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0031",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 3.62,
-                      "z": 1.625
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0032",
-                  "_$prefab": "bc14d1cd-39a4-4a42-a7ec-c900660011b7",
-                  "name": "ClosedDoor_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 0.04,
-                      "z": 6.074999999999999
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0033",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -25.322222222222223
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0034",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -21.366666666666667
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0035",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -17.41111111111111
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0036",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -13.455555555555556
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0037",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -9.5
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0038",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -5.544444444444444
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0039",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -1.5888888888888886
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0040",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": 2.366666666666667
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0041",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": 6.322222222222219
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9888888888888889,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0042",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0005_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11.5,
-                      "y": 1.25,
-                      "z": -4
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0043",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0005_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11.5,
-                      "y": 3.62,
-                      "z": -4
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0044",
-                  "_$prefab": "bc14d1cd-39a4-4a42-a7ec-c900660011b7",
-                  "name": "ClosedDoor_d1b0005_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 6.5,
-                      "y": 0.04,
-                      "z": -4
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0045",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0005_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 1.5,
-                      "y": 1.25,
-                      "z": -4
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0046",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0005_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 1.5,
-                      "y": 3.62,
-                      "z": -4
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0047",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0005_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3.5,
-                      "y": 1.25,
-                      "z": -4
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0048",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0005_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12,
-                      "y": 5.28,
-                      "z": -4
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0049",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0005_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 8,
-                      "y": 5.28,
-                      "z": -4
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0050",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0005_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4,
-                      "y": 5.28,
-                      "z": -4
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0051",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0005_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 5.28,
-                      "z": -4
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0052",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0005_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4,
-                      "y": 5.28,
-                      "z": -4
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0053",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0005_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -6,
-                      "y": 1.25,
-                      "z": -1
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0054",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0005_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -6,
-                      "y": 3.62,
-                      "z": -1
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0055",
-                  "_$prefab": "bc14d1cd-39a4-4a42-a7ec-c900660011b7",
-                  "name": "ClosedDoor_d1b0005_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -6,
-                      "y": 0.04,
-                      "z": 5
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0056",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0005_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -6,
-                      "y": 5.28,
-                      "z": -2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0057",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0005_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -6,
-                      "y": 5.28,
-                      "z": 2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0058",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0005_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -6,
-                      "y": 5.28,
-                      "z": 6
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0059",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0007_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.9,
-                      "y": 1.25,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0060",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0007_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.9,
-                      "y": 3.62,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0061",
-                  "_$prefab": "bc14d1cd-39a4-4a42-a7ec-c900660011b7",
-                  "name": "ClosedDoor_d1b0007_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -7.699999999999999,
-                      "y": 0.04,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0062",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0007_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3.5,
-                      "y": 1.25,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0063",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0007_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3.5,
-                      "y": 3.62,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0064",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0007_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 0.7000000000000011,
-                      "y": 1.25,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0065",
-                  "_$prefab": "bc14d1cd-39a4-4a42-a7ec-c900660011b7",
-                  "name": "ClosedDoor_d1b0007_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4.900000000000002,
-                      "y": 0.04,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0066",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0007_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4.900000000000002,
-                      "y": 3.62,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0067",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0007_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.9,
-                      "y": 5.08,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.05,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0068",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0007_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -7.699999999999999,
-                      "y": 5.08,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.05,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0069",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0007_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3.5,
-                      "y": 5.08,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.05,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0070",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0007_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 0.7000000000000011,
-                      "y": 5.08,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.05,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0071",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0007_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4.900000000000002,
-                      "y": 5.08,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.05,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0072",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0007_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4.9,
-                      "y": 1.25,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0073",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0007_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4.9,
-                      "y": 3.62,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0074",
-                  "_$prefab": "bc14d1cd-39a4-4a42-a7ec-c900660011b7",
-                  "name": "ClosedDoor_d1b0007_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 0.6999999999999993,
-                      "y": 0.04,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0075",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0007_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3.5,
-                      "y": 1.25,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0076",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0007_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3.5,
-                      "y": 3.62,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0077",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0007_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -7.700000000000001,
-                      "y": 1.25,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0078",
-                  "_$prefab": "bc14d1cd-39a4-4a42-a7ec-c900660011b7",
-                  "name": "ClosedDoor_d1b0007_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.900000000000002,
-                      "y": 0.04,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0079",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0007_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.900000000000002,
-                      "y": 3.62,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0080",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0007_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4.9,
-                      "y": 5.08,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.05,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0081",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0007_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 0.6999999999999993,
-                      "y": 5.08,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.05,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0082",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0007_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3.5,
-                      "y": 5.08,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.05,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0083",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0007_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -7.700000000000001,
-                      "y": 5.08,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.05,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0084",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0007_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.900000000000002,
-                      "y": 5.08,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.05,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0085",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0008_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 1.25,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0086",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0008_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 3.62,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0087",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0008_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 5.08,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0088",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0008_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 1.25,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0089",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0008_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 3.62,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0090",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0008_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 5.08,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0091",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0009_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 9,
-                      "y": 3.62,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0092",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0009_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 9,
-                      "y": 5.08,
-                      "z": -8.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0093",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0009_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 9,
-                      "y": 3.62,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0094",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0009_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 9,
-                      "y": 5.08,
-                      "z": -9.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0095",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0011_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11.3,
-                      "y": 1.25,
-                      "z": -19.75
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0096",
-                  "_$prefab": "bc14d1cd-39a4-4a42-a7ec-c900660011b7",
-                  "name": "ClosedDoor_d1b0011_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11.3,
-                      "y": 0.04,
-                      "z": -15.25
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0097",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0011_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11.3,
-                      "y": 4.08,
-                      "z": -19.75
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.125,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0098",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0011_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11.3,
-                      "y": 4.08,
-                      "z": -15.25
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.125,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0099",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0012_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.3,
-                      "y": 1.25,
-                      "z": -22
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0100",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0012_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.3,
-                      "y": 4.08,
-                      "z": -20.5
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0101",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0012_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.3,
-                      "y": 4.08,
-                      "z": -23.5
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0102",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0016_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -12.5,
-                      "y": 1.25,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0103",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0016_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -12.5,
-                      "y": 3.62,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0104",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0016_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -12.5,
-                      "y": 5.08,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0105",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0017_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4.9,
-                      "y": 1.25,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0106",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0017_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4.9,
-                      "y": 3.62,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0107",
-                  "_$prefab": "bc14d1cd-39a4-4a42-a7ec-c900660011b7",
-                  "name": "ClosedDoor_d1b0017_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -0.6999999999999993,
-                      "y": 0.04,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0108",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0017_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 3.5,
-                      "y": 1.25,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0109",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0017_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 3.5,
-                      "y": 3.62,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0110",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0017_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 7.700000000000001,
-                      "y": 1.25,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0111",
-                  "_$prefab": "bc14d1cd-39a4-4a42-a7ec-c900660011b7",
-                  "name": "ClosedDoor_d1b0017_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11.900000000000002,
-                      "y": 0.04,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0112",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0017_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11.900000000000002,
-                      "y": 3.62,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0113",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0017_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4.9,
-                      "y": 5.08,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.05,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0114",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0017_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -0.6999999999999993,
-                      "y": 5.08,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.05,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0115",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0017_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 3.5,
-                      "y": 5.08,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.05,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0116",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0017_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 7.700000000000001,
-                      "y": 5.08,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.05,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0117",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0017_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11.900000000000002,
-                      "y": 5.08,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.05,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0118",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0018_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -9,
-                      "y": 3.62,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otmod0119",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0018_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -9,
-                      "y": 5.08,
-                      "z": -26.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "_$id": "ottails",
-              "_$type": "Sprite3D",
-              "name": "03_OriginalGrayBoundaryContinuation",
-              "_$child": [
-                {
-                  "_$id": "ottaild1b0001",
-                  "_$type": "Sprite3D",
-                  "name": "Boundary_West_OriginalGrayContinuation",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -14,
-                      "y": 3,
-                      "z": -44.8
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.6,
-                      "y": 6,
-                      "z": 35
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "ottaild1b0002",
-                  "_$type": "Sprite3D",
-                  "name": "Boundary_East_OriginalGrayContinuation",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 14,
-                      "y": 3,
-                      "z": -44.8
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.6,
-                      "y": 6,
-                      "z": 35
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "6e013e32-fec7-4397-80d1-f918a07607be",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "enabled": false,
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "5d8aa3ed-3796-4b14-bdc1-4f2afdb0096d",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_$id": "otpaving",
-              "_$type": "Sprite3D",
-              "name": "04_FrontPaving",
-              "isStatic": true,
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "2ebf2d1a-4fc1-4f32-a039-029fe141d089@lm18",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "_$id": "otrearart",
-          "_$type": "Sprite3D",
-          "name": "OldTownArt_TransitionToObjective",
-          "isStatic": true,
-          "_$child": [
-            {
-              "_$id": "otrt",
-              "_$type": "Sprite3D",
-              "name": "01_CoverTransition",
-              "isStatic": true,
-              "_$child": [
-                {
-                  "_$id": "otr_d1b0019",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_RightTurn_Left_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4,
-                      "y": 2.9,
-                      "z": -32.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm4",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0020",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_RightTurn_Right_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 2.9,
-                      "z": -32.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm5",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0021",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_RightTurn_Lintel_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 8.5,
-                      "y": 4.5,
-                      "z": -32.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm6",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0022",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_CourtyardDoor_Left_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -8,
-                      "y": 2.9,
-                      "z": -38.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm7",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0023",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_CourtyardDoor_Right_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 8,
-                      "y": 2.9,
-                      "z": -38.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm8",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0024",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_CourtyardDoor_Lintel_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 4.5,
-                      "z": -38.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm9",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0025",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_ReloadCover_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3,
-                      "y": 0.6,
-                      "z": -28.7
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm10",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0026",
-                  "_$type": "Sprite3D",
-                  "name": "Transition_ApproachCover_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 5,
-                      "y": 0.6,
-                      "z": -36.9
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm11",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otrmod047",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0019_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.5,
-                      "y": 1.25,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod048",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0019_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.5,
-                      "y": 3.62,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod049",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0019_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -6.5,
-                      "y": 1.25,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod050",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0019_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -1.5,
-                      "y": 1.25,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod051",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0019_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -1.5,
-                      "y": 3.62,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod052",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0019_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 3.5,
-                      "y": 1.25,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod053",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0019_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -12,
-                      "y": 5.08,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod054",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0019_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -8,
-                      "y": 5.08,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod055",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0019_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4,
-                      "y": 5.08,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod056",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0019_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 5.08,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod057",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0019_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4,
-                      "y": 5.08,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod058",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0019_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 3.5,
-                      "y": 1.25,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod059",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0019_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 3.5,
-                      "y": 3.62,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod060",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0019_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -1.5,
-                      "y": 1.25,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod061",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0019_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -6.5,
-                      "y": 1.25,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod062",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0019_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -6.5,
-                      "y": 3.62,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod063",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0019_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.5,
-                      "y": 1.25,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod064",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0019_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4,
-                      "y": 5.08,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod065",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0019_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 5.08,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod066",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0019_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4,
-                      "y": 5.08,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod067",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0019_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -8,
-                      "y": 5.08,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod068",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0019_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -12,
-                      "y": 5.08,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod069",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0020_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 1.25,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod070",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0020_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 3.62,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod071",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0020_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 5.08,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod072",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0020_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 1.25,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod073",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0020_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 3.62,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod074",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0020_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.5,
-                      "y": 5.08,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod075",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0021_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 8.5,
-                      "y": 3.62,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod076",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0021_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 8.5,
-                      "y": 5.08,
-                      "z": -32.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.25,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod077",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0021_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 8.5,
-                      "y": 3.62,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod078",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0021_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 8.5,
-                      "y": 5.08,
-                      "z": -32.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.25,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod079",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0022_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11,
-                      "y": 1.25,
-                      "z": -38.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod080",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0022_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11,
-                      "y": 3.62,
-                      "z": -38.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod081",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0022_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -5,
-                      "y": 1.25,
-                      "z": -38.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod082",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0022_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -12,
-                      "y": 5.08,
-                      "z": -38.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod083",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0022_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -8,
-                      "y": 5.08,
-                      "z": -38.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod084",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0022_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4,
-                      "y": 5.08,
-                      "z": -38.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod085",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0022_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -5,
-                      "y": 1.25,
-                      "z": -38.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod086",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0022_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -5,
-                      "y": 3.62,
-                      "z": -38.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod087",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0022_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11,
-                      "y": 1.25,
-                      "z": -38.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod088",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0022_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4,
-                      "y": 5.08,
-                      "z": -38.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod089",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0022_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -8,
-                      "y": 5.08,
-                      "z": -38.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod090",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0022_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -12,
-                      "y": 5.08,
-                      "z": -38.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod091",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0023_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 5,
-                      "y": 1.25,
-                      "z": -38.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod092",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0023_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 5,
-                      "y": 3.62,
-                      "z": -38.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod093",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0023_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11,
-                      "y": 1.25,
-                      "z": -38.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod094",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0023_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4,
-                      "y": 5.08,
-                      "z": -38.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod095",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0023_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 8,
-                      "y": 5.08,
-                      "z": -38.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod096",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0023_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12,
-                      "y": 5.08,
-                      "z": -38.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod097",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0023_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11,
-                      "y": 1.25,
-                      "z": -38.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod098",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0023_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11,
-                      "y": 3.62,
-                      "z": -38.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod099",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0023_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 5,
-                      "y": 1.25,
-                      "z": -38.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod100",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0023_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12,
-                      "y": 5.08,
-                      "z": -38.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod101",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0023_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 8,
-                      "y": 5.08,
-                      "z": -38.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod102",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0023_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4,
-                      "y": 5.08,
-                      "z": -38.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod103",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0024_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 3.62,
-                      "z": -38.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod104",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0024_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 5.08,
-                      "z": -38.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod105",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0024_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 3.62,
-                      "z": -38.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod106",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0024_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 5.08,
-                      "z": -38.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "_$id": "otrc",
-              "_$type": "Sprite3D",
-              "name": "02_Courtyard",
-              "isStatic": true,
-              "_$child": [
-                {
-                  "_$id": "otr_d1b0027",
-                  "_$type": "Sprite3D",
-                  "name": "Courtyard_LeftHighCover_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3.5,
-                      "y": 1.3,
-                      "z": -41.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm12",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0028",
-                  "_$type": "Sprite3D",
-                  "name": "Courtyard_RightLowCover_Crouch_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4,
-                      "y": 0.45,
-                      "z": -43
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm13",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0029",
-                  "_$type": "Sprite3D",
-                  "name": "Courtyard_WestCover_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11,
-                      "y": 1.4,
-                      "z": -47
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm14",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0030",
-                  "_$type": "Sprite3D",
-                  "name": "Courtyard_NorthWingWest_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -9.25,
-                      "y": 3,
-                      "z": -50
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm15",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0031",
-                  "_$type": "Sprite3D",
-                  "name": "Courtyard_NorthWingEast_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 9.25,
-                      "y": 3,
-                      "z": -50
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm16",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otrmod107",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0030_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.625,
-                      "y": 1.25,
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod108",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0030_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.625,
-                      "y": 3.62,
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod109",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0030_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -6.875,
-                      "y": 1.25,
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod110",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0030_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.625,
-                      "y": 5.28,
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.1875,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod111",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0030_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -6.875,
-                      "y": 5.28,
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.1875,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod112",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0030_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -6.875,
-                      "y": 1.25,
-                      "z": -50.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod113",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0030_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -6.875,
-                      "y": 3.62,
-                      "z": -50.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod114",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0030_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.625,
-                      "y": 1.25,
-                      "z": -50.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod115",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0030_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -6.875,
-                      "y": 5.28,
-                      "z": -50.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.1875,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod116",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0030_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -11.625,
-                      "y": 5.28,
-                      "z": -50.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.1875,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod117",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0031_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 6.875,
-                      "y": 1.25,
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod118",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0031_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 6.875,
-                      "y": 3.62,
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod119",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0031_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11.625,
-                      "y": 1.25,
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod120",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0031_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 6.875,
-                      "y": 5.28,
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.1875,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod121",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0031_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11.625,
-                      "y": 5.28,
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.1875,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod122",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0031_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11.625,
-                      "y": 1.25,
-                      "z": -50.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod123",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0031_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11.625,
-                      "y": 3.62,
-                      "z": -50.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod124",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0031_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 6.875,
-                      "y": 1.25,
-                      "z": -50.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod125",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0031_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 11.625,
-                      "y": 5.28,
-                      "z": -50.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.1875,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod126",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0031_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 6.875,
-                      "y": 5.28,
-                      "z": -50.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.1875,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "_$id": "otro",
-              "_$type": "Sprite3D",
-              "name": "03_TargetBuilding_ExteriorInterior",
-              "isStatic": true,
-              "_$child": [
-                {
-                  "_$id": "otr_d1b0032",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_FrontDoor_Left_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -2.85,
-                      "y": 2.2,
-                      "z": -50
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm17",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "4f9cf165-5fa2-4287-a91e-4a4402158031",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0033",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_FrontDoor_Right_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 2.85,
-                      "y": 2.2,
-                      "z": -50
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm18",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "4f9cf165-5fa2-4287-a91e-4a4402158031",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0034",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_FrontDoor_Lintel_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 3.6,
-                      "z": -50
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm19",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "4f9cf165-5fa2-4287-a91e-4a4402158031",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0035",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_RearDoor_Left_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -2.85,
-                      "y": 2.2,
-                      "z": -58.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm20",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "4f9cf165-5fa2-4287-a91e-4a4402158031",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0036",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_RearDoor_Right_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 2.85,
-                      "y": 2.2,
-                      "z": -58.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm21",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "4f9cf165-5fa2-4287-a91e-4a4402158031",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0037",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_RearDoor_Lintel_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 3.6,
-                      "z": -58.5
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm22",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "4f9cf165-5fa2-4287-a91e-4a4402158031",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0038",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_WestWall_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4.5,
-                      "y": 2.2,
-                      "z": -54.25
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm23",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "4f9cf165-5fa2-4287-a91e-4a4402158031",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0039",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_EastWall_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4.5,
-                      "y": 2.2,
-                      "z": -54.25
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm24",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "4f9cf165-5fa2-4287-a91e-4a4402158031",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0040",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_Roof_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 4.55,
-                      "z": -54.25
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm25",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "4f9cf165-5fa2-4287-a91e-4a4402158031",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0041",
-                  "_$type": "Sprite3D",
-                  "name": "TargetBuilding_Storage_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -2.7,
-                      "y": 0.6,
-                      "z": -54
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm26",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "4f9cf165-5fa2-4287-a91e-4a4402158031",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otrmod127",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0032_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3.18,
-                      "y": 1.2,
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9,
-                      "y": 0.95,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod128",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0032_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -2.85,
-                      "y": 3.6800000000000006,
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.825,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod129",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0032_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3.18,
-                      "y": 1.2,
-                      "z": -50.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9,
-                      "y": 0.95,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod130",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0033_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 3.18,
-                      "y": 1.2,
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9,
-                      "y": 0.95,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod131",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0033_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 2.85,
-                      "y": 3.6800000000000006,
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.825,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod132",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0033_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 3.18,
-                      "y": 1.2,
-                      "z": -50.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9,
-                      "y": 0.95,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod133",
-                  "_$prefab": "7f2c07ec-df2e-4713-99ef-7fe375818217",
-                  "name": "OpenPortal_d1b0034_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod134",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0034_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 3.6800000000000006,
-                      "z": -49.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.6,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod135",
-                  "_$prefab": "7f2c07ec-df2e-4713-99ef-7fe375818217",
-                  "name": "OpenPortal_d1b0034_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "z": -50.3
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod136",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0035_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3.18,
-                      "y": 1.2,
-                      "z": -58.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9,
-                      "y": 0.95,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod137",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0035_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -3.18,
-                      "y": 1.2,
-                      "z": -58.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9,
-                      "y": 0.95,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod138",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0035_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -2.85,
-                      "y": 3.6800000000000006,
-                      "z": -58.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.825,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod139",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0036_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 3.18,
-                      "y": 1.2,
-                      "z": -58.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9,
-                      "y": 0.95,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod140",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0036_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 3.18,
-                      "y": 1.2,
-                      "z": -58.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9,
-                      "y": 0.95,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod141",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0036_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 2.85,
-                      "y": 3.6800000000000006,
-                      "z": -58.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.825,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod142",
-                  "_$prefab": "7f2c07ec-df2e-4713-99ef-7fe375818217",
-                  "name": "OpenPortal_d1b0037_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "z": -58.2
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod143",
-                  "_$prefab": "7f2c07ec-df2e-4713-99ef-7fe375818217",
-                  "name": "OpenPortal_d1b0037_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "z": -58.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod144",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0037_-z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 3.6800000000000006,
-                      "z": -58.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 1,
-                      "w": 6.123233995736766e-17
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.6,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod145",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0038_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4.3,
-                      "y": 1.45,
-                      "z": -54.25
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod146",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0038_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4.7,
-                      "y": 1.45,
-                      "z": -54.25
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod147",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0038_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4.7,
-                      "y": 3.6800000000000006,
-                      "z": -56.375
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.0625,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod148",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0038_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4.7,
-                      "y": 3.6800000000000006,
-                      "z": -52.125
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.0625,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod149",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0039_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4.7,
-                      "y": 1.45,
-                      "z": -54.25
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod150",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0039_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4.7,
-                      "y": 3.6800000000000006,
-                      "z": -52.125
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.0625,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod151",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0039_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4.7,
-                      "y": 3.6800000000000006,
-                      "z": -56.375
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.0625,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod152",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0039_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4.3,
-                      "y": 1.45,
-                      "z": -54.25
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "_$id": "otrb",
-              "_$type": "Sprite3D",
-              "name": "04_RearBoundary",
-              "isStatic": true,
-              "_$child": [
-                {
-                  "_$id": "otr_d1b0001",
-                  "_$type": "Sprite3D",
-                  "name": "Boundary_West_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -14,
-                      "y": 3,
-                      "z": -44.8
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm1",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0002",
-                  "_$type": "Sprite3D",
-                  "name": "Boundary_East_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 14,
-                      "y": 3,
-                      "z": -44.8
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm2",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otr_d1b0004",
-                  "_$type": "Sprite3D",
-                  "name": "Boundary_North_RearArtSkin",
-                  "isStatic": true,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "y": 3,
-                      "z": -62
-                    }
-                  },
-                  "_$comp": [
-                    {
-                      "_$type": "MeshFilter",
-                      "sharedMesh": {
-                        "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm3",
-                        "_$type": "Mesh"
-                      }
-                    },
-                    {
-                      "_$type": "MeshRenderer",
-                      "receiveShadow": true,
-                      "castShadow": true,
-                      "lightmapScaleOffset": {
-                        "_$type": "Vector4"
-                      },
-                      "sharedMaterials": [
-                        {
-                          "_$uuid": "a314dbce-a094-47ea-8f5f-6a6ccb4c7ea4",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "dfb20d1c-5760-47b7-abdd-e009ca90533a",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "01de3f07-6d18-47f6-a9c6-db5fbf9f7a91",
-                          "_$type": "Material"
-                        },
-                        {
-                          "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                          "_$type": "Material"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "_$id": "otrmod000",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 1.25,
-                      "z": -29.799999999999997
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod001",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 3.62,
-                      "z": -29.799999999999997
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod002",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 1.25,
-                      "z": -34.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod003",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 1.25,
-                      "z": -39.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod004",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 3.62,
-                      "z": -39.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod005",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 1.25,
-                      "z": -44.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod006",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 1.25,
-                      "z": -49.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod007",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 3.62,
-                      "z": -49.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod008",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 1.25,
-                      "z": -54.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod009",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 1.25,
-                      "z": -59.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod010",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 3.62,
-                      "z": -59.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod011",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -29.24444444444444
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod012",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -33.133333333333326
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod013",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -37.02222222222222
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod014",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -40.91111111111111
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod015",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -44.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod016",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -48.68888888888888
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod017",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -52.577777777777776
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod018",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -56.46666666666667
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod019",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0001_+x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -13.7,
-                      "y": 5.28,
-                      "z": -60.355555555555554
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": 0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod020",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 1.25,
-                      "z": -59.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod021",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 3.62,
-                      "z": -59.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod022",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 1.25,
-                      "z": -54.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod023",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 1.25,
-                      "z": -49.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod024",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 3.62,
-                      "z": -49.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod025",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 1.25,
-                      "z": -44.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod026",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 1.25,
-                      "z": -39.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod027",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 3.62,
-                      "z": -39.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod028",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 1.25,
-                      "z": -34.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod029",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 1.25,
-                      "z": -29.799999999999997
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod030",
-                  "_$prefab": "5bd0be73-3034-4102-8a39-b8012884d2d4",
-                  "name": "ClosedWindow_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 3.62,
-                      "z": -29.799999999999997
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.75,
-                      "y": 0.75,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod031",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -60.355555555555554
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod032",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -56.46666666666667
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod033",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -52.577777777777776
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod034",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -48.68888888888888
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod035",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -44.8
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod036",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -40.91111111111111
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod037",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -37.02222222222222
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod038",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -33.133333333333326
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod039",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0002_-x",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 13.7,
-                      "y": 5.28,
-                      "z": -29.24444444444444
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion",
-                      "y": -0.7071067811865475,
-                      "w": 0.7071067811865476
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 0.9722222222222222,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod040",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0004_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -12.257142857142858,
-                      "y": 5.28,
-                      "z": -61.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.0214285714285716,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod041",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0004_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -8.17142857142857,
-                      "y": 5.28,
-                      "z": -61.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.0214285714285716,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod042",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0004_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": -4.085714285714285,
-                      "y": 5.28,
-                      "z": -61.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.0214285714285716,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod043",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0004_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 1.7763568394002505e-15,
-                      "y": 5.28,
-                      "z": -61.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.0214285714285716,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod044",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0004_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 4.085714285714289,
-                      "y": 5.28,
-                      "z": -61.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.0214285714285716,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod045",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0004_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 8.171428571428574,
-                      "y": 5.28,
-                      "z": -61.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.0214285714285716,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                },
-                {
-                  "_$id": "otrmod046",
-                  "_$prefab": "d60bdbfe-4b7d-4b55-9b2a-3bda6829bfb0",
-                  "name": "TileEave_d1b0004_+z",
-                  "active": true,
-                  "isStatic": true,
-                  "layer": 0,
-                  "transform": {
-                    "localPosition": {
-                      "_$type": "Vector3",
-                      "x": 12.25714285714286,
-                      "y": 5.28,
-                      "z": -61.7
-                    },
-                    "localRotation": {
-                      "_$type": "Quaternion"
-                    },
-                    "localScale": {
-                      "_$type": "Vector3",
-                      "x": 1.0214285714285716,
-                      "y": 1,
-                      "z": 1
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "_$id": "otrp",
-              "_$type": "Sprite3D",
-              "name": "05_RearPaving",
-              "isStatic": true,
-              "_$comp": [
-                {
-                  "_$type": "MeshFilter",
-                  "sharedMesh": {
-                    "_$uuid": "9e698910-86b0-46fa-98bd-197993ad9493@lm27",
-                    "_$type": "Mesh"
-                  }
-                },
-                {
-                  "_$type": "MeshRenderer",
-                  "receiveShadow": true,
-                  "castShadow": true,
-                  "lightmapScaleOffset": {
-                    "_$type": "Vector4"
-                  },
-                  "sharedMaterials": [
-                    {
-                      "_$uuid": "2f3dd07f-7c83-4f2b-9d34-f020173fc4d8",
-                      "_$type": "Material"
-                    }
-                  ]
-                }
-              ]
             }
           ]
         },
@@ -17526,9 +3292,10 @@
               "name": "Route_1",
               "transform": {
                 "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -4,
-                  "z": -20
+                  "x": -19,
+                  "y": 0,
+                  "z": 12,
+                  "_$type": "Vector3"
                 }
               },
               "_$child": [
@@ -17601,9 +3368,10 @@
               "name": "Route_2",
               "transform": {
                 "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 5,
-                  "z": -23
+                  "x": -16,
+                  "y": 0,
+                  "z": 9,
+                  "_$type": "Vector3"
                 }
               },
               "_$child": [
@@ -17676,9 +3444,10 @@
               "name": "Route_3",
               "transform": {
                 "localPosition": {
-                  "_$type": "Vector3",
-                  "x": -6,
-                  "z": -45
+                  "x": -3,
+                  "y": 0.02,
+                  "z": -10,
+                  "_$type": "Vector3"
                 }
               },
               "_$child": [
@@ -17751,9 +3520,10 @@
               "name": "Route_4",
               "transform": {
                 "localPosition": {
-                  "_$type": "Vector3",
-                  "x": 6,
-                  "z": -48
+                  "x": 2,
+                  "y": 0.02,
+                  "z": -7,
+                  "_$type": "Vector3"
                 }
               },
               "_$child": [
@@ -17828,10 +3598,10 @@
           "name": "MissionDocument_Fictional_虚构任务文件",
           "transform": {
             "localPosition": {
-              "_$type": "Vector3",
-              "x": -2.45,
-              "y": 1.25,
-              "z": -53.8
+              "x": -22.7,
+              "y": 1.025,
+              "z": -25.7,
+              "_$type": "Vector3"
             }
           },
           "_$child": [
@@ -17951,6 +3721,2420 @@
                   ]
                 }
               ]
+            }
+          ]
+        },
+        {
+          "_$id": "songbaix_root",
+          "_$type": "Sprite3D",
+          "name": "Songbaix_Environment",
+          "_$child": [
+            {
+              "_$id": "sb_ground",
+              "_$prefab": "24879f08-b276-420a-9997-0e3abb4382c8",
+              "name": "Songbaix_ground"
+            },
+            {
+              "_$id": "sb_landmark",
+              "_$prefab": "9a018647-2bf1-4f22-bd69-8660461878fa",
+              "name": "Songbaix_landmark"
+            },
+            {
+              "_$id": "sb_street-buildings",
+              "_$prefab": "165b32a1-72ac-453b-9b7f-17ad916d7a51",
+              "name": "Songbaix_street-buildings"
+            },
+            {
+              "_$id": "sb_mission-building-game",
+              "_$prefab": "ebbc71fe-bad5-489c-a5eb-010f5439be91",
+              "name": "Songbaix_mission-building-game"
+            },
+            {
+              "_$id": "sb_props",
+              "_$prefab": "22412755-cf67-4444-8354-1514b2894dd3",
+              "name": "Songbaix_props"
+            }
+          ]
+        },
+        {
+          "_$id": "songbaix_collisions",
+          "_$type": "Sprite3D",
+          "name": "Songbaix_StaticCollisions",
+          "_$child": [
+            {
+              "_$id": "sb_col_0",
+              "_$type": "Sprite3D",
+              "name": "COL_Block_Substrate_East",
+              "transform": {
+                "localPosition": {
+                  "x": 33,
+                  "y": -0.4000000059604645,
+                  "z": 0,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 50,
+                  "y": 0.550000011920929,
+                  "z": 34,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_1",
+              "_$type": "Sprite3D",
+              "name": "COL_Block_Substrate_West",
+              "transform": {
+                "localPosition": {
+                  "x": -16,
+                  "y": -0.4000000059604645,
+                  "z": -4,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 48,
+                  "y": 0.550000011920929,
+                  "z": 74,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_2",
+              "_$type": "Sprite3D",
+              "name": "COL_ChurchNorthBoundary",
+              "transform": {
+                "localPosition": {
+                  "x": 33,
+                  "y": 1.350000023841858,
+                  "z": -17,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 50,
+                  "y": 2.700000047683716,
+                  "z": 0.4500007629394531,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_3",
+              "_$type": "Sprite3D",
+              "name": "COL_ChurchNorthBoundary_Coping",
+              "transform": {
+                "localPosition": {
+                  "x": 33,
+                  "y": 2.7699999809265137,
+                  "z": -17,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 50.1199951171875,
+                  "y": 0.1399998664855957,
+                  "z": 0.5900001525878906,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_4",
+              "_$type": "Sprite3D",
+              "name": "COL_ChurchSidePaving",
+              "transform": {
+                "localPosition": {
+                  "x": 33,
+                  "y": -0.10000000149011612,
+                  "z": 0,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 50,
+                  "y": 0.20000000298023224,
+                  "z": 34,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_5",
+              "_$type": "Sprite3D",
+              "name": "COL_ChurchSouthBoundary",
+              "transform": {
+                "localPosition": {
+                  "x": 33,
+                  "y": 1.350000023841858,
+                  "z": 17,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 50,
+                  "y": 2.700000047683716,
+                  "z": 0.4500007629394531,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_6",
+              "_$type": "Sprite3D",
+              "name": "COL_ChurchSouthBoundary_Coping",
+              "transform": {
+                "localPosition": {
+                  "x": 33,
+                  "y": 2.7699999809265137,
+                  "z": 17,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 50.1199951171875,
+                  "y": 0.1399998664855957,
+                  "z": 0.5900001525878906,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_7",
+              "_$type": "Sprite3D",
+              "name": "COL_CourtyardWestScreen",
+              "transform": {
+                "localPosition": {
+                  "x": -10,
+                  "y": 1.350000023841858,
+                  "z": -12,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.4500007629394531,
+                  "y": 2.700000047683716,
+                  "z": 8,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_8",
+              "_$type": "Sprite3D",
+              "name": "COL_CourtyardWestScreen_Coping",
+              "transform": {
+                "localPosition": {
+                  "x": -10,
+                  "y": 2.7699999809265137,
+                  "z": -12,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.5699996948242188,
+                  "y": 0.1399998664855957,
+                  "z": 8.139999389648438,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_9",
+              "_$type": "Sprite3D",
+              "name": "COL_EastBoundary",
+              "transform": {
+                "localPosition": {
+                  "x": 58,
+                  "y": 1.5499999523162842,
+                  "z": 0,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.4499969482421875,
+                  "y": 3.0999999046325684,
+                  "z": 34,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_10",
+              "_$type": "Sprite3D",
+              "name": "COL_EastBoundary_Coping",
+              "transform": {
+                "localPosition": {
+                  "x": 58,
+                  "y": 3.1700000762939453,
+                  "z": 0,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.5699996948242188,
+                  "y": 0.1399998664855957,
+                  "z": 34.13999938964844,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_11",
+              "_$type": "Sprite3D",
+              "name": "COL_ForecourtNorthWall",
+              "transform": {
+                "localPosition": {
+                  "x": 2,
+                  "y": 1.25,
+                  "z": -19,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 10,
+                  "y": 2.5,
+                  "z": 0.4500007629394531,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_12",
+              "_$type": "Sprite3D",
+              "name": "COL_ForecourtNorthWall_Coping",
+              "transform": {
+                "localPosition": {
+                  "x": 2,
+                  "y": 2.569999933242798,
+                  "z": -19,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 10.119999885559082,
+                  "y": 0.1399998664855957,
+                  "z": 0.5900001525878906,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_13",
+              "_$type": "Sprite3D",
+              "name": "COL_ForecourtPaving",
+              "transform": {
+                "localPosition": {
+                  "x": -0.19999980926513672,
+                  "y": -0.07999999821186066,
+                  "z": -2,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 20,
+                  "y": 0.20000001788139343,
+                  "z": 33,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_14",
+              "_$type": "Sprite3D",
+              "name": "COL_ForecourtSouthWall",
+              "transform": {
+                "localPosition": {
+                  "x": -0.5,
+                  "y": 1.25,
+                  "z": 14,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 14,
+                  "y": 2.5,
+                  "z": 0.4500007629394531,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_15",
+              "_$type": "Sprite3D",
+              "name": "COL_ForecourtSouthWall_Coping",
+              "transform": {
+                "localPosition": {
+                  "x": -0.5,
+                  "y": 2.569999933242798,
+                  "z": 14,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 14.119999885559082,
+                  "y": 0.1399998664855957,
+                  "z": 0.5900001525878906,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_16",
+              "_$type": "Sprite3D",
+              "name": "COL_Landmark_LongHall_ExteriorOnly",
+              "transform": {
+                "localPosition": {
+                  "x": 32,
+                  "y": 5.25,
+                  "z": 0,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 48,
+                  "y": 10.100000381469727,
+                  "z": 26,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_17",
+              "_$type": "Sprite3D",
+              "name": "COL_LaneHouse_A_Walls",
+              "transform": {
+                "localPosition": {
+                  "x": -35,
+                  "y": 2.9000000953674316,
+                  "z": 23,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 8,
+                  "y": 4.59999942779541,
+                  "z": 14,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_18",
+              "_$type": "Sprite3D",
+              "name": "COL_LaneHouse_B_Walls",
+              "transform": {
+                "localPosition": {
+                  "x": -18,
+                  "y": 3.1500000953674316,
+                  "z": 24,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 12,
+                  "y": 5.09999942779541,
+                  "z": 10,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_19",
+              "_$type": "Sprite3D",
+              "name": "COL_LaneHouse_C_Walls",
+              "transform": {
+                "localPosition": {
+                  "x": -35,
+                  "y": 3.4000000953674316,
+                  "z": 5,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 8,
+                  "y": 5.59999942779541,
+                  "z": 17,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_20",
+              "_$type": "Sprite3D",
+              "name": "COL_LaneHouse_D_Walls",
+              "transform": {
+                "localPosition": {
+                  "x": -18,
+                  "y": 2.799999952316284,
+                  "z": 0,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 10,
+                  "y": 4.400000095367432,
+                  "z": 10,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_21",
+              "_$type": "Sprite3D",
+              "name": "COL_LaneHouse_E_Walls",
+              "transform": {
+                "localPosition": {
+                  "x": -35,
+                  "y": 3.200000286102295,
+                  "z": -17,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 8,
+                  "y": 5.199999809265137,
+                  "z": 17,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_22",
+              "_$type": "Sprite3D",
+              "name": "COL_LaneHouse_F_Walls",
+              "transform": {
+                "localPosition": {
+                  "x": -4,
+                  "y": 3.0999999046325684,
+                  "z": 24,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 12,
+                  "y": 5,
+                  "z": 10,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_23",
+              "_$type": "Sprite3D",
+              "name": "COL_LaneHouse_G_Walls",
+              "transform": {
+                "localPosition": {
+                  "x": -3,
+                  "y": 2.9000000953674316,
+                  "z": -29,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 10,
+                  "y": 4.59999942779541,
+                  "z": 7,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_24",
+              "_$type": "Sprite3D",
+              "name": "COL_LaneTurnScreen",
+              "transform": {
+                "localPosition": {
+                  "x": -12,
+                  "y": 1.350000023841858,
+                  "z": 7,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.4500007629394531,
+                  "y": 2.700000047683716,
+                  "z": 8,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_25",
+              "_$type": "Sprite3D",
+              "name": "COL_LaneTurnScreen_Coping",
+              "transform": {
+                "localPosition": {
+                  "x": -12,
+                  "y": 2.7699999809265137,
+                  "z": 7,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.5699996948242188,
+                  "y": 0.1399998664855957,
+                  "z": 8.139999389648438,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_26",
+              "_$type": "Sprite3D",
+              "name": "COL_LowCover_Courtyard_Fictional",
+              "transform": {
+                "localPosition": {
+                  "x": -2,
+                  "y": 0.4699999988079071,
+                  "z": -13,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 3,
+                  "y": 0.9399999976158142,
+                  "z": 1,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_27",
+              "_$type": "Sprite3D",
+              "name": "COL_LowCover_Fictional",
+              "transform": {
+                "localPosition": {
+                  "x": -23,
+                  "y": 0.4699999988079071,
+                  "z": 12,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 3.200000762939453,
+                  "y": 0.9399999976158142,
+                  "z": 1,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_28",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_DoorHead",
+              "transform": {
+                "localPosition": {
+                  "x": -18.799999237060547,
+                  "y": 3.299999952316284,
+                  "z": -22,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 2.4000015258789062,
+                  "y": 1,
+                  "z": 0.34999847412109375,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_29",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_DoorHead.001",
+              "transform": {
+                "localPosition": {
+                  "x": -18.799999237060547,
+                  "y": 3.299999952316284,
+                  "z": -33,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 2.4000015258789062,
+                  "y": 1,
+                  "z": 0.34999847412109375,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_30",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_DoorWallSegment",
+              "transform": {
+                "localPosition": {
+                  "x": -23.5,
+                  "y": 1.899999976158142,
+                  "z": -22,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 7,
+                  "y": 3.799999952316284,
+                  "z": 0.34999847412109375,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_31",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_DoorWallSegment.001",
+              "transform": {
+                "localPosition": {
+                  "x": -15.300000190734863,
+                  "y": 1.899999976158142,
+                  "z": -22,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 4.600000381469727,
+                  "y": 3.799999952316284,
+                  "z": 0.34999847412109375,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_32",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_DoorWallSegment.002",
+              "transform": {
+                "localPosition": {
+                  "x": -23.5,
+                  "y": 1.899999976158142,
+                  "z": -33,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 7,
+                  "y": 3.799999952316284,
+                  "z": 0.34999847412109375,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_33",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_DoorWallSegment.003",
+              "transform": {
+                "localPosition": {
+                  "x": -15.300000190734863,
+                  "y": 1.899999976158142,
+                  "z": -33,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 4.600000381469727,
+                  "y": 3.799999952316284,
+                  "z": 0.34999847412109375,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_34",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_Floor",
+              "transform": {
+                "localPosition": {
+                  "x": -20,
+                  "y": -0.04999999701976776,
+                  "z": -27.5,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 14,
+                  "y": 0.1599999964237213,
+                  "z": 11,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_35",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_InteriorScreen",
+              "transform": {
+                "localPosition": {
+                  "x": -23,
+                  "y": 1.4500000476837158,
+                  "z": -28.299999237060547,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 6,
+                  "y": 2.9000000953674316,
+                  "z": 0.15999984741210938,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_36",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_SideLowerWall",
+              "transform": {
+                "localPosition": {
+                  "x": -27,
+                  "y": 0.6200000047683716,
+                  "z": -27.5,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.34999847412109375,
+                  "y": 1.2400000095367432,
+                  "z": 11,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_37",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_SideLowerWall.001",
+              "transform": {
+                "localPosition": {
+                  "x": -13,
+                  "y": 0.6200000047683716,
+                  "z": -27.5,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.35000038146972656,
+                  "y": 1.2400000095367432,
+                  "z": 11,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_38",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_SideUpperWall",
+              "transform": {
+                "localPosition": {
+                  "x": -27,
+                  "y": 3.25,
+                  "z": -27.5,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.34999847412109375,
+                  "y": 1.0999999046325684,
+                  "z": 11,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_39",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_SideUpperWall.001",
+              "transform": {
+                "localPosition": {
+                  "x": -13,
+                  "y": 3.25,
+                  "z": -27.5,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.35000038146972656,
+                  "y": 1.0999999046325684,
+                  "z": 11,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_40",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_SideWindowPier",
+              "transform": {
+                "localPosition": {
+                  "x": -27,
+                  "y": 2,
+                  "z": -23,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.34999847412109375,
+                  "y": 1.5,
+                  "z": 2,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_41",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_SideWindowPier.001",
+              "transform": {
+                "localPosition": {
+                  "x": -27,
+                  "y": 2,
+                  "z": -27.5,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.34999847412109375,
+                  "y": 1.5,
+                  "z": 2,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_42",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_SideWindowPier.002",
+              "transform": {
+                "localPosition": {
+                  "x": -27,
+                  "y": 2,
+                  "z": -32,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.34999847412109375,
+                  "y": 1.5,
+                  "z": 2,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_43",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_SideWindowPier.003",
+              "transform": {
+                "localPosition": {
+                  "x": -13,
+                  "y": 2,
+                  "z": -23,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.35000038146972656,
+                  "y": 1.5,
+                  "z": 2,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_44",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_SideWindowPier.004",
+              "transform": {
+                "localPosition": {
+                  "x": -13,
+                  "y": 2,
+                  "z": -27.5,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.35000038146972656,
+                  "y": 1.5,
+                  "z": 2,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_45",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_SideWindowPier.005",
+              "transform": {
+                "localPosition": {
+                  "x": -13,
+                  "y": 2,
+                  "z": -32,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.35000038146972656,
+                  "y": 1.5,
+                  "z": 2,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_46",
+              "_$type": "Sprite3D",
+              "name": "COL_NorthBoundary",
+              "transform": {
+                "localPosition": {
+                  "x": -16,
+                  "y": 1.5499999523162842,
+                  "z": -40,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 48,
+                  "y": 3.0999999046325684,
+                  "z": 0.4499969482421875,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_47",
+              "_$type": "Sprite3D",
+              "name": "COL_NorthBoundary_Coping",
+              "transform": {
+                "localPosition": {
+                  "x": -15.999999046325684,
+                  "y": 3.1700000762939453,
+                  "z": -40,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 48.1199951171875,
+                  "y": 0.1399998664855957,
+                  "z": 0.589996337890625,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_48",
+              "_$type": "Sprite3D",
+              "name": "COL_NorthReturnBoundary",
+              "transform": {
+                "localPosition": {
+                  "x": 8,
+                  "y": 1.350000023841858,
+                  "z": -28.5,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.4500002861022949,
+                  "y": 2.700000047683716,
+                  "z": 23,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_49",
+              "_$type": "Sprite3D",
+              "name": "COL_NorthReturnBoundary_Coping",
+              "transform": {
+                "localPosition": {
+                  "x": 8,
+                  "y": 2.7699999809265137,
+                  "z": -28.5,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.5699996948242188,
+                  "y": 0.1399998664855957,
+                  "z": 23.139999389648438,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_50",
+              "_$type": "Sprite3D",
+              "name": "COL_SouthBoundary",
+              "transform": {
+                "localPosition": {
+                  "x": -16,
+                  "y": 1.5499999523162842,
+                  "z": 32,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 48,
+                  "y": 3.0999999046325684,
+                  "z": 0.4499988555908203,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_51",
+              "_$type": "Sprite3D",
+              "name": "COL_SouthBoundary_Coping",
+              "transform": {
+                "localPosition": {
+                  "x": -15.999999046325684,
+                  "y": 3.1700000762939453,
+                  "z": 32,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 48.1199951171875,
+                  "y": 0.1399998664855957,
+                  "z": 0.5899982452392578,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_52",
+              "_$type": "Sprite3D",
+              "name": "COL_SouthReturnBoundary",
+              "transform": {
+                "localPosition": {
+                  "x": 8,
+                  "y": 1.350000023841858,
+                  "z": 24.5,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.4500002861022949,
+                  "y": 2.700000047683716,
+                  "z": 15,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_53",
+              "_$type": "Sprite3D",
+              "name": "COL_SouthReturnBoundary_Coping",
+              "transform": {
+                "localPosition": {
+                  "x": 8,
+                  "y": 2.7699999809265137,
+                  "z": 24.5,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.5699996948242188,
+                  "y": 0.1399998664855957,
+                  "z": 15.139999389648438,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_54",
+              "_$type": "Sprite3D",
+              "name": "COL_StreetPaving",
+              "transform": {
+                "localPosition": {
+                  "x": -16,
+                  "y": -0.10000000149011612,
+                  "z": -4,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 48,
+                  "y": 0.20000000298023224,
+                  "z": 74,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_55",
+              "_$type": "Sprite3D",
+              "name": "COL_WestBoundary",
+              "transform": {
+                "localPosition": {
+                  "x": -40,
+                  "y": 1.5499999523162842,
+                  "z": -3,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.4499969482421875,
+                  "y": 3.0999999046325684,
+                  "z": 70,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_col_56",
+              "_$type": "Sprite3D",
+              "name": "COL_WestBoundary_Coping",
+              "transform": {
+                "localPosition": {
+                  "x": -40,
+                  "y": 3.1700000762939453,
+                  "z": -3,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.5699996948242188,
+                  "y": 0.1399998664855957,
+                  "z": 70.13999938964844,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_pr9",
+              "_$type": "Sprite3D",
+              "name": "COL_MovableCrate_Fictional_0",
+              "transform": {
+                "localPosition": {
+                  "x": -25,
+                  "y": 0.5,
+                  "z": 9,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 1,
+                  "y": 1,
+                  "z": 1,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_pr14",
+              "_$type": "Sprite3D",
+              "name": "COL_MovableCrate_Fictional_1",
+              "transform": {
+                "localPosition": {
+                  "x": -24,
+                  "y": 0.5,
+                  "z": 9,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 1,
+                  "y": 1,
+                  "z": 1,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_pr19",
+              "_$type": "Sprite3D",
+              "name": "COL_MovableCrate_Fictional_2",
+              "transform": {
+                "localPosition": {
+                  "x": -24,
+                  "y": 1.5,
+                  "z": 9,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 1,
+                  "y": 1,
+                  "z": 1,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_pr24",
+              "_$type": "Sprite3D",
+              "name": "COL_MovableCrate_Fictional_3",
+              "transform": {
+                "localPosition": {
+                  "x": -8,
+                  "y": 0.550000011920929,
+                  "z": -1,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 1.100000023841858,
+                  "y": 1.100000023841858,
+                  "z": 1.100000023841858,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_pr29",
+              "_$type": "Sprite3D",
+              "name": "COL_MovableCrate_Fictional_4",
+              "transform": {
+                "localPosition": {
+                  "x": 2,
+                  "y": 0.44999998807907104,
+                  "z": -14,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.8999999761581421,
+                  "y": 0.8999999761581421,
+                  "z": 0.8999999761581421,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_pr34",
+              "_$type": "Sprite3D",
+              "name": "COL_MovableCrate_Fictional_5",
+              "transform": {
+                "localPosition": {
+                  "x": -5,
+                  "y": 0.44999998807907104,
+                  "z": -15,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.8999999761581421,
+                  "y": 0.8999999761581421,
+                  "z": 0.8999999761581421,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_pr39",
+              "_$type": "Sprite3D",
+              "name": "COL_MovableCrate_Fictional_6",
+              "transform": {
+                "localPosition": {
+                  "x": -29,
+                  "y": 0.4000000059604645,
+                  "z": -30,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.800000011920929,
+                  "y": 0.800000011920929,
+                  "z": 0.800000011920929,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_mi0",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_Bench",
+              "transform": {
+                "localPosition": {
+                  "x": -23,
+                  "y": 0.5,
+                  "z": -24.100000381469727,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 2.5,
+                  "y": 0.11999999731779099,
+                  "z": 0.4000000059604645,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_mi1",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_BenchLeg",
+              "transform": {
+                "localPosition": {
+                  "x": -24,
+                  "y": 0.23999999463558197,
+                  "z": -24.100000381469727,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.14000000059604645,
+                  "y": 0.47999998927116394,
+                  "z": 0.33000001311302185,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_mi2",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_BenchLeg.001",
+              "transform": {
+                "localPosition": {
+                  "x": -22,
+                  "y": 0.23999999463558197,
+                  "z": -24.100000381469727,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.14000000059604645,
+                  "y": 0.47999998927116394,
+                  "z": 0.33000001311302185,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_mi26",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_Shelf",
+              "transform": {
+                "localPosition": {
+                  "x": -26.350000381469727,
+                  "y": 0.18000000715255737,
+                  "z": -30.399999618530273,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.699999988079071,
+                  "y": 0.10000000149011612,
+                  "z": 2.5999999046325684,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_mi27",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_Shelf.001",
+              "transform": {
+                "localPosition": {
+                  "x": -26.350000381469727,
+                  "y": 1,
+                  "z": -30.399999618530273,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.699999988079071,
+                  "y": 0.10000000149011612,
+                  "z": 2.5999999046325684,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_mi28",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_Shelf.002",
+              "transform": {
+                "localPosition": {
+                  "x": -26.350000381469727,
+                  "y": 1.7999999523162842,
+                  "z": -30.399999618530273,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.699999988079071,
+                  "y": 0.10000000149011612,
+                  "z": 2.5999999046325684,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_mi29",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_Shelf.003",
+              "transform": {
+                "localPosition": {
+                  "x": -26.350000381469727,
+                  "y": 2.5999999046325684,
+                  "z": -30.399999618530273,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.699999988079071,
+                  "y": 0.10000000149011612,
+                  "z": 2.5999999046325684,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_mi30",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_ShelfBack",
+              "transform": {
+                "localPosition": {
+                  "x": -26.65999984741211,
+                  "y": 1.2999999523162842,
+                  "z": -30.399999618530273,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.10000000149011612,
+                  "y": 2.5999999046325684,
+                  "z": 2.5999999046325684,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_mi41",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_TableLeg",
+              "transform": {
+                "localPosition": {
+                  "x": -24.100000381469727,
+                  "y": 0.4300000071525574,
+                  "z": -25.270000457763672,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.11999999731779099,
+                  "y": 0.8600000143051147,
+                  "z": 0.11999999731779099,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_mi42",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_TableLeg.001",
+              "transform": {
+                "localPosition": {
+                  "x": -24.100000381469727,
+                  "y": 0.4300000071525574,
+                  "z": -26.1299991607666,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.11999999731779099,
+                  "y": 0.8600000143051147,
+                  "z": 0.11999999731779099,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_mi43",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_TableLeg.002",
+              "transform": {
+                "localPosition": {
+                  "x": -21.899999618530273,
+                  "y": 0.4300000071525574,
+                  "z": -25.270000457763672,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.11999999731779099,
+                  "y": 0.8600000143051147,
+                  "z": 0.11999999731779099,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_mi44",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_TableLeg.003",
+              "transform": {
+                "localPosition": {
+                  "x": -21.899999618530273,
+                  "y": 0.4300000071525574,
+                  "z": -26.1299991607666,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.11999999731779099,
+                  "y": 0.8600000143051147,
+                  "z": 0.11999999731779099,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_mi45",
+              "_$type": "Sprite3D",
+              "name": "COL_Mission_TableTop",
+              "transform": {
+                "localPosition": {
+                  "x": -23,
+                  "y": 0.8999999761581421,
+                  "z": -25.700000762939453,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 2.799999952316284,
+                  "y": 0.12999999523162842,
+                  "z": 1.2000000476837158,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_st4",
+              "_$type": "Sprite3D",
+              "name": "COL_CourtyardGateLintel",
+              "transform": {
+                "localPosition": {
+                  "x": -7.5,
+                  "y": 3.5999999046325684,
+                  "z": -6,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 5.650000095367432,
+                  "y": 0.30000001192092896,
+                  "z": 0.6000000238418579,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_st5",
+              "_$type": "Sprite3D",
+              "name": "COL_CourtyardGatePier",
+              "transform": {
+                "localPosition": {
+                  "x": -10,
+                  "y": 1.7999999523162842,
+                  "z": -6,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.6499999761581421,
+                  "y": 3.5999999046325684,
+                  "z": 0.6499999761581421,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_extra_st6",
+              "_$type": "Sprite3D",
+              "name": "COL_CourtyardGatePier.001",
+              "transform": {
+                "localPosition": {
+                  "x": -5,
+                  "y": 1.7999999523162842,
+                  "z": -6,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 0.6499999761581421,
+                  "y": 3.5999999046325684,
+                  "z": 0.6499999761581421,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            },
+            {
+              "_$id": "sb_ceiling",
+              "_$type": "Sprite3D",
+              "name": "COL_MissionCeiling",
+              "transform": {
+                "localPosition": {
+                  "x": -20,
+                  "y": 3.9,
+                  "z": -27.5,
+                  "_$type": "Vector3"
+                },
+                "localScale": {
+                  "x": 14,
+                  "y": 0.18,
+                  "z": 11,
+                  "_$type": "Vector3"
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "PhysicsCollider",
+                  "colliderShape": {
+                    "_$type": "BoxColliderShape"
+                  },
+                  "collisionGroup": 1,
+                  "canCollideWith": -1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_$id": "sb_roomlight",
+          "_$type": "Sprite3D",
+          "name": "Songbaix_InteriorFill",
+          "transform": {
+            "localPosition": {
+              "x": -23,
+              "y": 3,
+              "z": -25.5,
+              "_$type": "Vector3"
+            }
+          },
+          "_$comp": [
+            {
+              "_$type": "PointLightCom",
+              "color": {
+                "_$type": "Color",
+                "r": 1,
+                "g": 0.86,
+                "b": 0.7
+              },
+              "intensity": 1.1,
+              "range": 10
             }
           ]
         }
@@ -18288,7 +6472,7 @@
       "width": 390,
       "height": 36,
       "_mouseState": 1,
-      "text": "DEMO 01 · 虚构布局玩法原型",
+      "text": "松柏巷街区 · 历史地标参考 / 虚构任务布局",
       "font": "Microsoft YaHei",
       "fontSize": 16,
       "color": "#dddddd",

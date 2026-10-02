@@ -1,0 +1,941 @@
+{
+  "_$ver": 1,
+  "_$id": "gkjb3zb4",
+  "_$type": "Sprite3D",
+  "name": "Scene",
+  "_$child": [
+    {
+      "_$id": "#0",
+      "_$type": "Sprite3D",
+      "name": "Block_Substrate_East",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 33,
+          "y": -0.4000000059604645
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "924db52f-3a15-45c2-863c-a1a83162e5fb",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "fe911352-b971-4f57-aaf7-3d95bd40345c",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#1",
+      "_$type": "Sprite3D",
+      "name": "Block_Substrate_West",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -16,
+          "y": -0.4000000059604645,
+          "z": -4
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "2a419801-6e84-4529-963e-db728bd4f896",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "fe911352-b971-4f57-aaf7-3d95bd40345c",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#2",
+      "_$type": "Sprite3D",
+      "name": "ChurchSidePaving",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 33,
+          "y": -0.10000000149011612
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "c850a834-beb0-4f26-9358-719bf9feb84c",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "21088562-a742-4ef9-8e5c-923d23bdf938",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#3",
+      "_$type": "Sprite3D",
+      "name": "DrainChannel",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -30,
+          "y": 0.014999999664723873,
+          "z": 4
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "f66fa8e3-e1ef-492c-b3ba-4771c1b1ae69",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "d554f017-b92b-4302-b6f2-433d70ec207c",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#4",
+      "_$type": "Sprite3D",
+      "name": "DrainChannel.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -24,
+          "y": 0.014999999664723873,
+          "z": 4
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "f66fa8e3-e1ef-492c-b3ba-4771c1b1ae69",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "d554f017-b92b-4302-b6f2-433d70ec207c",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#5",
+      "_$type": "Sprite3D",
+      "name": "DrainChannel.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -10,
+          "y": 0.014999999664723873,
+          "z": 4
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "f66fa8e3-e1ef-492c-b3ba-4771c1b1ae69",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "d554f017-b92b-4302-b6f2-433d70ec207c",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#6",
+      "_$type": "Sprite3D",
+      "name": "DrainChannel.003",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6,
+          "y": 0.014999999664723873,
+          "z": 4
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "f66fa8e3-e1ef-492c-b3ba-4771c1b1ae69",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "d554f017-b92b-4302-b6f2-433d70ec207c",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#7",
+      "_$type": "Sprite3D",
+      "name": "DrainCover",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -30,
+          "y": 0.03999999910593033,
+          "z": 22
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#8",
+      "_$type": "Sprite3D",
+      "name": "DrainCover.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -30,
+          "y": 0.03999999910593033,
+          "z": 10
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#9",
+      "_$type": "Sprite3D",
+      "name": "DrainCover.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -30,
+          "y": 0.03999999910593033,
+          "z": -2
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#10",
+      "_$type": "Sprite3D",
+      "name": "DrainCover.003",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -30,
+          "y": 0.03999999910593033,
+          "z": -14
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#11",
+      "_$type": "Sprite3D",
+      "name": "DrainCover.004",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -24,
+          "y": 0.03999999910593033,
+          "z": 22
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#12",
+      "_$type": "Sprite3D",
+      "name": "DrainCover.005",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -24,
+          "y": 0.03999999910593033,
+          "z": 10
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#13",
+      "_$type": "Sprite3D",
+      "name": "DrainCover.006",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -24,
+          "y": 0.03999999910593033,
+          "z": -2
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#14",
+      "_$type": "Sprite3D",
+      "name": "DrainCover.007",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -24,
+          "y": 0.03999999910593033,
+          "z": -14
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#15",
+      "_$type": "Sprite3D",
+      "name": "DrainCover.008",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -10,
+          "y": 0.03999999910593033,
+          "z": 22
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#16",
+      "_$type": "Sprite3D",
+      "name": "DrainCover.009",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -10,
+          "y": 0.03999999910593033,
+          "z": 10
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#17",
+      "_$type": "Sprite3D",
+      "name": "DrainCover.010",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -10,
+          "y": 0.03999999910593033,
+          "z": -2
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#18",
+      "_$type": "Sprite3D",
+      "name": "DrainCover.011",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -10,
+          "y": 0.03999999910593033,
+          "z": -14
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#19",
+      "_$type": "Sprite3D",
+      "name": "DrainCover.012",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6,
+          "y": 0.03999999910593033,
+          "z": 22
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#20",
+      "_$type": "Sprite3D",
+      "name": "DrainCover.013",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6,
+          "y": 0.03999999910593033,
+          "z": 10
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#21",
+      "_$type": "Sprite3D",
+      "name": "DrainCover.014",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6,
+          "y": 0.03999999910593033,
+          "z": -2
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#22",
+      "_$type": "Sprite3D",
+      "name": "DrainCover.015",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6,
+          "y": 0.03999999910593033,
+          "z": -14
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4f191d2b-36ce-46c7-9335-539d43822566",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#23",
+      "_$type": "Sprite3D",
+      "name": "ForecourtPaving",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -0.20000000298023224,
+          "y": -0.07999999821186066,
+          "z": -2
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "5693af1b-97a1-433c-a593-5f9b17603353",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#24",
+      "_$type": "Sprite3D",
+      "name": "LandmarkFooting",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 32,
+          "y": -0.05999999865889549
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "6f932bcd-d878-4cca-bd77-b8ba5c63e497",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "02f0cca0-db35-4143-9922-18999a4f9b1a",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#25",
+      "_$type": "Sprite3D",
+      "name": "StreetPaving",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": -16,
+          "y": -0.10000000149011612,
+          "z": -4
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "a0d499c8-44b2-4da7-b635-0cd35f6ce0ea",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "21088562-a742-4ef9-8e5c-923d23bdf938",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4708 @@
+{
+  "_$ver": 1,
+  "_$id": "su89gwoq",
+  "_$type": "Sprite3D",
+  "name": "Scene",
+  "_$child": [
+    {
+      "_$id": "#0",
+      "_$type": "Sprite3D",
+      "name": "Landmark_AisleCornice",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 32,
+          "y": 10.25,
+          "z": 13.100000381469727
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "74172a1d-da83-4361-891f-d71504c8a5ae",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#1",
+      "_$type": "Sprite3D",
+      "name": "Landmark_AisleCornice.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 32,
+          "y": 10.25,
+          "z": -13.100000381469727
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "74172a1d-da83-4361-891f-d71504c8a5ae",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#2",
+      "_$type": "Sprite3D",
+      "name": "Landmark_AisleRoof",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "a222eaf1-c23c-49f3-acef-012383a02604",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4177f454-ba17-457b-aa9f-6e898ac0efd7",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#3",
+      "_$type": "Sprite3D",
+      "name": "Landmark_AisleRoof.001",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "7f576953-0493-41b4-b8c5-63a923566740",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4177f454-ba17-457b-aa9f-6e898ac0efd7",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#4",
+      "_$type": "Sprite3D",
+      "name": "Landmark_Base",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 32,
+          "y": 0.20000000298023224
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "9360e9ab-7a99-4202-8498-e755aea1da80",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "f00fc615-a92b-4300-b4c9-608e5cc99dff",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#5",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_Glass",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.095000267028809,
+          "y": 12.399999618530273
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "x": 0.5,
+          "y": 0.5,
+          "z": -0.5,
+          "w": 0.5
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "15d4710b-4ce3-49d2-a6ab-a99da0886cb1",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "5e193d74-16af-455e-8fa9-4a532e7680b6",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#6",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_Glass.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.095000267028809,
+          "y": 8.800000190734863,
+          "z": 9.600000381469727
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "x": 0.5,
+          "y": 0.5,
+          "z": -0.5,
+          "w": 0.5
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "92c7fb33-3884-4f4d-af63-73f40587a2f4",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "5e193d74-16af-455e-8fa9-4a532e7680b6",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#7",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_Glass.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.095000267028809,
+          "y": 8.800000190734863,
+          "z": -9.600000381469727
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "x": 0.5,
+          "y": 0.5,
+          "z": -0.5,
+          "w": 0.5
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "5a8ecf25-4d97-49d5-8e05-33715d978ae7",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "5e193d74-16af-455e-8fa9-4a532e7680b6",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#8",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_SimpleRadial",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6.949999809265137,
+          "y": 12.399999618530273
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.7071067811865476,
+          "z": 0.7071067811865476,
+          "w": 5.0242958677880805e-15
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "cd081e27-0e0c-4cb1-bbd6-3e26f3bf733b",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#9",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_SimpleRadial.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6.949999809265137,
+          "y": 12.399999618530273
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.9238795200293217,
+          "z": 0.3826834624992091,
+          "w": 8.157918214143366e-8
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "e46da13f-c30c-4640-b112-2c41c3dd515c",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#10",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_SimpleRadial.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6.949999809265137,
+          "y": 12.399999618530273
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.9999999999999971,
+          "w": 7.549790126404311e-8
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "30321a21-799d-4731-b3c5-ccdfd55a3872",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#11",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_SimpleRadial.003",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6.949999809265137,
+          "y": 12.399999618530273
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "x": 0.38268348793708296,
+          "w": 0.9238795094926114
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "13303f30-a5e8-4462-bae0-39806995f3a6",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#12",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_SimpleRadial.004",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6.949999809265137,
+          "y": 8.800000190734863,
+          "z": 9.600000381469727
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.7071067811865466,
+          "z": 0.7071067811865466,
+          "w": 5.338508653993267e-8
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1ee383ff-a748-4ac8-a826-a4e1c702f380",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#13",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_SimpleRadial.005",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6.949999809265137,
+          "y": 8.799999237060547,
+          "z": 9.600000381469727
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.9238795200293217,
+          "z": 0.3826834624992091,
+          "w": 8.157917503600617e-8
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "adb3bf99-49be-4767-a47e-df10d239705b",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#14",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_SimpleRadial.006",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6.949999809265137,
+          "y": 8.800000190734863,
+          "z": 9.600000381469727
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.9999999999999971,
+          "w": 7.549790126404311e-8
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "7ccf46f5-8da5-42a6-9e13-9c9c9018ad30",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#15",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_SimpleRadial.007",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6.949999809265137,
+          "y": 8.799999237060547,
+          "z": 9.600000381469727
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "x": 0.38268348793708296,
+          "w": 0.9238795094926114
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "b4b72523-b753-48e1-bb8e-fc26e93d1e20",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#16",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_SimpleRadial.008",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6.949999809265137,
+          "y": 8.800000190734863,
+          "z": -9.600000381469727
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.7071067811865466,
+          "z": 0.7071067811865466,
+          "w": 5.338508653993267e-8
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1703cd28-c890-4d51-951c-57f225f20a8f",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#17",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_SimpleRadial.009",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6.949999809265137,
+          "y": 8.799999237060547,
+          "z": -9.600000381469727
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.9238795200293217,
+          "z": 0.3826834624992091,
+          "w": 8.157917503600617e-8
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "3767307c-4449-4bd3-b115-d5ad8c03c5b4",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#18",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_SimpleRadial.010",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6.949999809265137,
+          "y": 8.800000190734863,
+          "z": -9.600000381469727
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.9999999999999971,
+          "w": 7.549790126404311e-8
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "aa4e5936-ee99-4ff4-8a79-ec927c84eb81",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#19",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_SimpleRadial.011",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6.949999809265137,
+          "y": 8.799999237060547,
+          "z": -9.600000381469727
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "x": 0.38268348793708296,
+          "w": 0.9238795094926114
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "f5cda8e7-b199-4c4e-a2c5-165b92fe2d4f",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#20",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_StoneRing",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.019999980926514,
+          "y": 12.399999618530273
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "z": -0.7071067811865476,
+          "w": 0.7071067811865476
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "afe1b691-00b2-4ba4-b61c-e0d2c280c346",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#21",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_StoneRing.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.019999980926514,
+          "y": 8.800000190734863,
+          "z": 9.600000381469727
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "z": -0.7071067811865476,
+          "w": 0.7071067811865476
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "a5c59451-4274-41a2-ba52-1e24d1fb61c6",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#22",
+      "_$type": "Sprite3D",
+      "name": "Landmark_CircularWindow_StoneRing.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.019999980926514,
+          "y": 8.800000190734863,
+          "z": -9.600000381469727
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "z": -0.7071067811865476,
+          "w": 0.7071067811865476
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "46ff5eb6-0c67-46be-bd0c-ef41bcc50b6f",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#23",
+      "_$type": "Sprite3D",
+      "name": "Landmark_Clerestory",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 32,
+          "y": 13.100000381469727
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "7c1afa06-3cbf-44a7-8c83-47b83f22bb50",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "192ed426-f73a-4b64-8ceb-c8fba696bd7b",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#24",
+      "_$type": "Sprite3D",
+      "name": "Landmark_ClosedDoor",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "fa74b955-d042-4d1a-8192-18d2b113e67f",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "e4ac7383-0ad2-43c3-b4f1-db1413c82d17",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#25",
+      "_$type": "Sprite3D",
+      "name": "Landmark_ClosedDoor.001",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "ce455461-503a-4594-88e0-634f3564fdd8",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "e4ac7383-0ad2-43c3-b4f1-db1413c82d17",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#26",
+      "_$type": "Sprite3D",
+      "name": "Landmark_ClosedDoor.002",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "85bec824-26a3-4202-9ad2-feacac6172bd",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "e4ac7383-0ad2-43c3-b4f1-db1413c82d17",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#27",
+      "_$type": "Sprite3D",
+      "name": "Landmark_ClosedDoor.003",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "47b42b4f-9cd0-41e8-b179-187415d6d591",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "e4ac7383-0ad2-43c3-b4f1-db1413c82d17",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#28",
+      "_$type": "Sprite3D",
+      "name": "Landmark_ClosedDoor.004",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "a457ef79-8bb6-45e0-bae0-a20dadea9ff1",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "e4ac7383-0ad2-43c3-b4f1-db1413c82d17",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#29",
+      "_$type": "Sprite3D",
+      "name": "Landmark_Coping",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.400000095367432,
+          "y": 13.649999618530273,
+          "z": 9.050000190734863
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.8596723453114489,
+          "z": 0.5108458267488403,
+          "w": 8.451615011031714e-8
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "99c8ae72-748b-4486-aaf5-6d03d4dccae1",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#30",
+      "_$type": "Sprite3D",
+      "name": "Landmark_Coping.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.400000095367432,
+          "y": 13.649999618530273,
+          "z": -9.050000190734863
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.5108458707988488,
+          "z": 0.8596723191354735,
+          "w": 5.4228185106713344e-8
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "75d510ab-16d1-4c0f-892b-c4dfab11a06b",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#31",
+      "_$type": "Sprite3D",
+      "name": "Landmark_Coping.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.400000095367432,
+          "y": 20.100000381469727,
+          "z": 3.9499998092651367
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.7071067811865466,
+          "z": 0.7071067811865466,
+          "w": 5.338508653993267e-8
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "bc1894f0-79ff-4a8c-b7a3-3c699890fbec",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#32",
+      "_$type": "Sprite3D",
+      "name": "Landmark_Coping.003",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.400000095367432,
+          "y": 20.600000381469727,
+          "z": 1.399999976158142
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": 0.8174154776627437,
+          "z": -0.5760485542707215,
+          "w": 1.2017422639305897e-8
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "2761ebda-374d-4139-b729-dba89bec95b2",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#33",
+      "_$type": "Sprite3D",
+      "name": "Landmark_Coping.004",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.400000095367432,
+          "y": 20.600000381469727,
+          "z": -1.399999976158142
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.5760484863787007,
+          "z": 0.8174155255075628,
+          "w": 5.3244259908462e-8
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "7aa57fc0-4e5b-487f-bb7e-d43704bdc72e",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#34",
+      "_$type": "Sprite3D",
+      "name": "Landmark_Coping.005",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.400000095367432,
+          "y": 20.100000381469727,
+          "z": -3.9499998092651367
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.7071067811865466,
+          "z": 0.7071067811865466,
+          "w": 5.338508653993267e-8
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "88f0bf93-9ea0-41d6-ad8e-802e25a9a442",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#35",
+      "_$type": "Sprite3D",
+      "name": "Landmark_Cross_Horizontal",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.650000095367432,
+          "y": 22.100000381469727
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "6bdd9938-1799-43a3-8fb6-bf474de094a1",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#36",
+      "_$type": "Sprite3D",
+      "name": "Landmark_Cross_Vertical",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.650000095367432,
+          "y": 21.799999237060547
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "7bcc5aa9-bcd5-46f8-89f0-8d0757a42cfa",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#37",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorMeetingStile",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.059999942779541,
+          "y": 1.7999999523162842
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "11724e90-f363-46e5-bcd6-837452308049",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#38",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorMeetingStile.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.059999942779541,
+          "y": 1.7999999523162842,
+          "z": 4
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "11724e90-f363-46e5-bcd6-837452308049",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#39",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorMeetingStile.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.059999942779541,
+          "y": 1.7999999523162842,
+          "z": -4
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "11724e90-f363-46e5-bcd6-837452308049",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#40",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorMeetingStile.003",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.059999942779541,
+          "y": 1.7999999523162842,
+          "z": 9.600000381469727
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "11724e90-f363-46e5-bcd6-837452308049",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#41",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorMeetingStile.004",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.059999942779541,
+          "y": 1.7999999523162842,
+          "z": -9.600000381469727
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "11724e90-f363-46e5-bcd6-837452308049",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#42",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorRail",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.050000190734863,
+          "y": 1.100000023841858
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "f68b2f63-eec0-4e76-a0cf-c4889279b9fd",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#43",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorRail.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.050000190734863,
+          "y": 2.5
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "f68b2f63-eec0-4e76-a0cf-c4889279b9fd",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#44",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorRail.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.050000190734863,
+          "y": 1.100000023841858,
+          "z": 4
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "43947689-96ca-404a-9927-70ba3d210fa3",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#45",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorRail.003",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.050000190734863,
+          "y": 2.5,
+          "z": 4
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "43947689-96ca-404a-9927-70ba3d210fa3",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#46",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorRail.004",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.050000190734863,
+          "y": 1.100000023841858,
+          "z": -4
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "43947689-96ca-404a-9927-70ba3d210fa3",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#47",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorRail.005",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.050000190734863,
+          "y": 2.5,
+          "z": -4
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "43947689-96ca-404a-9927-70ba3d210fa3",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#48",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorRail.006",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.050000190734863,
+          "y": 1.100000023841858,
+          "z": 9.600000381469727
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "5d3e1b93-b452-44b4-b490-287f05ec94ee",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#49",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorRail.007",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.050000190734863,
+          "y": 2.5,
+          "z": 9.600000381469727
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "5d3e1b93-b452-44b4-b490-287f05ec94ee",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#50",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorRail.008",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.050000190734863,
+          "y": 1.100000023841858,
+          "z": -9.600000381469727
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "5d3e1b93-b452-44b4-b490-287f05ec94ee",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#51",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorRail.009",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.050000190734863,
+          "y": 2.5,
+          "z": -9.600000381469727
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "5d3e1b93-b452-44b4-b490-287f05ec94ee",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "b9087795-d313-40d0-8958-ead7bb8834fb",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#52",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorSurround",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "048c61c9-850f-4bfa-91fe-e84eb9fbddb4",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#53",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorSurround.001",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "531d8fb8-0833-4b64-8622-0d430f947e86",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#54",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorSurround.002",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "da71f3b1-7861-42ac-8342-f4763fb2c476",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#55",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorSurround.003",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "a444eefe-9f37-4774-9c49-b5c981a3f7b7",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#56",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorSurround.004",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "b03dc9be-bb60-4434-8343-7b763c6fbb50",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#57",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorSurround_Jamb",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.21999979019165,
+          "y": 1.8799999952316284,
+          "z": 1.7899999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "65219c3f-029a-4faf-88c1-41413caebe01",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#58",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorSurround_Jamb.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.21999979019165,
+          "y": 1.8799999952316284,
+          "z": -1.7899999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "65219c3f-029a-4faf-88c1-41413caebe01",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#59",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorSurround_Jamb.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.21999979019165,
+          "y": 1.8300000429153442,
+          "z": 5.190000057220459
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "29a53548-7eb8-4798-bb57-21f540195b63",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#60",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorSurround_Jamb.003",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.21999979019165,
+          "y": 1.8300000429153442,
+          "z": 2.809999942779541
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "29a53548-7eb8-4798-bb57-21f540195b63",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#61",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorSurround_Jamb.004",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.21999979019165,
+          "y": 1.8300000429153442,
+          "z": -2.809999942779541
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "29a53548-7eb8-4798-bb57-21f540195b63",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#62",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorSurround_Jamb.005",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.21999979019165,
+          "y": 1.8300000429153442,
+          "z": -5.190000057220459
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "29a53548-7eb8-4798-bb57-21f540195b63",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#63",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorSurround_Jamb.006",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.21999979019165,
+          "y": 1.8300000429153442,
+          "z": 10.59000015258789
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "29a53548-7eb8-4798-bb57-21f540195b63",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#64",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorSurround_Jamb.007",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.21999979019165,
+          "y": 1.8300000429153442,
+          "z": 8.609999656677246
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "29a53548-7eb8-4798-bb57-21f540195b63",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#65",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorSurround_Jamb.008",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.21999979019165,
+          "y": 1.8300000429153442,
+          "z": -8.609999656677246
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "29a53548-7eb8-4798-bb57-21f540195b63",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#66",
+      "_$type": "Sprite3D",
+      "name": "Landmark_DoorSurround_Jamb.009",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.21999979019165,
+          "y": 1.8300000429153442,
+          "z": -10.59000015258789
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "29a53548-7eb8-4798-bb57-21f540195b63",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#67",
+      "_$type": "Sprite3D",
+      "name": "Landmark_FacadePilaster",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.460000038146973,
+          "y": 5.699999809265137,
+          "z": 12.800000190734863
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "dc609ae5-7978-4306-8885-5b63f8b57df9",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#68",
+      "_$type": "Sprite3D",
+      "name": "Landmark_FacadePilaster.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.460000038146973,
+          "y": 10,
+          "z": 5.099999904632568
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "eb60d1f4-840a-45e3-ac87-c182dc90b6c0",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#69",
+      "_$type": "Sprite3D",
+      "name": "Landmark_FacadePilaster.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.460000038146973,
+          "y": 10,
+          "z": -5.099999904632568
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "eb60d1f4-840a-45e3-ac87-c182dc90b6c0",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#70",
+      "_$type": "Sprite3D",
+      "name": "Landmark_FacadePilaster.003",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.460000038146973,
+          "y": 5.699999809265137,
+          "z": -12.800000190734863
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "dc609ae5-7978-4306-8885-5b63f8b57df9",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#71",
+      "_$type": "Sprite3D",
+      "name": "Landmark_LongHall_ExteriorOnly",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 32,
+          "y": 5.25
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "9c80d6a9-eb7f-4639-afe0-edc7d4f185f1",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "192ed426-f73a-4b64-8ceb-c8fba696bd7b",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#72",
+      "_$type": "Sprite3D",
+      "name": "Landmark_LowerBelt",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.380000114440918,
+          "y": 5.699999809265137
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "b55441c4-e4ce-4c19-af6e-d442f13886c4",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#73",
+      "_$type": "Sprite3D",
+      "name": "Landmark_NaveRoof_EaveFascia",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 32,
+          "y": 15.880000114440918,
+          "z": 5.369999885559082
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "6e9b5d36-9f4a-410e-a59d-023a19dd743c",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "e4ac7383-0ad2-43c3-b4f1-db1413c82d17",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#74",
+      "_$type": "Sprite3D",
+      "name": "Landmark_NaveRoof_EaveFascia.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 32,
+          "y": 15.880000114440918,
+          "z": -5.369999885559082
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "6e9b5d36-9f4a-410e-a59d-023a19dd743c",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "e4ac7383-0ad2-43c3-b4f1-db1413c82d17",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#75",
+      "_$type": "Sprite3D",
+      "name": "Landmark_NaveRoof_N",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "4e57ae1b-8a82-49fa-9ccd-6a7adfc27457",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4177f454-ba17-457b-aa9f-6e898ac0efd7",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#76",
+      "_$type": "Sprite3D",
+      "name": "Landmark_NaveRoof_Ridge",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 32,
+          "y": 19.459999084472656
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "x": 0.5,
+          "y": 0.5,
+          "z": -0.5,
+          "w": 0.5
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "d8b6f98f-ed6f-4579-9a32-d84d8bcdf210",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4177f454-ba17-457b-aa9f-6e898ac0efd7",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#77",
+      "_$type": "Sprite3D",
+      "name": "Landmark_NaveRoof_S",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "5538b418-417e-47ef-837e-4a5afef1b50c",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "4177f454-ba17-457b-aa9f-6e898ac0efd7",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#78",
+      "_$type": "Sprite3D",
+      "name": "Landmark_Niche_Uncarved",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "7db3acaf-647c-4bd6-98f3-00bb804c1002",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "066d1a58-bebf-4c59-937f-db1bbb5345f2",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#79",
+      "_$type": "Sprite3D",
+      "name": "Landmark_NicheTrim",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "dc316fbc-6d16-450f-af20-a476a1e89b88",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#80",
+      "_$type": "Sprite3D",
+      "name": "Landmark_NicheTrim_Jamb",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.090000152587891,
+          "y": 8.300000190734863,
+          "z": 0.5899999737739563
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "e0794ae4-c369-4f88-8dce-b53504b9a473",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#81",
+      "_$type": "Sprite3D",
+      "name": "Landmark_NicheTrim_Jamb.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.090000152587891,
+          "y": 8.300000190734863,
+          "z": -0.5899999737739563
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "e0794ae4-c369-4f88-8dce-b53504b9a473",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#82",
+      "_$type": "Sprite3D",
+      "name": "Landmark_PairedUpperTrim",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "75fc4463-a84e-4450-9575-95e6535d1463",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#83",
+      "_$type": "Sprite3D",
+      "name": "Landmark_PairedUpperTrim.001",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "df8fa79b-dde2-4a2a-974d-a013cb7abec4",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#84",
+      "_$type": "Sprite3D",
+      "name": "Landmark_PairedUpperTrim_Jamb",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.090000152587891,
+          "y": 17.299999237060547,
+          "z": 1.4700000286102295
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "51524fa1-fdd3-4644-a017-a6644d514d5b",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#85",
+      "_$type": "Sprite3D",
+      "name": "Landmark_PairedUpperTrim_Jamb.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.090000152587891,
+          "y": 17.299999237060547,
+          "z": 0.1899999976158142
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "51524fa1-fdd3-4644-a017-a6644d514d5b",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#86",
+      "_$type": "Sprite3D",
+      "name": "Landmark_PairedUpperTrim_Jamb.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.090000152587891,
+          "y": 17.299999237060547,
+          "z": -0.1899999976158142
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "51524fa1-fdd3-4644-a017-a6644d514d5b",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#87",
+      "_$type": "Sprite3D",
+      "name": "Landmark_PairedUpperTrim_Jamb.003",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 7.090000152587891,
+          "y": 17.299999237060547,
+          "z": -1.4700000286102295
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "51524fa1-fdd3-4644-a017-a6644d514d5b",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#88",
+      "_$type": "Sprite3D",
+      "name": "Landmark_PairedUpperWindow",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "51d89194-f421-4e55-8eb4-f47f6b83cc0b",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "066d1a58-bebf-4c59-937f-db1bbb5345f2",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#89",
+      "_$type": "Sprite3D",
+      "name": "Landmark_PairedUpperWindow.001",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "e1bbb08e-6f93-49f0-a64d-2846475394bb",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "066d1a58-bebf-4c59-937f-db1bbb5345f2",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#90",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SidePier",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 11,
+          "y": 5.25,
+          "z": 13.149999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1a4d68d3-55ab-45cf-bcd9-30aadb87316a",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#91",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SidePier.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 18,
+          "y": 5.25,
+          "z": 13.149999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1a4d68d3-55ab-45cf-bcd9-30aadb87316a",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#92",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SidePier.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 25,
+          "y": 5.25,
+          "z": 13.149999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1a4d68d3-55ab-45cf-bcd9-30aadb87316a",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#93",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SidePier.003",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 32,
+          "y": 5.25,
+          "z": 13.149999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1a4d68d3-55ab-45cf-bcd9-30aadb87316a",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#94",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SidePier.004",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 39,
+          "y": 5.25,
+          "z": 13.149999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1a4d68d3-55ab-45cf-bcd9-30aadb87316a",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#95",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SidePier.005",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 46,
+          "y": 5.25,
+          "z": 13.149999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1a4d68d3-55ab-45cf-bcd9-30aadb87316a",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#96",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SidePier.006",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 53,
+          "y": 5.25,
+          "z": 13.149999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1a4d68d3-55ab-45cf-bcd9-30aadb87316a",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#97",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SidePier.007",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 11,
+          "y": 5.25,
+          "z": -13.149999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1a4d68d3-55ab-45cf-bcd9-30aadb87316a",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#98",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SidePier.008",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 18,
+          "y": 5.25,
+          "z": -13.149999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1a4d68d3-55ab-45cf-bcd9-30aadb87316a",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#99",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SidePier.009",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 25,
+          "y": 5.25,
+          "z": -13.149999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1a4d68d3-55ab-45cf-bcd9-30aadb87316a",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#100",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SidePier.010",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 32,
+          "y": 5.25,
+          "z": -13.149999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1a4d68d3-55ab-45cf-bcd9-30aadb87316a",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#101",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SidePier.011",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 39,
+          "y": 5.25,
+          "z": -13.149999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1a4d68d3-55ab-45cf-bcd9-30aadb87316a",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#102",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SidePier.012",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 46,
+          "y": 5.25,
+          "z": -13.149999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1a4d68d3-55ab-45cf-bcd9-30aadb87316a",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#103",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SidePier.013",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 53,
+          "y": 5.25,
+          "z": -13.149999618530273
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "1a4d68d3-55ab-45cf-bcd9-30aadb87316a",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#104",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Mullion",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 13.800000190734863,
+          "y": 5,
+          "z": 13.3100004196167
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "8fc09fca-dd6a-4b0d-b768-2aba35ab094d",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#105",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Mullion.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 20.799999237060547,
+          "y": 5,
+          "z": 13.3100004196167
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "8fc09fca-dd6a-4b0d-b768-2aba35ab094d",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#106",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Mullion.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 27.799999237060547,
+          "y": 5,
+          "z": 13.3100004196167
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "8fc09fca-dd6a-4b0d-b768-2aba35ab094d",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#107",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Mullion.003",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 34.79999923706055,
+          "y": 5,
+          "z": 13.3100004196167
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "8fc09fca-dd6a-4b0d-b768-2aba35ab094d",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#108",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Mullion.004",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 41.79999923706055,
+          "y": 5,
+          "z": 13.3100004196167
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "8fc09fca-dd6a-4b0d-b768-2aba35ab094d",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#109",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Mullion.005",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 48.79999923706055,
+          "y": 5,
+          "z": 13.3100004196167
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "8fc09fca-dd6a-4b0d-b768-2aba35ab094d",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#110",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Mullion.006",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 13.800000190734863,
+          "y": 5,
+          "z": -13.3100004196167
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "8fc09fca-dd6a-4b0d-b768-2aba35ab094d",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#111",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Mullion.007",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 20.799999237060547,
+          "y": 5,
+          "z": -13.3100004196167
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "8fc09fca-dd6a-4b0d-b768-2aba35ab094d",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#112",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Mullion.008",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 27.799999237060547,
+          "y": 5,
+          "z": -13.3100004196167
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "8fc09fca-dd6a-4b0d-b768-2aba35ab094d",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#113",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Mullion.009",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 34.79999923706055,
+          "y": 5,
+          "z": -13.3100004196167
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "8fc09fca-dd6a-4b0d-b768-2aba35ab094d",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#114",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Mullion.010",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 41.79999923706055,
+          "y": 5,
+          "z": -13.3100004196167
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "8fc09fca-dd6a-4b0d-b768-2aba35ab094d",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#115",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Mullion.011",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 48.79999923706055,
+          "y": 5,
+          "z": -13.3100004196167
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "8fc09fca-dd6a-4b0d-b768-2aba35ab094d",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "3fbdfa69-e3a1-4a8a-a4cf-903b11155091",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#116",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Recess",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 13.800000190734863,
+          "y": 2.5999999046325684,
+          "z": 13.220000267028809
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.7071067811865476,
+          "w": 0.7071067811865476
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "11fdb674-6bf4-4e5b-bf95-f6dedf2d3126",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "066d1a58-bebf-4c59-937f-db1bbb5345f2",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#117",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Recess.001",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 20.799999237060547,
+          "y": 2.5999999046325684,
+          "z": 13.220000267028809
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.7071067811865476,
+          "w": 0.7071067811865476
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "7601b9d8-c637-4712-868a-48ab4c77c009",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "066d1a58-bebf-4c59-937f-db1bbb5345f2",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#118",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Recess.002",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 27.799999237060547,
+          "y": 2.5999999046325684,
+          "z": 13.220000267028809
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.7071067811865476,
+          "w": 0.7071067811865476
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "c6c7e23e-67f2-4ed1-be86-36312a72a12e",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "066d1a58-bebf-4c59-937f-db1bbb5345f2",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#119",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Recess.003",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 34.79999923706055,
+          "y": 2.5999999046325684,
+          "z": 13.220000267028809
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.7071067811865476,
+          "w": 0.7071067811865476
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "f3a6e715-5ffb-4f84-9ad0-f1bfc0b8cf7b",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "066d1a58-bebf-4c59-937f-db1bbb5345f2",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#120",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Recess.004",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 41.79999923706055,
+          "y": 2.5999999046325684,
+          "z": 13.220000267028809
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.7071067811865476,
+          "w": 0.7071067811865476
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "60e0c938-0579-4a62-8f42-1e477956d33b",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "066d1a58-bebf-4c59-937f-db1bbb5345f2",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#121",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Recess.005",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 48.79999923706055,
+          "y": 2.5999999046325684,
+          "z": 13.220000267028809
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": -0.7071067811865476,
+          "w": 0.7071067811865476
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "9af7d2cb-05f0-4a5b-807d-32308f6d50d1",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "066d1a58-bebf-4c59-937f-db1bbb5345f2",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#122",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Recess.006",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 13.800000190734863,
+          "y": 2.5999999046325684,
+          "z": -13.220000267028809
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": 0.7071067811865476,
+          "w": 0.7071067811865476
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "54458bef-78a0-446d-94ae-31e46954d669",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "066d1a58-bebf-4c59-937f-db1bbb5345f2",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#123",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Recess.007",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 20.799999237060547,
+          "y": 2.5999999046325684,
+          "z": -13.220000267028809
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": 0.7071067811865476,
+          "w": 0.7071067811865476
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "d822dcea-a381-4d21-ba81-63871d5276ed",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "066d1a58-bebf-4c59-937f-db1bbb5345f2",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#124",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Recess.008",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 27.799999237060547,
+          "y": 2.5999999046325684,
+          "z": -13.220000267028809
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": 0.7071067811865476,
+          "w": 0.7071067811865476
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "c9dceb70-7cbd-4939-8341-9d0efc1aedd7",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "066d1a58-bebf-4c59-937f-db1bbb5345f2",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#125",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Recess.009",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 34.79999923706055,
+          "y": 2.5999999046325684,
+          "z": -13.220000267028809
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": 0.7071067811865476,
+          "w": 0.7071067811865476
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "8c513c20-e2bc-4666-9f36-ec0cca882de1",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "066d1a58-bebf-4c59-937f-db1bbb5345f2",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#126",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Recess.010",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 41.79999923706055,
+          "y": 2.5999999046325684,
+          "z": -13.220000267028809
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": 0.7071067811865476,
+          "w": 0.7071067811865476
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "ac7ddc59-c066-4f17-ac7f-f622609ef39b",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "066d1a58-bebf-4c59-937f-db1bbb5345f2",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#127",
+      "_$type": "Sprite3D",
+      "name": "Landmark_SideWindow_Recess.011",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 48.79999923706055,
+          "y": 2.5999999046325684,
+          "z": -13.220000267028809
+        },
+        "localRotation": {
+          "_$type": "Quaternion",
+          "y": 0.7071067811865476,
+          "w": 0.7071067811865476
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "c7c6421f-c7e7-468d-8aec-42ad49dd0703",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "066d1a58-bebf-4c59-937f-db1bbb5345f2",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#128",
+      "_$type": "Sprite3D",
+      "name": "Landmark_Threshold",
+      "transform": {
+        "localPosition": {
+          "_$type": "Vector3",
+          "x": 6.650000095367432,
+          "y": 0.09000000357627869
+        }
+      },
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "e35b4e0d-f473-421d-a496-cfc16a4f035d",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "f00fc615-a92b-4300-b4c9-608e5cc99dff",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_$id": "#129",
+      "_$type": "Sprite3D",
+      "name": "Landmark_WestFacade",
+      "_$comp": [
+        {
+          "_$type": "MeshFilter",
+          "sharedMesh": {
+            "_$uuid": "3b2568ee-e5f6-4a05-98cd-1c0fff059a35",
+            "_$type": "Mesh"
+          }
+        },
+        {
+          "_$type": "MeshRenderer",
+          "receiveShadow": true,
+          "castShadow": true,
+          "lightmapScaleOffset": {
+            "_$type": "Vector4"
+          },
+          "sharedMaterials": [
+            {
+              "_$uuid": "192ed426-f73a-4b64-8ceb-c8fba696bd7b",
+              "_$type": "Material"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

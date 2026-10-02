@@ -1,0 +1,180 @@
+{
+  "runtime": {
+    "loaded": {
+      "roots": [
+        "Main Camera",
+        "Direction Light",
+        "Player",
+        "Street_Enemy01",
+        "WeaponPivot",
+        "Street_Enemy02",
+        "Courtyard_Enemy01",
+        "Courtyard_Enemy02",
+        "ExitZone_Songbaix_NorthLane",
+        "SpawnPoint_Songbaix_Entry",
+        "RouteHintPoints",
+        "EnemyPatrolRoutes",
+        "MissionDocument_Fictional_虚构任务文件",
+        "Songbaix_Environment",
+        "Songbaix_StaticCollisions",
+        "Songbaix_InteriorFill"
+      ],
+      "position": {
+        "x": -28,
+        "y": 0.96,
+        "z": 27
+      },
+      "modules": 5,
+      "colliders": 81,
+      "remaining": 4,
+      "state": "Playing"
+    },
+    "walk": {
+      "x": -28,
+      "y": 0.96,
+      "z": 22.00850000001491,
+      "grounded": true
+    },
+    "wall": {
+      "x": -30.576000000014897,
+      "y": 0.96,
+      "z": 20.915
+    },
+    "door": {
+      "x": -18.883000000044703,
+      "y": 0.9900000011920929,
+      "z": -24.7494999999553,
+      "grounded": true
+    },
+    "beforeClear": {
+      "collected": false,
+      "remaining": 4
+    },
+    "exitLocked": {
+      "state": "Playing",
+      "text": "终点未解锁：未取得文件；任务 3/4：取得建筑内西侧木桌上的文件 · 0/1"
+    },
+    "canCollect": {
+      "canCollect": true,
+      "state": "Playing",
+      "prompt": "任务 3/4：E 取得文件（虚构任务物件）"
+    },
+    "collected": {
+      "collected": true,
+      "visible": false
+    },
+    "exit": {
+      "state": "Won",
+      "title": "任务完成"
+    },
+    "restart": {
+      "state": "Ready",
+      "remaining": 4,
+      "document": true,
+      "position": {
+        "x": -28,
+        "y": 1.1,
+        "z": 27
+      }
+    }
+  },
+  "layout": {
+    "route_xz": [
+      [
+        -28,
+        27
+      ],
+      [
+        -28,
+        14
+      ],
+      [
+        -20,
+        14
+      ],
+      [
+        -11,
+        12
+      ],
+      [
+        -11,
+        2
+      ],
+      [
+        -11,
+        -4.5
+      ],
+      [
+        -7.5,
+        -4.5
+      ],
+      [
+        -7.5,
+        -7.5
+      ],
+      [
+        -4,
+        -10
+      ],
+      [
+        -7,
+        -12
+      ],
+      [
+        -7,
+        -18
+      ],
+      [
+        -18.8,
+        -20
+      ],
+      [
+        -18.8,
+        -24
+      ],
+      [
+        -21,
+        -25.7
+      ],
+      [
+        -18.8,
+        -26
+      ],
+      [
+        -18.8,
+        -31
+      ],
+      [
+        -18.8,
+        -36
+      ],
+      [
+        -32,
+        -36
+      ]
+    ],
+    "radius_m": 0.45,
+    "step_m": 0.1,
+    "collisions": [],
+    "patrol_checks": [
+      {
+        "id": "target001",
+        "hit": null
+      },
+      {
+        "id": "enemy002",
+        "hit": null
+      },
+      {
+        "id": "enemy003",
+        "hit": null
+      },
+      {
+        "id": "enemy004",
+        "hit": null
+      }
+    ],
+    "colliders": 81
+  },
+  "scope": "Native physics and mission-gate fixtures, not a complete combat playthrough."
+}

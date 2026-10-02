@@ -334,7 +334,7 @@ export class LevelController extends Laya.Script {
             else if (courtyard < this.courtyardTargets.length) task = `任务 2/4：清理院落敌人 ${courtyard}/${this.courtyardTargets.length}`;
             else if (!this.documentCollected) task = this.canCollectDocument()
                 ? "任务 3/4：E 取得文件（虚构任务物件）"
-                : "任务 3/4：取得建筑内西侧储物箱上的文件 · 0/1";
+                : "任务 3/4：取得建筑内西侧木桌上的文件 · 0/1";
             else task = inside ? "任务 4/4：请先离开终点区，再进入完成任务" : "任务 4/4：携带文件抵达建筑后方橙色终点 · 0/1";
             this.objectiveText.text = inside && !this.exitUnlocked
                 ? `终点未解锁：${this.remaining.size ? "尚有敌人；" : ""}${this.documentCollected ? "" : "未取得文件；"}${task}` : task;
