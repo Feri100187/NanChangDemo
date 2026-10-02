@@ -1,11 +1,21 @@
 // 执行真实 LevelController；物理、UI 和场景加载使用替身，不代替 IDE 实机验收。
 // node tools/check-mission-flow.cjs <LayaAirIDE/resources/node_modules/typescript>
+// IDE 中重开 Demo01 并启动预览后，追加 --preview-cache 核对实际导出的绑定。
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const ts = require(process.argv[2] || 'typescript');
 const root = path.resolve(__dirname, '..');
+function checkPreviewBindings(source, preview) {
+    const expected = source._$comp.find(c => c.scriptPath === '../src/LevelController.ts');
+    const actual = preview._$comp.find(c => c.scriptPath === '../src/LevelController.ts');
+    assert.ok(actual, '预览缓存缺少 LevelController，请在 IDE 重开 Demo01 并重新预览');
+    for (const key of ['streetEnemies', 'courtyardEnemies', 'missionDocument']) {
+        assert.deepEqual(actual[key], expected[key],
+            `IDE 预览的 ${key} 与源场景不同；停止预览、关闭并重开 Demo01，再启动预览，不能仅重编译脚本`);
+    }
+}
 class Events {
     constructor() { this.listeners = []; }
     on(type, caller, fn) { this.listeners.push({type, caller, fn}); }
@@ -115,6 +125,18 @@ await check('场景显式分组、文件位置/资源、LayaAir 版本',()=>{
     const mat=JSON.parse(fs.readFileSync(path.join(root,'assets/resources/MissionDocument.lmat.meta'),'utf8'));
     assert.equal(doc._$child[0]._$comp[1].sharedMaterials[0]._$uuid,mat.uuid);
     assert.equal(JSON.parse(fs.readFileSync(path.join(root,'NanChangDemo.laya'),'utf8')).version,'3.4.1');
+});
+await check('识别热重载后丢失任务绑定的预览缓存',()=>{
+    const source=JSON.parse(fs.readFileSync(path.join(root,'assets/Demo01.ls'),'utf8'));
+    const stale=JSON.parse(JSON.stringify(source));
+    Object.assign(stale._$comp[0],{streetEnemies:[],courtyardEnemies:[],missionDocument:null});
+    assert.throws(()=>checkPreviewBindings(source,stale),/IDE 预览的 streetEnemies/);
+});
+if(process.argv.includes('--preview-cache'))await check('IDE 实际预览缓存与源场景的任务绑定一致',()=>{
+    const source=JSON.parse(fs.readFileSync(path.join(root,'assets/Demo01.ls'),'utf8'));
+    const meta=JSON.parse(fs.readFileSync(path.join(root,'assets/Demo01.ls.meta'),'utf8'));
+    const cache=JSON.parse(fs.readFileSync(path.join(root,'library/cache',meta.uuid+'.ls'),'utf8'));
+    checkPreviewBindings(source,cache);
 });
 console.log(`${passed} 组检查通过；未替代真实渲染、原生物理和 IDE 重开验收。`);
 })().catch(error=>{console.error(error);process.exitCode=1;});
