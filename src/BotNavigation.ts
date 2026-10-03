@@ -8,6 +8,11 @@ export class BotNavigation {
     private expanded = 0;
     private retryAt = 0;
 
+    invalidate(): void {
+        this.goal = null;
+        this.path = []; this.open = []; this.costs.clear();
+    }
+
     step(position: Laya.Vector3, goal: Laya.Vector3, now: number,
         clear: (a: Laya.Vector3, b: Laya.Vector3) => boolean): Laya.Vector3 {
         if (!this.goal || Math.hypot(goal.x - this.goal.x, goal.z - this.goal.z) > 2.5
@@ -40,7 +45,15 @@ export class BotNavigation {
             }
         }
         if (this.expanded >= 2400) this.open = [];
-        while (this.path.length && Math.hypot(this.path[0].x - position.x, this.path[0].z - position.z) < .2) this.path.shift();
+        // A corner is only consumed when the following edge is reachable from
+        // the actual position, rather than merely from the planned grid point.
+        while (this.path.length > 1
+            && Math.hypot(this.path[0].x - position.x, this.path[0].z - position.z) < .2
+            && clear(position, this.path[1])) this.path.shift();
+        if (this.path.length && !clear(position, this.path[0])) {
+            this.invalidate();
+            return position;
+        }
         return this.path[0] || position;
     }
 }

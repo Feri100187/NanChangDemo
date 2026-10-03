@@ -140,6 +140,18 @@ export class EnemyAI extends Laya.Script {
     private readonly sweepTo = new Laya.Vector3();
     private readonly hits: Laya.HitResult[] = [];
     private patrolProbe: Laya.BoxColliderShape;
+    private stepProbe: Laya.BoxColliderShape;
+    private readonly stepHeight = .25;
+    private readonly maxWalkDrop = .5;
+    private verticalSpeed = 0;
+    private readonly groundRay = new Laya.Ray(new Laya.Vector3(), new Laya.Vector3(0, -1, 0));
+    private readonly groundHits: Laya.HitResult[] = [];
+    private readonly walkFrom = new Laya.Vector3();
+    private readonly walkTo = new Laya.Vector3();
+    private readonly standingEye = new Laya.Vector3();
+    private readonly standingBreech = new Laya.Vector3();
+    private readonly standingMuzzle = new Laya.Vector3();
+    private readonly standingRifle = new Laya.Vector3();
     private actorScale = 1;
     private readonly crouchDrop = .65;
 
@@ -163,6 +175,14 @@ export class EnemyAI extends Laya.Script {
         // Query-only envelope: no new collider/rigidbody is added to the scene.
         this.actorScale = this.enemy.transform.getWorldLossyScale().y;
         this.patrolProbe = new Laya.BoxColliderShape(.84 * this.actorScale, 2.55 * this.actorScale, .84 * this.actorScale);
+        this.stepProbe = new Laya.BoxColliderShape(.84 * this.actorScale,
+            2.55 * this.actorScale - this.stepHeight, .84 * this.actorScale);
+        // Capture the configured standing geometry, including nested rifle nodes.
+        this.cacheStandingPoint(this.observationPoint, this.observationOffset, this.standingEye);
+        this.cacheStandingPoint(this.shotBase, this.shotBaseOffset, this.standingBreech);
+        this.cacheStandingPoint(this.shotPoint, this.shotOffset, this.standingMuzzle);
+        const rifle = this.enemy.getChildByName("EnemyRifle") as Laya.Sprite3D;
+        if (rifle) this.cacheStandingPoint(rifle, new Laya.Vector3(), this.standingRifle);
     }
 
     onUpdate(): void {
@@ -172,8 +192,13 @@ export class EnemyAI extends Laya.Script {
         if (this.clock?.paused || !this.isAlive) return;
         const dt = Math.min(Math.max((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0), 0.05);
         const now = this.clock?.now() ?? performance.now();
+        this.updateGround(dt);
         this.updatePosture(dt);
-        if (now >= this.nextScan || !this.targetAlive(this.target)) {
+        this.updateLean(0);
+        if (this.target && !this.targetAlive(this.target)) {
+            this.target = null; this.clearPerception(); this.cover = null; this.nextDecision = 0;
+        }
+        if (now >= this.nextScan) {
             this.selectTarget(); this.nextScan = now + 250;
         }
         if (!this.targetAlive(this.target)) {
@@ -184,7 +209,26 @@ export class EnemyAI extends Laya.Script {
             return;
         }
 
-        const visible = this.canSeePlayer(this._state === "Idle" || this._state === "Patrol");
+        const checkFieldOfView = this._state === "Idle" || this._state === "Patrol";
+        let visible = this.canSeePlayer(checkFieldOfView);
+        // Movement can use a fresh observation, but suspicion is updated only
+        // once, after moving, turning and applying the final lean pose.
+        if (visible) {
+            this.rememberVisiblePlayer(now);
+            if (checkFieldOfView) this._state = "Alert";
+        }
+        let facing = false;
+        if (this._state === "Idle") {
+            this.idleElapsed += dt;
+            if (this.idleElapsed >= 1.2) this._state = "Patrol";
+        } else if (this._state === "Patrol") {
+            this.updatePatrol(dt);
+        } else {
+            this.updateCombatMovement(dt, now, visible);
+            facing = this.hasLastKnown && this.facePosition(this.lastKnownPosition, dt);
+        }
+        this.updateLean(dt);
+        visible = this.canSeePlayer(checkFieldOfView);
         if (visible) {
             this.rememberVisiblePlayer(now);
             this.suspicion = Math.min(1, this.suspicion + dt / Math.max(0.1, this.alertTime));
@@ -204,19 +248,8 @@ export class EnemyAI extends Laya.Script {
             }
         }
 
-        if (this._state === "Idle") {
-            this.idleElapsed += dt;
-            if (this.idleElapsed >= 1.2) this._state = "Patrol";
-        } else if (this._state === "Patrol") {
-            this.updatePatrol(dt);
-            this.updateLean(dt);
-        } else {
-            this.updateCombatMovement(dt, now, visible);
-            const facing = this.hasLastKnown && this.facePosition(this.lastKnownPosition, dt);
-            this.updateLean(dt);
-            if (this._state === "Combat" && visible && facing && now >= this.nextAttackAt) {
-                if (this.fireAtPlayer()) this.nextAttackAt = now + Math.max(0.1, this.attackInterval) * 1000;
-            }
+        if (this._state === "Combat" && visible && facing && now >= this.nextAttackAt) {
+            if (this.fireAtPlayer()) this.nextAttackAt = now + Math.max(0.1, this.attackInterval) * 1000;
         }
     }
 
@@ -386,18 +419,22 @@ export class EnemyAI extends Laya.Script {
     private moveTowards(goal: Laya.Vector3, dt: number, speed: number, face: boolean): void {
         const p = this.enemy.transform.position;
         const next = this.navigation.step(p, goal, this.clock?.now() ?? performance.now(),
-            (a, b) => this.patrolSegmentClear(a, b, true));
+            (a, b) => this.walkSegmentClear(a, b, true));
         const dx = next.x - p.x, dz = next.z - p.z, distance = Math.hypot(dx, dz);
-        if (distance < .05) return;
+        if (distance < .001) return;
         if (face && !this.turnToward(Math.atan2(dx, dz) * 180 / Math.PI, dt)) return;
         const step = Math.min(distance, Math.max(0, speed) * dt);
         this.moveTo.setValue(p.x + dx / distance * step, p.y, p.z + dz / distance * step);
-        if (!this.patrolSegmentClear(p, this.moveTo)) {
+        if (!this.walkSegmentClear(p, this.moveTo)) {
+            // Rebuild stale geometry routes, but keep routes blocked only by actors.
+            if (!this.walkSegmentClear(p, this.moveTo, true)) this.navigation.invalidate();
             // Yield around a team-mate instead of permanently queuing on the same route edge.
             const side = this.patrolIndex % 2 ? 1 : -1;
             this.moveTo.setValue(p.x - dz / distance * step * side, p.y, p.z + dx / distance * step * side);
-            if (!this.patrolSegmentClear(p, this.moveTo)) return;
+            if (!this.walkSegmentClear(p, this.moveTo)) return;
         }
+        const ground = this.groundHeight(this.moveTo, this.maxWalkDrop);
+        if (ground !== null) this.moveTo.y = ground;
         this.enemy.transform.position = this.moveTo;
         this._horizontalSpeed = dt > 0 ? step / dt : 0;
         this.sprinting = this._horizontalSpeed > this.combatSpeed + .1;
@@ -413,7 +450,10 @@ export class EnemyAI extends Laya.Script {
             for (let i = 0; i < 24; i++) {
                 const angle = Math.random() * Math.PI * 2, radius = 1 + Math.random() * 2.5;
                 const q = new Laya.Vector3(p.x + Math.cos(angle) * radius, p.y, p.z + Math.sin(angle) * radius);
-                if (!this.patrolSegmentClear(p, q, true)) continue;
+                if (!this.walkSegmentClear(p, q, true)) continue;
+                const ground = this.groundHeight(q, this.maxWalkDrop);
+                if (ground === null) continue;
+                q.y = ground;
                 const low = new Laya.Vector3(q.x, q.y + .9, q.z);
                 const obstacle = this.trace(low, this.lastKnownPosition, this.sightRay);
                 if (!obstacle || this.actorNode(obstacle)) continue;
@@ -421,10 +461,8 @@ export class EnemyAI extends Laya.Script {
                     const dx = this.lastKnownPosition.x - q.x, dz = this.lastKnownPosition.z - q.z;
                     const d = Math.max(.01, Math.hypot(dx, dz));
                     const peek = new Laya.Vector3(q.x + dz / d * side * LeanMotion.distance, q.y, q.z - dx / d * side * LeanMotion.distance);
-                    if (!this.patrolSegmentClear(q, peek, true)) continue;
-                    const high = new Laya.Vector3(peek.x, peek.y + 2.3 * this.actorScale, peek.z);
-                    const hit = this.trace(high, this.lastKnownPosition, this.sightRay);
-                    if (hit && !this.isPlayerNode(hit)) continue;
+                    const yaw = Math.atan2(dx, dz);
+                    if (!this.coverCanFire(q, yaw, -side, this.lastKnownPosition)) continue;
                     this.cover = q; this.coverPeek = peek; this.coverLean = -side; break;
                 }
                 if (this.cover) break;
@@ -457,7 +495,10 @@ export class EnemyAI extends Laya.Script {
     }
 
     private updateLean(dt: number): void {
-        this.readPoint(this.observationPoint, this.observationOffset, this.eye);
+        // Always limit and apply from the unleaned posture; calls in the same
+        // frame must never accumulate offsets on the eye or rifle.
+        this.updatePosture(0);
+        this.readPoint(this.observationPoint, this.observationOffset, this.eye, false);
         Laya.Vector3.transformQuat(new Laya.Vector3(-1,0,0), this.enemy.transform.rotation, this.leanRight);
         this.leaning.update(this.sprinting ? 0 : this.leanRequest, dt, this.enemy, this.eye, this.leanRight);
         for (const item of this.postureNodes) {
@@ -467,6 +508,41 @@ export class EnemyAI extends Laya.Script {
             item.node.transform.localPosition = p;
             if (item.node.name === "EnemyRifle") item.node.transform.localRotationEuler = new Laya.Vector3(0,0,this.leanAmount * LeanMotion.angle);
         }
+    }
+
+    private cacheStandingPoint(node: Laya.Sprite3D, offset: Laya.Vector3, out: Laya.Vector3): void {
+        this.readPoint(node, offset, out, false);
+        Laya.Vector3.subtract(out, this.enemy.transform.position, out);
+        const inverse = new Laya.Quaternion();
+        Laya.Quaternion.invert(this.enemy.transform.rotation, inverse);
+        Laya.Vector3.transformQuat(out, inverse, out);
+    }
+
+    private coverPoint(offset: Laya.Vector3, position: Laya.Vector3, yaw: number, lean: number, rifle = false): Laya.Vector3 {
+        let x = offset.x, y = offset.y;
+        if (rifle) {
+            const roll = lean * LeanMotion.angle * Math.PI / 180;
+            const rx = x - this.standingRifle.x, ry = y - this.standingRifle.y;
+            x = this.standingRifle.x + rx * Math.cos(roll) - ry * Math.sin(roll);
+            y = this.standingRifle.y + rx * Math.sin(roll) + ry * Math.cos(roll);
+        }
+        x -= lean * LeanMotion.distance;
+        return new Laya.Vector3(position.x + x * Math.cos(yaw) + offset.z * Math.sin(yaw),
+            position.y + y, position.z - x * Math.sin(yaw) + offset.z * Math.cos(yaw));
+    }
+
+    private coverCanFire(position: Laya.Vector3, yaw: number, lean: number, target: Laya.Vector3): boolean {
+        const baseEye = this.coverPoint(this.standingEye, position, yaw, 0);
+        const eye = this.coverPoint(this.standingEye, position, yaw, lean);
+        // A theoretical peek is useful only if the actual head sweep permits it.
+        if (this.leaning.limit(this.enemy, baseEye, eye) < .999) return false;
+        const breech = this.coverPoint(this.standingBreech, position, yaw, lean, !!this.shotBase);
+        const muzzle = this.coverPoint(this.standingMuzzle, position, yaw, lean, !!this.shotPoint);
+        for (const [from, to] of [[eye, target], [eye, breech], [breech, muzzle], [muzzle, target]]) {
+            const hit = this.trace(from, to, this.shotRay);
+            if (hit && !this.isPlayerNode(hit)) return false;
+        }
+        return true;
     }
 
     private updatePosture(dt: number): void {
@@ -580,9 +656,17 @@ export class EnemyAI extends Laya.Script {
         this.suspicion = 0;
     }
 
-    private readPoint(node: Laya.Sprite3D, offset: Laya.Vector3, out: Laya.Vector3): void {
+    private readPoint(node: Laya.Sprite3D, offset: Laya.Vector3, out: Laya.Vector3, leaned = true): void {
         if (node && !node.destroyed) node.transform.position.cloneTo(out);
-        else Laya.Vector3.transformCoordinate(offset, this.enemy.transform.worldMatrix, out);
+        else {
+            Laya.Vector3.transformCoordinate(offset, this.enemy.transform.worldMatrix, out);
+            const yaw = this.enemy.transform.rotationEuler.y * Math.PI / 180;
+            if (leaned) {
+                out.x -= Math.cos(yaw) * this.leanAmount * LeanMotion.distance;
+                out.z += Math.sin(yaw) * this.leanAmount * LeanMotion.distance;
+            }
+            out.y -= this.crouchBlend * this.crouchDrop;
+        }
     }
 
     private isSelf(node: Laya.Node): boolean {
@@ -613,6 +697,69 @@ export class EnemyAI extends Laya.Script {
         return nearest?.collider.owner || null;
     }
 
+    private groundHeight(position: Laya.Vector3, maxDrop: number): number {
+        this.groundRay.origin.setValue(position.x, position.y + this.stepHeight + .02, position.z);
+        this.groundHits.length = 0;
+        (this.enemy.scene as Laya.Scene3D).physicsSimulation.rayCastAll(this.groundRay, this.groundHits,
+            this.stepHeight + .02 + maxDrop, -1, -1);
+        let nearest: Laya.HitResult = null;
+        for (const hit of this.groundHits) {
+            const node = hit.collider?.owner;
+            if (!node || node.getComponent(Laya.PhysicsCollider)?.isTrigger
+                || this.isSelf(node) || this.actorNode(node) || hit.normal.y < .6) continue;
+            if (!nearest || hit.hitFraction < nearest.hitFraction) nearest = hit;
+        }
+        return nearest ? nearest.point.y : null;
+    }
+
+    private updateGround(dt: number): void {
+        const p = this.enemy.transform.position;
+        const fall = Math.min(20, this.verticalSpeed + 9.8 * dt);
+        const distance = fall * dt;
+        const ground = this.groundHeight(p, Math.max(.1, distance));
+        if (ground !== null) {
+            this.moveTo.setValue(p.x, ground, p.z);
+            // A low floor is walkable; a ceiling still blocks an upward correction.
+            if (ground > p.y && !this.walkSegmentClear(p, this.moveTo, true)) return;
+            this.enemy.transform.position = this.moveTo;
+            this.verticalSpeed = 0;
+        } else {
+            this.verticalSpeed = fall;
+            this.moveTo.setValue(p.x, p.y - distance, p.z);
+            if (this.patrolSegmentClear(p, this.moveTo)) this.enemy.transform.position = this.moveTo;
+            else this.verticalSpeed = 0;
+        }
+    }
+
+    /** Sample support heights along each route edge, allowing only small steps.
+     * The upper-body envelope keeps the original head clearance; the bottom
+     * stepHeight is handled by support rays rather than treating a riser as a wall. */
+    private walkSegmentClear(from: Laya.Vector3, to: Laya.Vector3, ignoreActors = false): boolean {
+        const count = Math.max(1, Math.ceil(Math.hypot(to.x - from.x, to.z - from.z) / .5));
+        from.cloneTo(this.walkFrom);
+        for (let i = 1; i <= count; i++) {
+            this.walkTo.setValue(from.x + (to.x - from.x) * i / count, this.walkFrom.y,
+                from.z + (to.z - from.z) * i / count);
+            const ground = this.groundHeight(this.walkTo, this.maxWalkDrop);
+            if (ground === null) return false;
+            this.walkTo.y = ground;
+            const center = 1.28 * this.actorScale + this.stepHeight / 2;
+            this.sweepFrom.setValue(this.walkFrom.x, this.walkFrom.y + center, this.walkFrom.z);
+            this.sweepTo.setValue(this.walkTo.x, this.walkTo.y + center, this.walkTo.z);
+            this.hits.length = 0;
+            (this.enemy.scene as Laya.Scene3D).physicsSimulation.shapeCastAll(this.stepProbe.shape,
+                this.sweepFrom, this.sweepTo, this.hits, null, null, -1, -1);
+            for (const hit of this.hits) {
+                if (!hit.collider || this.isSelf(hit.collider.owner)) continue;
+                if (ignoreActors && this.actorNode(hit.collider.owner)) continue;
+                if (hit.normal.y > .95 && hit.point.y <= Math.max(this.walkFrom.y, this.walkTo.y) + .02) continue;
+                return false;
+            }
+            this.walkTo.cloneTo(this.walkFrom);
+        }
+        return true;
+    }
+
     private patrolSegmentClear(from: Laya.Vector3, to: Laya.Vector3, ignoreActors = false): boolean {
         this.sweepFrom.setValue(from.x, from.y + 1.28 * this.actorScale, from.z);
         this.sweepTo.setValue(to.x, to.y + 1.28 * this.actorScale, to.z);
@@ -634,5 +781,8 @@ export class EnemyAI extends Laya.Script {
     }
 
     onDisable(): void { this.heardUntil = 0; this._horizontalSpeed = 0; this.clearPerception(); }
-    onDestroy(): void { this.leaning.destroy(); this.patrolProbe?.destroy(); this.hits.length = 0; }
+    onDestroy(): void {
+        this.leaning.destroy(); this.patrolProbe?.destroy(); this.stepProbe?.destroy();
+        this.hits.length = 0; this.groundHits.length = 0;
+    }
 }
