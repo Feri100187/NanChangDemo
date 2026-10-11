@@ -4,6 +4,9 @@ import { PlayerHealth } from "./PlayerHealth";
 import { RifleController } from "./RifleController";
 import { CombatFeedback } from "./CombatFeedback";
 import { GameClock } from "./GameClock";
+import { EncounterWave } from "./EncounterWave";
+import { MissionRoute } from "./MissionRoute";
+import { Openable } from "./Openable";
 
 const { regClass, property } = Laya;
 type LevelState = "Ready" | "Playing" | "Paused" | "Won" | "Lost" | "Restarting";
@@ -77,8 +80,16 @@ export class LevelController extends Laya.Script {
     private spawnProbe: Laya.BoxColliderShape;
     private readonly spawnHits: Laya.HitResult[] = [];
 
-    @property({ type: [Laya.Sprite3D], caption: "三名队友" })
+    @property({ type: [Laya.Sprite3D], caption: "队友" })
     teammates: Laya.Sprite3D[] = [];
+    @property({ type: [Laya.Sprite3D], caption: "顺序遭遇波次（可选）" })
+    encounterWaves: Laya.Sprite3D[] = [];
+    @property({ type: [Laya.Sprite3D], caption: "小巷主路线（按行进顺序）" })
+    missionRoutePoints: Laya.Sprite3D[] = [];
+    private waves: EncounterWave[] = [];
+    private missionRoute: MissionRoute;
+    private nextWave = 0;
+    private waveActive = false;
     private health: PlayerHealth;
     private playerControl: PlayerController;
     private rifle: RifleController;
@@ -95,6 +106,8 @@ export class LevelController extends Laya.Script {
     private readonly interactionRay = new Laya.Ray(new Laya.Vector3(), new Laya.Vector3());
     private readonly interactionHit = new Laya.HitResult();
     private readonly interactionAim = new Laya.Vector2();
+    private readonly openingHits: Laya.HitResult[] = [];
+    private openings: Openable[] = [];
 
     private get hasMission(): boolean { return !!this.missionDocument; }
     private get exitUnlocked(): boolean {
@@ -140,11 +153,19 @@ export class LevelController extends Laya.Script {
     }
 
     onStart(): void {
+        this.openings = Array.from(Openable.instances).filter(o => o.owner.scene === this.world);
+        for (const opening of this.openings) {
+            opening.clock = this.clock;
+            opening.isBlocked = angle => opening.overlapsActor(this.player.transform.position, .96, 1.92, angle)
+                || this.allBots().some(b => b.isAlive && b.owner.activeInHierarchy
+                    && opening.overlapsActor((b.owner as Laya.Sprite3D).transform.position, 0, 1.84, angle));
+        }
         // 显式场景引用定义任务目标；Set 同时防止重复配置和重复死亡通知。
         if (!this.targets.length || this.targets.some(enemy => !enemy)) {
             throw new Error("LevelController 的指定敌人必须挂有 EnemyAI，且不能留空。");
         }
-        if (this.hasMission || this.streetEnemies.length || this.courtyardEnemies.length) {
+        if (this.encounterWaves.length) this.initializeWaves();
+        else if (this.hasMission || this.streetEnemies.length || this.courtyardEnemies.length) {
             this.streetTargets = this.streetEnemies.map(node => node?.getComponent(EnemyAI));
             this.courtyardTargets = this.courtyardEnemies.map(node => node?.getComponent(EnemyAI));
             const grouped = [...this.streetTargets, ...this.courtyardTargets];
@@ -174,7 +195,10 @@ export class LevelController extends Laya.Script {
             this.finish(false);
             return;
         }
-        this.updateReinforcements();
+        if (this.waves.length) {
+            this.updateWaves();
+            this.updateSquadFollow();
+        } else this.updateReinforcements();
         const inside = this.isInsideExit();
         if (this.exitUnlocked && inside && !this.wasInsideExit) {
             this.finish(true);
@@ -195,6 +219,16 @@ export class LevelController extends Laya.Script {
     private broadcastGunfire(shooter: Laya.Sprite3D): void {
         if (this.state !== "Playing" || this.clock.paused) return;
         const location = shooter.transform.position.clone(), now = this.clock.now();
+        if (this.waves.length) {
+            const region = this.regionAt(location);
+            for (const bot of this.allBots()) {
+                if (bot.isAlive && bot.enabled && bot.owner.activeInHierarchy
+                    && this.regionAt((bot.owner as Laya.Sprite3D).transform.position) === region
+                    && Laya.Vector3.distance(location, (bot.owner as Laya.Sprite3D).transform.position) <= 40)
+                    bot.hearGunshot(location);
+            }
+            return;
+        }
         const caller = this.targets.find(b=>b.isAlive && b.enabled && (b.state === "Patrol" || b.state === "Idle"));
         // A living patrol can place one call; gunfire cannot reset the deadline each frame.
         if (caller && !this.pendingCall && now >= this.nextCallAt && this.reserveIndex < this.reinforcementEnemies.length) {
@@ -202,6 +236,75 @@ export class LevelController extends Laya.Script {
             this.nextCallAt = now + this.reinforcementCooldown*1000;
         }
         for (const bot of this.allBots()) if (bot.isAlive && bot.enabled) bot.hearGunshot(location);
+    }
+
+    private initializeWaves(): void {
+        this.waves = this.encounterWaves.map(n => n.getComponent(EncounterWave));
+        const nodes: Laya.Sprite3D[] = [];
+        for (const wave of this.waves) nodes.push(...(wave?.enemies || []));
+        if (this.missionRoutePoints.length < 2 || this.waves.some(w => !w || !w.triggerPoint || !w.enemies.length)
+            || new Set(nodes).size !== nodes.length || nodes.length !== this.enemies.length
+            || this.enemies.some(n => nodes.indexOf(n) < 0)) throw new Error("波次必须完整且不重复地引用敌人，并配置主路线和接近触发点。");
+        this.missionRoute = new MissionRoute(this.missionRoutePoints.map(n => n.transform.position.clone()));
+        this.waves.forEach((wave, index) => wave.enemies.forEach(node => {
+            node.active = false;
+            const bot = node.getComponent(EnemyAI);
+            bot.clock = this.clock;
+            bot.canEngage = target => this.regionAt(target.transform.position) === index;
+        }));
+        this.teammates.forEach(node => {
+            const bot = node.getComponent(EnemyAI);
+            bot.canEngage = target => this.waveActive
+                && this.waves[this.nextWave]?.enemies.indexOf(target) >= 0;
+        });
+        this.updateSquadFollow();
+    }
+
+    private regionAt(position: Laya.Vector3): number {
+        const progress = this.missionRoute.progress(position);
+        return this.waves.findIndex(w => progress >= w.regionStart && progress < w.regionEnd);
+    }
+
+    private updateWaves(): void {
+        if (this.nextWave >= this.waves.length) return;
+        const wave = this.waves[this.nextWave];
+        if (this.waveActive) {
+            if (wave.enemies.some(n => n.getComponent(EnemyAI).isAlive)) return;
+            this.waveActive = false;
+            this.nextWave++;
+            for (const node of this.teammates) node.getComponent(EnemyAI)?.resumePatrol();
+            return;
+        }
+        const p = this.player.transform.position, trigger = wave.triggerPoint.transform.position;
+        if (Math.abs(p.y - trigger.y) > 3 || Math.hypot(p.x - trigger.x, p.z - trigger.z) > wave.triggerRadius) return;
+        for (const node of wave.enemies) node.active = true;
+        this.waveActive = true;
+    }
+
+    private updateSquadFollow(): void {
+        const progress = this.missionRoute.progress(this.player.transform.position);
+        const wave = this.waves[this.nextWave];
+        // Move independently along the route to the current fight or the next
+        // assembly point. The player still exclusively triggers each new wave.
+        const destination = wave
+            ? this.missionRoute.progress((this.waveActive ? wave.owner as Laya.Sprite3D : wave.triggerPoint).transform.position)
+                + (this.waveActive ? 3 : -2)
+            : this.missionRoute.progress(this.missionDocument.transform.position);
+        this.teammates.forEach((node, i) => {
+            const bot = node.getComponent(EnemyAI);
+            const goal = bot?.followTarget;
+            if (!goal) return;
+            const slot = i % 5;
+            const phase = (Math.floor(this.clock.now() / 4000) + slot) % 3;
+            const ahead = [5, 5, 8, 8, 11][slot] + [0, 1.5, -1.5][phase];
+            const ownProgress = this.missionRoute.progress(node.transform.position);
+            const staging = Math.max(0, destination - Math.floor(slot / 2) * 1.8);
+            const next = Math.min(staging, Math.max(progress, ownProgress) + ahead);
+            // The rear scout uses the outer lane instead of aiming through the
+            // stationary player's capsule at the middle of the street.
+            const p = this.missionRoute.sample(next, slot === 4 ? -2.8 : (slot % 2 ? 1 : -1) * 1.5);
+            goal.transform.position = new Laya.Vector3(p.x, 0, p.z);
+        });
     }
 
     private safeReinforcementPoints(count: number): Laya.Vector3[] {
@@ -292,10 +395,12 @@ export class LevelController extends Laya.Script {
         this.resultTitle.text = ready ? "旧城街巷 · DEMO 01" : "游戏已暂停";
         this.resultTitle.color = "#ffcf80";
         this.resultDetail.text = ready
-            ? (this.hasMission
+            ? (this.encounterWaves.length
+                ? `虚构小巷任务 · ${this.encounterWaves.length} 个交战区 · ${this.teammates.length} 名队友随行。\n清完当前区域，再沿小巷进入下一区；枪声只惊动本区敌人。\n逐区清敌 → 按 F 取得任务屋内文件 → 白色撤离圈。`
+                : this.hasMission
                 ? `虚构布局与任务文件，仅用于玩法设计。\n敌军在远处巡逻；枪声会暴露位置，并可能招来增援。\n清除${this.targets.length}名初始敌军及到达的增援 → 按 F 取文件 → 橙色终点。`
                 : "虚构布局的玩法原型，不复原真实历史地点。\n清除全部敌人，抵达橙色终点。")
-                + "\n\nWASD 移动 · 左键单发 / 轻击 · 右键开镜 / 重击\n1 汉阳造 · 3 短刀 · R 装填 · Space 跳跃\nQ/E 左右探头 · F 拾取 · Shift 疾跑 · C 切换蹲下/站起 · Esc 暂停"
+                + "\n\nWASD 移动 · 左键单发 / 轻击 · 右键开镜 / 重击\n1 汉阳造 · 3 短刀 · R 装填 · Space 跳跃\nQ/E 左右探头 · F 开关门窗 / 拾取 · Shift 疾跑 · C 切换蹲下/站起 · Esc 暂停"
             : "战斗与换弹已冻结。\n点击继续，取得鼠标控制后恢复游戏。\n\n鼠标锁定受限时，仍可在画面内移动鼠标转向。";
         this.continueButton.title = ready ? "开始游戏" : "继续游戏";
         this.continueButton.enabled = true;
@@ -360,7 +465,12 @@ export class LevelController extends Laya.Script {
         if (event.keyCode !== 70) return;
         const held = this.interactHeld;
         this.interactHeld = true;
-        if (held || (event.nativeEvent as KeyboardEvent)?.repeat || !this.canCollectDocument()) return;
+        if (held || (event.nativeEvent as KeyboardEvent)?.repeat || this.state !== "Playing"
+            || !this.health.isAlive || !this.playerControl.isGameplayFocused()) return;
+        if (!this.canCollectDocument()) {
+            this.findOpening()?.toggle();
+            return;
+        }
         this.documentCollected = true;
         this.missionDocument.active = false;
         // 解锁当刻只采样边界，必须在解锁后重新进入终点。
@@ -370,6 +480,32 @@ export class LevelController extends Laya.Script {
 
     private onInteractUp(event: Laya.Event): void {
         if (event.keyCode === 70) this.interactHeld = false;
+    }
+
+    private findOpening(): Openable {
+        if (!this.openings.length || this.state !== "Playing" || !this.playerControl.isGameplayFocused()) return null;
+        this.playerControl.syncCameraForShot();
+        this.interactionAim.setValue(Laya.stage.width / 2, Laya.stage.height / 2);
+        const camera = this.playerControl.followCamera;
+        camera.viewportPointToRay(this.interactionAim, this.interactionRay);
+        camera.transform.position.cloneTo(this.interactionRay.origin);
+        Laya.Vector3.normalize(this.interactionRay.direction, this.interactionRay.direction);
+        let nearest: Openable = null, distance = Infinity;
+        for (const opening of this.openings) {
+            if (!opening.enabled || !opening.owner.activeInHierarchy) continue;
+            const t = opening.interactionDistance(this.interactionRay);
+            if (t < distance) { nearest = opening; distance = t; }
+        }
+        if (!nearest) return null;
+        this.openingHits.length = 0;
+        this.world.physicsSimulation.rayCastAll(this.interactionRay, this.openingHits, Math.max(.01, distance - .02), -1,
+            ~Laya.Physics3DUtils.COLLISIONFILTERGROUP_CHARACTERFILTER);
+        for (const hit of this.openingHits) {
+            const n = hit.collider?.owner;
+            if (!n || n === this.player || this.player.isAncestorOf(n) || Openable.fromNode(n) === nearest) continue;
+            return null;
+        }
+        return nearest;
     }
 
     private canCollectDocument(): boolean {
@@ -417,6 +553,8 @@ export class LevelController extends Laya.Script {
             }
         }
         this.routeText.text = `路线：${this.routePoints[this.routeIndex].name}`;
+        const opening = this.findOpening();
+        if (opening && !this.canCollectDocument()) this.routeText.text = opening.hint;
     }
 
     private isInsideExit(): boolean {
@@ -428,6 +566,17 @@ export class LevelController extends Laya.Script {
     }
 
     private updateObjective(): void {
+        if (this.waves.length) {
+            const wave = this.waves[this.nextWave];
+            const left = wave?.enemies.filter(n => n.getComponent(EnemyAI).isAlive).length || 0;
+            this.remainingText.text = `区域 ${Math.min(this.nextWave + 1, this.waves.length)}/${this.waves.length} · 剩余敌人 ${this.remaining.size} · 文件 ${this.documentCollected ? 1 : 0}/1`;
+            this.objectiveText.text = wave
+                ? this.waveActive ? `清理第 ${this.nextWave + 1} 区：剩余 ${left} 人` : `沿小巷前往第 ${this.nextWave + 1} 区，队友随行`
+                : !this.documentCollected ? this.canCollectDocument() ? "按 F 取得任务文件" : "前往尽头任务屋，取得桌上的文件"
+                    : this.isInsideExit() ? "请离开并重新进入白色撤离区" : "携带文件，前往白色撤离区";
+            this.objectiveText.color = this.exitUnlocked ? "#8fffb0" : "#ffcf80";
+            return;
+        }
         if (this.hasMission) {
             const street = this.streetTargets.filter(enemy => !this.remaining.has(enemy)).length;
             const courtyard = this.courtyardTargets.filter(enemy => !this.remaining.has(enemy)).length;
@@ -569,6 +718,8 @@ export class LevelController extends Laya.Script {
     }
 
     onDisable(): void {
+        for (const opening of this.openings) opening.isBlocked = null;
+        this.openings.length = 0;
         this.interactHeld = false;
         this.awaitingControls = false;
         this.player.off(PlayerController.CONTROL_ACQUIRED, this, this.onControlsAcquired);

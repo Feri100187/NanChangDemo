@@ -4,6 +4,7 @@ import { BotNavigation } from "./BotNavigation";
 import { PlayerHealth } from "./PlayerHealth";
 import { GameClock } from "./GameClock";
 import { EnemyPatrolPoint } from "./EnemyPatrolPoint";
+import { Openable } from "./Openable";
 
 const { regClass, property } = Laya;
 
@@ -25,12 +26,20 @@ export class EnemyAI extends Laya.Script {
     friendly = false;
     @property({ type: [Laya.Sprite3D], caption: "敌对角色" })
     opponents: Laya.Sprite3D[] = [];
+    @property({ type: Laya.Sprite3D, caption: "非战斗跟随点（队友）" })
+    followTarget: Laya.Sprite3D;
+    @property({ type: Laya.Sprite3D, caption: "活动区域中心（可选）" })
+    territoryCenter: Laya.Sprite3D;
+    @property({ type: Number, caption: "活动区域半径" })
+    territoryRadius = 12;
+    /** Optional mission rule; geometry and field of view are still checked. */
+    canEngage: (target: Laya.Sprite3D) => boolean;
     @property({ type: Number, caption: "战斗移动速度" })
     combatSpeed = 2.2;
     @property({ type: Number, caption: "基础散布半角（度）" })
     spreadDegrees = 3;
     @property({ type: Number, caption: "疾跑速度" })
-    sprintSpeed = 9;
+    sprintSpeed = 6;
     private readonly leaning = new LeanMotion();
     private readonly leanRight = new Laya.Vector3();
     private leanRequest = 0;
@@ -160,6 +169,23 @@ export class EnemyAI extends Laya.Script {
     get state(): EnemyState { return this._state; }
     get horizontalSpeed(): number { return this._horizontalSpeed; }
 
+    /** A cleared encounter cancels investigation of its now-obsolete gunfire. */
+    resumePatrol(): void {
+        if (!this.isAlive) return;
+        this.target = null;
+        this.clearPerception();
+        this.heardUntil = 0;
+        this.searchGoal = null;
+        this.cover = null;
+        this.coverPeek = null;
+        this.combatGoal = null;
+        this.coverLean = this.leanRequest = 0;
+        this.crouching = false;
+        this.nextDecision = this.nextScan = 0;
+        this.navigation.invalidate();
+        this._state = "Patrol";
+    }
+
     onAwake(): void {
         this.enemy = this.owner as Laya.Sprite3D;
         this.spawnPosition = this.enemy.transform.position.clone();
@@ -209,7 +235,9 @@ export class EnemyAI extends Laya.Script {
             return;
         }
 
-        const checkFieldOfView = this._state === "Idle" || this._state === "Patrol";
+        // Gunfire/search can put us in Alert without ever seeing this target.
+        // Only a retained observation allows tracking outside the initial FOV.
+        const checkFieldOfView = !this.hasLastKnown;
         let visible = this.canSeePlayer(checkFieldOfView);
         // Movement can use a fresh observation, but suspicion is updated only
         // once, after moving, turning and applying the final lean pose.
@@ -332,6 +360,12 @@ export class EnemyAI extends Laya.Script {
 
     private updatePatrol(dt: number): void {
         this.crouching = false;
+        if (this.friendly && this.followTarget) {
+            const p = this.enemy.transform.position, goal = this.followTarget.transform.position;
+            const distance = Math.hypot(goal.x - p.x, goal.z - p.z);
+            if (distance > 1) this.moveTowards(goal, dt, distance > 9 ? this.sprintSpeed : this.patrolSpeed, true);
+            return;
+        }
         const position = this.enemy.transform.position;
         const points = this.patrolPoints.filter(node => node && !node.destroyed);
         this.patrolIndex %= points.length || this.patrolOffsets.length;
@@ -407,7 +441,8 @@ export class EnemyAI extends Laya.Script {
             const bot = candidate.getComponent(EnemyAI);
             if (bot && bot.friendly === this.friendly) continue;
             this.target = candidate;
-            if (!this.canSeePlayer(this._state === "Idle" || this._state === "Patrol")) continue;
+            // Alert/Combat must not grant all-round vision of new opponents.
+            if (!this.canSeePlayer(candidate !== old || !this.hasLastKnown)) continue;
             const a = this.enemy.transform.position, b = candidate.transform.position;
             const distance = Math.hypot(a.x - b.x, a.z - b.z) * (candidate === old ? .75 : 1);
             if (distance < score) { score = distance; best = candidate; }
@@ -418,20 +453,32 @@ export class EnemyAI extends Laya.Script {
 
     private moveTowards(goal: Laya.Vector3, dt: number, speed: number, face: boolean): void {
         const p = this.enemy.transform.position;
+        if (this.territoryCenter) {
+            const center = this.territoryCenter.transform.position;
+            const distance = Math.hypot(goal.x - center.x, goal.z - center.z);
+            if (distance > this.territoryRadius) goal = new Laya.Vector3(
+                center.x + (goal.x - center.x) * this.territoryRadius / distance, goal.y,
+                center.z + (goal.z - center.z) * this.territoryRadius / distance);
+        }
         const next = this.navigation.step(p, goal, this.clock?.now() ?? performance.now(),
-            (a, b) => this.walkSegmentClear(a, b, true));
+            (a, b) => this.insideTerritory(b) && this.walkSegmentClear(a, b, true));
         const dx = next.x - p.x, dz = next.z - p.z, distance = Math.hypot(dx, dz);
         if (distance < .001) return;
         if (face && !this.turnToward(Math.atan2(dx, dz) * 180 / Math.PI, dt)) return;
         const step = Math.min(distance, Math.max(0, speed) * dt);
         this.moveTo.setValue(p.x + dx / distance * step, p.y, p.z + dz / distance * step);
+        if (!this.insideTerritory(this.moveTo)) return;
         if (!this.walkSegmentClear(p, this.moveTo)) {
             // Rebuild stale geometry routes, but keep routes blocked only by actors.
             if (!this.walkSegmentClear(p, this.moveTo, true)) this.navigation.invalidate();
             // Yield around a team-mate instead of permanently queuing on the same route edge.
             const side = this.patrolIndex % 2 ? 1 : -1;
-            this.moveTo.setValue(p.x - dz / distance * step * side, p.y, p.z + dx / distance * step * side);
-            if (!this.walkSegmentClear(p, this.moveTo)) return;
+            let clear = false;
+            for (const direction of [side, -side]) {
+                this.moveTo.setValue(p.x - dz / distance * step * direction, p.y, p.z + dx / distance * step * direction);
+                if (this.insideTerritory(this.moveTo) && this.walkSegmentClear(p, this.moveTo)) { clear = true; break; }
+            }
+            if (!clear) return;
         }
         const ground = this.groundHeight(this.moveTo, this.maxWalkDrop);
         if (ground !== null) this.moveTo.y = ground;
@@ -573,6 +620,7 @@ export class EnemyAI extends Laya.Script {
 
     private canSeePlayer(checkFieldOfView: boolean): boolean {
         if (!this.targetAlive(this.target)) return false;
+        if (this.canEngage && !this.canEngage(this.target)) return false;
         const p = this.enemy.transform.position;
         this.aimAtHead = false;
         const target = this.targetPosition();
@@ -580,7 +628,8 @@ export class EnemyAI extends Laya.Script {
         const dz = target.z - p.z;
         const distance = Math.hypot(dx, dz);
         if (distance > Math.max(0, this.sightRange)) return false;
-        if (checkFieldOfView && distance > 6) {
+        // Proximity alone is not a visual or audible observation from behind.
+        if (checkFieldOfView && distance > 0.00001) {
             Laya.Vector3.transformQuat(new Laya.Vector3(0, 0, 1), this.enemy.transform.rotation, this.forward);
             const dot = (this.forward.x * dx + this.forward.z * dz) /
                 (Math.hypot(this.forward.x, this.forward.z) * distance);
@@ -588,11 +637,11 @@ export class EnemyAI extends Laya.Script {
                 return false;
         }
         this.readPoint(this.observationPoint, this.observationOffset, this.eye);
-        const hit = this.trace(this.eye, target, this.sightRay);
+        const hit = this.trace(this.eye, target, this.sightRay, true);
         if (!hit || this.isPlayerNode(hit)) return true;
         // A visible head over low cover is enough to engage; aim at the exposed part.
         this.aimAtHead = true;
-        const headHit = this.trace(this.eye, this.targetPosition(), this.sightRay);
+        const headHit = this.trace(this.eye, this.targetPosition(), this.sightRay, true);
         return !headHit || this.isPlayerNode(headHit);
     }
 
@@ -656,6 +705,12 @@ export class EnemyAI extends Laya.Script {
         this.suspicion = 0;
     }
 
+    private insideTerritory(p: Laya.Vector3): boolean {
+        if (!this.territoryCenter) return true;
+        const center = this.territoryCenter.transform.position;
+        return Math.hypot(p.x - center.x, p.z - center.z) <= this.territoryRadius + .01;
+    }
+
     private readPoint(node: Laya.Sprite3D, offset: Laya.Vector3, out: Laya.Vector3, leaned = true): void {
         if (node && !node.destroyed) node.transform.position.cloneTo(out);
         else {
@@ -679,7 +734,7 @@ export class EnemyAI extends Laya.Script {
 
     /** All-hit queries exclude only this enemy, never the entire enemy group.
      * Laya's result order is unspecified; choose the nearest non-self result. */
-    private trace(from: Laya.Vector3, to: Laya.Vector3, ray: Laya.Ray): Laya.Node {
+    private trace(from: Laya.Vector3, to: Laya.Vector3, ray: Laya.Ray, throughGlass = false): Laya.Node {
         from.cloneTo(ray.origin);
         Laya.Vector3.subtract(to, from, ray.direction);
         const distance = ray.direction.length();
@@ -690,6 +745,7 @@ export class EnemyAI extends Laya.Script {
         let nearest: Laya.HitResult = null;
         for (const hit of this.hits) {
             if (!hit.collider || this.isSelf(hit.collider.owner)) continue;
+            if (throughGlass && Openable.fromNode(hit.collider.owner)?.isWindow) continue;
             if (!nearest || hit.hitFraction < nearest.hitFraction) nearest = hit;
         }
         // HitResult objects are pooled by the engine. Keep only the node across

@@ -1,5 +1,13 @@
 # 分支整合状态
 
+## 当前：完整小巷与门板交互整合
+
+2026-10-11，用户明确要求将 `codex/fix-door-interaction` 提交、合并 master 并同步 GitHub/Gitee，并确认纳入此前尚未提交的完整小巷版本及所需资源。功能提交为 `ce81ae3`；在独立 worktree 合并到 `e1929dd`，保留主线试玩工具和武器变换修复。旧资源自动 `.meta` 改动及缓存不纳入。
+
+完成标准：合并后 TypeScript、AI／任务／武器回归、全新 Web 构建与门窗／波次运行检查通过，两个远端 master SHA 一致；原有非本次文件保留。最终结果记录在 `docs/door-merge-verification.md`。
+
+## 历史：先前已提交分支整合
+
 2026-10-11：按用户要求检查未合并分支，整合到 master 并同步 GitHub、Gitee。GitHub 无开放 PR；原本地 master 为 `b2ee35d`，两个远端 master 为 `4ae80fc`。
 
 - `codex/demo01-playtest-build` 与 `codex/crouch-toggle-animation` 共享 `4f0df37`，已在隔离审查分支整合；保留主线 AI、探头、跳跃 repeat 修复及最新场景，补入独立打包工具和 Web 武器变换刷新。
