@@ -64,6 +64,13 @@ export class PlayerController extends Laya.Script {
     private weaponPresentation: WeaponPresentation;
     private originalNearPlane = 0.1;
     get viewModelScale(): number { return this.weaponPresentation?.scale ?? 1; }
+    get weaponGripTuck(): number { return this.weaponPresentation?.gripTuck ?? 0; }
+
+    setWeaponGripTuck(value: number): void {
+        if (!this.weaponPresentation) return;
+        this.weaponPresentation.gripTuck = value;
+        this.weaponPresentation.apply(this.cameraPosition, this.followCamera, this.cameraRotation, this.aimProgress);
+    }
     private standingVisual: Laya.Sprite3D;
     private crouchingVisual: Laya.Sprite3D;
     private animatedVisual: Laya.Sprite3D;

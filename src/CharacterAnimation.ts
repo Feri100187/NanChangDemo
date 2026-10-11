@@ -323,6 +323,12 @@ export class CharacterAnimation extends Laya.Script {
         // Re-read the final camera/clearance pose after all LateUpdate callbacks.
         this.onLateUpdate();
         if (!this.clock?.paused) this.leanPose?.apply(this.player?.body || this.actor, this.player?.leanAmount ?? this.enemy?.leanAmount ?? 0);
+        if (!this.clock?.paused && this.player?.enabled && this.viewArms?.active
+            && this.rifle?.currentWeapon === "rifle" && this.armIK) {
+            this.player.setWeaponGripTuck(this.armIK.fitRifleGrip(this.rifle.viewCamera,
+                this.player.weaponGripTuck, Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05)));
+            this.onLateUpdate(); // Bring both hidden wrist/finger targets along with the gun.
+        }
         if (this.viewArms?.active && this.rifle?.currentWeapon === "knife") this.alignKnifeGrip();
         if (!this.clock?.paused && this.player?.enabled) this.armIK?.update(this.player.viewModelScale,
             Math.min((this.clock?.timer.delta ?? Laya.timer.delta) / 1000, 0.05),

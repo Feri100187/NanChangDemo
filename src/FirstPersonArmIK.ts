@@ -91,6 +91,38 @@ export class FirstPersonArmIK {
         }
     }
 
+    /** Smallest common view-axis translation that keeps both animated grips
+     * within the fixed arms. Called after Animator/lean, before solving the arms. */
+    fitRifleGrip(camera: Laya.Camera, previousTuck: number, dt: number): number {
+        if (this.arms.length !== 2) return 0;
+        this.temp.setValue(0, 0, 1);
+        Laya.Vector3.transformQuat(this.temp, camera.transform.rotation, this.direction);
+        let enter = 0, leave = Infinity;
+        for (const arm of this.arms) {
+            const upper = arm.joints.Upperarm.node;
+            Laya.Vector3.transformCoordinate(arm.anchor, (upper.parent as Laya.Sprite3D).transform.worldMatrix, this.shoulder);
+            Laya.Vector3.subtract(arm.target.transform.position, this.shoulder, this.wrist);
+            // Targets already follow WeaponPresentation's previous absolute tuck.
+            // Remove it analytically so a stationary pose never accumulates drift.
+            this.wrist.setValue(this.wrist.x - this.direction.x * previousTuck,
+                this.wrist.y - this.direction.y * previousTuck,
+                this.wrist.z - this.direction.z * previousTuck);
+            const along = Laya.Vector3.dot(this.wrist, this.direction);
+            const discriminant = along * along + 0.63 * 0.63 - this.wrist.lengthSquared();
+            // Edited/unreachable lateral targets still use update's existing arm
+            // length guard; never invent a sideways shift that breaks ADS alignment.
+            if (!Number.isFinite(discriminant) || discriminant < 0) return 0;
+            const half = Math.sqrt(discriminant);
+            enter = Math.max(enter, -along - half);
+            leave = Math.min(leave, -along + half);
+        }
+        if (enter > leave) return 0;
+        // Retraction is immediate to preserve contact; ease back out when safe.
+        const tuck = enter >= previousTuck ? enter
+            : previousTuck + (enter - previousTuck) * (1 - Math.exp(-12 * dt));
+        return Math.min(leave, tuck);
+    }
+
     update(handScale: number, dt: number, gun?: Laya.Transform3D, camera?: Laya.Camera): void {
         this.body.transform.worldMatrix.invert(this.inverseBody);
         this.eye = camera?.transform.position;

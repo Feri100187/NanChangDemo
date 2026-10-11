@@ -500,7 +500,6 @@ export class RifleController extends Laya.Script {
             * (1 - this.aimProgress) ** 2 * (phase < 0 ? 1 : 0);
         const bobX = Math.sin(now * 10) * 0.004 * moving;
         const bobY = Math.cos(now * 20) * 0.006 * moving;
-        const raiseTuck = Math.max(0, this.viewCamera.transform.rotationEuler.x - 35) * 0.002;
         // Bring the stock into the shoulder rather than stretching the character
         // to an arm's-length camera prop. At ADS, the sight line's +0.18 Y offset
         // cancels this -0.18 Y and X matches PlayerController's sight offset.
@@ -508,7 +507,7 @@ export class RifleController extends Laya.Script {
         // has zero tilt and keeps the sight's original camera alignment.
         this.modelTarget.setValue(this.rifleHome.x - 0.02 * this.aimProgress - tilt * 0.20 + bobX,
             this.rifleHome.y + 0.14 * this.aimProgress + tilt * 0.12 + bobY,
-            this.rifleHome.z + raiseTuck + this.kickBack - tilt * 0.09);
+            this.rifleHome.z + this.kickBack - tilt * 0.09);
         Laya.Vector3.lerp(this.rifleModel.transform.localPosition, this.modelTarget, blend, this.modelPosition);
         this.rifleModel.transform.localPosition = this.modelPosition;
         this.weaponRotation.setValue(-7 * tilt, 8 * tilt, -18 * tilt);

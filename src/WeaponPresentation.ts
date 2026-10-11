@@ -2,6 +2,7 @@
  * Visible arms are anchored separately; world depth and lighting remain enabled. */
 export class WeaponPresentation {
     scale = 0.90;
+    gripTuck = 0;
     private maximumScale = 0.90;
     private obstruction = 0;
     private readonly probe = new Laya.SphereColliderShape(0.045);
@@ -17,6 +18,7 @@ export class WeaponPresentation {
     setMaximumScale(value: number): void {
         this.maximumScale = value;
         this.scale = Math.min(this.scale, value);
+        this.gripTuck = 0;
     }
 
     apply(eye: Laya.Vector3, camera: Laya.Camera, angles: Laya.Vector3, aim: number): void {
@@ -28,8 +30,14 @@ export class WeaponPresentation {
         this.rotation.setValue(angles.x + freeLook - 9 * this.obstruction * (1 - aim), angles.y, angles.z);
         this.pivot.transform.rotationEuler = this.rotation;
         const c = camera.transform.position;
-        this.position.setValue(c.x + (eye.x - c.x) * this.scale,
-            c.y + (eye.y - c.y) * this.scale, c.z + (eye.z - c.z) * this.scale);
+        // The arm solver retracts the complete weapon along the viewing axis.
+        // Reapply the absolute offset here, including syncCameraForShot, without
+        // feeding it into RifleController's local-position interpolation.
+        this.local.setValue(0, 0, this.gripTuck);
+        Laya.Vector3.transformQuat(this.local, camera.transform.rotation, this.end);
+        this.position.setValue(c.x + (eye.x - c.x) * this.scale + this.end.x,
+            c.y + (eye.y - c.y) * this.scale + this.end.y,
+            c.z + (eye.z - c.z) * this.scale + this.end.z);
         this.pivot.transform.position = this.position;
         this.size.setValue(this.scale, this.scale, this.scale);
         this.pivot.transform.localScale = this.size;
