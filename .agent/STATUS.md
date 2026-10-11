@@ -4,7 +4,7 @@
 
 2026-10-11，用户明确要求将 `codex/fix-door-interaction` 提交、合并 master 并同步 GitHub/Gitee，并确认纳入此前尚未提交的完整小巷版本及所需资源。功能提交为 `ce81ae3`；在独立 worktree 合并到 `e1929dd`，保留主线试玩工具和武器变换修复。旧资源自动 `.meta` 改动及缓存不纳入。
 
-完成标准：合并后 TypeScript、AI／任务／武器回归、全新 Web 构建与门窗／波次运行检查通过，两个远端 master SHA 一致；原有非本次文件保留。最终结果记录在 `docs/door-merge-verification.md`。
+已通过 TypeScript、51 组控制器回归、全新 Web 构建、26 项门窗交互、2,850 项定位对照与 137 项关卡流程检查；744 次资源响应无失败和运行时错误。具体运行基线、结果与同步核验方式见 `docs/door-merge-verification.md`。完成同步须核对两个远端 master SHA 一致，并保留原有非本次文件。
 
 ## 历史：先前已提交分支整合
 
