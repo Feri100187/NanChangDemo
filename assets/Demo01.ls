@@ -23287,7 +23287,7 @@
       "y": 22,
       "width": 1250,
       "height": 80,
-      "text": "WASD 移动 · Q/E 左右探头 · Shift 疾跑 · C 下蹲 · F 拾取 · Esc 暂停\n左键射击/轻击 · 右键开镜/重击 · R 装填 · 1/3 切枪/刀 · Space 跳跃",
+      "text": "WASD 移动 · Q/E 左右探头 · Shift 疾跑 · C 切换蹲下/站起 · F 拾取 · Esc 暂停\n左键射击/轻击 · 右键开镜/重击 · R 装填 · 1/3 切枪/刀 · Space 跳跃",
       "font": "Microsoft YaHei",
       "fontSize": 18,
       "color": "#ffffff",

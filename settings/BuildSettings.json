@@ -1,6 +1,11 @@
 {
   "name": "NanChangDemo",
   "startupScene": "res://7ddb8eec-dab2-4fa9-8b07-e8ff6c597680",
+  "useCompressedEngine": true,
+  "minifyJS": true,
+  "sourcemap": false,
+  "sourcesContent": false,
+  "copyBinFiles": false,
   "android": {
     "targetArchitectures": {
       "ARMv7": false,

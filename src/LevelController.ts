@@ -295,7 +295,7 @@ export class LevelController extends Laya.Script {
             ? (this.hasMission
                 ? `虚构布局与任务文件，仅用于玩法设计。\n敌军在远处巡逻；枪声会暴露位置，并可能招来增援。\n清除${this.targets.length}名初始敌军及到达的增援 → 按 F 取文件 → 橙色终点。`
                 : "虚构布局的玩法原型，不复原真实历史地点。\n清除全部敌人，抵达橙色终点。")
-                + "\n\nWASD 移动 · 左键单发 / 轻击 · 右键开镜 / 重击\n1 汉阳造 · 3 短刀 · R 装填 · Space 跳跃\nQ/E 左右探头 · F 拾取 · Shift 疾跑 · C 下蹲 · Esc 暂停"
+                + "\n\nWASD 移动 · 左键单发 / 轻击 · 右键开镜 / 重击\n1 汉阳造 · 3 短刀 · R 装填 · Space 跳跃\nQ/E 左右探头 · F 拾取 · Shift 疾跑 · C 切换蹲下/站起 · Esc 暂停"
             : "战斗与换弹已冻结。\n点击继续，取得鼠标控制后恢复游戏。\n\n鼠标锁定受限时，仍可在画面内移动鼠标转向。";
         this.continueButton.title = ready ? "开始游戏" : "继续游戏";
         this.continueButton.enabled = true;
