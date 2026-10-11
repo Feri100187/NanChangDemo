@@ -14,12 +14,14 @@ from mathutils import Matrix, Vector, Quaternion
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.dont_write_bytecode = True
 from append_death_animation import append_death_animation
+from replace_view_animations import VIEW_CLIPS, replace_view_animations
 
 ROOT = Path(__file__).resolve().parents[1]
 motion_source = (ROOT/'src/WeaponMotion.ts').read_text(encoding='utf8')
 KNIFE_MOTION = json.loads(re.search(r'export const KNIFE_MOTION = (\{.*?\n\});',motion_source,re.S).group(1))
 BOLT_MOTION = json.loads(re.search(r'export const BOLT_MOTION = (\{.*?\n\});',motion_source,re.S).group(1))
 BOLT_MECHANISM = json.loads(re.search(r'export const BOLT_MECHANISM = (\{.*?\n\});',motion_source,re.S).group(1))
+RELOAD_HAND_MOTION = json.loads(re.search(r'export const RELOAD_HAND_MOTION = (\{.*?\n\});',motion_source,re.S).group(1))
 if not bpy.app.background or bpy.data.filepath:
     raise RuntimeError('Use a separate background factory-startup Blender process.')
 
@@ -73,9 +75,9 @@ def motion_value(keys, phase, column):
     return keys[-1][column]
 
 
-def grip_finger(rig, finger, goal, amount):
+def grip_finger(rig, finger, goal, amount, side='R'):
     """Close the thumb/index/middle around the actual small bolt knob."""
-    first,second,last=[rig.pose.bones[f'R_{finger}_{i:02}'] for i in [1,2,3]]
+    first,second,last=[rig.pose.bones[f'{side}_{finger}_{i:02}'] for i in [1,2,3]]
     tip=last.tail.copy().lerp(goal,amount)
     direction=(tip-first.head).normalized()
     end=tip-direction*(last.tail-last.head).length
@@ -106,9 +108,12 @@ PLAYER_CLIPS = {'Hold':2.0, 'HoldWalk':1.0, 'HoldRun':.64, 'CrouchHold':2.0,
 
 NPC_SCALE = 1.65 / 2.295872211456299
 death_only = '--enemy-death-only' in sys.argv
+hands_only = '--player-hands-only' in sys.argv
+if hands_only and any(flag in sys.argv for flag in ['--enemy-only','--enemy-death-only','--ally-only']):
+    raise ValueError('--player-hands-only cannot update other characters')
 if '--player-only' in sys.argv and ('--enemy-only' in sys.argv or death_only):
     raise ValueError('Choose only one character export scope')
-for role in (['Ally'] if '--ally-only' in sys.argv else ['Player'] if '--player-only' in sys.argv else ['Enemy'] if '--enemy-only' in sys.argv or death_only else ['Player','Enemy']):
+for role in (['Player'] if hands_only else ['Ally'] if '--ally-only' in sys.argv else ['Player'] if '--player-only' in sys.argv else ['Enemy'] if '--enemy-only' in sys.argv or death_only else ['Player','Enemy']):
     bpy.ops.object.select_all(action='SELECT')
     bpy.ops.object.delete(use_global=False)
     for action in list(bpy.data.actions):
@@ -181,7 +186,7 @@ for role in (['Ally'] if '--ally-only' in sys.argv else ['Player'] if '--player-
     def pos(x,y,z):
         return Vector((x*scale,-z*scale,y*scale))
     rest = {b.name:b.matrix_local.copy() for b in rig.data.bones}
-    if role=='Player':
+    if role=='Player' and not hands_only:
         # Bind frames used by the runtime shoulder-anchored arm solver. Keep these
         # in sync with the supplied skeleton instead of guessing joint axes in TS.
         convert=Matrix.Rotation(-math.pi/2,4,'X')
@@ -323,7 +328,7 @@ for role in (['Ally'] if '--ally-only' in sys.argv else ['Player'] if '--player-
                 bpy.context.view_layer.update()
                 # Support the rear of the fore-end, within the body's fixed arm
                 # reach, rather than pulling the left elbow straight across ADS.
-                target = pos(-.062,.089,.04) if side=='L' else pos(.034,.035,.28)
+                target = pos(-.045,.054,.04) if side=='L' else pos(.034,.035,.28)
                 hand_forward = pos(.97,.10,-.20) if side=='L' else pos(0,.30,-.954)
                 hand_palm = pos(0,1,0) if side=='L' else pos(-1,0,0)
                 if knife:
@@ -373,11 +378,12 @@ for role in (['Ally'] if '--ally-only' in sys.argv else ['Player'] if '--player-
                     hand_palm=hand_palm.lerp(pos(-math.cos(angle),-math.sin(angle),0),operating)
                     if name=='ViewReload':
                         loading=motion_value([[0,0],[.24,0],[.31,1],[.65,1],[.74,0],[1,0]],phase,1)
-                        press=motion_value([[0,0],[.34,0],[.42,1],[.48,0],[.59,1],[.65,0],[1,0]],phase,1)
-                        # Approach from the side with the palm down. Pointing the
-                        # metacarpals straight down folded the wrist before the
-                        # fingers even curled around the cartridge.
-                        target=target.lerp(pos(.09,.285-.025*press,.22),loading)
+                        insert=max(0,min(1,(phase-.34)/.14))
+                        cartridge=pos(*(motion_value(RELOAD_HAND_MOTION['keys'],insert,c) for c in [1,2,3]))
+                        pinch=motion_value(RELOAD_HAND_MOTION['keys'],insert,4)
+                        # The same carry/press/release path is used for every round.
+                        # Wrist and opposing fingertip goals move as a single grip.
+                        target=target.lerp(cartridge+pos(*RELOAD_HAND_MOTION['wristOffset']),loading)
                         hand_forward=hand_forward.lerp(pos(-.55,-.10,-.83),loading)
                         hand_palm=hand_palm.lerp(pos(0,-1,0),loading)
                 # Keep anatomical length/thickness. Bring the sleeve origin closer
@@ -409,7 +415,8 @@ for role in (['Ally'] if '--ally-only' in sys.argv else ['Player'] if '--player-
                         if side=='R' and finger=='Index' and not knife: angles=[8,32,25]
                         if side=='R' and name in ['ViewBolt','ViewReload']:
                             action_angles=[45,65,45] if finger!='Thumb' else [30,40,30]
-                            action_angles=[a*(1-loading)+b*loading for a,b in zip(action_angles,[15,25,15])]
+                            loading_angles=[30,45,35] if finger in ['Thumb','Index'] else [65,75,55]
+                            action_angles=[a*(1-loading)+b*loading for a,b in zip(action_angles,loading_angles)]
                             angles=[a*(1-operating)+b*operating for a,b in zip(angles,action_angles)]
                             angles=[a*(1-release)+b*release for a,b in zip(angles,[5,10,5])]
                         if side=='L' and knife: angles=[25,35,25]
@@ -426,13 +433,16 @@ for role in (['Ally'] if '--ally-only' in sys.argv else ['Player'] if '--player-
                         goal=knob+pos(x*math.cos(handle_angle)-y*math.sin(handle_angle),
                             x*math.sin(handle_angle)+y*math.cos(handle_angle),z)
                         grip_finger(rig,finger,goal,contact)
+                if name=='ViewReload' and loading>.001:
+                    for finger,key in [('Thumb','thumbContact'),('Index','indexContact')]:
+                        grip_finger(rig,finger,cartridge+pos(*RELOAD_HAND_MOTION[key]),loading*pinch)
             if view and side=='L' and not knife:
                 bpy.context.view_layer.update()
                 # The thumb follows the same fore-end grip as the palm. Its old
                 # fixed -0.18 Z target was left behind when the wrist moved back.
-                limb(rig,'L_Thumb_01','L_Thumb_02','L_Thumb_03',pos(0,.14,.03),pos(-.04,.155,.05))
+                limb(rig,'L_Thumb_01','L_Thumb_02','L_Thumb_03',pos(-.055,.100,.025),pos(-.065,.10,.045))
                 thumb=rig.pose.bones['L_Thumb_03']
-                aim(rig,thumb.name,None,thumb.head+pos(.02,0,0))
+                aim(rig,thumb.name,None,thumb.head+pos(0,.018,-.018))
         bpy.context.view_layer.update()
 
     if ('--preview-grip' in sys.argv or '--preview-knife' in sys.argv) and role=='Player':
@@ -441,6 +451,8 @@ for role in (['Ally'] if '--ally-only' in sys.argv else ['Player'] if '--player-
         continue
     bpy.context.scene.render.fps=30
     clips = {'Death': 1.2} if death_only else {**CLIPS, **(PLAYER_CLIPS if role=='Player' else {**{k:v for k,v in PLAYER_CLIPS.items() if not k.startswith('View') and 'Knife' not in k}, 'Death': 1.2})}
+    if hands_only:
+        clips = {name: PLAYER_CLIPS[name] for name in VIEW_CLIPS}
     for name,duration in clips.items():
         action=bpy.data.actions.new(name)
         action.use_fake_user=True
@@ -453,19 +465,27 @@ for role in (['Ally'] if '--ally-only' in sys.argv else ['Player'] if '--player-
                 bone.keyframe_insert('location',frame=frame,group=bone.name)
                 bone.keyframe_insert('rotation_quaternion',frame=frame,group=bone.name)
                 bone.keyframe_insert('scale',frame=frame,group=bone.name)
-    rig.animation_data.action=bpy.data.actions['Death' if death_only else 'Idle']
+    if hands_only:
+        rig.animation_data.action = None
+        pose('Idle',0)
+        # Leave a neutral preview; the glTF exporter writes the unchanged skin bind nodes.
+    else:
+        rig.animation_data.action=bpy.data.actions['Death' if death_only else 'Idle']
     bpy.context.scene.frame_set(0)
     bpy.ops.object.select_all(action='DESELECT')
     for obj in [rig]+meshes: obj.select_set(True)
     bpy.context.view_layer.objects.active=rig
     folder=ROOT/'assets/resources/characters'/role
     folder.mkdir(parents=True, exist_ok=True)
-    export_path = ROOT/'.tmp/EnemyDeath.glb' if death_only else folder/f'Animated{role}.glb'
+    (ROOT/'.tmp').mkdir(exist_ok=True)
+    export_path = ROOT/'.tmp/PlayerHands.glb' if hands_only else ROOT/'.tmp/EnemyDeath.glb' if death_only else folder/f'Animated{role}.glb'
     bpy.ops.export_scene.gltf(filepath=str(export_path),export_format='GLB',
         use_selection=True,export_animations=True,export_animation_mode='ACTIONS',
         export_force_sampling=True,export_optimize_animation_size=False,export_yup=True)
     if death_only:
         append_death_animation(folder/f'Animated{role}.glb', export_path)
+    if hands_only:
+        replace_view_animations(folder/f'Animated{role}.glb', export_path)
     if '--no-blend' not in sys.argv:
-        bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'.tmp'/('EnemyDeath.blend' if death_only else f'Animated{role}.blend')))
+        bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'.tmp'/('PlayerHands.blend' if hands_only else 'EnemyDeath.blend' if death_only else f'Animated{role}.blend')))
     print('EXPORTED',role,len(rig.data.bones),'bones',list(clips))

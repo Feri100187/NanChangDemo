@@ -3,7 +3,7 @@ import { EnemyAI } from "./EnemyAI";
 import { PlayerController } from "./PlayerController";
 import { PlayerHealth } from "./PlayerHealth";
 import { RifleController } from "./RifleController";
-import { BOLT_CYCLE_MS } from "./WeaponMotion";
+import { BOLT_CYCLE_MS, RELOAD_HAND_MOTION } from "./WeaponMotion";
 import { CasingEjection } from "./CasingEjection";
 import { FirstPersonArmIK } from "./FirstPersonArmIK";
 
@@ -31,6 +31,13 @@ export class CharacterAnimation extends Laya.Script {
     private bodyReloadStep = -1;
     private viewWeapon = "";
     private viewRightHand: Laya.Sprite3D;
+    private rightThumbTip: Laya.Sprite3D;
+    private rightIndexTip: Laya.Sprite3D;
+    // Last phalanx lengths from the supplied player bind pose (local +Y).
+    private readonly thumbTipOffset = new Laya.Vector3(0, 0.02563664, 0);
+    private readonly indexTipOffset = new Laya.Vector3(0, 0.01917306, 0);
+    private readonly thumbContact = new Laya.Vector3();
+    private readonly indexContact = new Laya.Vector3();
     private reloadCartridge: Laya.Sprite3D;
     private casings: CasingEjection;
     private armIK: FirstPersonArmIK;
@@ -94,6 +101,8 @@ export class CharacterAnimation extends Laya.Script {
             if (this.enemy && node.name === "Hip") this.enemyHip = node as Laya.Sprite3D;
             if (this.player && node.name === "FirstPersonHiddenHead") node.active = false;
             if (node.name === "ViewArms") node.active = false;
+            if (this.player && node.name === "R_Thumb_03") this.rightThumbTip = node as Laya.Sprite3D;
+            if (this.player && node.name === "R_Index_03") this.rightIndexTip = node as Laya.Sprite3D;
             if (this.player && node.name === "Arms") this.bodyArms = node;
         });
         if (this.enemy) this.enemyGun = this.actor.getChildByName("EnemyRifle") as Laya.Sprite3D;
@@ -328,11 +337,26 @@ export class CharacterAnimation extends Laya.Script {
         if (!r?.enabled || r.currentWeapon !== "rifle") return;
         let angle = 0;
         if (r.reloadPhase === "insert") {
-            const p = r.reloadStageProgress;
-            if (p < 0.05 || p >= 0.99) return;
-            const t = p * p * (3 - 2 * p);
-            this.cartridgeLocal.setValue(0.045 * (1 - t), 0.275 - 0.12 * t, 0.13);
-            angle = 1 - t;
+            // Use the evaluated clip phase so the hand opens only after the round
+            // has disappeared below the receiver. Animator may be a frame ahead
+            // of the gameplay timer, especially after a stall or pause.
+            const playback = this.viewAnimator?.getControllerLayer(0)?.getCurrentPlayState();
+            if (playback?.currentState?.name !== "ViewReloadInsert") return;
+            const p = playback.normalizedTime;
+            if (p < RELOAD_HAND_MOTION.visibleStart || p >= RELOAD_HAND_MOTION.release
+                || !this.rightThumbTip || !this.rightIndexTip) return;
+            Laya.Vector3.transformCoordinate(this.thumbTipOffset, this.rightThumbTip.transform.worldMatrix, this.thumbContact);
+            Laya.Vector3.transformCoordinate(this.indexTipOffset, this.rightIndexTip.transform.worldMatrix, this.indexContact);
+            Laya.Vector3.lerp(this.thumbContact, this.indexContact, 0.5, this.cartridgeWorld);
+            // Both fingers pinch the rear of the case, 12 mm behind its origin.
+            this.cartridgeLocal.setValue(0, 0, -RELOAD_HAND_MOTION.thumbContact[2] * this.player.viewModelScale);
+            Laya.Vector3.transformQuat(this.cartridgeLocal, r.rifleModel.transform.rotation, this.cartridgeLocal);
+            Laya.Vector3.add(this.cartridgeWorld, this.cartridgeLocal, this.cartridgeWorld);
+            this.reloadCartridge.active = true;
+            this.reloadCartridge.transform.position = this.cartridgeWorld;
+            this.reloadCartridge.transform.rotation = r.rifleModel.transform.rotation;
+            this.reloadCartridge.transform.setWorldLossyScale(this.viewScale);
+            return;
         } else if (!r.isReloading && r.hasRoundToChamber) {
             // Reload finish only closes the bolt. Re-showing a loose round here
             // makes a one-round top-up look like two separate insertions.

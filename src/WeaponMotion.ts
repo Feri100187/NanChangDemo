@@ -37,6 +37,19 @@ export const BOLT_MOTION = {
 
 export const BOLT_CYCLE_MS = 1050;
 
+// One round: carry it between thumb/index, press below the receiver lip, then
+// release and return empty-handed. Gun-local metres; also read by Blender.
+export const RELOAD_HAND_MOTION = {
+    "keys": [[0,0.065,0.275,0.13,1],[0.12,0.065,0.275,0.13,1],
+        [0.64,0,0.16,0.13,1],[0.76,0,0.16,0.13,1],
+        [0.86,0.014,0.205,0.15,0],[0.95,0.065,0.275,0.13,1],[1,0.065,0.275,0.13,1]],
+    "wristOffset": [0.070,0.055,0.055],
+    "thumbContact": [0.008,0,0.012],
+    "indexContact": [-0.008,0,0.012],
+    "visibleStart": 0.02,
+    "release": 0.76
+};
+
 /** Bounded Hermite segments: flat duplicate keys create explicit action holds. */
 export function motionValue(keys: number[][], phase: number, column: number): number {
     const t = Math.max(0, Math.min(1, phase));

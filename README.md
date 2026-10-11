@@ -246,6 +246,10 @@ Demo01 和 Scene.ls 各有 1 把玩家枪、4 把敌人枪，共 10 处实例，
 
 `ProvidedPlayer.lh/FirstPersonArms` 是同一 `AnimatedPlayer.glb` 的额外实例，共享状态机，运行时隐藏其全部网格，只读取手腕与手指的动作目标。ViewHold 左手托护木，右手掌贴合枪托、食指靠近扳机护圈；ViewAim 提供瞄准手掌姿态。ViewReloadPrepare、ViewReloadInsert、ViewReloadFinish 按阶段时长调节速度，每一发重新播放 Insert，不重复开关枪栓。手掌、手指和装填目标继续来自这套原有动画，原动作时长不变。
 
+左手托枪握点位于护木下方，拇指沿枪身左侧，避免掌面和拇指穿入枪身。逐发装填使用 `WeaponMotion.ts/RELOAD_HAND_MOTION`：右手拇指与食指夹住弹壳，整手带弹下压至弹仓口后松开，再空手回位。弹药位置取自 IK 后可见双指的接触中心，随手一起移动；准备、收尾与切刀取消时不显示手中弹药。
+
+只维护这些手部动作时，运行 `blender --background --factory-startup --python tools/prepare-rigged-characters.py -- --player-hands-only --no-blend`。它校验原骨架和绑定矩阵，只替换 ViewHold、ViewAim、ViewBolt、ViewReload，保留动画索引、其余动作、网格、贴图、蒙皮及原 `.meta`；无需重建 controller。该模式不要与其他角色导出参数混用。验证与已知边界见 [持枪与捏弹修复记录](docs/rifle-hands-verification.md)。
+
 短刀使用 ViewKnifeHold、ViewKnifeLight、ViewKnifeHeavy，身体对应 KnifeHold、KnifeWalk、KnifeRun 及蹲姿状态。右手握刀，左手保持防护姿态；轻击横挥、重击下压，随后回到待机。刀柄与护手调整到手掌可包住的比例，刀柄降低高光；刀刃尺寸不变。仅调整短刀视图的握持位置和挥动姿态，伤害、距离、320/620 毫秒动作窗口、命中时刻及冷却全部沿用 RifleController。ViewKnifeLight/Heavy 按真实动作时长校正播放速度；LayaAir 3.4.1 的 Animator 在 LateUpdate 之后更新，因此 `onAfterSceneUpdate` 再按实际刀柄对齐右手握点及朝向，避免高帧率或动作切换时脱手。切换武器时立即切换视图坐标系，不在两种坐标系之间混合。
 
 动作节奏集中在 `src/WeaponMotion.ts`：运行时和 Blender 生成器共用其中的关键帧数据，避免手与武器各用一套轨迹。短刀待机比旧版收近约 22 厘米，双肘回收；轻击采用短蓄力、快速挥出、短暂停顿和较慢回位，重击蓄力更长、下压更快。快速挥出的命中姿态对齐原来的 50% 命中时刻，之后随动收势；停顿只影响外观，不暂停游戏或重复判伤。玩家和敌人移动动画加入约 60% 周期的支撑阶段、抬脚回摆、重心起伏与胸肩反向转动；敌人支撑脚速度匹配原 0.75 米/秒巡逻。动画融合比例调整为 0.06。腰射行走有轻微枪身起伏，开镜归零；不增加镜头晃动。
