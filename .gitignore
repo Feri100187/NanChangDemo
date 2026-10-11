@@ -13,3 +13,6 @@
 /.trae/
 /.vscode/
 /.tmp/
+__pycache__/
+*.pyc
+*.pyo
