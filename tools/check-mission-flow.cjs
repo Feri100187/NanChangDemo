@@ -11,7 +11,7 @@ function checkPreviewBindings(source, preview) {
     const expected = source._$comp.find(c => c.scriptPath === '../src/LevelController.ts');
     const actual = preview._$comp.find(c => c.scriptPath === '../src/LevelController.ts');
     assert.ok(actual, '预览缓存缺少 LevelController，请在 IDE 重开 Demo01 并重新预览');
-    for (const key of ['streetEnemies', 'courtyardEnemies', 'missionDocument', 'teammates', 'reinforcementEnemies', 'reinforcementSpawns']) {
+    for (const key of ['streetEnemies', 'courtyardEnemies', 'missionDocument', 'teammates', 'reinforcementEnemies', 'reinforcementSpawns', 'encounterWaves', 'missionRoutePoints']) {
         assert.deepEqual(actual[key], expected[key],
             `IDE 预览的 ${key} 与源场景不同；停止预览、关闭并重开 Demo01，再启动预览，不能仅重编译脚本`);
     }
@@ -38,7 +38,7 @@ function environment(mission=true, menu=true) {
     class PlayerHealth {} PlayerHealth.DIED='player-died';
     class RifleController {} class CombatFeedback {}
     class GameClock { constructor(){this.timer={};} setPaused(v){this.paused=v;} destroy(){this.destroyed=true;} }
-    const modules={EnemyAI:{EnemyAI},PlayerController:{PlayerController},PlayerHealth:{PlayerHealth},RifleController:{RifleController},CombatFeedback:{CombatFeedback},GameClock:{GameClock}};
+    const modules={Openable:{Openable:class {static instances=new Set();}},EnemyAI:{EnemyAI},PlayerController:{PlayerController},PlayerHealth:{PlayerHealth},RifleController:{RifleController},CombatFeedback:{CombatFeedback},GameClock:{GameClock}};
     const stage=Object.assign(new Events(),{width:1334,height:750}), canvas=new Events();
     const win=new Events(), doc=Object.assign(new Events(),{hidden:false,hasFocus:()=>true});
     const Laya={Script:class{},Sprite3D:class{},GTextField:class{},GButton:class{},GBox:class{},
@@ -117,11 +117,12 @@ await check('暂停/胜利/失败重开：加载当前场景，清理监听器�
 await check('Scene.ls 无配置仍沿用清敌和终点重新进入规则',()=>{
     const e=environment(false,false);e.enter();[0,1,2,3].forEach(i=>e.kill(i));e.level.onUpdate();assert.equal(e.level.state,'Playing');e.leave();e.enter();assert.equal(e.level.state,'Won');
 });
-await check('场景显式分组、文件位置/资源、LayaAir 版本',()=>{
+await check('场景顺序波次、文件位置/资源、LayaAir 版本',()=>{
     const scene=JSON.parse(fs.readFileSync(path.join(root,'assets/Demo01.ls'),'utf8')),c=scene._$comp[0];
-    assert.deepEqual(c.streetEnemies.map(x=>x._$ref),['target001','enemy002','enemy005','enemy006']);assert.deepEqual(c.courtyardEnemies.map(x=>x._$ref),['enemy003','enemy004','enemy007','enemy008']);
+    assert.equal(c.encounterWaves.length,7);assert.equal(c.enemies.length,21);assert.equal(c.teammates.length,5);
+    assert.deepEqual(c.streetEnemies,[]);assert.deepEqual(c.courtyardEnemies,[]);assert.deepEqual(c.reinforcementEnemies,[]);
     const items=scene._$child[0]._$child,doc=items.find(x=>x._$id===c.missionDocument._$ref);
-    assert.ok(doc);assert.equal(doc.transform.localPosition.z,-25.7);assert.equal(doc._$child.length,3);
+    assert.ok(doc);assert.equal(doc.transform.localPosition.z,-22);assert.equal(doc._$child.length,3);
     const mat=JSON.parse(fs.readFileSync(path.join(root,'assets/resources/MissionDocument.lmat.meta'),'utf8'));
     assert.equal(doc._$child[0]._$comp[1].sharedMaterials[0]._$uuid,mat.uuid);
     assert.equal(JSON.parse(fs.readFileSync(path.join(root,'NanChangDemo.laya'),'utf8')).version,'3.4.1');
@@ -129,8 +130,8 @@ await check('场景显式分组、文件位置/资源、LayaAir 版本',()=>{
 await check('识别热重载后丢失任务绑定的预览缓存',()=>{
     const source=JSON.parse(fs.readFileSync(path.join(root,'assets/Demo01.ls'),'utf8'));
     const stale=JSON.parse(JSON.stringify(source));
-    Object.assign(stale._$comp[0],{streetEnemies:[],courtyardEnemies:[],missionDocument:null});
-    assert.throws(()=>checkPreviewBindings(source,stale),/IDE 预览的 streetEnemies/);
+    Object.assign(stale._$comp[0],{encounterWaves:[]});
+    assert.throws(()=>checkPreviewBindings(source,stale),/IDE 预览的 encounterWaves/);
 });
 if(process.argv.includes('--preview-cache'))await check('IDE 实际预览缓存与源场景的任务绑定一致',()=>{
     const source=JSON.parse(fs.readFileSync(path.join(root,'assets/Demo01.ls'),'utf8'));

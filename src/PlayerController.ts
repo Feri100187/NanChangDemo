@@ -16,7 +16,7 @@ export class PlayerController extends Laya.Script {
     @property({ type: Number, caption: "行走速度" })
     walkSpeed = 5;
     @property({ type: Number, caption: "疾跑速度" })
-    sprintSpeed = 9;
+    sprintSpeed = 6.5;
     @property({ type: Number, caption: "下蹲速度" })
     crouchSpeed = 2;
     @property({ type: Number, caption: "开镜移动速度" })

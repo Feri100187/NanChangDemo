@@ -1,4 +1,4 @@
-"""Idempotent scene wiring for three allies; preserves the enemy mission roster."""
+"""Idempotent scene wiring for five allies; preserves the enemy mission roster."""
 import copy
 import json
 from pathlib import Path
@@ -42,7 +42,7 @@ for scene in ['Demo01', 'Scene']:
         print(scene, 'normalized', len(enemies), 'enemies; kept the test-scene roster')
         continue
     allies = []
-    for i, (dx, dz) in enumerate([(-1.2, -1.8), (1.2, -1.8), (0, -3.6)]):
+    for i, (dx, dz) in enumerate([(-1.2, -1.8), (1.2, -1.8), (0, -3.6), (-1.2, -5.4), (1.2, -5.4)]):
         bot = copy.deepcopy(enemies[0])
         mapping = {n['_$id']: f'squad_{i}_{n["_$id"]}' for n in walk(bot) if '_$id' in n}
         def remap(value):

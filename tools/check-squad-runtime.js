@@ -7,7 +7,7 @@ async page => {
         window.level = Laya.stage.getChildByName('root').getChildAt(0).components.find(c => c.playerControl);
         window.bots = [...level.targets, ...level.teammates.map(n => n.components.find(c => c.opponents))];
         window.squadReport = {};
-        if (level.teammates.length !== 3 || level.targets.length !== 8) throw Error('Roster mismatch');
+        if (level.teammates.length !== 5 || level.targets.length !== 8) throw Error('Roster mismatch');
         if (bots.some(b => b.clock !== level.clock)) throw Error('Unshared pause clock');
         const policy = b => [b.patrolRadius,b.patrolSpeed,b.fieldOfView,b.alertTime,b.loseTargetTime,b.turnSpeed];
         if (bots.some(b => JSON.stringify(policy(b)) !== JSON.stringify(policy(bots[0])))) throw Error('Different faction AI policy');
